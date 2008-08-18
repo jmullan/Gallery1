@@ -1301,7 +1301,8 @@ function showImageMap($index, $noUrlUrl = '#') {
 			$html .= "\n\t<area shape=\"poly\" alt=\"\" coords=\"". $area['coords'] ."\" ";
 
 			if(!empty($area['hover_text'])) {
-				$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true, BALLOON, true, OFFSETX, 0, OFFSETY, 0, BALLOONIMGPATH, '". $gallery->app->photoAlbumURL ."/js/tip_balloon/');\"";
+				$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true, BALLOON, true, OFFSETX, 0, OFFSETY, 0, BALLOONIMGPATH, '". $gallery->app->photoAlbumURL ."/js/wz/tip_balloon/');\"";
+				$html .= ' onmouseout="UnTip()"';
 				$wz_tooltips .= "\n <div id=\"wzTooltip_$nr\" style=\"display: none; \">" . htmlentities(addslashes($area['hover_text']), ENT_QUOTES) . '</div>';
 			}
 

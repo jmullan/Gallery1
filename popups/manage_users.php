@@ -22,8 +22,8 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($create, $bulk_create, $modify, $delete, $unames) =
-	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
+list($create, $bulk_create, $modify, $delete, $unlock, $unames) =
+	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unlock', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
 	printPopupStart(gTranslate('core', "Manage Users"));
@@ -31,11 +31,15 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-require_once(dirname(dirname(__FILE__)) .'/lib/groups.php');
-require_once(dirname(dirname(__FILE__)) .'/classes/Group.php');
-require_once(dirname(dirname(__FILE__)) .'/classes/gallery/Group.php');
+require_once(dirname(dirname(__FILE__)) . '/lib/groups.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/Logins.php');
 
 $notice_messages = array();
+
+$userLogins = new Logins();
+$userLogins->load();
 
 if (!empty($create)) {
 	header('Location: ' . makeGalleryHeaderUrl('create_user.php', array('type' => 'popup')));
@@ -44,7 +48,7 @@ if (!empty($bulk_create)) {
 	header('Location: ' . makeGalleryHeaderUrl('multi_create_user.php', array('type' => 'popup')));
 }
 
-if ( (isset($modify) || isset($delete)) && ! isset($unames)) {
+if ( (isset($modify) || isset($delete) || isset($unlock)) && ! isset($unames)) {
 	$notice_messages[] = array('type' => 'error', 'text' => gTranslate('core', "Please select a user"));
 }
 elseif (isset($modify)) {
@@ -53,9 +57,14 @@ elseif (isset($modify)) {
 elseif (isset($delete)) {
 	header('Location: ' . makeGalleryHeaderUrl('delete_user.php', array('unames' => $unames, 'type' => 'popup')));
 }
+elseif(isset($unlock)) {
+	$userLogins->reset($unames);
+	$userLogins->save();
+}
 
 $groupIdList = getGroupIdList();
 $grouplist = array();
+$groupMembers = array();
 
 if(! empty($groupIdList)) {
 	foreach ($groupIdList as $groupID) {
@@ -93,22 +102,31 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 
 	$isAdmin = $tmpUser->isAdmin() ? gTranslate('core', "yes") : gTranslate('core', "no");
 
-	$tooltip =	'<table><tr>' .
-				'<td>' . gTranslate('core', "Username") ."</td><td>:</td><td>$tmpUserName</td>" .
-				'</tr><tr>' .
-				'<td>' . gTranslate('core', "Full name") ."</td><td>:</td><td>" . $tmpUser->getFullname() ."</td>" .
-				'</tr><tr>' .
-				'<td>' . gTranslate('core', "Email") ."</td><td>:</td><td>$tmpUserEmail</td>" .
-				'</tr><tr>' .
-				'<td>' . gTranslate('core', "Admin") ."</td><td>:</td><td>$isAdmin</td>" .
-				'</tr><tr>' .
-				'<td>' . gTranslate('core', "Member of") ."</td><td>:</td><td>$memberOf</td>" .
-				'</tr></table>';
+	$tooltip = '<table class=g-tooltip><tr>' .
+			'<td>' . gTranslate('core', "Username") ."</td><td>:</td><td>$tmpUserName</td>" .
+			'</tr><tr>' .
+			'<td>' . gTranslate('core', "Full name") ."</td><td>:</td><td>" . $tmpUser->getFullname() ."</td>" .
+			'</tr><tr>' .
+			'<td>' . gTranslate('core', "Email") ."</td><td>:</td><td>$tmpUserEmail</td>" .
+			'</tr><tr>' .
+			'<td>' . gTranslate('core', "Admin") ."</td><td>:</td><td>$isAdmin</td>" .
+			'</tr><tr>' .
+			'<td>' . gTranslate('core', "Member of") ."</td><td>:</td><td>$memberOf</td>";
+
+	if($userLogins->userIslocked($tmpUserName)) {
+		$tooltip .= '</tr><tr>';
+		$tooltip .= "<td colspan=3 class=center><b>" . gTranslate('core', "Account is locked!") . "</b></td>";
+		$locked = true;
+	}
+
+	$tooltip .= '</tr></table>';
 
 	$displayUsers[] = array(
 		'value'	=> $tmpUserName,
 		'text'	=> $tmpUserName,
-		'onmouseover' => "Tip('$tooltip', FADEIN, 450, FADEOUT, 300, OPACITY, 90)"
+		'onmouseover' => "Tip('$tooltip', FADEIN, 600, FADEOUT, 300, OPACITY, 90)",
+		'onmouseout' => "UnTip()",
+		'class' => $userLogins->userIslocked($tmpUserName) ? 'g-locked' : false
 	);
 
 }
@@ -164,6 +182,9 @@ if ($gallery->app->multiple_create == "yes") {
 if (count($displayUsers)) {
 	echo gSubmit('modify', gTranslate('core', "_Modify"));
 	echo gSubmit('delete', gTranslate('core', "_Delete"));
+	if(isset($locked)) {
+		echo gSubmit('unlock', gTranslate('core', "_Unlock"));
+	}
 }
 echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 ?>
@@ -178,13 +199,24 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 	var createButton = document.getElementById('create');
 	var modifyButton = document.getElementById('modify');
 	var deleteButton = document.getElementById('delete');
+	var unlockButton = document.getElementById('unlock');
 	var doneButton   = document.getElementById('done');
 
 	function enableButtons() {
 		var selected = 0;
+
+		if(unlockButton) {
+			unlockButton.disabled	= true;
+			unlockButton.className	= 'g-buttonDisable';
+		}
+
 		for (i = 0; i < userCount; i++) {
 			if(userNameBox.options[i].selected) {
 				selected++;
+				if(userNameBox.options[i].className == 'g-locked') {
+					unlockButton.disabled	= false;
+					unlockButton.className	= 'g-button';
+				}
 			}
 		}
 

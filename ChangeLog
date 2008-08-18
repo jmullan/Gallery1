@@ -1,3 +1,27 @@
+2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b137
+
+ * FIX *
+
+ Application Account Lockout not Enforced
+ Issue Overview
+ Account lockouts are not enforced over accounts once an excessive number of
+ failed login attempts have been made.
+ This significantly increases the chances of application compromise via automated
+ brute force password guessing attacks.
+
+ After a configurable number of wront login attemps a user(name) is locked.
+ 
+ - New class: Logins()
+
+ - New functions:
+	unsafe_serialize($obj, $file)
+
+ * Other fixes *
+
+ Forgot an icon in b136
+
+ Forgot a change for b130 tooltips and progressbar.
+
 2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b136
 
  * Fix *

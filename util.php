@@ -1860,5 +1860,6 @@ require_once(dirname(__FILE__) . '/lib/imageManipulation.php');
 require_once(dirname(__FILE__) . '/lib/mail.php');
 require_once(dirname(__FILE__) . '/lib/filesystem.php');
 require_once(dirname(__FILE__) . '/lib/text.php');
+require_once(dirname(__FILE__) . '/lib/progressbar.php');
 
 ?>

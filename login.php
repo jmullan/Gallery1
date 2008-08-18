@@ -21,16 +21,16 @@
  */
 
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/classes/Logins.php');
 
 list($username, $gallerypassword, $login, $reset_username, $forgot) =
 	getRequestVar(array('username', 'gallerypassword', 'login', 'reset_username', 'forgot'));
 
 list($g1_return, $cmd) = getRequestVar(array('g1_return', 'cmd'));
 
-/* decode user data, remove tags, and then re-encode using html entities for safe page display */
-$username = htmlspecialchars(strip_tags(urldecode($username)));
+$username = gHtmlSafe($username);
 
-$g1_return = urldecode($g1_return);
+$g1_return = unhtmlentities(urldecode($g1_return));
 
 if(!isValidGalleryUrl($g1_return) || empty($g1_return)) {
 	$g1_return = makeGalleryHeaderUrl();
@@ -54,8 +54,17 @@ if(!empty($cmd) && $cmd === 'logout') {
 }
 
 if (!empty($username) && !empty($gallerypassword) && !empty($login)) {
+	$userLogins = new Logins();
+	$userLogins->load();
+
 	$tmpUser = $gallery->userDB->getUserByUsername($username);
-	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
+	if ($userLogins->userIslocked($username)) {
+		$loginFailure[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "This account is locked due too much wrong login attempts. Wait for automatic unlock, or contact an administrator.")
+		);
+	}
+	elseif ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 
 		// User is successfully logged in, regenerate a new
 		// session ID to prevent session fixation attacks
@@ -71,8 +80,10 @@ if (!empty($username) && !empty($gallerypassword) && !empty($login)) {
 			$gallery->session->language = $tmpUser->getDefaultLanguage();
 		}
 
+		$userLogins->reset($username);
+		$userLogins->save();
+
 		if (!$gallery->session->offline) {
-			//echo $g1_return;
 			header("Location: $g1_return");
 		}
 		else {
@@ -80,13 +91,28 @@ if (!empty($username) && !empty($gallerypassword) && !empty($login)) {
 			return;
 		}
 	}
+	elseif($tmpUser) {
+		$loginFailure[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Invalid username or password.")
+		);
+
+		$userLogins->addLoginTry($username);
+		$userLogins->save();
+
+		$gallerypassword = null;
+		gallery_syslog("Failed login for $username from " . $_SERVER['REMOTE_ADDR']);
+	}
 	else {
 		$loginFailure[] = array(
 			'type' => 'error',
 			'text' => gTranslate('core', "Invalid username or password.")
 		);
 		$gallerypassword = null;
-		gallery_syslog("Failed login for $username from " . $_SERVER['REMOTE_ADDR']);
+		gallery_syslog("Failed login attempt with an invalid username from " . $_SERVER['REMOTE_ADDR']);
+
+		$userLogins->addLoginTry($username);
+		$userLogins->save();
 	}
 }
 elseif (!empty($login) && empty($forgot)) {
@@ -105,15 +131,7 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($reset_username);
 
 	if ($tmpUser) {
-		$wait_time = 15;
-		if ($tmpUser->lastAction ==  "new_password_request" &&
-			(time() - $tmpUser->lastActionDate) < ($wait_time * 60)) {
-			$resetInfo[] = array(
-				'type' => 'error',
-				'text' => sprintf(gTranslate('core', "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time)
-			);
-		}
-		else if (check_email($tmpUser->getEmail())) {
+		if (check_email($tmpUser->getEmail())) {
 			if (gallery_mail($tmpUser->email,
 				  gTranslate('core', "New password request"),
 				  sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
@@ -123,10 +141,6 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 			{
 				$tmpUser->log("new_password_request");
 				$tmpUser->save();
-				$resetInfo[] = array(
-					'type' => 'success',
-					'text' => sprintf(gTranslate('core', "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."), $reset_username)
-				);
 			}
 			else {
 				$resetInfo[] = array(
@@ -137,19 +151,12 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 				);
 			}
 		}
-		else {
-			$resetInfo[] = array(
-					'type' => 'warning',
-					'text' => gTranslate('core', "There is no valid email for this account.") .
-							  "<br>" .
-							  sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
-			);
-		}
 	}
-	else {
+
+	if(empty($resetInfo) && empty($loginFailure)) {
 		$resetInfo[] = array(
-			'type' => 'error',
-			'text' => gTranslate('core', "Invalid username.")
+			'type' => 'information',
+			'text' => sprintf(gTranslate('core', "If there is a valid email-address for this user, then an email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."), $reset_username)
 		);
 	}
 }

@@ -238,4 +238,50 @@ function getDefaultFilename($localPath) {
 		exit;
 	}
 }
+
+function unsafe_serialize($obj, $file) {
+	/*
+	 * Don't use tempnam because it may create a file on a different
+	 * partition which would cause rename() to fail.  Instead, create our own
+	 * temporary file.
+	 */
+	$i = 0;
+	do {
+		$tmpfile = "$file.$i";
+		$i++;
+	} while (fs_file_exists($tmpfile));
+
+	if ($fd = fs_fopen($tmpfile, "wb")) {
+		$buf = serialize($obj);
+		$bufsize = strlen($buf);
+		$count = fwrite($fd, $buf);
+		fclose($fd);
+
+		if ($count != $bufsize || fs_filesize($tmpfile) != $bufsize) {
+			/* Something went wrong! */
+			$success = false;
+		}
+		else {
+			/*
+			 * Make the current copy the backup, and then write the new current copy.
+			 * There's a potential race condition here.
+			 * Two processes may try to do the initial rename() at the
+			 * same time.  In that case the initial rename will fail,
+			 * but we'll ignore that.  The second rename() will always go through
+			 * (and the second process's changes will probably
+			 * overwrite the first process's changes).
+			 */
+			if (fs_file_exists($file)) {
+				fs_rename($file, "$file.bak");
+			}
+			fs_rename($tmpfile, $file);
+			$success = true;
+		}
+	}
+	else {
+		$success = false;
+	}
+
+	return $success;
+}
 ?>
