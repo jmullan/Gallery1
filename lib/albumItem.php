@@ -201,13 +201,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		$options[] = array(
 			'text'	=> gTranslate('core', "_Reorder"),
-			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1)),
+			'value'	=> showChoice2("move_albumitem.php", array("index" => $i, 'reorder' => 1)),
 			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
 		);
 
 		$options[] = array(
 			'text'	=> gTranslate('core', "Mo_ve"),
-			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
+			'value'	=> showChoice2("move_albumitem.php", array("index" => $i, 'reorder' => 0)),
 			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
 		);
 
@@ -223,8 +223,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 
 	if (isset($isAdmin)) {
 		$options[] = array(
-			'text'	=> gTranslate('core', "Change ow_ner"),
-			'value'	=> showChoice2("photo_owner.php", array("id" => $id)),
+			'text'	=> gTranslate('core', "Change Ow_ner"),
+			'value'	=> showChoice2("item_owner.php", array("id" => $id)),
 			'icon'	=> ($withIcons) ? 'yast_kuser.gif' : ''
 		);
 
@@ -260,19 +260,17 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	{
 		if($isAlbum) {
 			if($gallery->user->canDeleteAlbum($myAlbum)) {
-				$options[]	= array(
+				$options[] = array(
 					'text'	=> gTranslate('core', "_Delete"),
-					'value'	=> showChoice2("delete_photo.php",
-										   array(
-											"id" => $myAlbum->fields["name"],
-											"albumDelete" => 1)),
+					'value'	=> showChoice2("delete_item.php", array('index' => $i)),
+					'icon'	=> ($withIcons) ? 'delete.gif' : ''
 				);
 			}
 		}
 		else {
 			$options[] = array(
 				'text'	=> gTranslate('core', "_Delete"),
-				'value'	=> showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId)),
+				'value'	=> showChoice2('delete_item.php', array('index' => $i, 'nextId' => $nextId)),
 				'icon'	=> ($withIcons) ? 'delete.gif' : ''
 			);
 		}

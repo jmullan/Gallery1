@@ -689,7 +689,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common',"Move album"),
 				'html'	=> popup_link(gTranslate('common',"Move album"),
-							"move_album.php?set_albumName={$albumName}&index=$i&reorder=0",
+							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=0",
 							false, true, 550, 600, '', '', 'move.png'
 					    ),
 				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=0")
@@ -698,7 +698,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common',"Reorder album"),
 				'html'	=> popup_link(gTranslate('common',"Reorder album"),
-							"move_album.php?set_albumName={$albumName}&index=$i&reorder=1",
+							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=1",
 							false, true, 550, 600, '', '', 'move.png'
 					   ),
 				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=1")
@@ -713,14 +713,14 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 				'text'	=> gTranslate('common',"Delete this (sub)album"),
 				'html'	=> popup_link2(
 							gTranslate('common', "Delete this (sub)album"),
-							makeGalleryUrl('delete_photo.php',
+							makeGalleryUrl('delete_item.php',
 								array(
 									'set_albumName'	=> $album->fields['parentAlbumName'],
 									'index' => $i,
 									'id' => $id,
 									'gallery_popup' => true)),
 							array('accesskey' => true, 'icon' => 'delete.gif')),
-				'value'	=> build_popup_url(makeGalleryUrl('delete_photo.php',
+				'value'	=> build_popup_url(makeGalleryUrl('delete_item.php',
 								array(
 									'set_albumName' => $album->fields['parentAlbumName'],
 									'index' => $i,
