@@ -20,6 +20,11 @@
  * $Id$
  */
 
+if(function_exists('date_default_timezone_get')) {
+	$defaultTimeZone = date_default_timezone_get();
+	date_default_timezone_set($defaultTimeZone);
+}
+
 /* load necessary functions */
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 	/* Gallery runs on a Debian System */
@@ -45,6 +50,7 @@ else {
 
 @include (GALLERY_BASE . '/config.php');
 require (GALLERY_BASE . '/Version.php');
+define('LOAD_SESSIONS', true);
 require (GALLERY_BASE . '/session.php');
 require (GALLERY_BASE . '/lib/setup.php');
 

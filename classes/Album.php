@@ -2595,7 +2595,7 @@ class Album {
 	function isItemOwner($uid, $index) {
 		global $gallery;
 
-		$ownerID = $this->getItemOwner($index)
+		$ownerID = $this->getItemOwner($index);
 
 		if($uid == $ownerID) {
 			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);

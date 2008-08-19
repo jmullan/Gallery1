@@ -73,8 +73,8 @@ function get_size($path, $recursive = false) {
 		return filesize($path);
 	}
 
+	$size = 0;
 	if ($handle = fs_opendir($path)) {
-		$size = 0;
 		while (false !== ($file = readdir($handle))) {
 			if($file!='.' && $file!='..') {
 				if(fs_is_dir($path.'/'.$file)) {
@@ -88,8 +88,9 @@ function get_size($path, $recursive = false) {
 			}
 		}
 		closedir($handle);
-		return $size;
 	}
+
+	return $size;
 }
 
 /**
@@ -130,6 +131,65 @@ function rmdirRecursive($dir) {
 	}
 
 	return fs_rmdir($dir);
+}
+
+/**
+ * Checks whether the given path or the given path with .default extension exists.
+ * Function exits Galelry with an error message when a path does not exist at all.
+ *
+ * @param	string $localPath		Path to a file on the server.
+ * @return	string				The path that exist.
+ * @author	Jens Tkotz
+ */
+function getDefaultFilename($localPath) {
+	if(fs_file_exists($localPath)) {
+		return $localPath;
+	}
+	elseif (fs_file_exists($localPath . '.default')) {
+		return $localPath . '.default';
+	}
+	else {
+		echo gallery_error(gTranslate('common', "The path you try to use does not exist! Exiting Gallery"));
+		exit;
+	}
+}
+
+function findInPath($program) {
+	$path = explode(':', getenv('PATH'));
+
+	foreach ($path as $dir) {
+		if (fs_file_exists("$dir/$program")) {
+			return "$dir/$program";
+		}
+	}
+
+	return false;
+}
+
+function parse_csv ($filename, $delimiter = ';') {
+	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
+	$maxLength = 1024;
+	$return_array = array();
+
+	if ($fd = fs_fopen($filename, "rt")) {
+		$headers = fgetcsv($fd, $maxLength, $delimiter);
+		while ($columns = fgetcsv($fd, $maxLength, $delimiter)) {
+			$i = 0;
+			$current_image = array();
+			foreach ($columns as $column) {
+				$current_image[$headers[$i++]] = $column;
+			}
+			$return_array[] = $current_image;
+		}
+		fclose($fd);
+	}
+
+	if(isDebugging()){
+		echo gTranslate('core', "csv result:");
+		print_r($return_array);
+	}
+
+	return $return_array;
 }
 
 /**
@@ -176,6 +236,105 @@ function extractArchive($archive, $ext, $destination) {
 	}
 }
 
+function getArchiveFileNames($archive, $ext) {
+	global $gallery;
+
+	$cmd = '';
+	$files = array();
+
+	if ($tool = canDecompressArchive($ext)) {
+		$filename = fs_import_filename($archive);
+		switch ($tool) {
+			case 'zip':
+				$cmd = fs_import_filename($gallery->app->zipinfo) ." -1 ". $filename;
+				break;
+
+			case 'rar':
+				$cmd = fs_import_filename($gallery->app->rar) ." vb ". $filename;
+				break;
+		}
+
+		list($files, $status) = exec_internal($cmd);
+
+		if (!empty($files)) {
+			sort($files);
+		}
+	}
+
+	return $files;
+}
+
+/**
+ * If an exiftool is installed then gallery tries to pull out EXIF Data.
+ * Only fields with data are returned.
+ */
+function getExif($file) {
+	global $gallery;
+
+	$return = array();
+	$myExif = array();
+	$unwantedFields = array();
+
+	echo debugMessage(sprintf(gTranslate('core', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
+
+	switch(getExifDisplayTool()) {
+		case 'exiftags':
+			if (empty($gallery->app->exiftags)) {
+				break;
+			}
+
+			$path	= $gallery->app->exiftags;
+			$cmd	= fs_import_filename($path, 1) . ' -au';
+			$target	= fs_import_filename($file, 1);
+
+			list($return, $status) = @exec_internal($cmd . ' ' . $target);
+		break;
+
+		case 'jhead':
+			if (empty($gallery->app->use_exif)) {
+				break;
+			}
+			$path = $gallery->app->use_exif;
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' . // -v removed as the structure is different.
+			fs_import_filename($file, 1));
+
+			$unwantedFields = array('File name');
+		break;
+
+		default:
+			return array(false,'');
+		break;
+	}
+
+	if ($status == 0) {
+		foreach ($return as $value) {
+			$value = trim($value);
+
+			if (!empty($value)) {
+				$explodeReturn = explode(':', $value, 2);
+				$exifDesc = trim(htmlentities($explodeReturn[0]));
+				$exifData = trim(htmlentities($explodeReturn[1]));
+
+				if(!empty($exifData) &&
+					!in_array($exifDesc, $unwantedFields) &&
+					!isset($myExif[$exifDesc]))
+				{
+					if (isset($myExif[$exifDesc])) {
+						$myExif[$exifDesc] .= "<br>";
+					}
+					else {
+						$myExif[$exifDesc] = '';
+					}
+
+					$myExif[$exifDesc] .= trim($exifData);
+				}
+			}
+		}
+	}
+
+	return array($status, $myExif);
+}
+
 /**
  * Checks wether an url i in the allowed upload pathes of Gallery.
  *
@@ -218,25 +377,73 @@ function isInAllowedUploadPath($url) {
 	return array(true, '');
 }
 
-/**
- * Checks whether the given path or the given path with .default extension exists.
- * Function exits Galelry with an error message when a path does not exist at all.
- *
- * @param	string $localPath		Path to a file on the server.
- * @return	string				The path that exist.
- * @author	Jens Tkotz
- */
-function getDefaultFilename($localPath) {
-	if(fs_file_exists($localPath)) {
-		return $localPath;
+function safe_serialize($obj, $file) {
+	global $gallery;
+
+	if (!strcmp($gallery->app->use_flock, "yes")) {
+		/* Acquire an advisory lock */
+		$lockfd = fs_fopen("$file.lock", "a+");
+		if (!$lockfd) {
+			echo gallery_error(sprintf(gTranslate('core', "Could not open lock file (%s) for writing!"),
+						"$file.lock"));
+			return 0;
+		}
+		if (!flock($lockfd, LOCK_EX)) {
+			echo gallery_error(sprintf(gTranslate('core', "Could not acquire lock (%s)!"),
+						"$file.lock"));
+			return 0;
+		}
 	}
-	elseif (fs_file_exists($localPath . '.default')) {
-		return $localPath . '.default';
+
+	/*
+	 * Don't use tempnam because it may create a file on a different
+	 * partition which would cause rename() to fail.  Instead, create our own
+	 * temporary file.
+	 */
+	$i = 0;
+	do {
+		$tmpfile = "$file.$i";
+		$i++;
+	} while (fs_file_exists($tmpfile));
+
+	if ($fd = fs_fopen($tmpfile, "wb")) {
+		$buf = serialize($obj);
+		$bufsize = strlen($buf);
+		$count = fwrite($fd, $buf);
+		fclose($fd);
+
+		if ($count != $bufsize || fs_filesize($tmpfile) != $bufsize) {
+			/* Something went wrong! */
+			$success = 0;
+		}
+		else {
+			/*
+			 * Make the current copy the backup, and then
+			 * write the new current copy.  There's a
+			 * potential race condition here if the
+			 * advisory lock (above) fails; two processes
+			 * may try to do the initial rename() at the
+			 * same time.  In that case the initial rename
+			 * will fail, but we'll ignore that.  The
+			 * second rename() will always go through (and
+			 * the second process's changes will probably
+			 * overwrite the first process's changes).
+			 */
+			if (fs_file_exists($file)) {
+				fs_rename($file, "$file.bak");
+			}
+			fs_rename($tmpfile, $file);
+			$success = 1;
+		}
 	}
 	else {
-		echo gallery_error(gTranslate('common', "The path you try to use does not exist! Exiting Gallery"));
-		exit;
+		$success = 0;
 	}
+
+	if (!strcmp($gallery->app->use_flock, "yes")) {
+		flock($lockfd, LOCK_UN);
+	}
+	return $success;
 }
 
 function unsafe_serialize($obj, $file) {
@@ -284,4 +491,5 @@ function unsafe_serialize($obj, $file) {
 
 	return $success;
 }
+
 ?>
