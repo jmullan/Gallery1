@@ -170,10 +170,17 @@ if(!includeTemplate('navigator.tpl')) {
 
 			$nClass = '';
 		}
+
+		if($navc < 2) {
+			$id = 'g-navtable';
+		}
+		else {
+			$id = 'g-navtable-bottom';
+		}
 ?>
 
 <!-- Navigator -->
-<table cellspacing="0" cellpadding="0" id="g-navtable" dir="<?php echo $gallery->direction; ?>">
+<table cellspacing="0" cellpadding="0" id="<?php echo $id; ?>" dir="<?php echo $gallery->direction; ?>">
 <tr>
 	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $fpContent ?></td>
 	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $ppContent ?></td>
@@ -184,7 +191,7 @@ if(!includeTemplate('navigator.tpl')) {
 </table>
 <?php
 		if($navc < 2) {
-			echo '<script type="text/javascript" src="'. $gallery->app->photoAlbumURL ."/js/arrowkey_nav.js\"></script>\n";
+			echo jsHtml('arrowkey_nav.js');
 	    }
 	}
 }

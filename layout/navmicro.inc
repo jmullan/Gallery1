@@ -1,7 +1,5 @@
 <?php
-/*
-	$Id$
-*/
+/* $Id$ */
 
 global $navigator;
 global $full;
@@ -59,7 +57,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		$ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
 		$navThumbsPrev .= "<a href=\"$ppUrl\">";
 		$navThumbsPrev .= $gallery->album->getThumbnailTagById($prevPage,
-		   $gallery->album->fields["nav_thumbs_size"]);
+		   $gallery->album->fields["nav_thumbs_size"], array('class' => 'nav_micro_img'));
 		$navThumbsPrev .='</a>&nbsp;&nbsp;';
 	}
 
@@ -71,7 +69,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		$npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
 		$navThumbsNext .= "&nbsp;&nbsp;<a href=\"$npUrl\">";
 		$navThumbsNext .= $gallery->album->getThumbnailTagById($nextPage,
-		   $gallery->album->fields["nav_thumbs_size"]);
+		   $gallery->album->fields["nav_thumbs_size"], array('class' => 'nav_micro_img'));
 		$navThumbsNext .='</a>';
 	}
 
@@ -112,7 +110,8 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 	for ($i = $startThumb; $i < $navBlockSize+$startThumb; $i++) {
 		/* In case we are close to the end, stop generating thumbs */
 		if ( $i >= $navcount ) { break; }
-		$navBlogThumb .= '<a href="'. makeAlbumUrl($gallery->session->albumName, $navigator["allIds"][$i], ($full) ? array('full' => 1) : NULL) .'">';
+		$navBlogThumb .= '<a href="'. makeAlbumUrl($gallery->session->albumName,
+		   ($navigator["allIds"][$i])).'">';
 
 		/* Current image gets special CSS */
 		if ( $i == $navpage ) {
@@ -124,7 +123,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 		/* All other images get another CSS */
 		} else {
 			$navBlogThumb .= $gallery->album->getThumbnailTagById($navigator["allIds"][$i],
-        	           $gallery->album->fields["nav_thumbs_size"]);
+        	           $gallery->album->fields["nav_thumbs_size"], array('class' => 'nav_micro_img'));
 		}
 		$navBlogThumb .= '</a>';
 		$navBlogThumb .= '&nbsp;&nbsp;';

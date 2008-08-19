@@ -44,6 +44,16 @@ Again add:
 * File: phpBB2/templates/subSilver/overall_header.tpl
 *******************************************************
 
+Find:
+ @import url("templates/subSilver/formIE.css"); 
+ -->
+ </style>
+
+After add:
+ <link rel="stylesheet" href="modules/gallery/css/base.css.default" type="text/css">
+ <link rel="stylesheet" href="modules/gallery/css/embedded_style.css.default" type="text/css">
+
+
 Find: 				<table cellspacing="0" cellpadding="2" border="0">
  					<tr> 
  						<td align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;<a href="{U_FAQ}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_faq.gif" width="12" height="13" border="0" alt="{L_FAQ}" hspace="3" />{L_FAQ}</a></span><span class="mainmenu">&nbsp; &nbsp;<a href="{U_SEARCH}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_search.gif" width="12" height="13" border="0" alt="{L_SEARCH}" hspace="3" />{L_SEARCH}</a>&nbsp; &nbsp;<a href="{U_MEMBERLIST}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_members.gif" width="12" height="13" border="0" alt="{L_MEMBERLIST}" hspace="3" />{L_MEMBERLIST}</a>&nbsp; &nbsp;<a href="{U_GROUP_CP}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_groups.gif" width="12" height="13" border="0" alt="{L_USERGROUPS}" hspace="3" />{L_USERGROUPS}</a>&nbsp; 

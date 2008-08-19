@@ -86,17 +86,20 @@ if (!empty($action)) {
 			if ($verified) {
 				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 
-				printInfoBox(array(array(
-					'type' => 'success',
-					'text' => gTranslate('core', "Album deleted.")
-				)));
+				if($ret) {
+					echo gallery_success(gTranslate('core', "Album deleted."));
+				}
+				else {
+					echo gallery_error(gTranslate('core', "Album not deleted!"));
+				}
+
 				echo galleryLink(makeGalleryUrl("tools/validate_albums.php"), gTranslate('core', "_Validate again"), array(), '', true);
 				echo galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "Return to _admin page"), array(), '', true);
 				echo galleryLink(makeAlbumUrl(), gTranslate('core', "Return to _gallery"), array(), '', true);
 			}
 			else {
 				echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'invalidAlbum' => $invalidAlbum));
-				echo gTranslate('core', "Are you sure you want to delete the folder below and all of its content ?");
+				echo gTranslate('core', "Are you sure you want to delete the folder below and all of its content?");
 				echo "<p class=\"g-emphasis\">$invalidAlbum</p>";
 				echo gSubmit('verified', gTranslate('core', "Yes, _Delete"));
 				echo gButton('revalidate', gTranslate('core', "No, _Cancel"), "parent.location='" .makeGalleryUrl("tools/validate_albums.php") ."'");
@@ -110,14 +113,18 @@ if (!empty($action)) {
 				$targetAlbum = new Album();
 				$targetAlbum->load($album);
 				$photoIndex = $targetAlbum->getPhotoIndex($id);
-				$targetAlbum->deletePhoto($photoIndex);
-				$targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
 
+				$ret = $targetAlbum->deletePhoto($photoIndex);
 
-				printInfoBox(array(array(
-					'type' => 'success',
-					'text' => gTranslate('core', "Photo deleted.")
-				)));
+				if($ret) {
+					$targetAlbum->save(array(i18n("Item '$id' deleted from '$album' because the target image file is missing")));
+
+					echo gallery_success(gTranslate('core', "Item deleted."));
+				}
+				else {
+					echo gallery_error(gTranslate('core', "Item not deleted!"));
+				}
+
 				echo galleryLink(makeGalleryUrl("tools/validate_albums.php"), gTranslate('core', "_Validate again"), array(), '', true);
 				echo galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "Return to _admin page"), array(), '', true);
 				echo galleryLink(makeAlbumUrl(), gTranslate('core', "Return to _gallery"), array(), '', true);
