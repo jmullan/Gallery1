@@ -32,6 +32,7 @@ define ("GALLERY_BASE", dirname(dirname(dirname(__FILE__))));
 
 require(GALLERY_BASE .'/lib/filesystem.php');
 require(GALLERY_BASE .'/lib/filetypes.php');
+require(GALLERY_BASE .'/config.php');
 
 if (substr(PHP_OS, 0, 3) == 'WIN') {
 	require(GALLERY_BASE . '/platform/fs_win32.php');
@@ -45,10 +46,21 @@ $results = search($query);
 sendResults($results);
 
 function search($query) {
+	global $gallery;
+
 	$results = array();
 
-	if (strlen($query) == 0) {
+	if (strlen($query) == 0 ||
+		! is_string($query) ||
+		empty($gallery->app->uploadPaths))
+	{
 		return array();
+	}
+
+	foreach ($gallery->app->uploadPaths as $allowedPath) {
+		if(!stristr($query, $allowedPath)) {
+			return array();
+		}
 	}
 
 	if(fs_is_dir($query)) {
@@ -63,17 +75,24 @@ function search($query) {
 		}
 	}
 
+	$dirname = rtrim($dirname, '\\/');
+	if(empty($dirname)) {
+		$dirname = '/';
+	}
+
 	$forbidden = array('.', '..');
 
-	if ($handle = fs_opendir($dirname)) {
+	if ($handle = fs_opendir($dirname, false)) {
 		while (false !== ($file = readdir($handle))) {
-			$ext = getExtension($file);
+			$ext = getExtension($file, false);
 
-			if(empty($basename)) {
-				$path = $dirname . $file;
-			}
-			elseif (strpos($file, $basename) === 0) {
-				$path = "$dirname/$file";
+			if(!isset($basename) || strpos($file, $basename) === 0) {
+				if($dirname != '/') {
+					$path = "$dirname/$file";
+				}
+				else {
+					$path = $dirname . $file;
+				}
 			}
 			else {
 				continue;

@@ -196,6 +196,10 @@ function drawSelect2($name, $options, $attrList = array()) {
 				$option['class'] .= ' center g-disabled';
 			}
 
+			if(empty($option['class'])) {
+				unset($option['class']);
+			}
+
 			$text = $option['text'];
 
 			foreach ($optionIgnoreAttrs as $delete) {
@@ -283,6 +287,8 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 }
 
 function formVar($name) {
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	if (!strncmp($_REQUEST[$name], 'false', 5)) {
 		return false;
 	}
@@ -292,6 +298,8 @@ function formVar($name) {
 }
 
 function emptyFormVar($name) {
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	return !isset($_REQUEST[$name]);
 }
 

@@ -101,3 +101,28 @@ function validNewGroupName($groupname) {
 
 	return null;
 }
+
+/**
+ * Returns an array with all groups. Structure 'gid' => 'name'
+ *
+ * @return unknown
+ */
+function buildGroupsList() {
+	$groupIdList	= getGroupIdList();
+	$groupList		= array();
+
+	if(! empty($groupIdList)) {
+		foreach ($groupIdList as $groupID) {
+			$tmpGroup = new Gallery_Group();
+			$tmpGroup->load($groupID);
+			$groups[] = array(
+				'value' => $groupID,
+				'text' => $tmpGroup->getName()
+			);
+		}
+	}
+
+	array_sort_by_fields($groups, 'text', 'asc', true, true);
+	
+	return $groupList;
+}

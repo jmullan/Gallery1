@@ -348,12 +348,12 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
 	$wmAlignX = floor($wmAlignX);
 	$wmAlignY = floor($wmAlignY);
 
-	if ($wmAlignX > 0) {
-		$wmAlignX = '+'. $wmAlignX;
+	if ($wmAlignX >= 0) {
+		$wmAlignX = "+$wmAlignX";
 	}
 
-	if ($wmAlignY > 0) {
-		$wmAlignY = '+'. $wmAlignY;
+	if ($wmAlignY >= 0) {
+		$wmAlignY = "+$wmAlignY";
 	}
 
 	// Execute

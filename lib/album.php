@@ -841,4 +841,43 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 	return $albumCommands;
 }
+
+/**
+ * This function left in place to support patches that use it, but please use
+ * lastCommentDate functions in classes Album and AlbumItem.
+ *
+ * @param object $album
+ * @param integer $i
+ * @return string
+ */
+function mostRecentComment($album, $i) {
+	$id = $album->getPhotoId($i);
+	$index = $album->getPhotoIndex($id);
+	$recentcomment = $album->getComment($index, $album->numComments($i));
+
+	return $recentcomment->getDatePosted();
+}
+
+/**
+ * returns the a HTML string that shows a breadcrumb to an album
+ *
+ * @param array    $parents
+ * @return string  $html
+ * @author Jens Tkotz
+ */
+function albumBreadcrumb($parents) {
+	$html = '';
+
+	$nr = 0;
+	foreach ($parents as $album) {
+		$html .= $album['title'];
+		$nr ++;
+		if($nr < sizeof($parents)) {
+			$html .= ' >> ';
+		}
+	}
+
+	return $html;
+}
+
 ?>
