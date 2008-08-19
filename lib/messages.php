@@ -31,6 +31,39 @@ function gallery_error($message) {
 	return $html;
 }
 
+function gallery_success($message) {
+	$html = infoBox(array(array(
+		'type' => 'success',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
+function gallery_info($message) {
+	$html = infoBox(array(array(
+		'type' => 'information',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
+function gallery_warning($message) {
+	$html = infoBox(array(array(
+		'type' => 'warning',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
 function infoLine($messages, $type = '') {
 	$message = (is_array($messages)) ? implode("<br>\n", $messages) : $messages;
 
@@ -93,7 +126,7 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
  * @author Jens Tkotz
  */
 function printInfoBox($messages = array(), $caption = '', $withOuterBorder = true) {
-	if (!headers_sent()) { ?>
+	if (!headers_sent() && (ob_get_length() == 0 || ! ob_get_length())) { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -160,4 +193,57 @@ function debugMessage($msg, $file, $line, $level = NULL) {
 	}
 }
 
+function showDebugInfo() {
+	global $gallery;
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $GALLERY_POSTNUKE_VERSION;
+
+	if (isDebugging()) {
+		$infoText = sprintf(_("Debug ON ! Level %s"), $gallery->app->debuglevel) . '<br>';
+		if (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+			$infoText .= 'Standalone';
+			$infoText .= "; Skin: {$gallery->app->skinname}";
+		}
+		else {
+			$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+			switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
+				case 'phpnuke':
+					break;
+				case 'postnuke':
+					$infoText .= ' '. $GALLERY_POSTNUKE_VERSION;
+					break;
+				case 'cpgnuke':
+					break;
+				case 'phpBB2':
+					break;
+				case 'GeekLog':
+					break;
+			}
+		}
+
+		$infoText .= "; Theme: {$gallery->app->theme}";
+
+		echo infoBox(array(array('text' => $infoText, 'type' => 'information')));
+		echo "\n";
+	}
+}
+
+function showInvalidReqMesg($text = '') {
+	global $gallery;
+
+	if (empty($text)) {
+		$text = gTranslate('core', "Invalid Request.");
+	}
+
+	echo gallery_error(
+		$text . ' ' .
+//		sprintf(gTranslate('core', "Please go back to %s."),
+//			galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
+		sprintf(gTranslate('core', "Please go back to %s."),
+			$gallery->app->galleryTitle)
+	);
+
+	includeTemplate('overall.footer');
+}
 ?>

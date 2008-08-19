@@ -46,13 +46,17 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeTemplate('gallery.header', '', 'classic');
 
-echo '<div class="right">';
-if (!empty($searchstring)) {
-	echo addSearchForm($searchstring);
-}
-echo "\n</div>";
+$iconElements = array();
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
 
-$adminbox['commands'] = galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['text']	 = addSearchForm($searchstring);
+$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
@@ -253,21 +257,10 @@ if (!empty($searchstring)) {
 	}
 
 	if (sizeof($skip) > 0) {
-		echo gallery_error(sprintf(gTranslate('core', "Some albums not searched as they require upgrading to the latest version of %s first."),Gallery()));
+		echo gallery_warning(sprintf(gTranslate('core', "Some albums not searched as they require upgrading to the latest version of %s first."),Gallery()));
 		if ($gallery->user->isAdmin()) {
-			print "<br>";
-			echo popup_link(gTranslate('core', "Upgrade all albums."), "upgrade_album.php");
-			print "<br>(";
-			$join_text='';
-			foreach($skip as $album) {
-				$link = makeGalleryUrl("view_album.php",
-				array("set_albumName" => $album->fields["name"]));
-				echo $join_text."<a href=\"$link\">".$album->fields["name"] ."</a>";
-				$join_text=", ";
-			}
-			print ")";
+			echo gallery_info(popup_link(gTranslate('core', "Upgrade albums."), "upgrade_album.php"));
 		}
-		echo "<p>";
 	}
 }
 else {

@@ -257,7 +257,7 @@ function getDimensions($file) {
 
 		case "ImageMagick":
 			/* This fails under windows, IM isn't returning parsable status output. */
-			  list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
+			list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file), '', ''));
 		break;
 
 		default:
@@ -604,14 +604,22 @@ function getItemCaptureDate($file, $exifData = array()) {
 
 	// we were not able to get the capture date from exif... use file creation time
 	if (!$success) {
-		$itemCaptureTimeStamp = filemtime($file);
-		echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
+		if(@filemtime($file)) {
+			$itemCaptureTimeStamp = filemtime($file);
+
+			echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
 						  __FILE__, __LINE__);
+		}
+		else {
+			$itemCaptureTimeStamp = false;
+			echo debugMessage(gTranslate('core', "Got no capture date and an error on getting the file modification time."),
+						  __FILE__, __LINE__);
+		}
 	}
 
-	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date: %s"),
-							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
-					  __FILE__, __LINE__);
+	echo debugMessage(sprintf(gTranslate('core', "Item Capture Date: %s"),
+				strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
+			__FILE__, __LINE__);
 
 	return $itemCaptureTimeStamp;
 }
@@ -647,18 +655,6 @@ function padded_range_array($start, $end) {
 		$arr[$val] = $i;
 	}
 	return $arr;
-}
-
-/**
- * This function left in place to support patches that use it, but please use
- * lastCommentDate functions in classes Album and AlbumItem.
- */
-function mostRecentComment($album, $i) {
-	$id = $album->getPhotoId($i);
-	$index = $album->getPhotoIndex($id);
-	$recentcomment = $album->getComment($index, $album->numComments($i));
-
-	return $recentcomment->getDatePosted();
 }
 
 function ordinal($num = 1) {
@@ -1247,8 +1243,8 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
 	$ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
-	$ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
-	$ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_recipient_email%>/", $ecard["email_recipient"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_recipient_name%>/", $ecard["name_recipient"], $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_stamp%>/", $stampName, $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
@@ -1293,7 +1289,7 @@ function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
 	$ecard_mail->setSubject($ecard['subject']);
 	$ecard_mail->setReturnPath($ecard["email_sender"]);
 
-	  $result = $ecard_mail->send(array($ecard["name_recepient"] .' <'. $ecard["email_recepient"] .'>'));
+	$result = $ecard_mail->send(array($ecard["name_recipient"] .' <'. $ecard["email_recipient"] .'>'));
 
 	return $result;
 }
@@ -1553,41 +1549,6 @@ function enableCaptcha() {
 		default:
 			return false;
 			break;
-	}
-}
-
-function showDebugInfo() {
-	global $gallery;
-	global $GALLERY_EMBEDDED_INSIDE_TYPE;
-	global $GALLERY_POSTNUKE_VERSION;
-
-	if (isDebugging()) {
-		$infoText = sprintf(_("Debug ON ! Level %s"), $gallery->app->debuglevel) . '<br>';
-		if (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
-			$infoText .= 'Standalone';
-			$infoText .= "; Skin: {$gallery->app->skinname}";
-		}
-		else {
-			$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
-
-			switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
-				case 'phpnuke':
-					break;
-				case 'postnuke':
-					$infoText .= ' '. $GALLERY_POSTNUKE_VERSION;
-					break;
-				case 'cpgnuke':
-					break;
-				case 'phpBB2':
-					break;
-				case 'GeekLog':
-					break;
-			}
-		}
-
-		$infoText .= "; Theme: {$gallery->app->theme}";
-
-		echo infoBox(array(array('text' => $infoText, 'type' => 'information')));
 	}
 }
 

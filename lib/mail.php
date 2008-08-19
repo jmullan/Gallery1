@@ -30,7 +30,6 @@
  * @param string	$email
  * @return boolean
 */
-
 function check_email($email) {
 	return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,6}$/', $email) >0;
 }
@@ -155,6 +154,10 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 
 	if ($gallery->app->useOtherSMTP == "yes") {
+		if (!checkSMTPParams()) {
+			return false;
+		}
+
 		$gallery_mail->setSMTPParams(
 			$gallery->app->smtpHost,
 			$gallery->app->smtpPort,
@@ -174,6 +177,19 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	return $result;
 }
 
+function checkSMTPParams() {
+	global $gallery;
+
+	$checklist = array('smtpHost', 'smtpPort', 'smtpUserName', 'smtpPassword');
+
+	foreach ($checklist as $paramName) {
+		if(empty($gallery->app->$paramName)) {
+			return false;
+		}
+	}
+
+	return true;
+}
 
 function welcome_email($show_default=false) {
 	global $gallery;
@@ -184,7 +200,7 @@ Congratulations.  You have just been subscribed to %s at %s.  Your account name 
 
 !!NEWPASSWORDLINK!!
 
-Gallery @ %s Administrator.");
+Your %s Administrator.");
 	if ($show_default) {
 		return sprintf($default,
 		'<b><span style="white-space: nowrap;">&lt;' . gTranslate('core', "gallery title") . "&gt;</span></b>",
