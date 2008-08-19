@@ -41,13 +41,25 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 printPopupStart(sprintf(gTranslate('core', "Rebuilding capture dates: %s"), $gallery->album->fields["title"]), '', 'left');
 
-if(!empty($rebuild)) {
-	$gallery->album->rebuildCaptureDates($recursive);
-	echo '<script type="text/javascript">opener.location.reload();</script>';
-	echo "\n<br>";
-	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
+$highlightIndex = $gallery->album->getHighlight();
+
+if ($highlightIndex != null) {
+	echo '<p class="center">' . $gallery->album->getThumbnailTag($highlightIndex) . '</p>';
 }
-else {
+
+if(!empty($rebuild)) {
+	if($gallery->album->rebuildCaptureDates($recursive)) {
+		echo '<script type="text/javascript">opener.location.reload();</script>';
+		echo "\n<div class=\"center\">\n";
+		echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
+		echo "</div>";
+	}
+	else {
+		$error = true;
+	}
+}
+
+if(empty($rebuild) || isset($error)) {
 	echo gTranslate('core', "Here you can rebuild all capture dates of your photos.");
 	echo "\n<br>";
 	echo gTranslate('core', "This is usefull when something went wrong, of you enabled jhead/exiftags after you upload items.");

@@ -889,53 +889,70 @@ function _getStyleSheetLink($filename, $skinname = '') {
 
 }
 
-// The following 2 functions, printAlbumOptionList and printNestedVals provide
-// a html options list for moving photos and albums around within gallery.  There
-// were some defects in the original implimentation (I take full credit for the
-// defects), and thus on 5/22/03, I rewrote the 2 functions to conform to the
-// following requirements:
-//
-// For moving albums, there are 2 cases:
-// 1. moving root albums:  the user should be able to move a
-//	root album to any album to which they have write permissions
-//	AND not to an album nested beneath it in the same tree
-//	AND not to itself.
-// 2. moving nested albums:  the user should be able to move a
-//	nested album to any album to which they have write permissions
-//	AND not to an album nested beneath it in the same tree
-//	AND not to itself
-//	AND not to its parent album.
-//	The user should also be able to move it to the ROOT level
-//	with appropriate permissions.
-//
-// For moving pictures, there is 1 case:
-// 1. moving pictures:  the user should be able to move a picture
+/**
+ * The following 2 functions, albumOptionList and nestedAlbumOptionList provide
+ * an (html) options list for moving photos and albums around within gallery.
+ * There were some defects in the original implimentation (I take full credit for the
+ * defects), and thus on 5/22/03, I rewrote the 2 functions to conform to the
+ * following requirements:
+ *
+ * For moving albums, there are 2 cases:
+ * 1. moving root albums:  the user should be able to move a
+ *	root album to any album to which they have write permissions
+ *	AND not to an album nested beneath it in the same tree
+ *	AND not to itself.
+ * 2. moving nested albums:  the user should be able to move a
+ *	nested album to any album to which they have write permissions
+ *	AND not to an album nested beneath it in the same tree
+ *	AND not to itself
+ *	AND not to its parent album.
+ *	The user should also be able to move it to the ROOT level
+ *	with appropriate permissions.
+ *
+ * For moving pictures, there is 1 case:
+ * 1. moving pictures:  the user should be able to move a picture
 //	to any album to which they have write permissions
 //	AND not to the album to which it already belongs.
 //
-// -jpk
+ * -jpk
 
-function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto = false, $readOnly = false) {
+ *
+ * @param boolean $rootDisplay
+ * @param boolean $moveRootAlbum
+ * @param boolean $movePhoto
+ * @param boolean $readOnly
+ * @return array  $albumOptionList
+ */
+function albumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto = false, $readOnly = false) {
 	global $gallery, $albumDB, $index;
 
 	$uptodate = true;
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
+	$albumOptionList = array();
+
 	if (!$readOnly) {
-		echo "\n\t<option value=\"0\" class=\"center g-disabled\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n\t";
+		$albumOptionList[] = array(
+			'text'	=> ' << ' . gTranslate('common', "Select Album") . ' >> ',
+			'value' => '',
+			'selected' => true,
+			'disabled' => null
+		);
 	}
 
-	// create a ROOT option for the user to move the
-	// album to the main display
+	// Create a ROOT option for the user to move the album to the main display
 	if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-		echo "\n\t<option value=\".root\">". gTranslate('common', "Move to top level") ."</option>\n\t";
+		$albumOptionList[] = array(
+			'text'	=> gTranslate('common', "Move to top level"),
+			'value'	=> '.root'
+		);
 	}
 
-	// display all albums that the user can move album to
+	// Display all albums that the user can move album to
 	for ($i = 1; $i <= $mynumalbums; $i++) {
-		$myAlbum = $albumDB->getAlbum($gallery->user, $i);
-		$myAlbumName = $myAlbum->fields['name'];
-		$myAlbumTitle = $myAlbum->fields['title'];
+		$myAlbum	= $albumDB->getAlbum($gallery->user, $i);
+		$myAlbumName	= $myAlbum->fields['name'];
+		$myAlbumTitle	= $myAlbum->fields['title'];
 
 		if ($gallery->user->canWriteToAlbum($myAlbum) ||
 		  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
@@ -949,7 +966,10 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "Current location"). ")</option>\n\t";
+				$albumOptionList[] = array(
+					'text'	=> "-- $myAlbumTitle (" . gTranslate('common', "Current location"). ')',
+					'value'	=> $myAlbumName
+				);
 			}
 			else {
 				if (sizeof($gallery->album->fields["votes"]) &&
@@ -957,42 +977,55 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 				{
 					$myAlbumTitle .= ' *';
 				}
-				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n\t";
+				$albumOptionList[] = array(
+					'text'	=> "-- $myAlbumTitle",
+					'value'	=> $myAlbumName
+				);
 			}
 		}
 
-		if ( !$readOnly && $moveRootAlbum && ($myAlbum == $gallery->album) && !$movePhoto )  {
+		if (!$readOnly && $moveRootAlbum && ($myAlbum == $gallery->album) && !$movePhoto)  {
 			// do nothing -- we are moving a root album, and we don't
 			// want to move it into its own album tree
-
 		}
 		elseif (!$readOnly && !$gallery->album->isRoot() &&
 			($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )
 		{
-			// do nothing -- we are moving an album, and we don't
-			// want to move it into its own album tree
+			 // do nothing -- we are moving an album, and we don't
+			 // want to move it into its own album tree
 		}
 		else {
-			printNestedVals(1, $myAlbumName, $movePhoto, $readOnly);
+			$albumOptionList=array_merge($albumOptionList,nestedAlbumOptionList(1, $myAlbumName, $movePhoto, $readOnly));
 		}
 	}
 
-	echo $jtext;
-	return $uptodate;
+	return array($uptodate, $albumOptionList);
 }
 
-function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
+/**
+ * Returns an array similar to the function above, just for subalbums
+ *
+ * @param integer $level
+ * @param string  $albumName
+ * @param boolean $movePhoto
+ * @param booelan $readOnly
+ * @return array  $nestedAlbumOptionList
+ */
+function nestedAlbumOptionList($level, $albumName, $movePhoto, $readOnly) {
 	global $gallery, $index;
+
+	$currentAlbumName = $gallery->album->getAlbumName($index);
 
 	$myAlbum = new Album();
 	$myAlbum->load($albumName);
 
 	$numPhotos = $myAlbum->numPhotos(1);
+	$nestedAlbumOptionList = array();
 
 	for ($i = 1; $i <= $numPhotos; $i++) {
 		if ($myAlbum->isAlbum($i)) {
-			$myName = $myAlbum->getAlbumName($i);
-			$nestedAlbum = new Album();
+			$myName		= $myAlbum->getAlbumName($i);
+			$nestedAlbum	= new Album();
 			$nestedAlbum->load($myName);
 
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
@@ -1002,28 +1035,43 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 				$val2 = truncateText($val2, 20, 'right');
 
 				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
-					// don't allow user to move to here (value=0), but
+					// Don't allow user to move to here (value=0), but
 					// notify them that this is their current location
-					echo "<option value=\"0\"> $val2 (". gTranslate('common', "Current location") .")</option>\n\t";
+					$nestedAlbumOptionList[] = array(
+						'text'	=> "$val2 (". gTranslate('common', "Current location") .")",
+						'value'	=> 0
+					);
 				}
-				elseif (!$readOnly && !$gallery->album->isRoot() &&
-				  ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
-					echo "<option value=\"0\"> $val2 (". gTranslate('common', "This album itself"). ")</option>\n\t";
+				elseif (!$readOnly &&
+					($myName == $currentAlbumName))
+				{
+				  	$nestedAlbumOptionList[] = array(
+						'text'	=> "$val2 (". gTranslate('common', "This album itself"). ")",
+						'value'	=> 0
+					);
 				}
 				else {
-					echo "<option value=\"$myName\"> $val2</option>\n\t";
+					$nestedAlbumOptionList[] = array(
+						'text'	=> $val2,
+						'value'	=> $myName
+					);
 				}
 			}
 
 			if (!$readOnly && !$gallery->album->isRoot() &&
-			 ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
-				// do nothing -- don't allow album move into its own tree
+			    ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto) {
+				// Do nothing -- don't allow album move into its own tree
 			}
 			else {
-				printNestedVals($level + 1, $myName, $movePhoto, $readOnly);
+				$nestedAlbumOptionList = array_merge(
+					$nestedAlbumOptionList,
+					nestedAlbumOptionList($level + 1, $myName, $movePhoto, $readOnly)
+				);
 			}
 		}
 	}
+
+	return $nestedAlbumOptionList;
 }
 
 /**
@@ -1069,11 +1117,14 @@ function available_skins($description_only = false) {
 
 	$dir = "$base/skins";
 	$opts['none'] = gTranslate('common', "No Skin");
-	$descriptions = '<dl>';
+
 	$name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">".
-	gTranslate('common', "No Skin") . "</a>";
+		gTranslate('common', "No Skin") . "</a>";
+
+	$descriptions = '<dl>';
 	$descriptions .= sprintf("<dt>%s</dt>", $name);
 	$descriptions .= '<dd>'. gTranslate('common', "The original look and feel.") .'</dd>';
+
 	$skincount = 0;
 
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {

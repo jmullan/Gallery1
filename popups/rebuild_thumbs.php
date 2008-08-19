@@ -41,8 +41,16 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 printPopupStart(sprintf(gTranslate('core', "Rebuilding Thumbnails: %s"), $gallery->album->fields["title"]), '', 'left');
 
+$highlightIndex = $gallery->album->getHighlight();
+
+if ($highlightIndex != null) {
+	echo '<p class="center">' . $gallery->album->getThumbnailTag($highlightIndex) . '</p>';
+}
+
 if(!empty($recreate)) {
 	$gallery->album->makeThumbnails($recursive);
+	$gallery->album->save('Thumbnails recreated');
+	
 	echo '<script type="text/javascript">opener.location.reload();</script>';
 	echo "\n<br>";
 	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');

@@ -50,13 +50,16 @@ if (!empty($confirm)) {
 	dismissAndReload();
 	exit;
 }
-?>
 
-<p>
-<?php echo sprintf(gTranslate('core', "Do you really want to remove all votes from album <b>%s</b>?"), $gallery->album->fields['title']) ?>
-</p>
+$highlightIndex = $gallery->album->getHighlight();
 
-<?php 
+if ($highlightIndex != null) {
+	echo '<p class="center">' . $gallery->album->getThumbnailTag($highlightIndex) . "</p>\n";
+}
+
+printf("\n" . gTranslate('core', "Do you really want to remove all votes from album '%s'?"),
+	'<span class="g-emphasis">' .$gallery->album->fields['title'] .'</span>');
+
 echo makeFormIntro('reset_votes.php', array(), array('type' => 'popup'));
 
 echo gSubmit('confirm', gTranslate('core', "_Remove Votes"));

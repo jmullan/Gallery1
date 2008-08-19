@@ -38,14 +38,11 @@ if (! $gallery->user->canReadAlbum($gallery->album)) {
 	exit;
 }
 
-if ($gallery->session->albumName && $index) {
-?>
-	<?php echo $gallery->album->getThumbnailTag($index) ?>
-	<br>
-	<?php echo $gallery->album->getCaption($index) ?>
-	<?php echo $gallery->album->getCaptionName($index) ?>
-	<br><br>
-<?php
+echo $gallery->album->getThumbnailTag($index);
+echo "\n<br>";
+echo $gallery->album->getCaption($index);
+echo $gallery->album->getCaptionName($index);
+
 /*
 Here is the EXIF parsing code...
 I have chosen to use a program called "jhead" to do EXIF parsing.
