@@ -293,19 +293,16 @@ foreach ($constants as $key => $val) {
 				continue;
 			}
 
-			if (!is_writeable($dir) ||
-				!test_write_to_dir($dir))
-			{
-				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
-				$key, $dir,
-					'<br><b><code>' .
-					"chown -R $webserver_user  $dir" .
-					'</code></b><br><br>',
-					'<br><b><code>' .
-					"chmod -R 777 $dir</code>" .
-					'</code></b><br><br>',
-					'<a href="phpinfo.php">open_basedir</a>',
-					'open_basedir'));
+			if (!is_writeable($dir) || !test_write_to_dir($dir)) {
+				$gallery->session->configData .=
+					configError(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user."), $key, $dir)) .
+					configError(sprintf(gTranslate('config', "Try: %s"),
+						"<b><code>chown -R $webserver_user  $dir</code></b>")) .
+					configError(sprintf(gTranslate('config', "Or if that doesn't work: %s"),
+						"<b><code>chmod -R 777 $dir</code></b>")) .
+					configError(sprintf(gTranslate('config', "Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+						'<a href="phpinfo.php">open_basedir</a>', 'open_basedir')) . '<br>';
+
 					$error++;
 					continue;
 			}

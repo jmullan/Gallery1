@@ -134,46 +134,6 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 }
 
 /**
- * This function checks if a given value is a valid integer.
- * Valid means:
- * --- its a numeric value
- * --- is not lower a given minum (can be 1 or 0)
- * You can give a default to correct an invalid input
- *
- * Return is an array that contains:
- * --- Status, can be 0 for OK, 1 for set to default, 2 failure and no default
- * --- Original or default value
- * --- Debug message
-*/
-function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyAllowed = false) {
-	$minimum = ($includingZero == true) ? 0 : 1;
-
-	if ( $mixed == '' && $emptyAllowed) {
-		return array(0, $mixed, '');
-	}
-
-	if (! is_numeric($mixed)) {
-		if (isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not numeric."));
-		}
-		else {
-            return array(2, false, gTranslate('common', "The given value is not numeric."));
-		}
-	}
-
-	if($mixed < $minimum) {
-		if (isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid integer."));
-		}
-		else {
-            return array(2, false, gTranslate('common', "The given value not a valid integer."));
-		}
-	}
-
-	return array(0, $mixed, '');
-}
-
-/**
  * This function checks if a given value is a valid "Gallery" integer.
  * A "Gallery" integer is a number of the set |N+ = {0, 1, 2, ...}.
  * Its not the PHP integer which is a number of the set |Z = {..., -2, -1, 0, 1, 2, ...}.
@@ -412,6 +372,34 @@ function hasValidGroupIdFormat($string) {
 }
 
 /**
+ * Checks whether an albuname has unallowed chars
+ *
+ * @param string $name
+ * @return string		empty on success, otherwise the sanitized albumname.
+ */
+function validAlbumName($name) {
+
+	$nameOrig = $name;
+
+	$name = str_replace("'", "", $name);
+	$name = str_replace("`", "", $name);
+	$name = strtr($name, "%\\/*?\"<>|& .+#(){}~", "-------------------");
+	$name = ereg_replace("\-+", "-", $name);
+	$name = ereg_replace("\-+$", "", $name);
+	$name = ereg_replace("^\-", "", $name);
+	$name = ereg_replace("\-$", "", $name);
+
+	if ($name != $nameOrig) {
+		$ret = $name;
+	}
+	else {
+		$ret = '';
+	}
+
+	return $ret;
+}
+
+/**
  * Calculated the password strength of a password
  *
  * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
@@ -521,6 +509,29 @@ function cleanRepetition($partLen, $string) {
 	}
 
 	return $cleaned;
+}
+
+/**
+ * Checks whether a value seems to be a valid timestamp
+ *
+ * @param integer  $timestamp
+ * @return boolean $valid
+ * @author Jesse Mullan
+ */
+function isValidTimestamp($timestamp) {
+    /* See http://us3.php.net/strtotime */
+    $valid = is_numeric($timestamp);
+    $value = intval($timestamp);
+
+    /* Negative values are not always legal (but sometimes are) */
+    $valid &= (0 <= $value);
+    /* This is the same test */
+    $valid &= (strtotime('1970/1/1 GMT') < $timestamp);
+
+    /* The maximum value of a 32-bit signed integer is 4294967296, or the y2k39 "bug" */
+    $valid &= (strtotime('2038/01/19 03:14:07 GMT') > $timestamp);
+
+    return $valid;
 }
 
 /**

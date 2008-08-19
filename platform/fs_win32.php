@@ -59,21 +59,29 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
 	return fopen($filename, $mode, $use_include_path);
 }
 
-function fs_file_get_contents($filename) {
+function fs_file_get_contents($filename, $legacy = false) {
 	$filename = fs_import_filename($filename, 0);
+	$content = '';
+
+	if (!fs_file_exists($filename) || broken_link($filename)) {
+		return $content;
+	}
 
 	if (function_exists("file_get_contents")) {
-		$tmp = @file_get_contents($filename);
+		$content = @file_get_contents($filename);
 	}
 	else {
-		if ($fd = fs_fopen($fname, "rb")) {
+		$mode = ($legacy) ? 'rt' : 'rb';
+	
+		if ($fd = fs_fopen($filename, $mode)) {
 			while (!feof($fd)) {
-				$tmp .= fread($fd, 65536);
+				$content .= fread($fd, 65536);
 			}
 			fclose($fd);
 		}
 	}
-	return $tmp;
+	
+	return $content;
 }
 
 function fs_is_dir($filename) {
@@ -96,15 +104,18 @@ function fs_is_writable($filename) {
 		return @is_writable($filename);
 }
 
-function fs_opendir($path) {
+function fs_opendir($path, $withDebug = true) {
 	$path = fs_import_filename($path, 0);
-
 	$dir_handle = @opendir($path);
+	
 	if ($dir_handle) {
 		return $dir_handle;
 	}
 	else {
-		echo gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		if($withDebug) {
+			echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		}
+		
 		return false;
 	}
 }
@@ -212,14 +223,14 @@ function fs_export_filename($filename) {
 	return $filename;
 }
 
-function fs_exec($cmd, &$results, &$status, $debugfile = '') {
-	/* We can't redirect stderr with Windows.  Hope that we won't need to.
-	 * Thus $debugfile is not used when Gallery runs on windows.
-	 */
+function fs_exec($cmd, &$results, &$status) {
+	// We can't redirect stderr with Windows.  Hope that we won't need to.
 	return exec($cmd, $results, $status);
 }
 
 function fs_tempdir() {
+	global $gallery;
+
 	return export_filename($gallery->app->tmpDir);
 }
 

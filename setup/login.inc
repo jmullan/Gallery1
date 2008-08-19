@@ -56,17 +56,18 @@ elseif (!empty($login)) {
 				$gallery->session->language = $tmpUser->getDefaultLanguage();
 			}
 		}
-		elseif (!isset($tmpUser) || !$tmpUser->isCorrectPassword($gallerypassword)) {
+		elseif ($tmpUser) {
 			$tmpUser = null;
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
 
 			$messages[] = array(
 				'type' => 'error',
-				'text' => gTranslate('config', "Invalid username or password.")
+				'text' => gTranslate('config', "Invalid username or password, or user is not an admin.")
 			);
 		}
-		elseif (!$tmpUser->isAdmin()) {
+		else {
+			$tmpUser = null;
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login from " . $_SERVER['REMOTE_ADDR']);
 
@@ -104,14 +105,22 @@ if (isset($gallery->session->resetAdminGuid)) {
 <?php
 	exit;
 }
-elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
-?>
+elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {
+	if (!headers_sent() && (ob_get_length() == 0 || ! ob_get_length())) {
+		printPopupStart(gTranslate('config', "Gallery"));
+	}
+	// Not logged in
+	echo "\n  ". '<div class="g-warning left g-message">';
+	echo gImage('icons/notice/warning.gif');
 
-<div class="g-header">
-    <div class="g-pagetitle"><?php echo sprintf (gTranslate('config', "%s configuration"), gallery()) ?></div>
-</div>
-
-<div class="g-content-popup">
+	if(isset($gallery->app->config_version) &&
+	    $gallery->app->config_version != $gallery->config_version)
+	{
+		echo gTranslate('config', "Your Gallery needs a reconfiguration.") .
+		     '<p>' .
+		     gTranslate('config', "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") .
+		     '</p>';
+	}
 
         echo gTranslate('config', "You must log in as an administrator to edit this Gallery configuration.");
         echo "\n<br><br>";

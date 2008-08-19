@@ -932,19 +932,19 @@ function check_locale() {
 		# Unix / Linux
 		# Check which locales are installed
 
-		exec('locale -a', $results, $status);
+		@exec('locale -a', $results, $status);
 
 		if(count($results) >2) {
 			$system_locales = $results;
 		}
 		elseif (@is_readable("/etc/locale.gen")) {
-			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
+			@exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
 		}
 		elseif (@is_readable("/usr/share/locale")) {
-			exec("ls /usr/share/locale", $system_locales);
+			@exec("ls /usr/share/locale", $system_locales);
 		}
 		elseif (@is_readable("/usr/local/share/locale")) {
-			exec("ls /usr/local/share/locale", $system_locales);
+			@exec("ls /usr/local/share/locale", $system_locales);
 		}
 	}
 

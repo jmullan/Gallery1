@@ -72,21 +72,27 @@ function fs_fopen($filename, $mode, $use_include_path = 0) {
  * @param	string $filename
  * @return	string $content
  */
-function fs_file_get_contents($filename) {
+function fs_file_get_contents($filename, $legacy = false) {
 	$content = '';
 
+	if (!fs_file_exists($filename) || broken_link($filename)) {
+		return $content;
+	}
+	
 	if (function_exists("file_get_contents")) {
 		$content = @file_get_contents($filename);
 	}
 	else {
-		if ($fd = fs_fopen($fname, "rb")) {
+		$mode = ($legacy) ? 'rt' : 'rb';
+	
+		if ($fd = fs_fopen($filename, $mode)) {
 			while (!feof($fd)) {
 				$content .= fread($fd, 65536);
 			}
 			fclose($fd);
 		}
 	}
-
+	
 	return $content;
 }
 /**
@@ -117,13 +123,16 @@ function fs_is_writable($filename) {
 	return @is_writable($filename);
 }
 
-function fs_opendir($path) {
+function fs_opendir($path, $withDebug = true) {
 	$dir_handle = @opendir($path);
 	if ($dir_handle) {
 		return $dir_handle;
 	}
 	else {
-		echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		if($withDebug) {
+			echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		}
+		
 		return false;
 	}
 }
