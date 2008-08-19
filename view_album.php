@@ -328,6 +328,7 @@ $numPhotos = $gallery->album->numPhotos(1);
 $displayCommentLegend = false;
 $nr = 0;
 $wz_tooltips = '';
+$embeddedLightboxCSS = '';
 
 if ($numPhotos) {
 	$rowCount = 0;
@@ -504,9 +505,46 @@ if ($numPhotos) {
 									false
 				);
 
-				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
+				if ($gallery->album->fields['lightbox'] == "yes") {
+					list($album, $highlight) = $myAlbum->getHighlightedItem();
+
+					$gallery->html_wrap['imageHref']	= $highlight->getPhotoPath($album->getAlbumDirURL("full"));
+					$gallery->html_wrap['attrlist']['rel']  = 'lightbox[gallery]';
+					$gallery->html_wrap['attrlist']['id'] 	= "thumblink_$i";
+				}
+				else {
+					$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
+				}
+
 				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];
 				$gallery->html_wrap['type']		= 'inline_albumthumb.frame';
+
+				// Further album infos
+				$albumItems[$nr]['infos'][] =
+					sprintf (gTranslate('core', "Last change: %s"), $myAlbum->getLastModificationDate());
+
+				$visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
+				$contains = gTranslate('core',"Contains: One Item","Contains %d items", $visItems, '', true) .'. ';
+				// If comments indication for either albums or both
+				switch ($gallery->app->comments_indication) {
+					case 'albums':
+					case 'both':
+						$lastCommentDate = $myAlbum->lastCommentDate($gallery->app->comments_indication_verbose);
+						if ($lastCommentDate > 0) {
+							$contains .= lastCommentString($lastCommentDate, $displayCommentLegend);
+						}
+						break;
+				}
+
+				$albumItems[$nr]['infos'][] = $contains;
+
+				if ($gallery->album->fields['display_clicks'] == "yes" &&
+				    !$gallery->session->offline &&
+				    $myAlbum->getClicks() > 0)
+				{
+					$albumItems[$nr]['clickcounter'] = gTranslate('core', "Viewed: Once.", "Viewed: %d times.", $myAlbum->getClicks(), '', true);
+				}
+
 			}
 			/**
 			 * Element is a picture
@@ -527,7 +565,17 @@ if ($numPhotos) {
 					$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
 				}
 
-				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
+
+				if ($gallery->album->fields['lightbox'] == "yes") {
+					$gallery->html_wrap['imageHref']	= $gallery->album->getPhotoPath($i);
+					$gallery->html_wrap['attrlist']['rel']  = 'lightbox[gallery]';
+					$gallery->html_wrap['attrlist']['id'] 	= "thumblink_$i";
+				}
+				else {
+					$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
+				}
+
+
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 				$gallery->html_wrap['type']		= 'inline_photothumb.frame';
 
@@ -704,6 +752,17 @@ if ($numPhotos) {
 
 	if(empty($albumItems)) {
 		$va_notice = gTranslate('core', "This album is empty.");
+	}
+	else {
+		if ($gallery->album->fields['lightbox'] == "yes") {
+			$va_javascript .= jsHTML('lightbox2/prototype.js');
+			$va_javascript .= jsHTML('lightbox2/scriptaculous.js?load=effects,builder');
+			$va_javascript .= jsHTML('lightbox2/lightbox.js.php');
+
+			if($GALLERY_EMBEDDED_INSIDE) {
+				$embeddedLightboxCSS = _getStyleSheetLink("lightbox");
+			}
+		}
 	}
 }
 else {

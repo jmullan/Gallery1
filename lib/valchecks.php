@@ -34,52 +34,103 @@
 function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 	switch ($type) {
 		case 'int':
-			return isValidInteger($var, true, NULL, true);
-			break;
-		case 'int_notnull':
-			return isValidInteger($var, true, $default, false);
-			break;
-		case 'int_empty':
-			return isValidInteger($var, true, $default, true);
+		case 'int_ZeroEmpty':
+			$status = isValidGalleryInteger($value, true, true);
+
+		break;
+
+		case 'int_ZeroNotEmpty':
+			$status = isValidGalleryInteger($value, true, false);
+
+		break;
+
+		case 'int_NotZeroNotEmpty':
+			$status = isValidGalleryInteger($value, false, false);
+
 			break;
 
 		case 'pictureFrame':
-			if(array_key_exists($var, available_frames())) {
-				return array(0, $var, '');
+			if(array_key_exists($value, available_frames())) {
+				$result = array(0, $value, '');
 			}
 			else {
-				return array(2, $var, gTranslate('common', "The given frame is not valid."));
+				$result = array(2, $value, gTranslate('common', "The given frame is not valid."));
 			}
 		break;
 
 		case 'inChoice':
-			if(in_array($var, $choices)) {
-				return array(0, $var, '');
+			if(in_array($value, $choices)) {
+				$result = array(0, $value, '');
 			}
 			elseif (isset($default)) {
-                return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
+				$result = array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
 			}
 			else {
-                return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
+				$result = array(2, $value, gTranslate('common', "The given value is not in the allowed list of choices."));
 			}
 		break;
 
 		case 'filename':
-			$status = isXSSclean($var);
+			$status = isXSSclean($value);
 
 			if($status) {
-				$result = array(0, $var, '');
+				$result = array(0, $value, '');
 			}
 			else {
-				$result = array(2, $var, gTranslate('common', "The given value is not an allowed filename."));
+				$result = array(2, $value, gTranslate('common', "The given value is not an allowed filename."));
 			}
+		break;
+
+		case 'text_NotEmpty':
+			if (empty($value)) {
+				return array(2, $value, gTranslate('common', "Empty string is not allowed."));
+			}
+
+			$status = isValidText($value);
+
 		break;
 
 		default:
 		case 'text':
-			$status = isValidText($var);
+			$status = isValidText($value);
 		break;
 	}
+
+	/* Handle $result for integers */
+	if (substr($type,0, 3) == 'int') {
+		if(! $status) {
+			if (empty($default)) {
+				$result = array(1, $value, gTranslate('core', "The value is not a valid Gallery integer."));
+			}
+			else {
+				$result = array(2, $default, gTranslate('core', "The value is not a valid Gallery integer and was set to a given default."));
+			}
+		}
+		else {
+			$result = array(0, $value, '');
+		}
+
+		return $result;
+	}
+
+	/* Handle $result for strings */
+	if (substr($type,0, 4) == 'text') {
+		if(! $status) {
+			if (empty($default)) {
+				$result = array(1, $value, gTranslate('core', "The value is not an allowed string."));
+			}
+			else {
+				$result = array(2, $default, gTranslate('core', "The value is not a allowed string and was set to a given default."));
+			}
+		}
+		else {
+			$result = array(0, $value, '');
+		}
+
+		return $result;
+	}
+
+	return $result;
 }
 
 /**
@@ -361,6 +412,118 @@ function hasValidGroupIdFormat($string) {
 }
 
 /**
+ * Calculated the password strength of a password
+ *
+ * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
+ * Written by firas kassem [2007.04.05]
+ * Firas Kassem  phiras.wordpress.com || phiras at gmail {dot} com
+ * For more information : http://phiras.wordpress.com/2007/04/08/password-strength-meter-a-jquery-plugin/
+ *
+ * @param string	$password
+ * @return integer	$score
+ */
+function passwordStrength($password) {
+	$score = 0 ;
+
+	//password length
+	$password_length = strlen($password);
+	$score += $password_length * 4;
+
+	$score += strlen(cleanRepetition(1, $password)) - $password_length;
+	$score += strlen(cleanRepetition(2, $password)) - $password_length;
+	$score += strlen(cleanRepetition(3, $password)) - $password_length;
+	$score += strlen(cleanRepetition(4, $password)) - $password_length;
+
+	//password has 3 numbers
+	if (preg_match('/(.*[0-9].*[0-9].*[0-9])/', $password)) {
+		$score += 5;
+	}
+
+	//password has 2 symbols
+	if (preg_match('/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/', $password)) {
+		$score += 5;
+	}
+
+	//password has Upper and Lower chars
+	if (preg_match('/([a-z].*[A-Z])|([A-Z].*[a-z])/', $password)) {
+		$score += 10;
+	}
+
+	//password has number and chars
+	if (preg_match('/([a-zA-Z])/', $password) && preg_match('/([0-9])/', $password)) {
+		$score += 15;
+	}
+
+	//password has number and symbol
+	if (preg_match('/([!,@,#,$,%,^,&,*,?,_,~])/', $password) && preg_match('/([0-9])/', $password)) {
+		$score += 15;
+	}
+
+	//password has char and symbol
+	if (preg_match('/([!,@,#,$,%,^,&,*,?,_,~])/', $password) && preg_match('/([a-zA-Z])/', $password)) {
+		$score += 15;
+	}
+
+	//password is just a nubers or chars
+	if (preg_match('/^\w+$/', $password) || preg_match('/^\d+$/', $password)) {
+		$score -= 10;
+	}
+
+	//verifing 0 < score < 100
+	if ($score < 0)  {
+		$score = 0;
+	}
+
+	if ($score > 100) {
+		$score = 100;
+	}
+
+	return $score;
+}
+
+/**
+ * Removes repeated char(s) from a String
+ *
+ * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
+ * Written by firas kassem [2007.04.05]
+ * Firas Kassem  phiras.wordpress.com || phiras at gmail {dot} com
+ * For more information : http://phiras.wordpress.com/2007/04/08/password-strength-meter-a-jquery-plugin/
+ *
+ * @param integer	$partLen	How big is the repeated string?
+ * @param string	$string		String to check
+ * @example checkRepetition(1,'aaaaaaabcbc')   = 'abcbc'
+ * @example checkRepetition(2,'aaaaaaabcbc')   = 'aabc'
+ * @example checkRepetition(2,'aaaaaaabcdbcd') = 'aabcd'
+ * @return string	$cleaned
+ */
+function cleanRepetition($partLen, $string) {
+	$cleaned = '';
+
+	for ( $i = 0; $i < strlen($string) ; $i++ ) {
+		$repeated = true;
+
+		for ($j = 0; $j < $partLen && ($j + $i + $partLen) < strlen($string) ; $j++) {
+			$repeated = $repeated && ($string{($j + $i)} == $string{($j + $i + $partLen)});
+		}
+
+		if ($j < $partLen) {
+			$repeated = false;
+		}
+
+		if ($repeated) {
+			$i += $partLen - 1;
+			$repeated = false;
+		}
+		else {
+			$cleaned .= $string{$i};
+		}
+
+	}
+
+	return $cleaned;
+}
+
+/**
  * Does the given watermark file exists in our watemark folder?
  * Hint: No subfolders supported.
  *
@@ -384,6 +547,28 @@ function watermarkPicExists($wmName = '') {
 	else {
 		return false;
 	}
+}
+
+/**
+ * Is a given value (number) in a certain range?
+ *
+ * @param float     $value
+ * @param float     $min
+ * @param float     $max
+ * @return boolean
+ */
+function inRange($value, $min, $max) {
+	if(!ctype_digit(trim($value))) {
+		return false;
+	}
+
+	if ($value < $min || $value > $max) {
+		return false;
+	}
+	else {
+		return true;
+	}
+
 }
 
 /**
@@ -439,5 +624,4 @@ function checkWatermarkSetting($wmName, $wmAlign, $wmSelect, $previewFull, $wmAl
 
 	return $notice_messages;
 }
-
 ?>

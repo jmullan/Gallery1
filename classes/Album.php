@@ -28,15 +28,16 @@ class Album {
 	var $tsilb = "TSILB";
 
 	/*
-	* This variable contains data that is useful for the lifetime
-	* of the album object but which should not be saved in the
-	* database.  Data like the mirrorUrl which we want to validate
-	* the first time we touch an album.
+	 * transient
+	 * This variable contains data that is useful for the lifetime
+	 * of the album object but which should not be saved in the
+	 * database.  Data like the mirrorUrl which we want to validate
+	 * the first time we touch an album.
 	*/
-	var $transient;
-
 	function Album() {
 		global $gallery;
+
+		$this->transient = new stdClass();
 
 		$this->fields['title']			= gTranslate('core', "Untitled");
 		$this->fields['description']		= '';
@@ -59,6 +60,7 @@ class Album {
 		$this->fields['rows']			= $gallery->app->default['rows'];
 		$this->fields['cols']			= $gallery->app->default['cols'];
 		$this->fields['fit_to_window']		= $gallery->app->default['fit_to_window'];
+		$this->fields['lightbox']		= $gallery->app->default['lightbox'];
 		$this->fields['use_fullOnly']		= $gallery->app->default['use_fullOnly'];
 		$this->fields['print_photos']		= isset($gallery->app->default['print_photos']) ? $gallery->app->default['print_photos'] : '';
 		$this->fields['use_exif']		= isset($gallery->app->use_exif) ? 'yes' : 'no';
@@ -83,7 +85,6 @@ class Album {
 
 		$this->fields['cached_photo_count']	= 0;
 		$this->fields['photos_separate']	= FALSE;
-		$this->transient->photosloaded		= TRUE;
 
 		$this->fields['item_owner_display']	= $gallery->app->default['item_owner_display'];
 		$this->fields['item_owner_modify']	= $gallery->app->default['item_owner_modify'];
@@ -154,6 +155,8 @@ class Album {
 				$this->fields['extra_fields'][$key] = $value;
 			}
 		}
+
+		$this->transient->photosloaded = TRUE;
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -350,6 +353,7 @@ class Album {
 			'rows',
 			'cols',
 			'fit_to_window',
+			'lightbox',
 			'use_fullOnly',
 			'print_photos',
 			'display_clicks',
@@ -3297,7 +3301,8 @@ class Album {
 		}
 		for ($i = 0; $i<$this->fields['poll_scale']; $i++ ) {
 			if ($this->fields['poll_nv_pairs'][$i]['value'] !=
-			  $album->fields['poll_nv_pairs'][$i]['value'] ) {
+			    $album->fields['poll_nv_pairs'][$i]['value'] )
+			{
 				return false;
 			}
 		}
@@ -3332,9 +3337,11 @@ class Album {
 		$albumName = $this->getAlbumName($index);
 		if ($albumName) {
 			$vote_id = "album.$albumName";
-		} else {
+		}
+		else {
 			$vote_id = "item.".$this->getPhotoId($index);
 		}
+
 		return $vote_id;
 	}
 

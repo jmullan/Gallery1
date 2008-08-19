@@ -27,6 +27,10 @@
  * @author Jens Tkotz
  */
 
+if (!isset($gallery) || !function_exists('gTranslate')) {
+	exit;
+}
+
 $properties = array(
 	'group_text' => array (
 		'type'		=> 'group_start',
@@ -174,7 +178,7 @@ $properties = array(
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->fields['slideshow_length'],
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'group_slideshow_end' => array (
 		'type'		=> 'group_end'
@@ -190,7 +194,7 @@ $properties = array(
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->fields['thumb_size'],
-		'vartype'	=> 'int_notnull'
+		'vartype'	=> 'int_ZeroNotEmpty'
 	),
 	'thumb_ratio' => array(
         	'prompt'	=> gTranslate('common', "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'."),
@@ -217,29 +221,28 @@ $properties = array(
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->fields['resize_file_size'],
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'max_size' => array(
         	'prompt'	=> gTranslate('common', "Maximum size of full sized images (in px)?"),
 		'desc'		=> '',
-		'choices'	=> array(
-					0 => gTranslate('common', "Off"),
-					400 => 400, 500 => 500,
-					600 => 600, 640 => 640,
-					700 => 700, 800 => 800,
-					1024 => 1024,
-				     	1280 => sprintf(gTranslate('common', '%d (%d MPix)'), 1280, 1),
-					1600 => sprintf(gTranslate('common', '%d (%d MPix)'), 1600, 2),
-					2048 => sprintf(gTranslate('common', '%d (%d MPix)'), 2048, 3)),
+		'choices' =>	array(0 => gTranslate('common', "Off"),
+				     400 => 400, 500 => 500,
+				     600 => 600, 640 => 640,
+				     700 => 700, 800 => 800,
+				     1024 => 1024,
+				     1280 => sprintf(gTranslate('common', '%d (%d MPix)'), 1280, 1),
+				     1600 => sprintf(gTranslate('common', '%d (%d MPix)'), 1600, 2),
+				     2048 => sprintf(gTranslate('common', '%d (%d MPix)'), 2048, 3)),
 		'value' =>	$gallery->album->fields["max_size"],
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'max_file_size' => array(
         	'prompt'	=> gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)?"),
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->fields['max_file_size'],
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'group_sizes_end' => array (
 		'type'		=> 'group_end'
@@ -337,7 +340,7 @@ $properties = array(
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->getPollScale(),
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'poll_show_results' => array(
 		'prompt'	=> gTranslate('common', "Show results of voting to all visitors?"),
@@ -350,7 +353,7 @@ $properties = array(
 		'desc'		=> '',
 		'type'		=> 'text',
 		'value'		=> $gallery->album->getPollNumResults(),
-		'vartype'	=> 'int_empty'
+		'vartype'	=> 'int_ZeroEmpty'
 	),
 	'poll_orientation' => array(
         	'prompt'	=> gTranslate('common', "Orientation of vote choices?"),
@@ -401,15 +404,14 @@ $properties = array(
 		'choices'	=> array('yes' => gTranslate('common', "Yes"), 'no' => gTranslate('common', "No")),
 		'value'		=> $gallery->album->fields['use_fullOnly']
 	),
-	'fit_to_window' => array(
-        'prompt' => gTranslate('common', "Auto fit-to-window for<br>images without a resized copy?"),
-		'desc' => '',
-		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields['fit_to_window']
+	'group_misc_end' => array (
+		'type'		=> 'group_end'
 	),
-	'subgroup_ermission' => array (
-		'type' => 'subgroup',
-		'title' => gTranslate('common', "Permissions")
+	'group_owner_permission' => array (
+		'type'		=> 'group_start',
+		'default'	=> 'none',
+		'title'		=> gTranslate('common', "Owner _Permissions"),
+		'desc'		=> gTranslate('common', "For historical reasons permissions for owners are handled as property, not as permission. ;-) G1-Style ;-)")
 	),
 	'item_owner_modify' => array(
         	'prompt'	=> gTranslate('common', "Allow users to modify their own items?"),
@@ -423,8 +425,28 @@ $properties = array(
 		'choices'	=> array('yes' => gTranslate('common', "Yes"), 'no' => gTranslate('common', "No")),
 		'value'		=> $gallery->album->fields['item_owner_delete']
 	),
-	'group_misc_end' => array (
-		'type' => 'group_end'
+	'group_owner_permission_end' => array (
+		'type'		=> 'group_end'
+	),
+	'group_effects' => array (
+		'type' =>	'group_start',
+		'default' =>	'none',
+		'title' =>	gTranslate('common', "_Effects")
+	),
+	'fit_to_window' => array(
+        	'prompt'	=> gTranslate('common', "Auto fit-to-window for<br>images without a resized copy?"),
+		'desc'		=> '',
+		'choices'	=> array('yes' => gTranslate('common', "Yes"), 'no' => gTranslate('common', "No")),
+		'value'		=> $gallery->album->fields['fit_to_window']
+	),
+	'lightbox' => array(
+        	'prompt'	=> gTranslate('common', "Turn on the lightbox effect view in thumbs?"),
+		'desc'		=> '',
+		'choices'	=> array('yes' => gTranslate('common', "Yes"), 'no' => gTranslate('common', "No")),
+		'value'		=> $gallery->album->fields['lightbox']
+	),
+	'group_effects_end' => array (
+		'type' =>	'group_end'
 	),
 	'group_CustomFields' => array (
 		'type'		=> 'group_start',
