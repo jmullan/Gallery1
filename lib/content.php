@@ -432,30 +432,8 @@ function printMetaData($image_info) {
 }
 
 /**
- * Returns a link to the docs, if present, or NULL
- * @author	Andrew Lindeman
- */
-function galleryDocs() {
-	global $gallery;
-
-	$base = dirname(dirname(__FILE__));
-
-	if (fs_file_exists("$base/docs/index.html")) {
-		if (isset($gallery->app->photoAlbumURL)) {
-			$url = $gallery->app->photoAlbumURL . '/docs/index.html';
-		}
-		else {  // When first time config without $gallery set.
-			$url = '../docs/index.html';
-		}
-		return $url;
-	}
-	else {
-		return NULL;
-	}
-}
-
-/**
  * This function displays tables with the Fields of an Photo
+ *
  * @param	integer	$index				Fields of this photo are displayed.
  * @param	array	$extra_fields		You need to give the extrafields ; hint: use getExtraFields()
  * @param	boolean	$withExtraFields	if true, then the extra fields are displayed
@@ -1165,8 +1143,10 @@ function available_skins($description_only = false) {
 }
 
 function availableRandomBlockFrames() {
-	$html = gTranslate('config', sprintf("In Addition to the %s, you also use the following opportunities:",
-		popup_link(gTranslate('config', "usual thumbs"), makeGalleryURL('setup/frame_test.php'), true)));
+	$html = sprintf(
+		gTranslate('config', "In Addition to the %s, you also use the following opportunities:"),
+		popup_link(gTranslate('config', "usual thumbs"), makeGalleryURL('setup/frame_test.php'), true)
+	);
 
 	$html .=
 	"\n<dl>".

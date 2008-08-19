@@ -185,13 +185,6 @@ if ($loggedIn) {
 			gTranslate('core', "Ad_min page"), array(), 'admin.gif', true
 		);
 
-		$docsUrl = galleryDocs('admin');
-		if ($docsUrl) {
-			$iconElements[] = galleryLink(
-				$docsUrl,
-				gTranslate('core', "_Documentation"), array('target' => '_blank'), 'docs.gif', true
-			);
-		}
 	}
 
 	if ($gallery->userDB->canModifyUser()) {

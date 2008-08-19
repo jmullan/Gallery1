@@ -1246,17 +1246,6 @@ function compareVersions($old_str, $new_str) {
 	return 1;
 }
 
-function contextHelp ($link) {
-	global $gallery;
-
-	if ($gallery->app->showContextHelp == 'yes') {
-		return popup_link ('?', 'docs/context-help/' . $link, false, true, 500, 500);
-	}
-	else {
-		return null;
-	}
-}
-
 function parse_csv ($filename, $delimiter=";") {
 	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;

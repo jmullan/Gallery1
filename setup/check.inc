@@ -64,11 +64,6 @@ $help_page = galleryLink(
     gTranslate('config', "Gallery _help page"),
     array('target' => '_blank'));
 
-$docs_page = galleryLink(
-    galleryDocs(),
-    gTranslate('config', "_documentation"),
-    array('target' => '_blank'));
-
 $openBasedir = ini_get('open_basedir');
 
 $error = 0;
@@ -96,19 +91,10 @@ $warning = 0;
         echo gTranslate('config', "This page will validate your system to make sure that you have all the necessary components installed, permissions set and that everything is configured reasonably.") ;
 
         echo '<br><br>';
-        if (galleryDocs()) {
-            printf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
-                $docs_page,
+        printf(gTranslate('config', "Having problems?  Try the %s and %s."),
                 $diagnostics_page,
                 $help_page
-            );
-        }
-        else {
-            printf(gTranslate('config', "Having problems?  Try the %s and %s."),
-                $diagnostics_page,
-                $help_page
-            );
-        }
+        );
         ?>
         </div>
         <?php
