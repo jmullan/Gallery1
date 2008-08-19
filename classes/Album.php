@@ -244,16 +244,19 @@ class Album {
 	 * Returns an array of the parent albums.
 	 * Each elemt contains a prefix Text, the title and the url.
 	 * Array is reverted, so the first Element is the topalbum.
-	 * If you set $addChild true, then the child album itself is added as last Element.
 	 * If you set $ignoreReturnto, then really ALL toplevel albums are added.
 	 * Based on code by Dariush Molavi
 	 * Note: the 30 is a limit to prevent unlimited recursing.
-	 * @param $addChild		boolean
-	 * @param $ignoreReturnto	boolean
+	 *
+	 * @param boolean $addChild        if true, then the child album itself is added as last Element.
+	 * @param boolean $ignoreReturnto  if true, then really ALL toplevel albums are added.
+	 * @param boolean $withGalleryLink if true, and the last album in the array is a rootalbum, a link to Gallery is added.
+	 * @param integer $uplevel         How much level of parent albums to you want to show?
+	 * @return unknown
 	 * @author Dari Molavi
 	 * @author Jens Tkotz
 	 */
-	function getParentAlbums($addChild = false, $ignoreReturnto = false) {
+	function getParentAlbums($addChild = false, $ignoreReturnto = false, $withGalleryLink = true, $uplevel = 30) {
 		global $gallery;
 
 		$currentAlbum		= $this;
@@ -271,24 +274,25 @@ class Album {
 		 * then add it to the parent album to the list.
 		 */
 		while (($parentAlbum = $currentAlbum->getParentAlbum(FALSE)) &&
-		  $depth < 30 &&
+		  $depth < $uplevel &&
 		  ($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
 			$parentAlbumsArray[] = array(
-				'prefixText' => gTranslate('core', "Album"),
-				'title' => $parentAlbum->fields['title'],
-				'url' => makeAlbumUrl($parentAlbum->fields['name']));
+				'prefixText'	=> gTranslate('core', "Album"),
+				'title'		=> $parentAlbum->fields['title'],
+				'url'		=> makeAlbumUrl($parentAlbum->fields['name'])
+			);
 			$depth++;
 			$currentAlbum = $parentAlbum;
 		}
 
-		/** If the last album is a root album (= has no parent) and a returnto link is wanted,
-		 * add the link to Gallery mainpage
+		/* If the last album is a root album (= has no parent) and a returnto link is wanted,
+		 *  add the link to Gallery mainpage
 		 */
-		if (!isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
+		if ($withGalleryLink && !isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
 			$parentAlbumsArray[] = array(
-				'prefixText' => gTranslate('core', "Gallery"),
-				'title' => clearGalleryTitle(),
-				'url' => makeGalleryUrl("albums.php"));
+				'prefixText'	=> gTranslate('core', "Gallery"),
+				'title'		=> clearGalleryTitle(),
+				'url'		=> makeGalleryUrl("albums.php"));
 		}
 
 		$parentAlbumsArray = array_reverse($parentAlbumsArray, true);
@@ -557,15 +561,28 @@ class Album {
 			$changed = true;
 		}
 
+		// In gallery 1.5.8 'fotoserve.com' was removed.
+		if ($this->version < 38) {
+			if(!empty($this->fields['print_photos'])) {
+				foreach($this->fields['print_photos'] as $nr => $service) {
+					if ($service == 'fotoserve') {
+						unset($this->fields['print_photos'][$nr]);
+					}
+				}
+			}
+
+			$changed = true;
+		}
+
 		/* Move highlight-Index into album data */
-		if ($this->version < 38 && $this->numPhotos(1) > 0) {
+		if ($this->version < 39 && $this->numPhotos(1) > 0) {
 			$highlightIndex = $this->getHighlight(true);
 			$this->setHighlight($highlightIndex);
 			$changed = true;
 		}
 
 		static $configWritten = false;
-		if ($this->version < 39) {
+		if ($this->version < 40) {
 			$translation1 = gTranslate('core', "description");
 			$translation2 = gTranslate('core', "Description");
 			$removeFields = array('description', 'Description', $translation1, $translation2);
@@ -960,6 +977,10 @@ class Album {
 		$this->transient->photosloaded = FALSE;
 		$dir = $gallery->app->albumDir . "/$name";
 
+		if(! fs_is_dir($dir)) {
+			return false;
+		}
+
 		if (!$this->loadFromFile("$dir/album.dat")) {
 			/*
 			* v1.2.1 and prior had a bug where high volume albums
@@ -1071,7 +1092,8 @@ class Album {
 	 * recipient.  You will note that we don't currently translate these messages.
 	 */
 	function save($msg = array(), $resetModDate = 1, $updateSerial = false) {
-		global $gallery;
+		global $gallery, $global_notice_messages;
+
 		$dir = $this->getAlbumDir();
 
 		if ($resetModDate) {
@@ -1140,6 +1162,20 @@ class Album {
 				$this->updateSerial = 0;
 			}
 		}
+
+		if(isDebugging()) {
+			if ($success) {
+				$global_notice_messages[] = array(
+					'type' => 'success',
+					'text' => gTranslate('core', "Album data was saved successfully."));
+			}
+			else {
+				$global_notice_messages[] = array(
+					'type' => 'error',
+					'text' => gTranslate('core', "Album data was NOT saved successfully."));
+			}
+		}
+
 		// send email
 		if ($gallery->app->emailOn == 'yes' && $success && $msg) {
 			if (!is_array($msg)) {
@@ -1174,16 +1210,12 @@ class Album {
 
 			}
 			else if (isDebugging()) {
-                print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found.");
+				$global_notice_messages[] = array(
+					'type' => 'information',
+					'text' => gTranslate('core', "Emailing is on, but no email was sent as no valid email address was found."));
 			}
 		}
-/*
-	if (!$success) {
-		echo gTranslate('core', "Save failed");
-	} else {
-		echo gTranslate('core', "Save OK");
-	}
-*/
+
 		return $success;
 	}
 
@@ -1670,6 +1702,12 @@ class Album {
 	function deletePhoto($index, $forceResetHighlight = "0", $recursive = 1) {
 		global $gallery;
 
+		$index = intval($index);
+
+		if (! $this->getPhoto($index)) {
+			return false;
+		}
+
 		// Get rid of the block-random cache file, to prevent out-of-bounds
 		// errors from getPhoto()
 		$randomBlockCache = $gallery->app->albumDir . "/block-random.dat";
@@ -1708,6 +1746,8 @@ class Album {
 		else {
 			$this->resetHighlightIndex();
 		}
+
+		return true;
 	}
 
 	function newPhotoName() {
@@ -1750,6 +1790,10 @@ class Album {
 		}
 
 		$photo = $this->getPhoto($index);
+
+		if(! $photo) {
+			return '';
+		}
 
 		if ($photo->isAlbum()) {
 			$myAlbum = $this->getNestedAlbum($index);
@@ -1806,7 +1850,7 @@ class Album {
 		}
 	}
 
-	function getHighlightTag($size = 0, $attrList = array()) {
+	function getHighlightTag($size = 0, $attrList = array(), $useDefaults = true) {
 		$index = $this->getHighlight();
 
 		$defaults = array(
@@ -1821,15 +1865,19 @@ class Album {
 		if (isset($index)) {
 			$photo = $this->getPhoto($index);
 
-			foreach($defaults as $attr => $default) {
-				if(empty($attrList[$attr])) {
-					$attrList[$attr] = $defaults[$attr];
+			if($useDefaults) {
+				foreach($defaults as $attr => $default) {
+					if(empty($attrList[$attr])) {
+						$attrList[$attr] = $defaults[$attr];
+					}
 				}
 			}
 
 			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrList);
 		}
 		else {
+			unset($attrList['alt']);
+
 			if(isset($attrList['class'])) {
 				$attrList['class'] .= ' g-title';
 			}
@@ -1858,7 +1906,7 @@ class Album {
 		return;
 	}
 
-	function getPhotoTag($index, $full, $attrs) {
+	function getPhotoTag($index, $full = false, $attrs = array()) {
 		$photo = $this->getPhoto($index);
 		if ($photo->isMovie()) {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"));
@@ -2070,6 +2118,8 @@ class Album {
 
 	function &getPhoto($index) {
 		global $global_notice_messages;
+
+		$index = intval($index);
 
 		if (!isset($global_notice_messages)) {
 			$global_notice_messages = array();
@@ -2526,12 +2576,38 @@ class Album {
 	 */
 	function isAlbum($index) {
 		$photo = $this->getPhoto($index);
-		return ($photo->getAlbumName() !== NULL) ? true : false;
+
+		if(!$photo) {
+			$ret = false;
+		}
+		elseif($photo->getAlbumName() === NULL) {
+			$ret = false;
+		}
+		else {
+			$ret = true;
+		}
+
+		return $ret;
 	}
 
+	/**
+	 * Get the albumName of an albumitem
+	 *
+	 * @param integer $index
+	 * @return mixed  $ret    null if $photo does not exits, empty on nonalbums,
+	 *                        otherwise the album name.
+	 */
 	function getAlbumName($index) {
 		$photo = $this->getPhoto($index);
-		return $photo->getAlbumName();
+
+		if(!$photo) {
+			$ret = null;
+		}
+		else {
+			$ret = $photo->getAlbumName();
+		}
+
+		return $ret;
 	}
 
 	function setAlbumName($index, $name) {

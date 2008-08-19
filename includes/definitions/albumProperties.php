@@ -299,9 +299,8 @@ $properties = array(
 		'multiple_choices' => array(
 			'photoaccess'	=> '<a href="http://www.photoworks.com/" target="_blank">PhotoWorks</a>',
 			'shutterfly' 	=> '<a href="http://www.shutterfly.com/" target="_blank">Shutterfly</a>',
-			'fotoserve'  	=> '<a href="http://www.fotoserve.com/" target="_blank">Fotoserve.com</a>',
 			'fotokasten' 	=> '<a href="http://www.fotokasten.de/" target="_blank">Fotokasten</a>',
-			'mpush'		=> '<a href="http://www.mpush.cc/" target="_blank">mPush</a>'
+			'mpush'	  	=> '<a href="http://www.mpush.cc/" target="_blank">mPush</a>'
 		),
 		'value'		=> $gallery->album->fields['print_photos']
 	),

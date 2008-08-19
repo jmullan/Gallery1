@@ -208,7 +208,7 @@ $defaults = array(
 	/* old .. needs to be fixed */
 	'print_photos' => array(
 		'prompt' => gTranslate('config',"Printing Services"),
-		'desc' => gTranslate('config',"Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
+		'desc' => gTranslate('config',"Allow visitors to print photos directly from the album. Fotokasten is a print service based in Germany. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
 		'multiple_choices' => makeMultipleChoiceContent($services),
 		'value' => array(
 			'fotokasten' => array(
@@ -218,9 +218,6 @@ $defaults = array(
 				'checked' => true
 			),
 			'shutterfly' => array(
-				'checked' => true
-			),
-			'fotoserve' => array(
 				'checked' => true
 			),
 			'mpush' => array(
@@ -621,5 +618,25 @@ $defaults = array(
 	'group_frames_end' => array (
 		'type' => 'group_end',
 	),
+	'group_effect' => array (
+		'type' => 'group_start',
+		'default' => 'none',
+		'title' => gTranslate('config',"Effects"),
+		'desc' => ''
+	),
+	'lightbox' => array(
+		'prompt' => gTranslate('config',"Lightbox effect"),
+		'desc' => gTranslate('config', "When you click on the thumb in the album view, you can either be directed to the single photo view, or have a nice effect called 'lightbox'."),
+		'value' => 'no',
+		'choices' => array(
+			'yes' => gTranslate('config',"Yes"),
+			'no' => gTranslate('config',"No")
+		),
+		'inst_type' => 'easy'
+	),
+	'group_effect_end' => array (
+		'type' => 'group_end',
+	),
+
 );
 ?>

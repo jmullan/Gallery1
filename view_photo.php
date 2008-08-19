@@ -251,15 +251,11 @@ if (!$gallery->album->isMovie($id)) {
 
 		/* Now build the admin Texts / left colun */
 		function enablePrintForm($name) {
-			global $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
+			global $printPhotoAccessForm, $printShutterflyForm;
 
 			switch ($name) {
 				case 'shutterfly':
 					$printShutterflyForm = true;
-				break;
-
-				case 'fotoserve':
-					$printFotoserveForm = true;
 				break;
 
 				case 'photoaccess':
@@ -278,7 +274,6 @@ if (!$gallery->album->isMovie($id)) {
 		$fullNames = array(
 			'Print Services' => array(
 				'fotokasten'  => 'Fotokasten',
-				'fotoserve'   => 'Fotoserve',
 				'shutterfly'  => 'Shutterfly',
 				'photoaccess' => 'PhotoWorks',
 			),

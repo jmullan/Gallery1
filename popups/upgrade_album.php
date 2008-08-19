@@ -120,11 +120,13 @@ if (isset($upgrade_albumname)) {
 	if ($album->versionOutOfDate()) {
 		process($album);
 		$actionDone = true;
+		reload();
 	}
 }
 elseif (isset($upgradeall) && sizeof($albumDB->outOfDateAlbums)) {
 	process();
 	$actionDone = true;
+	reload();
 }
 
 if (sizeof($albumDB->outOfDateAlbums) == 0) {

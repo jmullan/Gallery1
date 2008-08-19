@@ -397,6 +397,7 @@ $constants =  array_merge(array(
 	   'desc'  => gTranslate('config', "Choose the theme for the mainpage"),
 	   'choices' => array(
 		   'classic' => gTranslate('config', "The classic layout since Gallery 1.0"),
+		   'classic_sidebar' => gTranslate('config', "The classic layout since Gallery 1.0, just with a sidebar ;-)"),
 		   'matrix' => gTranslate('config', "A lightweight layout, with less textual information. Inspired by the Gallery 2 Matrix")
 		),
 		'required' => true,

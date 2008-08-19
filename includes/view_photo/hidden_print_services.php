@@ -50,15 +50,7 @@ if (isset($printShutterflyForm)) { ?>
   <input type=hidden name=imbkprnta-1 value="<?php echo htmlentities(strip_tags($imbkprnt)) ?>">
 </form>
 <?php }
-if (isset($printFotoserveForm)) { ?>
-<form name="fotoserve"
-action="http://www.fotoserve.com/menalto/build.html" method="post">
-  <input type="hidden" name="image" value="<?php echo $rawImage ?>">
-  <input type="hidden" name="thumb" value="<?php echo $thumbImage ?>">
-  <input type="hidden" name="redirect" value="this-gets-set-by-javascript-in-onClick">
-  <input type="hidden" name="name" value="<?php echo $photo->image->name . '.' . $photo->image->type; ?>">
-</form>
-<?php }
+
 if (isset($printPhotoAccessForm)) { ?>
   <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
   <input type="hidden" name="cb" value="CB_GP">
