@@ -181,11 +181,13 @@ class AlbumDB {
 		return 1;
 	}
 
-	function newAlbumName($name="album01") {
+	function newAlbumName($name = '') {
 		global $gallery;
 
-		if (!$name) {
-			$name="album01";
+		/* If an invalid album name was given (however) we use a default. */
+		$validAlbumName = validAlbumName($name);
+		if (!$name || !empty($validAlbumName)) {
+			$name = 'album01';
 		}
 
 		$albumDir = $gallery->app->albumDir;

@@ -84,19 +84,24 @@ class AlbumItem {
 	 * @param object $album
 	 * @return boolean
 	 */
-	function setItemCaptureDate($itemCaptureDate = '', $album) {
+	function setItemCaptureDate($itemCaptureDate = '', $album = null) {
 		global $gallery;
 		/* Before 1.4.5-cvs-b106 this was an associative array */
 
 		if (empty($itemCaptureDate)) {
-			$dir	= $album->getAlbumDir();
-			$name	= $this->image->name;
-			$tag	= $this->image->type;
-			$file	= "$dir/$name.$tag";
-
-			$itemCaptureDate = getItemCaptureDate($file);
-			if(! $itemCaptureDate) {
+			if(empty($album)) {
 				return false;
+			}
+			else {
+				$dir	= $album->getAlbumDir();
+				$name	= $this->image->name;
+				$tag	= $this->image->type;
+				$file	= "$dir/$name.$tag";
+
+				$itemCaptureDate = getItemCaptureDate($file);
+				if(! $itemCaptureDate) {
+					return false;
+				}
 			}
 		}
 
@@ -843,6 +848,10 @@ class AlbumItem {
 	}
 
 	function getPreviewTag($dir, $size = 0, $attrs = array()) {
+		if(empty($attrs['alt'])) {
+			$attrs['alt'] = $this->getAlttext();
+		}
+
 		if ($this->preview) {
 			return $this->preview->getTag($dir, 0, $size, $attrs);
 		}
@@ -895,6 +904,10 @@ class AlbumItem {
 			return $this->highlightImage->getTag($dir, 0, $size, $attrList);
 		}
 		else {
+			if(isset($attrList['alt'])) {
+				unset($attrList['alt']);
+			}
+
 			if(isset($attrList['class'])) {
 				$attrList['class'] .= ' g-title';
 			}
@@ -956,6 +969,9 @@ class AlbumItem {
 	function getPhotoId() {
 		if ($this->image) {
 			return $this->image->getId();
+		}
+		elseif ($this->getAlbumName() != NULL) {
+			return $this->getAlbumName();
 		}
 		else {
 			return "unknown";
@@ -1046,6 +1062,20 @@ class AlbumItem {
 	function isMovie() {
 		if (isset($this->image)) {
 			return isMovie($this->image->type);
+		}
+		else {
+			return false;
+		}
+	}
+
+	/**
+	 * Returns true or false whether the item is in acceptableImageList or not
+	 * @uses lib/filetypes
+	 * @return bool
+	 */
+	function isImage() {
+		if (isset($this->image)) {
+			return isImage($this->image->type);
 		}
 		else {
 			return false;
