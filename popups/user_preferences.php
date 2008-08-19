@@ -28,6 +28,8 @@ list($save, $old_password, $new_password1, $new_password2) =
 list($uname, $email, $fullname, $defaultLanguage) =
 	getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
+list($saveOK) = getRequestVar('saveOK');
+
 if (!$gallery->user->isLoggedIn()) {
 	printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
@@ -103,7 +105,8 @@ if (isset($save)) {
 
 		// Switch over to the new username in the session
 		$gallery->session->username = $uname;
-		$saveOK = true;
+		$url = makeGalleryHeaderUrl('popups/user_preferences.php', array('saveOK' => true));
+		header("Location: $url");
 	}
 }
 

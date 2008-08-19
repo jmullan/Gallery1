@@ -48,6 +48,57 @@ if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
 	exit;
 }
 
+$args = array('albumName' => $gallery->album->fields['name'], 'index' => $index, 'type' => 'popup');
+
+$args['rotate']	  = '90';
+$rotateElements[] = galleryIconLink(
+			makeGalleryUrl('rotate_photo.php', $args),
+			'imageedit/rotate-90.gif', gTranslate('core', "Clockwise 90&deg;"), '', array('accesskey' => 1)
+);
+
+$args['rotate']   = '180';
+$rotateElements[] = galleryIconLink(
+			makeGalleryUrl('rotate_photo.php', $args),
+			'imageedit/rotate-180.gif', gTranslate('core', "180&deg;"), '', array('accesskey' => 2)
+);
+
+$args['rotate'] = '-90';
+$rotateElements[] = galleryIconLink(
+			makeGalleryUrl('rotate_photo.php', $args),
+			'imageedit/rotate-270.gif', gTranslate('core', "Counter-Clockwise 90&deg;"), '', array('accesskey' => 3)
+);
+
+$args['rotate'] = 'fh';
+$rotateElements[] = galleryIconLink(
+			makeGalleryUrl('rotate_photo.php', $args),
+			'imageedit/mirror.gif', gTranslate('core', "Horizontal"), '', array('accesskey' => 4)
+);
+
+$args['rotate'] = 'fv';
+$rotateElements[] = galleryIconLink(
+			makeGalleryUrl('rotate_photo.php', $args),
+			'imageedit/flip.gif', gTranslate('core', "Vertical"), '', array('accesskey' => 5)
+);
+
+$actionTable = new galleryTable();
+$actionTable->setColumnCount(5);
+$actionTable->setAttrs(array('class' => 'g-iconmenu', 'align' => 'center'));
+
+$actionTable->addElement(array(
+	'content' => '<span class="g-emphasis">' . gTranslate('core', "Rotate") . '</span>',
+	'cellArgs' => array('colspan' => 3,'align' => 'center'))
+);
+
+$actionTable->addElement(array(
+	'content' => '<span class="g-emphasis">'. gTranslate('core', "Flip") . '</span>',
+	'cellArgs' => array('colspan' => 2,'align' => 'center'))
+);
+
+foreach ($rotateElements as $element) {
+	$actionTable->addElement(array('content' => $element));
+}
+
+/* Start HTML Output */
 doctype();
 ?>
 
@@ -64,89 +115,37 @@ doctype();
 </div>
 <div class="g-content-popup center">
 <?php
-if ($gallery->session->albumName && isset($index)) {
-	if (isset($rotate) && !empty($rotate)) {
-		echo gTranslate('core', "Rotating/Flipping photo.");
-		echo "\n<br>";
-		echo gTranslate('core', "(this may take a while)");
+if (!empty($rotate) && in_array($rotate, array('90', '180', '-90', 'fh', 'fv'))) {
+	echo gTranslate('core', "Rotating/Flipping photo.");
+	echo "\n<br>";
+	echo gTranslate('core', "(this may take a while)");
 
-		my_flush();
-		set_time_limit($gallery->app->timeLimit);
-		$gallery->album->rotatePhoto($index, $rotate);
-		$gallery->album->save(array(i18n("Image %s rotated"),
-		makeAlbumURL($gallery->album->fields["name"],
-		$gallery->album->getPhotoId($index))));
-		reload();
-		print "<p>" . gTranslate('core', "Manipulate again?");
-	}
-	else {
-		echo gTranslate('core', "How do you want to manipulate this photo?");
-	}
+	my_flush();
+	set_time_limit($gallery->app->timeLimit);
+	$gallery->album->rotatePhoto($index, $rotate);
+	$gallery->album->save(array(i18n("Image %s rotated"),
+				makeAlbumURL($gallery->album->fields['name'],
+				$gallery->album->getPhotoId($index))));
+	reload();
+	echo "\n<p>";
+	echo $gallery->album->getThumbnailTag($index);
+	echo "</p>\n";
 
-	echo "\n<br><br>";
-
-	$args = array("albumName" => $gallery->album->fields["name"], "index" => $index, 'type' => 'popup');
-
-	$args["rotate"] = "90";
-	$rotateElements[] = galleryIconLink(
-		makeGalleryUrl("rotate_photo.php", $args),
-		'imageedit/rotate-90.gif', gTranslate('core', "Clockwise 90&deg;"), '', array('accesskey' => 1)
-	);
-
-	$args["rotate"] = "180";
-	$rotateElements[] = galleryIconLink(
-		makeGalleryUrl("rotate_photo.php", $args),
-		'imageedit/rotate-180.gif', gTranslate('core', "180&deg;"), '', array('accesskey' => 2)
-	);
-
-	$args["rotate"] = "-90";
-	$rotateElements[] = galleryIconLink(
-		makeGalleryUrl("rotate_photo.php", $args),
-		'imageedit/rotate-270.gif', gTranslate('core', "Counter-Clockwise 90&deg;"), '', array('accesskey' => 3)
-	);
-
-	$args["rotate"] = "fh";
-	$rotateElements[] = galleryIconLink(
-		makeGalleryUrl("rotate_photo.php", $args),
-		'imageedit/mirror.gif', gTranslate('core', "Horizontal"), '', array('accesskey' => 4)
-	);
-
-	$args["rotate"] = "fv";
-	$rotateElements[] = galleryIconLink(
-		makeGalleryUrl("rotate_photo.php", $args),
-		'imageedit/flip.gif', gTranslate('core', "Vertical"), '', array('accesskey' => 5)
-	);
-
-	$actionTable = new galleryTable();
-	$actionTable->setColumnCount(5);
-	$actionTable->setAttrs(array('class' => 'g-iconmenu'));
-
-	$actionTable->addElement(array(
-		'content' => "<b>". gTranslate('core', "Rotate") ."</b>",
-		'cellArgs' => array('colspan' => 3,'align' => 'center'))
-	);
-
-	$actionTable->addElement(array(
-		'content' => "<b>". gTranslate('core', "Flip") ."</b>" ,
-		'cellArgs' => array('colspan' => 2,'align' => 'center'))
-	);
-
-	foreach ($rotateElements as $element) {
-		$actionTable->addElement(array('content' => $element));
-	}
-
-	echo $actionTable->render();
-?>
-<br>
-<?php echo gButton('close', gTranslate('core', "_Close"), 'parent.close()'); ?>
-
-<p>
-<?php
-echo $gallery->album->getThumbnailTag($index);
+	print '<p>' . gTranslate('core', "Manipulate again?");
 }
 else {
-	echo gallery_error(gTranslate('core', "no album / index specified"));
+	echo "\n<p>";
+	echo $gallery->album->getThumbnailTag($index);
+	echo "</p>\n";
+	echo gTranslate('core', "How do you want to manipulate this photo?");
 }
+
+echo "\n<br><br>";
+
+echo $actionTable->render();
+
+echo "\n<br>\n";
+echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
 
 includeTemplate('overall.footer');
 

@@ -104,11 +104,8 @@ if ($gallery->album->getKeyWords($index)) {
 	echo "\n<br>";
 }
 
-	if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes') {
-		echo "\n</div>\n";
-		echo '<div style="padding: 2px;">';
-		echo galleryLink(
-			makeGalleryUrl("view_photo_properties.php",
+if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes')  {
+	echo galleryLink(makeGalleryUrl("view_photo_properties.php",
 				array(
 					'reloadExifFromFile' => 1,
 					'set_albumName' => $gallery->session->albumName,
@@ -116,12 +113,27 @@ if ($gallery->album->getKeyWords($index)) {
 					'type' => 'popup')),
 			gTranslate('core', "Reload EXIF Data From File")
 		);
-		echo "<br>";
-		echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
-	}
+	echo "<br>";
+	echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
 }
-else {
-	echo gallery_error(gTranslate('core', "no album / index specified"));
+
+if ($gallery->album->getKeyWords($index)) {
+	echo '<div class="left g-emphasis">'. gTranslate('core', "Keywords: ") . $gallery->album->getKeyWords($index) .'</div>';
+	echo "\n<br>";
+}
+
+if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes')  {
+	echo galleryLink(makeGalleryUrl("view_photo_properties.php",
+		array(
+			'reloadExifFromFile' => 1,
+			'set_albumName' => $gallery->session->albumName,
+			'index' => $index,
+			'type' => 'popup')),
+		gTranslate('core', "Reload EXIF Data From File")
+	);
+	echo "<br>";
+	echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
+	echo "<br><br>";
 }
 
 echo gButton('close', gTranslate('core', "_Close Window") , 'parent.close()');

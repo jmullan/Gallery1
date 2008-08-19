@@ -38,22 +38,27 @@ if (! $gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-if ($gallery->session->albumName) {
-	if (getRequestVar('confirm')) {
-		if (!strcmp($sort,"random")) {
-			$gallery->album->shufflePhotos();
-			$gallery->album->save(array(i18n("Album resorted")));
-			dismissAndReload();
-			return;
-		}
-		else {
-			$gallery->album->sortPhotos($sort,$order, $albumsFirst);
-			$gallery->album->save(array(i18n("Album resorted")));
-			dismissAndReload();
-			return;
-		}
+$allowedSorts = array('upload', 'itemCapture', 'filename', 'click', 'caption', 'comment', 'random');
+
+if (!empty($confirm) &&
+    in_array($sort, $allowedSorts) &&
+    ($albumsFirst == "" || $albumsFirst == -1 || $albumsFirst == 1) &&
+    ($order == -1 || $order == 1))
+{
+	if (!strcmp($sort, "random")) {
+		$gallery->album->shufflePhotos();
+		$gallery->album->save(array(i18n("Album resorted")));
+		dismissAndReload();
+		exit;
 	}
 	else {
+		$gallery->album->sortPhotos($sort, $order, $albumsFirst);
+		$gallery->album->save(array(i18n("Album resorted")));
+		dismissAndReload();
+		exit;
+	}
+}
+else {
 ?>
 
 <p>
@@ -106,9 +111,6 @@ if ($gallery->session->albumName) {
 <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
-	}
-} else {
-	echo gallery_error(gTranslate('core', "no album specified"));
 }
 
 includeTemplate('overall.footer');

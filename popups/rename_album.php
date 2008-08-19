@@ -32,11 +32,19 @@ if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)
 
 printPopupStart(gTranslate('core', "Rename Album"));
 
+echo infoBox($global_notice_messages);
+
+if (!isset($useLoad)) {
+	$useLoad = '';
+}
+
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
 if (!empty($newName)) {
 	$dismiss = 0;
+
+	$newNameOrig = $newName;
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "%\\/*?\"<>|& .+#(){}~", "-------------------");
@@ -44,7 +52,14 @@ if (!empty($newName)) {
 	$newName = ereg_replace("\-+$", "", $newName);
 	$newName = ereg_replace("^\-", "", $newName);
 	$newName = ereg_replace("\-$", "", $newName);
-	if ($oldName == $newName || empty($newName)) {
+
+	if ($newName != $newNameOrig) {
+		echo infoBox(array(array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Your new foldername contained unallowed chars. They were removed. Please try again.")))
+		);
+	}
+	elseif ($oldName == $newName || empty($newName)) {
 		$dismiss = 1;
 	}
 	elseif ($albumDB->renameAlbum($oldName, $newName)) {

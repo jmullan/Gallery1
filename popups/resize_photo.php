@@ -23,7 +23,8 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $manual, $newsize, $resize_file_size, $remove_resized, $resize_recursive, $full) =
-	getRequestVar(array('index', 'manual', 'newsize', 'resize_file_size', 'remove_resized', 'resize_recursive', 'full'));
+	getRequestVar(array('index', 'manual', 'newsize', 'resize_file_size', 'remove_resized',
+			    'resize_recursive', 'full'));
 
 if (intval($index) > 0) {
 	printPopupStart(gTranslate('core', "Resize Photo"), '', 'left');
@@ -53,47 +54,68 @@ if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
 	exit;
 }
 
+$notice_messages = array();
+$checklist = array(
+	'manual'		=> 'int_ZeroEmpty',
+	'newsize'		=> 'int_ZeroEmpty',
+	'resize_file_size'	=> 'int_ZeroEmpty',
+	'resize_recursive'	=> 'int_ZeroEmpty',
+	'full'			=> 'int_ZeroEmpty',
+	'remove_resized'	=> 'text'
+);
 
-$all = !strcmp($index, "all");
-if ($gallery->session->albumName && isset($index)) {
-	if (isset($manual) && $manual > 0) {
-		$newsize = $manual;
+foreach($checklist as $fieldName => $type) {
+	list($status, ${$fieldName}, $infoMessage) = sanityCheck(${$fieldName}, $type);
+
+	if ($status > 0) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "Problem with input of field '%s'. %s"),
+							  $fieldName, $infoMessage)
+		);
+		$error = true;
 	}
+}
 
-	if (!empty($remove_resized)) {
-		$newsize = 'orig';
-	}
+if (isset($manual) && $manual > 0) {
+	$newsize = $manual;
+}
 
-	if (!empty($newsize)) {
-		if ($index === 'all') {
-			$gallery->album->resizeAllPhotos($newsize, $resize_file_size, $resize_recursive, $full);
-		}
-		else {
-			echo("<br> ". gTranslate('core', "Resizing 1 photo..."));
-			my_flush();
-			set_time_limit($gallery->app->timeLimit);
-			$gallery->album->resizePhoto($index, $newsize, $resize_file_size, '', $full);
-		}
+if (!empty($remove_resized)) {
+	$newsize = 'orig';
+}
 
-		$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes"),
-					$newsize, $resize_file_size));
-
-		dismissAndReload();
-		return;
+if (!empty($newsize) && ! isset($error)) {
+	if ($index == 0) {
+		$gallery->album->resizeAllPhotos($newsize, $resize_file_size, $resize_recursive, $full);
 	}
 	else {
+		echo("<br> ". gTranslate('core', "Resizing 1 photo..."));
+		my_flush();
+		set_time_limit($gallery->app->timeLimit);
+		$gallery->album->resizePhoto($index, $newsize, $resize_file_size, '', $full);
+	}
+
+	$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes"),
+				$newsize, $resize_file_size));
+
+	dismissAndReload();
+	exit;
+}
+else {
+	printInfobox($notice_messages);
+	echo jsHTML('toggle.js.php');
 ?>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/toggle.js' ?>"></script>
 
 <p><?php echo gTranslate('core', "This will resize your original, or intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
 </p>
 
 <?php
-		if(! $all) {
-		    echo "\n<p align=\"center\">";
-		    echo $gallery->album->getThumbnailTag($index);
-		    echo "\n</p>";
-		}
+	if($index != 0) {
+		echo "\n<p align=\"center\">";
+		echo $gallery->album->getThumbnailTag($index);
+		echo "\n</p>";
+	}
 
 	echo makeFormIntro('resize_photo.php',
 		array('name' => 'resize_photo'),
@@ -145,7 +167,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 	<tr>
 		<td colspan="2">
-			<input id="none" type="radio" name="newsize" value="manual">
+			<input id="none" type="radio" name="newsize" value="0">
 			<input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;"><label for="none"> <?php echo gTranslate('core', "(manual value)"); ?></label>
 		</td>
 	</tr>
@@ -157,7 +179,7 @@ if ($gallery->session->albumName && isset($index)) {
 <table style="margin-top: 2px; width: 100%">
 <tr>
 <?php
-	if ($index === 'all') {
+	if ($index === '0') {
 		echo '<td>';
 		echo gInput('checkbox', 'resize_recursive', gTranslate('core', "Apply to nested albums ?"), false, 1);
 		echo '</td>';
@@ -188,10 +210,6 @@ if ($gallery->session->albumName && isset($index)) {
 	echo "\n<p class=\"center\">";
 	echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
 	echo "\n</p>";
-	}
-}
-else {
-	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 
 includeTemplate('overall.footer');
