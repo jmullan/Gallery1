@@ -134,7 +134,7 @@ $url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 </script>
 
 <?php
-	echo makeFormIntro('#', array("name" => "stats_form", "onChange" => 'updateUrl()'));
+	echo makeFormIntro('#', array("name" => "stats_form", "onclick" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
