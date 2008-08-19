@@ -1,3 +1,22 @@
+2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b144
+
+ * Fix: Rebuilding capture dates recursive was slightly broken.
+
+ * New methods:
+	Album::isImage
+	Album::isImageByIndex
+	Album::canViewItem($user, $index, $full = false)
+
+ * Fix: Check of 'Nobody' owns an album item was wrong.
+
+ * Fix: item permission check when embedded in phpBB2
+
+ * Fix: Return false for isOwner when no owner is set.
+
+ * Fix: Only set owner of items to a valid existing user.
+
+ * Fix: getVotingIdByIndex
+
 2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b143
 
  * Renamed:

@@ -2290,13 +2290,30 @@ class Album {
 		return $ret;
 	}
 
-	function rebuildCaptureDates($recursive = false) {
+	/**
+	 * Rebuild all capture dates.
+	 *
+	 * @param boolean $recursive	Rebuild captures dates in subalbums?
+	 * @param integer $level	Indicator in wich sublevel we are. For recursivity.
+	 * @return boolean
+	 */
+	function rebuildCaptureDates($recursive = false, $level = 0) {
 		global $gallery;
 
-		$numItems = $this->numPhotos(1);
+		$result		= true;
+		$numItems	= $this->numPhotos(1);
+
+		if($level == 0) {
+			printf(gTranslate('core', "Updating album: '<i>%s</i>'."), $this->fields['title']);
+		}
+		else {
+			$parentAlbums = $this->getParentAlbums(true, true, false, $level);
+			printf(gTranslate('core', "Updating subalbum '<i>%s</i>'."), albumBreadcrumb($parentAlbums));
+		}
+		$level++;
 
 		if($numItems == 0) {
-			echo gTranslate('core', " -- Skipping") . '<br>';
+			echo '<br>' . gTranslate('core', "-- Skipped, because it is empty.");
 			return true;
 		}
 
@@ -2313,18 +2330,36 @@ class Album {
 				-1
 			);
 
-			if ($this->isAlbum($i) && $recursive) {
-				$nestedAlbum = new Album();
-				$nestedAlbum->load($this->getAlbumName($i));
-				$np = $nestedAlbum->numPhotos(1);
+			if ($this->isAlbum($i)) {
+				if($recursive) {
+					$nestedAlbum = new Album();
+					$nestedAlbum->load($this->getAlbumName($i));
 
-				echo "<br>";
-				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items."), $this->getAlbumName($i), $np);
-				$nestedAlbum->rebuildCaptureDates($recursive);
-				$nestedAlbum->save();
+					echo "\n<div style=\"margin-top: 10px; padding-left: 10px;\">\n\t";
+
+					$ret = $nestedAlbum->rebuildCaptureDates($recursive, $level);
+					if (! $ret) {
+						$result = false;
+						addProgressBarText($progressbarID, '<br>' .
+							sprintf(gTranslate('core', "Problem with item #%d (subalbum)."), $i));
+					}
+					else {
+						$step++;
+					}
+					$nestedAlbum->save();
+					echo '</div>';
+				}
 			}
 			else {
-				$this->setItemCaptureDate($i);
+				$ret = $this->setItemCaptureDate($i);
+				if (! $ret) {
+					$result = false;
+					addProgressBarText($progressbarID, '<br>'.
+						sprintf(gTranslate('core', "Problem with item #%d."), $i));
+				}
+				else {
+					$step++;
+				}
 			}
 
 			updateProgressBar(
@@ -2335,6 +2370,8 @@ class Album {
 		}
 
 		$this->save();
+
+		return $result;
 	}
 
 	function numComments($index) {
@@ -2522,6 +2559,19 @@ class Album {
 		$this->resetHighlightIndex();
 	}
 
+	function isImage($id) {
+		$index = $this->getPhotoIndex($id);
+		$photo = $this->getPhoto($index);
+
+		return $photo->isImage();
+	}
+
+	function isImageByIndex($index) {
+		$photo = $this->getPhoto($index);
+
+		return $photo->isImage();
+	}
+
 	function isMovie($id) {
 		$index = $this->getPhotoIndex($id);
 		$photo = $this->getPhoto($index);
@@ -2545,26 +2595,21 @@ class Album {
 	function isItemOwner($uid, $index) {
 		global $gallery;
 
-		if($uid == $this->getItemOwner($index)) {
-			debugMessage(sprintf(gTranslate('core',"Userid %d is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+		$ownerID = $this->getItemOwner($index)
+
+		if($uid == $ownerID) {
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
-		if($this->getItemOwner($index) == $everybodyUid) {
-			debugMessage(sprintf(gTranslate('core',"Userid %d is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+		if(ownerID == $everybodyUid) {
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
-		$nobody		= $gallery->userDB->getNobody();
-		$nobodyUid	= $nobody->getUid();
-		if ($uid == $nobodyUid) {
-			debugMessage(sprintf(gTranslate('core',"Userid %d is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
-			return false;
-		}
-
-		debugMessage(sprintf(gTranslate('core',"Userid %d is NOT owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+		debugMessage(sprintf(gTranslate('core', "Userid %d is NOT owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 		return false;
 	}
 
@@ -2894,6 +2939,7 @@ class Album {
 		 *
 		 * phpBB2's anonymous user are also "logged in", but we have to ignore this.
 		 */
+        	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 		$loggedIn = $gallery->userDB->getLoggedIn();
 		if (isset($perm[$loggedIn->getUid()]) &&
@@ -3076,6 +3122,48 @@ class Album {
 		return $this->getPerm("canViewFullImages", $uid);
 	}
 
+	/**
+	 * Can a user see an item?
+	 *
+	 * @param object   $user
+	 * @param integer  $index
+	 * @param boolean  $full
+	 * @return boolean
+	 * @author Jens Tkotz
+	 */
+	function canViewItem($user, $index, $full = false) {
+		if(empty($user)) {
+			return false;
+		}
+
+		$uuid		= $user->getUid();
+		$canWrite	= $user->canWriteToAlbum($this);
+		$item		= $this->getPhoto($index);
+
+		if ($item->isAlbum()) {
+			$subalbum = new Album();
+			$subalbum->load($item->getAlbumName());
+			if (($user->canReadAlbum($subalbum) && !$item->isHidden()) || $user->canWriteToAlbum($subalbum)) {
+				if($full) {
+					return $this->canViewFullImages($uuid);
+				}
+				else {
+					return true;
+				}
+			}
+		}
+		elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
+			if($full) {
+				return $this->canViewFullImages($uuid);
+			}
+			else {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	// -------------
 	function canAddComments($uid) {
 		if ($this->isOwner($uid)) {
@@ -3095,6 +3183,10 @@ class Album {
 	// -------------
 	function isOwner($uid) {
 		global $gallery;
+
+		if(!isset($this->fields['owner'])) {
+			return false;
+		}
 
 		if($uid == $this->fields['owner']) {
 			return true;
@@ -3116,7 +3208,17 @@ class Album {
 	 * @return boolean		True if a corresponding user to the UID exits.
 	 */
 	function setOwner($uid) {
-		$this->fields['owner'] = $uid;
+		global $gallery;
+
+		$tempUser = $gallery->userDB->getUserByUid($uid);
+
+		if($tempUser->getUid() == $uid) {
+			$this->fields['owner'] = $uid;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	function getOwner() {
@@ -3411,7 +3513,11 @@ class Album {
 
 	function getVotingIdByIndex($index) {
 		$albumName = $this->getAlbumName($index);
-		if ($albumName) {
+
+		if($albumName === null) {
+			$vote_id = null;
+		}
+		elseif (!empty($albumName)) {
 			$vote_id = "album.$albumName";
 		}
 		else {
