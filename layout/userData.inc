@@ -1,32 +1,41 @@
 <?php /* $Id$ */ ?>
 <?php
- if (!isset($uname)) { $uname = ''; }
- if (!isset($old_password)) { $old_password = ''; }
- if (!isset($new_password1)) { $new_password1 = ''; }
- if (!isset($new_password2)) { $new_password2 = ''; }
- if (!isset($fullname)) { $fullname = ''; }
- if (!isset($email)) { $email = ''; }
- if (!isset($send_email)) { $send_email = ''; }
- if (!isset($isAdmin)) { $isAdmin = 0; }
+	/* $Id$ */
 
- $hidden = array();
- $yesNoChoices = array(1 => gTranslate('core', "Yes"), 0 => gTranslate('core', "No"));
+if (!isset($uname)) { $uname = ''; }
+if (!isset($old_password)) { $old_password = ''; }
+if (!isset($new_password1)) { $new_password1 = ''; }
+if (!isset($new_password2)) { $new_password2 = ''; }
+if (!isset($fullname)) { $fullname = ''; }
+if (!isset($email)) { $email = ''; }
+if (!isset($send_email)) { $send_email = ''; }
+if (!isset($isAdmin)) { $isAdmin = 0; }
 
- $nls = getNLS();
- $languages = array();
- $selected = 'en_US';
- foreach ($gallery->app->available_lang as $value) {
- 	// Only use language from config.php if its
- 	// defined in nls.php
- 	if (!isset($nls['language'][$value])) continue;
+$hidden = array();
+$yesNoChoices = array(1 => gTranslate('core', "Yes"), 0 => gTranslate('core', "No"));
 
- 	if (isset($defaultLanguage) && $defaultLanguage == $value) {
- 		$selected = $defaultLanguage;
- 	}
+$nls = getNLS();
+$languages = array();
+$selected = $gallery->app->default_language;
 
- 	$languages[$value] = $nls['language'][$value];
- 	ksort($languages);
- }
+if(!empty($gallery->app->available_lang)) {
+	foreach ($gallery->app->available_lang as $value) {
+		// Only use language from config.php if its
+		// defined in nls.php
+		if (!isset($nls['language'][$value])) continue;
+
+		if (isset($defaultLanguage) && $defaultLanguage == $value) {
+			$selected = $defaultLanguage;
+		}
+
+		$languages[$value] = $nls['language'][$value];
+		ksort($languages);
+	}
+}
+else {
+	$languages[$selected] = $nls['language'][$selected];
+}
+
 ?>
 <table class="left">
 <?php if ($allowChange['member_file'] === true) { ?>
@@ -73,18 +82,13 @@ if ($allowChange['email'] === true) {
 	echo errorRow("email");
 }
 
-if (isset($allowChange['default_language']) && $allowChange['default_language']) {
-	if (!$GALLERY_EMBEDDED_INSIDE &&
-		$gallery->app->ML_mode > 1 &&
-		sizeof($gallery->app->available_lang) > 1){ ?>
+if (isset($allowChange['default_language']) && $allowChange['default_language'] === true) {
+	if (!$GALLERY_EMBEDDED_INSIDE && $gallery->app->ML_mode > 1) { ?>
 <tr>
 	<td><label for="defaultLanguage"><?php echo gTranslate('core', "Gallery language") ?></label></td>
 	<td><?php echo drawSelect('defaultLanguage', $languages, $selected,1,array('id' => 'defaultLanguage')); ?>
 </tr>
 <?php 	}
-	else {
-		$hidden[] = array('defaultLanguage', $gallery->app->default_language);
-	}
 }
 
 if (isset($allowChange['canChangeOwnPw']) && $allowChange['canChangeOwnPw'] === true) { ?>

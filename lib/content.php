@@ -36,7 +36,7 @@ function editField($album, $field, $url = null) {
 	global $gallery;
 
 	if($url) {
-		$html = galleryLink($url, $album->fields[$field]);
+		$html = galleryLink($url, $album->fields[$field], array(), '', false, false);
 	}
 	else {
 		$html = nl2br($album->fields[$field]);
@@ -824,6 +824,10 @@ function getStyleSheetLink() {
 		}
 		else {
 			$styleSheetLinks .= _getStyleSheetLink("screen");
+		}
+
+		if(isset($gallery->album->fields) && $gallery->album->fields['lightbox'] == "yes") {
+			$styleSheetLinks .= _getStyleSheetLink("lightbox");
 		}
 
 		$styleSheetSet = true;

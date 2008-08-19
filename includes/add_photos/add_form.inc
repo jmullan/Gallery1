@@ -72,7 +72,7 @@ echo "\n<br><br>". gTranslate('core', "Files:");
 <p><?php
     echo gTranslate('core', "Do the same for optional metafiles.");
     echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/metadataOnUpload.php',
-	 false, false, 500, 500, '', '', '', false, false);
+	 false, false, 550, 600, '', '', '', false, false);
 ?>
 </p>
 <input id="trash_metafile" type="file">
@@ -92,6 +92,7 @@ echo "\n<p>";
  * Central caption options
  */
 include(dirname(__FILE__) .'/captionOptions.inc.php');
+echo "\n</p>";
 
 if (isset($gallery->app->watermarkDir)) {
 	global $watermarkForm;

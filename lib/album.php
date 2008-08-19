@@ -245,7 +245,7 @@ function prefetchAlbumNav() {
 <?php
 	}
 	else if (!$gallery->session->offline ||
-			 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
+			 isset($gallery->session->offlineAlbums[$gallery->album->fields['parentAlbumName']])) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
 <?php
 	}
@@ -794,22 +794,17 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 		if(checkRequirements('isAdminOrAlbumOwner', 'votingOn')) {
 			$albumCommands[] = array(
+				'class'	=> 'url',
 				'text'	=> gTranslate('common', "Poll results"),
-				'html' => galleryLink(makeGalleryUrl(
-										'poll_results.php',
-										array(
-											'set_albumName' => $albumName,
-											'gallery_popup' => true)),
-									  gTranslate('common',"Poll results"),
-									  array(),'', true),
-				'value' => makeGalleryUrl("poll_results.php",
-										  array(
-										  	'set_albumName' => $albumName,
-										  	'gallery_popup' => true))
+				'html'	=> galleryLink(makeGalleryUrl(
+							'poll_results.php',
+							array('set_albumName' => $albumName),
+							gTranslate('common',"Poll results"),
+							array(),'', true)),
+				'value' => makeGalleryUrl('poll_results.php', array('set_albumName' => $albumName))
 			);
 
 			$albumCommands[] = array(
-				'class'	=> 'url',
 				'text'	=> gTranslate('common', "Poll reset"),
 				'html'	=> popup_link(gTranslate('common',"Poll reset"),
 						      "reset_votes.php?set_albumName={$albumName}",
@@ -825,12 +820,12 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		if (checkRequirements('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments')) {
 			$albumCommands[] = array(
 				'class'	=> 'url',
-				'text' => gTranslate('common',"View&nbsp;comments"),
-				'html' => galleryLink(
-							makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName)),
+				'text'	=> gTranslate('common',"View&nbsp;comments"),
+				'html'	=> galleryLink(
+							makeGalleryUrl("view_comments.php", array('set_albumName' => $albumName)),
 							gTranslate('common',"View&nbsp;comments"),
 							array(),'', true),
-				'value' => makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))
+				'value'	=> makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))
 			);
 		}
 	}
@@ -839,7 +834,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 	if(!empty($albumCommands) && $caption) {
 		array_unshift($albumCommands, array(
-			'text'		=> gTranslate('common',"<< Album actions >>"),
+			'text'		=> gTranslate('common',"&lt;&lt; Album actions &gt;&gt;"),
 			'selected'	=> true
 		));
 	}

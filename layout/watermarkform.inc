@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,8 +63,6 @@ if (!isset($wmAlign)) {
 	$wmAlign = 0;
 }
 
-echo "\n<p>";
-
 // get a list of watermarks
 if ($wmDir = opendir($gallery->app->watermarkDir)) {
 	$found = 0;
@@ -102,8 +100,8 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 		$errors[] = array(
 			'type' => 'error',
 			'text' => sprintf(gTranslate('core', "No files matching %s found in %s"),
-			"<b>" . $extensions_string . "</b>",
-			"<b>" . $gallery->app->watermarkDir . "</b>")
+						"<b>" . $extensions_string . "</b>",
+						"<b>" . $gallery->app->watermarkDir . "</b>")
 		);
 	}
 }
@@ -114,78 +112,83 @@ else {
 	);
 }
 ?>
-</p>
 
+<div class="left" style="margin-top: 5px;">
 <?php
 if(!empty($errors)) {
 	echo infoBox($errors);
 }
-else { ?>
-
-<b><?php echo gTranslate('core', "Alignment:") ?></b>
-<div align="<?php echo langLeft(); ?>">
-<table border="1" width="100%">
-<tr>
- <td><input <?php if ($wmAlign==1) echo " checked"; ?> type="radio" name="wmAlign" value="1">
-     <?php echo gTranslate('core', "Upper&nbsp;Left") ?></td>
- <td><input <?php if ($wmAlign==2) echo " checked"; ?> type="radio" name="wmAlign" value="2">
-     <?php echo gTranslate('core', "Top") ?></td>
- <td><input <?php if ($wmAlign==3) echo " checked"; ?> type="radio" name="wmAlign" value="3">
-     <?php echo gTranslate('core', "Upper&nbsp;Right") ?></td>
-</tr>
-<tr>
- <td><input <?php if ($wmAlign==4) echo " checked"; ?> type="radio" name="wmAlign" value="4">
- 	<?php echo gTranslate('core', "Left") ?></td>
- <td><input <?php if ($wmAlign==5) echo " checked"; ?> type="radio" name="wmAlign" value="5">
- 	<?php echo gTranslate('core', "Center") ?></td>
- <td><input <?php if ($wmAlign==6) echo " checked"; ?> type="radio" name="wmAlign" value="6">
-     <?php echo gTranslate('core', "Right") ?></td>
-</tr>
-<tr>
- <td><input <?php if ($wmAlign==7) echo " checked"; ?> type="radio" name="wmAlign" value="7">
-     <?php echo gTranslate('core', "Lower&nbsp;Left") ?></td>
- <td><input <?php if ($wmAlign==8) echo " checked"; ?> type="radio" name="wmAlign" value="8">
-     <?php echo gTranslate('core', "Bottom") ?></td>
- <td><input <?php if ($wmAlign==9) echo " checked"; ?> type="radio" name="wmAlign" value="9">
-     <?php echo gTranslate('core', "Lower&nbsp;Right") ?></td>
-</tr>
-<tr>
-  <td colspan="3">
-    <input <?php if ($wmAlign==10) echo " checked"; ?> type="radio" name="wmAlign" value="10">
-    <?php echo gTranslate('core', "Other") ?>
-    X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>">
-    Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>">
-  </td>
-</tr>
-</table>
-</div>
-<br>
-<?php
-if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) {
-	echo '<div class="g-emphasis">' . gTranslate('core', "Preview Size:") . '</div>';
-
-	echo gInput('radio','previewFull', gTranslate('core', "Resized"), '', 0, array('id' => 'previewResized', 'checked' => $previewFull==0 ? NULL : false));
-	echo "&nbsp;&nbsp;";
-	echo gInput('radio','previewFull', gTranslate('core', "Full"), '', 0, array('checked' => $previewFull==0 ? NULL : false));
-}
+else {
+	echo jsHTML('toggle.js.php');
 ?>
-<br><br>
-<?php if ($watermarkForm["askRecursive"]) {
-	global $recursive;
-	print '<input type="checkbox" name="recursive"';
-	if (isset($recursive)) {
-		echo " checked";
-	}
-	print ">" . gTranslate('core', "Watermark subalbums") . "<br><br>";
-}
+
+<fieldset style="margin-bottom: 5px;">
+	<legend class="g-emphasis"><?php echo gTranslate('core', "Alignment:") ?></legend>
+	<table border="0" width="100%">
+	<tr>
+	 <td><input <?php if ($wmAlign==1) echo " checked"; ?> type="radio" name="wmAlign" value="1">
+	     <?php echo gTranslate('core', "Upper&nbsp;Left") ?></td>
+	 <td><input <?php if ($wmAlign==2) echo " checked"; ?> type="radio" name="wmAlign" value="2">
+	     <?php echo gTranslate('core', "Top") ?></td>
+	 <td><input <?php if ($wmAlign==3) echo " checked"; ?> type="radio" name="wmAlign" value="3">
+	     <?php echo gTranslate('core', "Upper&nbsp;Right") ?></td>
+	</tr>
+	<tr>
+	 <td><input <?php if ($wmAlign==4) echo " checked"; ?> type="radio" name="wmAlign" value="4">
+	 	<?php echo gTranslate('core', "Left") ?></td>
+	 <td><input <?php if ($wmAlign==5) echo " checked"; ?> type="radio" name="wmAlign" value="5">
+	 	<?php echo gTranslate('core', "Center") ?></td>
+	 <td><input <?php if ($wmAlign==6) echo " checked"; ?> type="radio" name="wmAlign" value="6">
+	     <?php echo gTranslate('core', "Right") ?></td>
+	</tr>
+	<tr>
+	 <td><input <?php if ($wmAlign==7) echo " checked"; ?> type="radio" name="wmAlign" value="7">
+	     <?php echo gTranslate('core', "Lower&nbsp;Left") ?></td>
+	 <td><input <?php if ($wmAlign==8) echo " checked"; ?> type="radio" name="wmAlign" value="8">
+	     <?php echo gTranslate('core', "Bottom") ?></td>
+	 <td><input <?php if ($wmAlign==9) echo " checked"; ?> type="radio" name="wmAlign" value="9">
+	     <?php echo gTranslate('core', "Lower&nbsp;Right") ?></td>
+	</tr>
+	<tr>
+	  <td colspan="3">
+	    <input <?php if ($wmAlign==10) echo " checked"; ?> type="radio" name="wmAlign" value="10">
+	    <?php echo gTranslate('core', "Other") ?>
+	    X=<input type="text" name="wmAlignX" value="<?php echo $wmAlignX ?>">
+	    Y=<input type="text" name="wmAlignY" value="<?php echo $wmAlignY ?>">
+	  </td>
+	</tr>
+	</table>
+</fieldset>
+
+<?php
 
 echo gTranslate('core', "Apply watermark to") ?> <select name="wmSelect">
-  <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo gTranslate('core', "Sized and full photo");?></option>
-  <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo gTranslate('core', "Only sized photo");?></option>
-  <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo gTranslate('core', "Only full photo");?></option>
+  <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo gTranslate('core', "All photos");?></option>
+  <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo gTranslate('core', "Only sized photos");?></option>
+  <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo gTranslate('core', "Only full photos");?></option>
 </select>
-<br>
 
+<?php
+
+if ($watermarkForm["askRecursive"]) {
+	global $recursive;
+
+	echo gInput('checkbox', 'recursive', gTranslate('core', "Watermark subalbums?"), false, null, array('checked' => isset($recursive) ? null: false));
+}
+
+if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) {
+	echo '<p style="margin: 3px;">' .toggleButton('blub') . '<b>' . gTranslate('core', "Preview ?") . '</b>';
+
+	echo "\n" . '<span id="toggleFrame_blub" style="display:none;">';
+	echo gInput('radio','previewFull', gTranslate('core', "Resized"), '', 0, array('id' => 'previewResized', 'checked' => $previewFull==0 ? NULL : false));
+	echo gInput('radio','previewFull', gTranslate('core', "Full"), '', 0, array('checked' => $previewFull==0 ? NULL : false));
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo gSubmit('preview', gTranslate('core', "Show _Preview"));
+	echo "\n</span></p>";
+}
+
+?>
+</div>
 <?php
 }
 ?>

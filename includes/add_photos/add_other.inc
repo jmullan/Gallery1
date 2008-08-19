@@ -40,7 +40,7 @@
   </li>
 
   <li>
-	<b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo gTranslate('core', "Other methods") ?></a></b>
+	<b><a href="#" onClick="parent.opener.location = 'http://codex.gallery2.org/Other_Clients'; parent.close();"><?php echo gTranslate('core', "Other methods") ?></a></b>
 	<br>
 	<?php echo gTranslate('core', "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?>
 	<br><br>
