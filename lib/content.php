@@ -826,7 +826,9 @@ function getStyleSheetLink() {
 			$styleSheetLinks .= _getStyleSheetLink("screen");
 		}
 
-		if(isset($gallery->album->fields) && $gallery->album->fields['lightbox'] == "yes") {
+		if(!empty($gallery->album->fields['lightbox']) && 
+		   $gallery->album->fields['lightbox'] == "yes") 
+		{
 			$styleSheetLinks .= _getStyleSheetLink("lightbox");
 		}
 
@@ -1695,6 +1697,62 @@ function picture($index, $full = false, $newwidth = 0, $newheight = 0) {
 	}
 
 	$function_image_new($resized);
+}
+
+/**
+ * Gallery Version of htmlentities
+ * Enhancement: Depending on PHP Version and Charset use
+ * optional 3rd Parameter of php's htmlentities
+ */
+function gallery_htmlentities($string) {
+	global $gallery;
+
+	if (isset($gallery->charset) && isSupportedCharset($gallery->charset)) {
+		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
+	}
+	else {
+		return htmlentities($string);
+	}
+}
+
+/**
+ * Convert all HTML entities to their applicable characters
+ */
+function unhtmlentities($string) {
+	global $gallery;
+
+	if (empty($string)) {
+		return '';
+	}
+
+	if (function_exists('html_entity_decode')) {
+		$nls = getNLS();
+
+		if (isset($gallery->language) && isset($nls['charset'][$gallery->language])) {
+			$charset = $nls['charset'][$gallery->language];
+		}
+		else {
+			$charset = $nls['default']['charset'];
+		}
+
+		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
+			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
+		}
+		else {
+			// For unsupported charsets you may do this:
+			$trans_tbl = get_html_translation_table (HTML_ENTITIES);
+			$trans_tbl = array_flip ($trans_tbl);
+			$return = strtr ($string, $trans_tbl);
+		}
+	}
+	else {
+		// For users with PHP prior to 4.3.0 you may do this:
+		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
+		$trans_tbl = array_flip ($trans_tbl);
+		$return = strtr ($string, $trans_tbl);
+	}
+
+	return $return;
 }
 
 /**

@@ -2604,7 +2604,7 @@ class Album {
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
-		if(ownerID == $everybodyUid) {
+		if($ownerID == $everybodyUid) {
 			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}

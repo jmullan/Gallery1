@@ -67,29 +67,20 @@ if (!empty($cropit)) {
 	$width		= intval($muliplier * $width);
 	$height		= intval($muliplier * $height);
 
-	if ($gallery->session->albumName && isset($index)) {
-		$photo = $gallery->album->getPhoto($index);
-		$photo->image->setThumbRectangle($offsetX, $offsetY, $width, $height);
-		$gallery->album->setPhoto($photo, $index);
-		$gallery->album->makeThumbnail($index);
-		$gallery->album->save(
-			array(i18n("Thumbnail modified for %s"),
-			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
-		);
-	}
+	$photo->image->setThumbRectangle($offsetX, $offsetY, $width, $height);
+	$gallery->album->setPhoto($photo, $index);
+	$gallery->album->makeThumbnail($index);
+	$gallery->album->save(
+		array(i18n("Thumbnail modified for %s"),
+			  makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
+	);
 
 	// -- close and reload parent ---
 	dismissAndReload();
 	exit;
 }
 
-if (!empty($dismiss)) {
-	#-- just close ---
-	dismissAndLoad();
-	exit;
-}
-
-/* No Action done */
+/* No action done */
 $messages = array();
 
 $photo = $gallery->album->getPhoto($index);
@@ -143,7 +134,7 @@ if($filesize > 512000) {
 	if(gdAvailable($ext)) {
 		$src = plainUrl('picture.php', array(
 			'index'		=> $index,
-			'newwidth'	=> $maxSize)
+			'newWidth'	=> $maxSize)
 		);
 		$photoTag = "<img src=\"$src\" alt=\"\" id=\"cropImage\" width=\"$imageWidth\" height=\"$imageHeight\">";
 	}

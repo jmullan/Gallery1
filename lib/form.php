@@ -663,4 +663,24 @@ function gReset($name, $value, $additionalAttrs = array()) {
 
 	return $html;
 }
+
+function gDate($name, $label = null, $value = null) {
+	if(empty($value)) {
+		$value = time();
+	}
+
+	$html = '';
+	$html .= gInput('hidden', $name, $label, false, strftime("%Y-%m-%d %H:%M:%S", $value));
+	$html .= '<span id="date_'. $name .'" class="g-form-date">' .
+				strftime("%d. %b %Y %H:%M:%S", $value) .
+			 '</span>';
+	$html .= "\n <button id=\"button_". $name ."\">...</button>\n<br>";
+	$html .= "\n<br>  <script type=\"text/javascript\">Calendar.setup(
+				{inputField: \"". $name ."\",
+				 displayArea: \"date_". $name ."\",
+				 button: \"button_". $name . "\"});
+			</script>";
+
+	return $html;
+}
 ?>

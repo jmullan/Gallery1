@@ -89,6 +89,7 @@ if (getRequestVar('save')) {
 	$gallery->album->fields['rows']			= $rows;
 	$gallery->album->fields['cols']			= $cols;
 	$gallery->album->fields['fit_to_window']	= $fit_to_window;
+	$gallery->album->fields['lightbox']		= $lightbox;
 	$gallery->album->fields['use_fullOnly']		= $use_fullOnly;
 	$gallery->album->fields['print_photos']		= $print_photos;
 	$gallery->album->fields['use_exif']		= $use_exif;

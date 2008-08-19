@@ -51,35 +51,60 @@ list($caption, $description, $keywords, $extra_fields, $captureDate) =
 $infoMessages = array();
 
 if (isset($save) || isset($saveclose)) {
-	// Only allow dates which mktime() will operate on.
-	// 1970-2037 (Windows and some UNIXes) -- 1970-2069 (Some UNIXes)
-	// Two digit values between 0-69 mapping to 2000-2069 and 70-99 to 1970-1999
-	if (((int)$capture_year < 2070 && (int)$capture_year > 1969) || (int)$capture_year < 100) {
+	if (isValidTimestamp(strtotime($captureDate))) {
+		$gallery->album->setItemCaptureDate($index, strtotime($captureDate));
+	}
+	else {
+		$infoMessages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Given capture date is not valid.")
+		);
+	}
+
+	if (isValidText($caption)) {
 		$gallery->album->setCaption($index, $caption);
+	}
+	else {
+		$infoMessages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Given caption not valid.")
+		);
+	}
+
+	if (isValidText($description)) {
 		$gallery->album->setDescription($index, $description);
+	}
+	else {
+		$infoMessages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Given description is not valid.")
+		);
+	}
+
+	if (isValidText($keywords)) {
 		$gallery->album->setKeywords($index, $keywords);
+	}
+	else {
+		$infoMessages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Given keyword(s) is/are not valid.")
+		);
+	}
 
-		$dateArray['year']		= $capture_year;
-		$dateArray['mon']		= $capture_mon;
-		$dateArray['mday']		= $capture_mday;
-		$dateArray['hours']		= $capture_hours;
-		$dateArray['minutes']	= $capture_minutes;
-		$dateArray['seconds']	= $capture_seconds;
-
-		$timestamp = mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
-		$gallery->album->setItemCaptureDate($index, $timestamp);
-
-		if (isset($extra_fields)) {
-			foreach ($extra_fields as $field => $value){
+	if (isset($extra_fields)) {
+		foreach ($extra_fields as $field => $value){
+			if (isValidText($value)) {
 				$gallery->album->setExtraField($index, $field, trim($value));
 			}
 		}
+	}
 
-		$status = $gallery->album->save(
-			array(
-				i18n("Captions and/or custom fields modified for %s"),
-				makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
-		);
+	if(empty($infoMessages)) {
+		$status = $gallery->album->save(array(
+			i18n("Captions and/or custom fields modified for %s"),
+			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
+		));
+
 
 		if($status) {
 			if(isset($saveclose)) {
@@ -99,13 +124,10 @@ if (isset($save) || isset($saveclose)) {
 			);
 		}
 	}
-	else {
-		$infoMessages[] = array(
-			'type' => 'error',
-			'text' => gTranslate('core', "Year must be between 1969 and 2070.")
-		);
-	}
 }
+
+$caption = $gallery->album->getCaption($index);
+$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
 
 printPopupStart(
 	gTranslate('core', "Edit texts"),
@@ -182,73 +204,27 @@ if(!empty($extra_field_List)) {
 
 </table>
 
-<?php
-// get the itemCaptureDate
-$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-
-$hours 	 = strftime('%H', $itemCaptureDate);
-$minutes = strftime('%M', $itemCaptureDate);
-$seconds = strftime('%S', $itemCaptureDate);
-$mon 	 = strftime('%m', $itemCaptureDate);
-$mday 	 = strftime('%d', $itemCaptureDate);
-$year 	 = strftime('%Y', $itemCaptureDate);
-// start capture date table
-?>
-
 <br>
-<table align="center">
-  <caption><?php echo gTranslate('core', "Photo Capture Date") ?></caption>
-  <tr>
-	<td><?php echo gTranslate('core', "Month") ?></td>
-	<td><?php echo gTranslate('core', "Day") ?></td>
-	<td><?php echo gTranslate('core', "Year") ?></td>
-	<td><?php echo gTranslate('core', "Hours") ?></td>
-	<td><?php echo gTranslate('core', "Minutes") ?></td>
-	<td><?php echo gTranslate('core', "Seconds") ?></td>
-  </tr>
-  <tr>
 <?php
-// start making drop downs
-echo "<td>";
-echo drawSelect("capture_mon", padded_range_array(1, 12), $mon, 1);
-echo "</td>";
 
-echo "<td>";
-echo drawSelect("capture_mday", padded_range_array(1, 31), $mday, 1);
-echo "</td>";
+echo _getStyleSheetLink('jscalendar/aqua/theme');
+echo jsHTML('jscalendar/calendar.js');
+echo jsHTML('jscalendar/calendar-translation.js.php');
+echo jsHTML('jscalendar/calendar-setup.js');
 
-echo "<td>";
-echo "<input type=text name=\"capture_year\" value=\"$year\" size=\"4\">";
-echo "</td>";
+echo "\n<br>";
+echo gDate('captureDate', '<span class="g-emphasis">'. gTranslate('core', "Capture date:") .'</span>', $itemCaptureDate);
 
-echo "<td>";
-echo drawSelect("capture_hours", padded_range_array(0, 23), $hours, 1);
-echo "</td>";
+echo "\n<p class=\"center\">";
+echo gSubmit('save', gTranslate('core', "_Save"));
+echo gSubmit('saveclose', gTranslate('core', "Sav_e and Close"));
+echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
+echo gReset('reset', gTranslate('core', "_Reset"));
+echo "\n</p>";
 
-echo "<td>";
-echo drawSelect("capture_minutes", padded_range_array(0, 59), $minutes, 1);
-echo "</td>";
+echo "\n</form>";
+includeTemplate('overall.footer');
 
-echo "<td>";
-echo drawSelect("capture_seconds", padded_range_array(0, 59), $seconds, 1);
-echo "</td>";
 ?>
-  </tr>
-</table>
-
-<br>
-  <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-  <?php echo gSubmit('saveclose', gTranslate('core', "Sav_e and Close")); ?>
-  <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
-</form>
-
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-// position cursor in top form field
-document.g1_form.caption.focus();
-//-->
-</script>
-</div>
-
 </body>
 </html>
