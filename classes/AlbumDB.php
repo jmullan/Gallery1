@@ -45,7 +45,7 @@ class AlbumDB {
 			return false;
 		}
 
-		$tmp = getFile("$dir/albumdb.dat");
+		$tmp = fs_file_get_contents("$dir/albumdb.dat");
 		if (strcmp($tmp, '')) {
 			$this->albumOrder = unserialize($tmp);
 
@@ -284,7 +284,7 @@ class AlbumDB {
 			}
 		}
 
-		return 0;
+		return false;
 	}
 
 	function moveAlbum($user, $index, $newIndex) {

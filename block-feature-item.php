@@ -47,7 +47,7 @@ require(dirname(__FILE__) . "/init.php");
 
 define('FEATURE_CACHE', $gallery->app->albumDir . '/featured-item.cache');
 
-list($albumName, $index) = explode('/', getFile(FEATURE_CACHE));
+list($albumName, $index) = explode('/', fs_file_get_contents(FEATURE_CACHE));
 
 if (!empty($albumName) && isValidGalleryInteger($index)) {
 	$album = new Album();

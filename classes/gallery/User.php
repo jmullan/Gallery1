@@ -52,8 +52,11 @@ class Gallery_User extends Abstract_User {
 		}
 
 		$dir = $gallery->app->userDir;
+		$tmp = fs_file_get_contents("$dir/$uid");
 
-		$tmp = getFile("$dir/$uid");
+		if(empty($tmp)) {
+			return false;
+		}
 
 		/*
 		 * We renamed User.php to Gallery_User.php in v1.2, so port forward

@@ -320,9 +320,10 @@ class Image {
 
 	function isResized() {
 		if ($this->resizedName) {
-			return 1;
-		} else {
-			return 0;
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 

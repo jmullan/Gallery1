@@ -1802,7 +1802,7 @@ function configLogin($target) {
 	global $gallery;
 
 	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-		$resetFile = getFile(GALLERY_SETUPDIR . "/resetadmin");
+		$resetFile = fs_file_get_contents(GALLERY_SETUPDIR . "/resetadmin");
 		$resetFile = trim($resetFile);
 	}
 	else {

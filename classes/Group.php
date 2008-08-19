@@ -29,7 +29,7 @@ class Abstract_Group {
 		return false;
 	}
 
-	function load() {
+	function load($gid) {
 		return null;
 	}
 

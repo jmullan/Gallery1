@@ -152,7 +152,7 @@ function saveGalleryBlockRandomCache() {
 function readGalleryBlockRandomCache() {
 	global $cache;
 
-	$sCache = getFile(CACHE_FILE);
+	$sCache = fs_file_get_contents(CACHE_FILE);
 	$cache = unserialize($sCache);
 }
 

@@ -722,11 +722,13 @@ for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosP
 
 echo $statsTable->render();
 
-$time = getmicrotime() - $time_start;
-echo infoBox(array(array(
-	'type' => 'success',
-	'text' => sprintf (gTranslate('core', "Finished in %d seconds"), $time)
-)));
+if (isset($stm)) {
+	$time = getmicrotime() - $time_start;
+	echo infoBox(array(array(
+		'type' => 'success',
+		'text' => sprintf (gTranslate('core', "Finished in %d seconds"), $time)
+	)));
+}
 
 if ($cacheReloadRequired) {
 	$url = makeStatsUrl( $page );

@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Abstract_Database {
 	
 	function query($sql) {

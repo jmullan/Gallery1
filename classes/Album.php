@@ -1005,10 +1005,10 @@ class Album {
 	}
 
 	function loadFromFile($filename) {
-		$tmp = unserialize(getFile($filename));
+		$tmp = unserialize(fs_file_get_contents($filename));
 		if (strcasecmp(get_class($tmp), "album")) {
 			/* Dunno what we unserialized .. but it wasn't an album! */
-			$tmp = unserialize(getFile($filename, true));
+			$tmp = unserialize(fs_file_get_contents($filename, true));
 			if (strcasecmp(get_class($tmp), "album")) {
 				return 0;
 			}
@@ -1021,9 +1021,9 @@ class Album {
 	}
 
 	function loadPhotosFromFile($filename) {
-		$tmp = unserialize(getFile($filename));
+		$tmp = unserialize(fs_file_get_contents($filename));
 		if (!is_Array($tmp)){
-			$tmp = unserialize(getFile($filename, true));
+			$tmp = unserialize(fs_file_get_contents($filename, true));
 			if (!is_Array($tmp)){
 				return 0;
 			}

@@ -28,13 +28,14 @@
  * First include some necessary files
  */
 require_once(dirname(__FILE__) . '/nls.php');
+require_once(dirname(__FILE__) . '/lib/lang.php');
+require_once(dirname(__FILE__) . '/lib/content.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
 require_once(dirname(__FILE__) . '/classes/Mail/htmlMimeMail.php');
 require_once(dirname(__FILE__) . '/classes/HTML/table.php');
 require_once(dirname(__FILE__) . '/lib/valchecks.php');
 require_once(dirname(__FILE__) . '/lib/messages.php');
-require_once(dirname(__FILE__) . '/lib/content.php');
 require_once(dirname(__FILE__) . '/lib/filetypes.php');
 
 function getRequestVar($str) {
@@ -107,7 +108,7 @@ function loadBlacklist() {
 	static $blacklist;
 
 	if (!isset($blacklist)) {
-		$tmp = getFile(getBlacklistFilename());
+		$tmp = fs_file_get_contents(getBlacklistFilename());
 		$blacklist = unserialize($tmp);
 
 		if (empty($blacklist)) {
@@ -274,34 +275,6 @@ function getDimensions($file) {
 	return array(0, 0);
 }
 
-function getFile($fname, $legacy = false) {
-	$tmp = "";
-
-	if (!fs_file_exists($fname) || broken_link($fname)) {
-		return $tmp;
-	}
-
-	if (function_exists("file_get_contents")) {
-		return fs_file_get_contents($fname);
-	}
-
-	if ($legacy) {
-		$modes = "rt";
-	}
-	else {
-		$modes = "rb";
-	}
-
-	if ($fd = fs_fopen($fname, $modes)) {
-		while (!feof($fd)) {
-			$tmp .= fread($fd, 65536);
-		}
-		fclose($fd);
-	}
-
-	return $tmp;
-}
-
 function my_flush() {
 	print str_repeat(" ", 4096);	// force a flush
 }
@@ -358,10 +331,6 @@ function correctPseudoUsers(&$array, $ownerUid) {
 function gallerySanityCheck() {
 	global $gallery, $GALLERY_OK;
 
-	if (!empty($gallery->backup_mode)) {
-		return NULL;
-	}
-
 	setGalleryPaths();
 
 	if (!fs_file_exists(GALLERY_CONFDIR . '/config.php') ||
@@ -373,7 +342,11 @@ function gallerySanityCheck() {
 
 	include_once(GALLERY_CONFDIR . '/config.php');
 
-	if (!$gallery->app) {
+	if (!empty($gallery->backup_mode)) {
+		return NULL;
+	}
+
+	if (!isset($gallery->app)) {
 		$GALLERY_OK = false;
 		return 'unconfigured';
 	}
@@ -1840,7 +1813,6 @@ function showDebugInfo() {
 	}
 }
 
-require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
 require_once(dirname(__FILE__) . '/lib/album.php');

@@ -49,13 +49,21 @@ class Gallery_Group extends Abstract_Group {
 
 		$dir = $gallery->app->userDir;
 
-		$tmp = getFile("$dir/$gid");
+		$tmp = fs_file_get_contents("$dir/$gid");
 		
 		if($tmp) {
-			foreach (unserialize($tmp) as $k => $v) {
-				$this->$k = $v;
+			$unserializeFile = @unserialize($tmp);
+			if($unserializeFile != false || 
+			  ($unserializeFile === false && $tmp != serialize(false)))
+			{
+				foreach (unserialize($tmp) as $k => $v) {
+					$this->$k = $v;
+				}
+				return true;
 			}
 		}
+		
+		return false;
 	}
 
 
