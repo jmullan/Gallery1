@@ -99,7 +99,12 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
 		if ($fd = @fs_fopen($outfile, "a")) {
 			foreach ($htaccess as $line) {
 				if (!ereg('^#', $line)) {
-					eval("\$line = \"$line\";");
+					// Replace variables
+					// Example: Literal $GALLERY_URL -> real $GALLERY_URL via preg_replace /e
+					// modifier
+					// Avoids use of eval
+					// -Andy Lindeman (June 2008)
+					$line = preg_replace('/\$\{?([A-Za-z][A-Za-z0-9_]*)\}?/e', '$${1}', $line);
 					fwrite($fd, $line);
 				}
 			}
@@ -118,7 +123,12 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
 					continue;
 				}
 				if (!ereg('^#', $line)) {
-					eval("\$line = \"$line\";");
+					// Replace variables
+					// Example: Literal $GALLERY_URL -> real $GALLERY_URL via preg_replace /e
+					// modifier
+					// Avoids use of eval
+					// -Andy Lindeman (June 2008)
+					$line = preg_replace('/\$\{?([A-Za-z][A-Za-z0-9_]*)\}?/e', '$${1}', $line);
 					fwrite($fd, $line);
 				}
 			}

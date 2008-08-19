@@ -39,6 +39,10 @@ require_once(dirname(__FILE__) . '/lib/messages.php');
 require_once(dirname(__FILE__) . '/lib/filetypes.php');
 
 function getRequestVar($str) {
+	global $global_notice_messages;
+
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	if (!is_array($str)) {
 		if (!isset($_REQUEST[$str])) {
 			return null;
@@ -50,8 +54,18 @@ function getRequestVar($str) {
 			$ret = stripslashes_deep($ret);
 		}
 
-		//echo "\n<br>- Checking:". htmlspecialchars($str);
-		$ret = sanitizeInput($ret);
+		$ret_orig = $ret;
+
+		//echo "\n<br>- Checking:". gHtmlSafe($str);
+		$sanitized = sanitizeInput($ret);
+
+		if($sanitized != $ret_orig) {
+			$global_notice_messages[] = array(
+				'type' => 'error',
+				'text' => sprintf(gTranslate('core', "'%s' was sanitized"), $str));
+		}
+
+		$ret = $sanitized;
 	}
 	else {
 		foreach ($str as $reqvar) {

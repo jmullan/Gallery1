@@ -1,3 +1,21 @@
+2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b150
+
+ * Security Fix *
+
+ Scope of HTTP Request Variables Not Enforced
+
+
+ - Other changes -
+
+ * Added updated list of allowed to include files.
+
+ * Set $gallery->album = NULL
+   when it was not possible to load a correct album.
+
+ * Avoid eval() in setup/write.inc , use preg_replace /e
+   Andrew thougt this would be better ;-)
+
+
 2008-08-19 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b149
 
  * Change: Reworked copy photo.

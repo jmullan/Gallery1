@@ -21,7 +21,11 @@
 */
 
 // Hack Prevention
-$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
+
+$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS', '_SERVER');
+
+$_REQUEST = array_merge($_GET, $_POST);
+
 foreach ($sensitiveList as $sensitive) {
     if (!empty($_REQUEST[$sensitive])) {
         echo "Security violation! Override attempt.\n";
@@ -595,7 +599,9 @@ if (!empty($gallery->session->albumName)) {
 	$gallery->album = new Album;
 	$ret = $gallery->album->load($gallery->session->albumName);
 	if (!$ret) {
-		$gallery->session->albumName = "";
+		$gallery->session->albumName = '';
+		// New in 1.6 ! For some reason i want to point this out. - Jens 15.05.2008
+		$gallery->album = NULL;
 	}
 	else {
 		if ($gallery->album->versionOutOfDate()) {
