@@ -45,23 +45,37 @@ rc_unused="${stat}${extd}unused${norm}"
 
 clear
 
-if [ -z $1 ] ; then
+if [ -z "$1" ] ; then
         echo -e "\nusage :"
         echo "sh make_mo_files.sh -all for all .po file"
         echo -e "or sh make_mo_files.sh -po <language_COUNTRY> for only one. e.g. sh make_mo_files.sh -po de_DE \n"
         exit
 fi
 
-if [ $1 != "-all" ] && [ ! -e ../locale/$2 ] ; then
+if [ "$1" != "-all" -a "$1" != "-po" ]; then
+    echo -e "\nThe first parameter can only by \"-all\" or \"-po\""
+    exit 1
+fi
+
+if [ "$1" = "-po" ]; then
+    if [ -z "$2" ]; then
+        echo -e "\nYou need to tell which language you want to update."
+        echo -e "E.g.: sh make_mo_files.sh -po de_DE \n"
+        exit 1
+    elif [ ! -e ../locale/$2 ] ; then
         echo -e "\n$2-gallery.po does not exist or your paramater was wrong"
         echo -e "\nusage :"
         echo -e "sh make_mo_files.sh -<language_COUNTRY> for only one. e.g. sh update_po_files.sh -po de_DE \n"
-        exit
+        exit 1
+    fi
 fi
 
-
-ACTUALPATH=${0%/*}
-cd $ACTUALPATH
+if [ "$0" != "make_mo_files.sh" ]; then
+	ACTUALPATH=${0%/*}
+	cd $ACTUALPATH
+else
+	ACTUALPATH="./"
+fi
 
 # check if ../locale dir is there
 
@@ -73,7 +87,7 @@ else
 	echo $rc_ok
 fi
 
-if [ $1 = "-all" ] ; then
+if [ "$1" = "-all" ] ; then
 #find all .po files
 	echo -n "checking for .po files ...."
 	find ../locale -iname ??_??-*.po >/dev/null 2>/dev/null || {
@@ -88,7 +102,6 @@ else
 	all_po=$(find ../locale/$2 -iname "??_*-*.po")
 fi
 
-echo $2
 for po_file in $all_po ; do
 	echo 
 	echo "Found : $po_file"
@@ -121,7 +134,7 @@ for po_file in $all_po ; do
 		mkdir -p ../locale/$lang/LC_MESSAGES && {
 			echo $rc_ok
 			echo -n "$tab Making ../locale/$lang/LC_MESSAGES/$filename file"
-			msgfmt --check $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
+			msgfmt --statistics --check --check-compatibility $po_file --output-file=../locale/$lang/LC_MESSAGES/$filename && {
 				echo $rc_ok
 			} || {
 				echo $rc_failed

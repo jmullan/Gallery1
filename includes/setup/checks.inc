@@ -122,20 +122,17 @@ $checklist = array(
 		'prompt' => gTranslate('config',"PHP's safe mode disabled"),
 		'desc' => gTranslate('config',"Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		'func' => 'check_safe_mode',
-		'fail-safe-mode' => gTranslate('config',"<b>safe_mode</b> is enabled on this server.") .
-            toggleBox('check_safe_mode',
-                sprintf(gTranslate('config',"<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
-                    '<a href="http://gallery.sourceforge.net" target="_blank">',
-                    '</a>',
-                    '<a href="http://www.php.net/manual/en/features.safe-mode.php" target="_blank">',
-                    '</a>'
-                ) .
-                '<br><br>' .
-                '<p class="g-emphasis">' . gTranslate('config',"Note:") . '</p>'.
-                sprintf(gTranslate('config',"In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
-        		  '<a href="phpinfo.php" target="_blank">',
-        		  '</a>')
-            ),
+		'fail-safe-mode' => sprintf(gTranslate('config',"<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
+					'<a href="http://gallery.sourceforge.net">',
+					'</a>',
+					'<a href="http://www.php.net/manual/en/features.safe-mode.php">',
+					'</a>') .
+					'<br><br>' .
+					'<p class="g-emphasis">' . gTranslate('config',"Note:") . '</p>'.
+					sprintf(gTranslate('config',"In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
+						'<a href="phpinfo.php" target="_blank">',
+						'</a>')
+		,
 		'optional' => 1,
 		'serious' => 1
 	),

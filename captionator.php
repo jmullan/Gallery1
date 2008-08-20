@@ -257,7 +257,9 @@ if ($numPhotos) {
 			echo galleryLink($albumURL, $imageTag, array(), '', false, false);
 			echo "<div class=\"g-small\">". gTranslate('core', "(click to enter album)") . '</div>';
 		}
-		elseif (! $photo->isMovie()) {
+		// Note Jens Tkotz, 28.07.2008
+		// This does not work in Vista nor on XP and Safari, don't know why. I disable it for now.
+		elseif (! $photo->isMovie() && 1==2) {
 			list($height, $width) = $photo->getDimensions(false);
 			echo popup_link2(
 				$gallery->album->getThumbnailTag($i, $thumbSize),

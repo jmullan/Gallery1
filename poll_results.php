@@ -50,59 +50,18 @@ $cols = $gallery->album->fields["cols"];
 $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth="100%";
 
-$pAlbum = $gallery->album;
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+$adminbox['text'] = gTranslate('core', "Poll Results");
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-
-<html>
-<head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . gTranslate('core', "Poll Results") ?></title>
-  <?php common_header();
-
-  if(! empty($gallery->album->fields["linkcolor"]) ||
-  	 !empty($gallery->album->fields["bgcolor"]) ||
-  	 !empty($gallery->album->fields["textcolor"]))
-   {
-
-  	echo "\n<style type=\"text/css\">";
-  	// the link colors have to be done here to override the style sheet
-  	if ($gallery->album->fields["linkcolor"]) {
-  		echo "\n  a:link, a:visited, a:active {";
-  		echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
-  		echo "\n  a:hover { color: #ff6600; }";
-
-  	}
-  	if ($gallery->album->fields["bgcolor"]) {
-  		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-  	}
-  	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-  		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-  	}
-  	if ($gallery->album->fields["textcolor"]) {
-  		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-  		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-  		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-  	}
-
-  	echo "\n  </style>";
-  }
-?>
-
-</head>
-<body>
-<?php }
-
-includeTemplate('album.header');
-
-$breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["text"][] = sprintf(
-	makeAccessKeyString(gTranslate('core', "_Return to  %s")),
-	galleryLink(makeAlbumUrl($gallery->session->albumName), $pAlbum->fields['title'])
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl($gallery->session->albumName),
+				'navigation/return_to.gif',
+				gTranslate('core', "_Return to album")
 );
 
-includeLayout('breadcrumb.inc');
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
 $navigator["page"] = 1;
 $navigator["pageVar"] = "page";
@@ -110,6 +69,29 @@ $navigator["maxPages"] = 1;
 $navigator["url"] = makeAlbumUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
+
+$albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields['title']) . ' :: '. gTranslate('core', "Poll Results"));
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
+?>
+
+<html>
+<head>
+  <title><?php echo $albumTitle ?></title>
+  <?php
+  common_header();
+  $customCSS = customCSS();
+  	echo $customCSS;
+  ?>
+</head>
+<body>
+<?php }
+
+includeTemplate('album.header');
+
+includeLayout('adminbox.inc');
+includeLayout('breadcrumb.inc');
 includeLayout('navigator.inc');
 
 $num_rows = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
@@ -162,6 +144,9 @@ if (!empty($resultTable->elements)) {
 </p>
 <?php
 	echo $resultTable->render();
+}
+else {
+	echo gallery_info(gTranslate('core', "No votes so far."));
 }
 
 includeTemplate('info_donation-block');
