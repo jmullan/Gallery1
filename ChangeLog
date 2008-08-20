@@ -1,3 +1,69 @@
+2008-08-20 Jens Tkotz <jens@peino.de> 1.6-RC1
+
+Happy birthday Mom!
+
+ Recently, we retained Gotham Digital Science (GDS) to perform
+ security audits on Gallery 1.6
+
+ GDS found bugs in 21 catecories as they are:
+
+ --- PRIO 1 ----
+  1 - Insecure Command Execution
+  2 - Cross Site Scripting (XSS)
+  3 - Unauthorized Access to File System
+  4 - Role-Based Authorization Not Adequately Enforced
+
+ --- PRIO 2 ----
+  5 - Application Insecurely Discloses Potentially Sensitive Data
+  6 - Inadequate Password Complexity Enforcement
+  7 - New Password Functionality Susceptible to Brute Force Attacks
+
+ --- PRIO 3 ----
+  8 - Inadequate Application Error Handling and Suppression
+  9 - Username Enumeration
+  10 - Log Forging
+
+ --- PRIO 4 ----
+  11 - Denial of Service Condition Possible
+  12 - Un-mapped File Extensions Allow Source Code Disclosure
+  13 - Lack of Web Root Clean-up and Insecure File Organization
+  14 - Logout Option not Available on all Application Pages
+  15 - Pages Do Not Refresh After Idle Session Timeout
+  16 - Sensitive POST Data Exposed to Browser Caching
+  17 - Password Reset Does not Include at least One Challenge Question
+  18 - Application Account Lockout not Enforced
+  19 - Sensitive Data Passed in Query String
+  20 - Scope of HTTP Request Variables Not Enforced
+  21 - User Controllable Messages
+
+
+ A Local File Include Vulnerability was found by a different company.
+
+   We say thank you to:
+   The security researchers from Digital Security company
+   http://dsec.ru
+
+ If you need more detailed information on the bugs and how they were fixed,
+ please write a mail to security@menalto.com
+
+
+ I would like to shout out a big thank you to these people in no special order:
+
+ Andy St. and the great G2 team
+ Brian Egge helping Pierre and me with GR issues
+ Kai Tomalik for his constant support and warm words, greetings to Wibke
+ Peter Schumacher, thanks for supporting me and G1
+ BAAAAAART, i love you man
+ John Schwaller, 'vmole', 'dimo', Andrew Vasilyev, 'Ajuniper' from forums
+ 'scotte9999', Marcio Marchini, tycho', 'Draccie' from forums
+ Rasmus Lerdorf
+ Christian Mohn, Dave Moore
+ Robert -you are fired- Volksport
+ and Julien Elie who kicks my bad english ass
+
+	28th June / 20th August 2008, Jens Tkotz
+
+
 2008-08-20 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b159
 
  * Change: Language sync.
