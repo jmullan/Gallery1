@@ -68,7 +68,13 @@ function getManifestFiles($folder) {
 	$results = array();
 	$svnfile = "$folder/.svn/entries";
 	$skipfolder = array('docs', 'po', 'tools', 'locale');
-	$skipfiles = array('ChangeLog.archive.gz', '.htaccess','modules.php.patch');
+	$skipfiles = array(
+		'ChangeLog.archive.gz',
+		'.htaccess',
+		'modules.php.patch',
+		'license.txt',
+		'lgpl-3.0.txt'
+	);
 
 	printf("\nFolder: %s", $folder);
 

@@ -43,7 +43,7 @@ $ratioOptions = array(
 );
 
 $ratioDirections = array(
-	'1'		=> gTranslate('core', "Portrait"),
+	'1'	=> gTranslate('core', "Portrait"),
 	'-1'	=> gTranslate('core', "Landscape"),
 );
 

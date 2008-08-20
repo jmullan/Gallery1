@@ -322,7 +322,7 @@ function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
 
 function addUrlArg($url, $arg) {
 	if (strstr ($url, "?")) {
-		return "$url&amp;$arg";
+		return "$url&$arg";
 	}
 	else {
 		return "$url?$arg";
@@ -396,7 +396,10 @@ function getAbsoluteImagePath($name, $skinname = '') {
  * @author	Jens Tkotz
  */
 function urlIsRelative($url) {
-	if (substr($url, 0,4) == 'http') {
+	if (substr($url, 0,7) == 'http://') {
+		return false;
+	}
+	elseif(substr($url, 0,6) == 'ftp://') {
 		return false;
 	}
 	else {
