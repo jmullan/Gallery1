@@ -3,8 +3,8 @@
 /**
  * Prints a wrapped image. Wrapped inside a given frame and/or link.
  *
- * @package Gallery
- * @todo 	Cleanup
+ * @package  Gallery
+ * @todo     Cleanup
  *
  * @version $Id: inline_imagewrap.inc 13817 2006-06-13 11:11:49Z jenst $
  */
@@ -12,13 +12,13 @@
 //-- shorten the variables for convinience ---
 $borderWidth	= $gallery->html_wrap['borderWidth'];
 $borderColor	= $gallery->html_wrap['borderColor'];
-$pixelImage		= getImagePath('pixel_trans.gif');
-$imageWidth		= $gallery->html_wrap['imageWidth'];
+$pixelImage	= getImagePath('pixel_trans.gif');
+$imageWidth	= $gallery->html_wrap['imageWidth'];
 $imageHeight	= $gallery->html_wrap['imageHeight'];
-$href			= $gallery->html_wrap['imageHref'];
-$tag			= $gallery->html_wrap['imageTag'];
-$frame			= $gallery->html_wrap['frame'];
-$attrlist		= isset($gallery->html_wrap['attrlist']) ? $gallery->html_wrap['attrlist'] : array();
+$href		= $gallery->html_wrap['imageHref'];
+$tag		= $gallery->html_wrap['imageTag'];
+$frame		= $gallery->html_wrap['frame'];
+$attrlist	= isset($gallery->html_wrap['attrlist']) ? $gallery->html_wrap['attrlist'] : array();
 
 $base = '';
 
@@ -59,19 +59,19 @@ switch ($frame) {
     break;
 
     case "siriux":
-		/**
- 		 * Horde Browser class to detect the browser and its abilities.
- 		*/
-		include_once(GALLERY_BASE .'/classes/horde/Browser.php');
-   		$browser = &Browser::singleton();
+	/**
+ 	 * Horde Browser class to detect the browser and its abilities.
+ 	*/
+	include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+   	$browser = &Browser::singleton();
 
-		$margin = 0;
+	$margin = 0;
     	if($imageHeight < $imageWidth) {
     		if ($browser->getBrowser()== 'msie' && $browser->getMajor() < 7) {
-	    		$margin = ($imageWidth - $imageHeight)/2;
+			$margin = ($imageWidth - $imageHeight)/2;
     		}
     		else {
-	   			$marginTop = ($imageWidth - $imageHeight)/2;
+	   		$marginTop = ($imageWidth - $imageHeight)/2;
     			echo "\n\t<div style=\"height: ${marginTop}px;\"></div>\n";
     		}
     	}

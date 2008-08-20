@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-30 13:04+0100\n"
+"POT-Creation-Date: 2008-08-21 00:45+0200\n"
 "PO-Revision-Date: 2004-08-04 23:10+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -37,2812 +37,2826 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: ../includes/setup/checks.inc:67 ../includes/setup/constants.inc:83
+#: ../includes/setup/checks.inc:65 ../includes/setup/constants.inc:81
 msgid "unknown"
 msgstr "неизвестный"
 
-#: ../includes/setup/checks.inc:73
-#, php-format
-msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#: ../includes/setup/checks.inc:71
+#, fuzzy, php-format
+msgid "Gallery prefers Netpbm version 10.3 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
 msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовые испоняемые файлы достаточные для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
 
-#: ../includes/setup/checks.inc:79 ../includes/setup/checks.inc:87
-#: ../includes/setup/checks.inc:91 ../includes/setup/checks.inc:136
-#: ../includes/setup/constants.inc:94 ../includes/setup/constants.inc:104
-#: ../includes/setup/constants.inc:694
+#: ../includes/setup/checks.inc:77 ../includes/setup/checks.inc:85
+#: ../includes/setup/checks.inc:89 ../includes/setup/checks.inc:131
+#: ../includes/setup/constants.inc:92 ../includes/setup/constants.inc:102
+#: ../includes/setup/constants.inc:693
 msgid "Note:"
 msgstr "Примечание:"
 
-#: ../includes/setup/checks.inc:80 ../includes/setup/constants.inc:95
-msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
+#: ../includes/setup/checks.inc:78 ../includes/setup/constants.inc:93
+#, fuzzy
+msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead."
 msgstr "Вы можете установить исполняемые файлы с сайта галереи даже если у вас нет root доступа. Если вы не можете заставить его работать, оставьте путь к NetPBM не заполненным и используйте ImageMagick вместо него."
 
-#: ../includes/setup/checks.inc:84 ../includes/setup/constants.inc:102
+#: ../includes/setup/checks.inc:82 ../includes/setup/constants.inc:100
 #, fuzzy, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s."
 msgstr "Галерея предпочитает ImageMagick версии 5.4.8 и выше. Вы можете откомпилировать и установить целый пакет ImageMagick с %sсайта ImageMagick%s."
 
-#: ../includes/setup/checks.inc:88 ../includes/setup/constants.inc:105
-msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+#: ../includes/setup/checks.inc:86 ../includes/setup/constants.inc:103
+#, fuzzy
+msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead."
 msgstr "На сайте также доступны исполняемые файлы для различных операционных систем. Если вы не можете заставить его работать, оставьте путь к ImageMagick не заполненным и используйте NetPBM вместо него."
 
-#: ../includes/setup/checks.inc:92
+#: ../includes/setup/checks.inc:90
 #, fuzzy, php-format
 msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
 msgstr "<b>Примечание:</b> Ваша установка PHP сконфигурирована с %s ограничением. Это может затруднить обнаружение и проверку ваших исполняемых файлов для галереи, даже если вы уже успешно использовали мастер конфигурации раньше. Не беспокойтесь если увидите это предупрежедение, ваши параметры сохранены правильно."
 
 #
-#: ../includes/setup/checks.inc:99
+#: ../includes/setup/checks.inc:97
 #, fuzzy
 msgid "Gallery version"
 msgstr "Проверка сессий галереи"
 
-#: ../includes/setup/checks.inc:100
+#: ../includes/setup/checks.inc:98
 #, php-format
 msgid "Check to see how old %s version %s is."
 msgstr "Проверьте на сколько старая версия %s %s."
 
 #
-#: ../includes/setup/checks.inc:107
+#: ../includes/setup/checks.inc:105
 #, fuzzy
 msgid "PHP version"
 msgstr "Проверка версий"
 
-#: ../includes/setup/checks.inc:108
+#: ../includes/setup/checks.inc:106
 #, fuzzy
 msgid "Check to see if you are running a supported Version of PHP."
 msgstr "Проверяет есть ли у вас самые последние версии всех файлов галереи."
 
-#: ../includes/setup/checks.inc:108
+#: ../includes/setup/checks.inc:106
 msgid "Due to bugs and missing functionality in some PHP versions, the minimum PHP version for Gallery 1.5 and newer is at least PHP 4.1.0"
 msgstr ""
 
-#: ../includes/setup/checks.inc:110
+#: ../includes/setup/checks.inc:108
 #, fuzzy, php-format
 msgid "You're running PHP version %s.  You need to upgrade to at least PHP %s."
 msgstr "Вы используете PHP версии %s. Вам нужно обновить PHP до %s."
 
-#: ../includes/setup/checks.inc:111
+#: ../includes/setup/checks.inc:109
 #, php-format
 msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
 msgstr "Вы используете версию PHP %s, в которой имеются известные баги из-за которых галерея работает некорректно."
 
-#: ../includes/setup/checks.inc:112
+#: ../includes/setup/checks.inc:110
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
 msgstr "Видимо у вашего PHP имеется проблема с __FILE__, пожалуйста обновите до последней версии"
 
-#: ../includes/setup/checks.inc:116
+#: ../includes/setup/checks.inc:114
 msgid "Register globals"
 msgstr ""
 
-#: ../includes/setup/checks.inc:117
+#: ../includes/setup/checks.inc:115
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
 msgstr ""
 
-#: ../includes/setup/checks.inc:119
+#: ../includes/setup/checks.inc:117
 msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
 msgstr ""
 
-#: ../includes/setup/checks.inc:124
-msgid "PHPs safe mode"
+#: ../includes/setup/checks.inc:122
+msgid "PHP's safe mode disabled"
 msgstr ""
 
-#: ../includes/setup/checks.inc:125
+#: ../includes/setup/checks.inc:123
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
 msgstr "Проверьте не запущен ли PHP в режиме <b>safe_mode</b>. Безопасный режим является параметром надежности PHP обычно использется в совместно используемом окружении. Галерея не может работать когда включен режим <b>safe mode</b> поскольку он накладывает слишком много ограничений."
 
-#: ../includes/setup/checks.inc:127
-#, fuzzy
-msgid "<b>safe_mode</b> is enabled on this server."
-msgstr "<b>safe_mode</b> отключен."
-
-#: ../includes/setup/checks.inc:129
+#: ../includes/setup/checks.inc:125
 #, php-format
 msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
 msgstr "<b>safe_mode</b> разрешен на этом сервере. Вы должны его заблокировать прежде чем использовать галерею. Посмотрите FAQ, форумы и страницу помощи на %sвеб-сайте галереи%s и %sвеб-сайте PHP%s для поддержки."
 
-#: ../includes/setup/checks.inc:137
+#: ../includes/setup/checks.inc:132
 #, fuzzy, php-format
 msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
 msgstr "<b>Примечание</b>: В самых редких случаях, галерея думает, что безопасный режим включен, хотя на самом деле он выключен. Вы можете увидеть это сами посмотрев в колонку <i>Local</i> в строке <i>safe_mode</i> на странице %sPHP Info%s. Если там указано 'Off' или '0', или 'undefined' тогда возможно галерея сделала ошибку и вы можете продолжить. Если нет, тогда вы должны решить эту проблему прежде чем использовать галерею."
 
-#: ../includes/setup/checks.inc:145
-msgid "PHPs exec() function"
+#: ../includes/setup/checks.inc:140
+msgid "PHP's exec() function enabled"
 msgstr ""
 
-#: ../includes/setup/checks.inc:146
-msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
+#: ../includes/setup/checks.inc:141
+msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
 msgstr ""
 
-#: ../includes/setup/checks.inc:148
+#: ../includes/setup/checks.inc:143
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
 msgstr ""
 
-#: ../includes/setup/checks.inc:152
-msgid ".htaccess processed by apache"
+#: ../includes/setup/checks.inc:147
+msgid ".htaccess processed by Apache"
 msgstr ""
 
-#: ../includes/setup/checks.inc:153
+#: ../includes/setup/checks.inc:148
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
 msgstr "Файл <b>.htaccess</b> позволяет галереи устанавливать специальный режим конфигурации для приложений. Не каждый имеет возможность для корректировки, управлять этим может только владелец веб сервера. Если это нельзя сделать, то основным недостатком будет отсутствие возможности загружать файлы > 2Мб (например, большие ZIP файлы или фильмы)."
 
-#: ../includes/setup/checks.inc:155
+#: ../includes/setup/checks.inc:150
 #, fuzzy
 msgid "Your webserver is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
 msgstr "Apache не обрабатывает строки 'php_value' в вашем <b>.htaccess</b> файле. Попробуйте ввести следующие строки в файл <b>httpd.conf</b> вашего веб сервера:"
 
-#: ../includes/setup/checks.inc:159
+#: ../includes/setup/checks.inc:154
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
 msgstr "Если ваш PHP работает в режиме CGI, это сообщение неизбежно."
 
-#: ../includes/setup/checks.inc:160
+#: ../includes/setup/checks.inc:155
 msgid "Gallery could not test if your webserver is obeying the 'php_value' lines in your <b>.htaccess</b> as the (original) .htaccess file in your setup folder is missing."
 msgstr ""
 
-#: ../includes/setup/checks.inc:164
+#: ../includes/setup/checks.inc:159
 #, fuzzy
 msgid "PHPs magic quotes off"
 msgstr "<b>magic_quotes</b> отключен."
 
-#: ../includes/setup/checks.inc:165
+#: ../includes/setup/checks.inc:160
 #, php-format
 msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."
 msgstr "Проверьте не включен ли %smagic quotes%s в PHP вашего сервера. Если он включен, вы можете обратить внимание на странное поведение, когда вы вводите символы ' (апостроф), &quot; (кавычка) или &#92; (обратная косая черта) в названиях или загаловках галереи."
 
-#: ../includes/setup/checks.inc:169
+#: ../includes/setup/checks.inc:164
 #, php-format
 msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
 msgstr "Magic quotes включен. Администратор вашего веб сервера может его выключить установив%s в вашем файле <b>php.ini</b>."
 
-#: ../includes/setup/checks.inc:174
+#: ../includes/setup/checks.inc:169
 msgid "Apache mod_rewrite"
 msgstr ""
 
-#: ../includes/setup/checks.inc:175
+#: ../includes/setup/checks.inc:170
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
 msgstr "Проверьте откомпилирован ли ваш веб сервер с <b>mod_rewrite</b>. Этот модуль Apache позволяет галереи использовать короткие URL, что намного легче читается и хорошо смотрится когда вы пересылаете веб-ссылку вашим родственникам. Но это не настолько важная функция."
 
-#: ../includes/setup/checks.inc:177
+#: ../includes/setup/checks.inc:172
 msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above)."
 msgstr ""
 
-#: ../includes/setup/checks.inc:179
+#: ../includes/setup/checks.inc:174
 #, fuzzy
 msgid "Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
 msgstr "Либо не установлен <b>mod_rewrite</b>, либо не подключается файл <b>.htaccess</b> (см. выше). В этом случае нам придется использовать длинные URL в галереи. Чтобы этого избежать, сначала убедитесь, что ваш файл <b>.htaccess</b> обрабатывается. Если обрабатывается, но это все еще не работает, возможно вам нужно перенастроить и вновь собрать Apache с флагом:"
 
-#: ../includes/setup/checks.inc:181
+#: ../includes/setup/checks.inc:176
 msgid "Gallery could not test if <b>mod_rewrite</b> is working, as the (original) .htaccess file in your setup folder is missing."
 msgstr ""
 
-#: ../includes/setup/checks.inc:185
-msgid "NetPBM installed"
-msgstr ""
+#: ../includes/setup/checks.inc:180
+#, fuzzy
+msgid "Netpbm installed"
+msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
-#: ../includes/setup/checks.inc:186
-msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
+#: ../includes/setup/checks.inc:181
+#, fuzzy
+msgid "Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."
 msgstr "Проверьте установлен ли пакет NetPBM позволяющий манипулировать изображениями (поворот, уменьшение, создание обложек и т.д.). Вам нужно установить только один из пакетов NetPBM <b>или</b> ImageMagick."
 
+#: ../includes/setup/checks.inc:183
+#, fuzzy
+msgid "Netpbm was not found"
+msgstr "%d из %d исполняемых файлов ImageMagick установлено."
+
+#: ../includes/setup/checks.inc:185
+#, fuzzy
+msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: "
+msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
+
+#: ../includes/setup/checks.inc:187
+#, fuzzy
+msgid "I've found part of Netpbm, but some components are missing (see below)."
+msgstr "Я обнаружил часть NetPBM, но в критическом состоянии (см. ниже). Возможно ваша версия NetPBM устарела."
+
 #: ../includes/setup/checks.inc:188
-msgid "NetPBM was not found"
+msgid "Perhaps your version of Netpbm is out of date."
 msgstr ""
 
 #: ../includes/setup/checks.inc:190
 #, fuzzy
-msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
-msgstr "Я не могу найти NetPBM. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь к NetPBM вручную. Если же он не установлен, у вас есть два варианта: "
-
-#: ../includes/setup/checks.inc:192
-#, fuzzy
-msgid "I've found part of NetPBM, but some components are missing (see below)."
-msgstr "Я обнаружил часть NetPBM, но в критическом состоянии (см. ниже). Возможно ваша версия NetPBM устарела."
-
-#: ../includes/setup/checks.inc:193
-msgid "Perhaps your version of NetPBM is out of date."
-msgstr ""
-
-#: ../includes/setup/checks.inc:195
-msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
+msgid "If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page."
 msgstr "Если NetPBM установлен и галерея не обаруживает его автоматически&#8212;на следующей странице вы можете указать путь к ImageMagick вручную."
 
-#: ../includes/setup/checks.inc:201
+#: ../includes/setup/checks.inc:196
 #, fuzzy
 msgid "ImageMagick installed"
 msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
-#: ../includes/setup/checks.inc:203
-msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
+#: ../includes/setup/checks.inc:198
+#, fuzzy
+msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."
 msgstr "Проверьте установлен ли пакет ImageMagick позволяющий манипулировать изображениями (поворот, уменьшение, создание обложек и т.д.). Вам нужно установить только один из пакетов ImageMagick <b>или</b> NetPBM."
 
-#: ../includes/setup/checks.inc:205
+#: ../includes/setup/checks.inc:200
 #, fuzzy
 msgid "ImageMagick was not found."
 msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
-#: ../includes/setup/checks.inc:207
+#: ../includes/setup/checks.inc:202
 #, fuzzy
 msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
 msgstr "Я не могу найти ImageMagick. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь к ImageMagick вручную."
 
-#: ../includes/setup/checks.inc:209
+#: ../includes/setup/checks.inc:204
 #, fuzzy
 msgid "I've found part of ImageMagick, but some components are missing (see below)."
 msgstr "Я обнаружил часть NetPBM, но в критическом состоянии (см. ниже). Возможно ваша версия NetPBM устарела."
 
-#: ../includes/setup/checks.inc:212
+#: ../includes/setup/checks.inc:207
 #, fuzzy
 msgid "If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page."
 msgstr "Если NetPBM установлен и галерея не обаруживает его автоматически&#8212;на следующей странице вы можете указать путь к ImageMagick вручную."
 
-#: ../includes/setup/checks.inc:217
+#: ../includes/setup/checks.inc:212
 msgid "Jhead installed"
 msgstr ""
 
-#: ../includes/setup/checks.inc:219
+#: ../includes/setup/checks.inc:214
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
 msgstr "Проверьте установлен ли <b>jhead</b> позволяющий галереи изучить вставленные EXIF заголовки в изображения сделанные большинством цифровых камер."
 
-#: ../includes/setup/checks.inc:221
+#: ../includes/setup/checks.inc:216
 msgid "jhead was not found."
 msgstr ""
 
-#: ../includes/setup/checks.inc:223
+#: ../includes/setup/checks.inc:218
 #, fuzzy, php-format
 msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
 msgstr "Я не могу найти <b>jhead</b>. Если он был установлен, но не в пользовательском каталоге веб сервера&#8212;на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jhead - общедоступный EXIF анализатор. Исходные коды, исполняемые файлы для linux и windows можно найти на %sдомашней странице jhead%s."
 
-#: ../includes/setup/checks.inc:228
+#: ../includes/setup/checks.inc:223
 #, fuzzy
 msgid "jpegtran installed"
 msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
-#: ../includes/setup/checks.inc:230
+#: ../includes/setup/checks.inc:225
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
 msgstr "Проверьте установлен ли <b>jpegtran</b> позволяющий галереи выполнять поворот JPEG изображений без потерь."
 
-#: ../includes/setup/checks.inc:232
+#: ../includes/setup/checks.inc:227
 msgid "jpegtran was not found."
 msgstr ""
 
-#: ../includes/setup/checks.inc:233
+#: ../includes/setup/checks.inc:228
 #, fuzzy, php-format
 msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
 msgstr "Я не могу найти <b>jpegtran</b>. Если он был установлен, но не в пользовательском каталоге веб сервера-на следующей странице вы можете указать путь вручную. Если он не установлен, вы можете это сделать сами. Jpegtran - бесплатный инструмент распространяемый Independent JPEG Group как часть <i>libjpeg</i>.Исходные коды можно найти на %sдомашней странице IJG%s. Бинарные файлы можно найти на %sсайте JPEG Club%s или в пакете <i>libjpeg</i> включенный в Linux."
 
-#: ../includes/setup/checks.inc:239
+#: ../includes/setup/checks.inc:234
 msgid "Gettext support in PHP"
 msgstr ""
 
-#: ../includes/setup/checks.inc:241
+#: ../includes/setup/checks.inc:236
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
 msgstr "Проверьте откомпилирован ли PHP с поддержкой <b>GNU gettext</b> для быстрых переводов."
 
-#: ../includes/setup/checks.inc:243
+#: ../includes/setup/checks.inc:238
 #, php-format
 msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
 msgstr "Ваш PHP установлен без поддержки <b>GNU gettext</b>. Для того, чтобы включить его, вам понадобится перекомпилировать PHP (см. %sдокументацию PHP%s для подробной информации). Много-языковая поддержка все еще доступна в галереи и без <b>gettext</b>, но страницы будут слегка дольше загружаться."
 
-#: ../includes/setup/checks.inc:247
+#: ../includes/setup/checks.inc:242
 msgid "Locales needed for Gallery"
 msgstr ""
 
-#: ../includes/setup/checks.inc:249
+#: ../includes/setup/checks.inc:244
 msgid "Check to see what languages are available."
 msgstr "Проверьте какие языки доступны."
 
 #
-#: ../includes/setup/checks.inc:253
+#: ../includes/setup/checks.inc:248
 #, fuzzy
 msgid "missing locales"
 msgstr "Отсутствует значение"
 
-#: ../includes/setup/checks.inc:256
+#: ../includes/setup/checks.inc:251
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
 msgstr "Тестирует, чтобы увидеть какие <b>системные</b> локализации (если имеются) отсутствуют."
 
-#: ../includes/setup/checks.inc:257
+#: ../includes/setup/checks.inc:252
 #, fuzzy
 msgid "These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."
 msgstr "Эти локализации требуются, чтобы использовать многоязычную возможность галереи, когда ваш PHP имеет поддержку gettext. Они также нужны, чтобы показывать дату и время в соответствующем формате языка."
 
-#: ../includes/setup/checks.inc:262
+#: ../includes/setup/checks.inc:257
 msgid "File integrity"
 msgstr ""
 
-#: ../includes/setup/checks.inc:263
+#: ../includes/setup/checks.inc:258
 msgid "Checking to see if you have the latest versions of all Gallery files."
 msgstr "Проверяет есть ли у вас самые последние версии всех файлов галереи."
 
-#: ../includes/setup/checks.inc:274
+#: ../includes/setup/checks.inc:269
 msgid "Mandatory checks"
 msgstr ""
 
-#: ../includes/setup/checks.inc:275
+#: ../includes/setup/checks.inc:270
 msgid "If any of these items are highlighted in red then please take actions to correct them. Failure to do so could lead to your Gallery installation not functioning correctly."
 msgstr ""
 
 #
-#: ../includes/setup/checks.inc:280
+#: ../includes/setup/checks.inc:275
 #, fuzzy
 msgid "Recommended things"
 msgstr "Разрешить комментарии"
 
-#: ../includes/setup/checks.inc:281
+#: ../includes/setup/checks.inc:276
 msgid "Nice to have."
 msgstr ""
 
-#: ../includes/setup/constants.inc:89
+#: ../includes/setup/constants.inc:87
 #, fuzzy, php-format
-msgid "Gallery prefers NetPBM version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+msgid "Gallery prefers Netpbm version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
 msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовые испоняемые файлы достаточные для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
 
-#: ../includes/setup/constants.inc:98
-msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
+#: ../includes/setup/constants.inc:96
+#, fuzzy
+msgid "I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date."
 msgstr "Я обнаружил часть NetPBM, но в критическом состоянии (см. ниже). Возможно ваша версия NetPBM устарела."
 
-#: ../includes/setup/constants.inc:112
+#: ../includes/setup/constants.inc:110
 msgid "General settings"
 msgstr "Общие параметры"
 
 #
-#: ../includes/setup/constants.inc:117
+#: ../includes/setup/constants.inc:115
 msgid "Gallery Title"
 msgstr "Название галереи"
 
-#: ../includes/setup/constants.inc:118
+#: ../includes/setup/constants.inc:116
 msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
 msgstr "Название вашей галереи. Например: <i>Мои супер фотографии</i>"
 
 #
-#: ../includes/setup/constants.inc:119
+#: ../includes/setup/constants.inc:117 ../setup/login.inc:110
 msgid "Gallery"
 msgstr "Галерея"
 
 #
-#: ../includes/setup/constants.inc:125
+#: ../includes/setup/constants.inc:123
 msgid "Skin Name"
 msgstr "Имя шкурки"
 
-#: ../includes/setup/constants.inc:126
+#: ../includes/setup/constants.inc:124
 #, fuzzy
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin."
 msgstr "Выберите шкурку (skin) для галереи. У вас теперь есть широкий выбор &quot;шкурок&quot;, которые влияют на внешний вид вашей галереи. Вы можете хорошо провести время экспериментируя доступными шкурками. При выборе &quot;None&quot; будет использоваться внешний вид из версии v1.4."
 
-#: ../includes/setup/constants.inc:132
+#: ../includes/setup/constants.inc:130
 msgid "Use Icons ?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:133
+#: ../includes/setup/constants.inc:131
 msgid "You can choose whether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be a tooltip."
 msgstr ""
 
-#: ../includes/setup/constants.inc:135
+#: ../includes/setup/constants.inc:133
 msgid "Icons and text"
 msgstr ""
 
-#: ../includes/setup/constants.inc:136
+#: ../includes/setup/constants.inc:134
 msgid "Text only"
 msgstr ""
 
-#: ../includes/setup/constants.inc:137
+#: ../includes/setup/constants.inc:135
 msgid "Icons only"
 msgstr ""
 
-#: ../includes/setup/constants.inc:142
+#: ../includes/setup/constants.inc:140
 msgid "Default upload method"
 msgstr "Метод загрузки по умолчанию"
 
-#: ../includes/setup/constants.inc:143
+#: ../includes/setup/constants.inc:141
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
 msgstr "Какой метод загрузки фотографий должен быть выбран сразу, для тех пользователей, кто не определил его специально?"
 
-#: ../includes/setup/constants.inc:145
+#: ../includes/setup/constants.inc:143
 msgid "Form-based Upload"
 msgstr "Основная форма загрузки"
 
-#: ../includes/setup/constants.inc:146
+#: ../includes/setup/constants.inc:144
 msgid "Mini-Applet"
 msgstr "Мини-Апплет"
 
-#: ../includes/setup/constants.inc:147
+#: ../includes/setup/constants.inc:145
 msgid "Full-Applet"
 msgstr "Полный-Апплет"
 
-#: ../includes/setup/constants.inc:148
+#: ../includes/setup/constants.inc:146
 msgid "URL"
 msgstr "URL"
 
-#: ../includes/setup/constants.inc:154
+#: ../includes/setup/constants.inc:152
 #, fuzzy
 msgid "Format for commenter and owner names"
 msgstr "Формат для имени автора комментария"
 
-#: ../includes/setup/constants.inc:155
+#: ../includes/setup/constants.inc:153
 #, fuzzy
 msgid "Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"
 msgstr "Имя автора комментария, если он зарегистрированный пользователь, может отображаться различными вариантами"
 
-#: ../includes/setup/constants.inc:166
+#: ../includes/setup/constants.inc:164
 msgid "Locations and URLs"
 msgstr "Размещения и URL-ы"
 
 #
-#: ../includes/setup/constants.inc:171
+#: ../includes/setup/constants.inc:169
 msgid "Album directory"
 msgstr "Каталог альбома"
 
-#: ../includes/setup/constants.inc:172
+#: ../includes/setup/constants.inc:170
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
 msgstr "Полный путь на физическом диске в каталог, где будут храниться ваши фотографии. Этот каталог должен быть пустой&#8212;галерея заполнит его. Отметьте, что этот каталог должет иметь доступ на запись пользователей, которые запускают приложение на веб сервере (в вашем случае это пользователь %s)."
 
 #
-#: ../includes/setup/constants.inc:183
+#: ../includes/setup/constants.inc:181
 msgid "Temporary directory"
 msgstr "Каталог временных файлов"
 
-#: ../includes/setup/constants.inc:184
+#: ../includes/setup/constants.inc:182
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr "Путь к временному каталогу. Например: %s или %s. Отметьте, что если вы сконфигурировали <b>open_basedir</b> в вашей системе, то этот временный каталог должен находиться внутри <b>open_basedir</b>! В этом случае вам нужно создать каталог самим и убедиться, что веб сервер имеет дуступ в нем на запись."
 
-#: ../includes/setup/constants.inc:196
+#: ../includes/setup/constants.inc:194
 #, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:205
+#: ../includes/setup/constants.inc:203
 msgid "Albums URL"
 msgstr "URL альбомов"
 
-#: ../includes/setup/constants.inc:206
+#: ../includes/setup/constants.inc:204
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:215
+#: ../includes/setup/constants.inc:213
 msgid "Thumbnail image"
 msgstr "Изображение макета"
 
-#: ../includes/setup/constants.inc:216
+#: ../includes/setup/constants.inc:214
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr "Путь к макету для показа фильмов. Напимер: %s"
 
 #
-#: ../includes/setup/constants.inc:224
+#: ../includes/setup/constants.inc:222
 msgid "Mirror sites"
 msgstr "Сайт зеркало"
 
-#: ../includes/setup/constants.inc:225
+#: ../includes/setup/constants.inc:223
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr "Список URL, которые содержат зеркала ваших альбомов. Определите один URL на строку, наиболее надежные вверху. Например: %s"
 
-#: ../includes/setup/constants.inc:242
+#: ../includes/setup/constants.inc:240
 msgid "Toolkits / image processing"
 msgstr "Набор инструментальных средств / обработка изображений"
 
-#: ../includes/setup/constants.inc:247
+#: ../includes/setup/constants.inc:245
 msgid "Graphics suite to use"
 msgstr "Используемый графический пакет"
 
-#: ../includes/setup/constants.inc:248
+#: ../includes/setup/constants.inc:246
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr "Этот параметр сообщает галереи какой из графических инструментальных средств будет использоваться. Если галерея сообщает, что оба в норме (на первой странице), то выбор просто за пользователем. В противном случае, укажите тот пакет с которым галерея не обнаружила ошибок."
 
-#: ../includes/setup/constants.inc:256
+#: ../includes/setup/constants.inc:254
 #, fuzzy
 msgid "ImageMagick Settings"
 msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
 #
-#: ../includes/setup/constants.inc:262
+#: ../includes/setup/constants.inc:260
 msgid "Path to ImageMagick"
 msgstr "Путь к ImageMagick"
 
 #
-#: ../includes/setup/constants.inc:263
+#: ../includes/setup/constants.inc:261
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Путь к каталогу содержащего ImageMagick в вашей системе."
 
-#: ../includes/setup/constants.inc:264 ../includes/setup/constants.inc:293
+#: ../includes/setup/constants.inc:262 ../includes/setup/constants.inc:291
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr ""
 
-#: ../includes/setup/constants.inc:267
+#: ../includes/setup/constants.inc:265
 msgid "I can't find ImageMagick at the location you provided."
 msgstr "Я не могу найти ImageMagick в каталоге который вы указали."
 
-#: ../includes/setup/constants.inc:282
+#: ../includes/setup/constants.inc:280
 #, fuzzy
-msgid "NetPBM Settings"
+msgid "Netpbm Settings"
 msgstr "Просмотреть настройки"
 
 #
-#: ../includes/setup/constants.inc:288
-msgid "Path to NetPBM"
+#: ../includes/setup/constants.inc:286
+#, fuzzy
+msgid "Path to Netpbm"
 msgstr "Путь к NetPBM"
 
-#: ../includes/setup/constants.inc:289
-#, php-format
-msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
+#: ../includes/setup/constants.inc:287
+#, fuzzy, php-format
+msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Путь к каталогу, в вашей системе, содержащего NetPBM. Если вы загрузили NetPBM со страницы загрузки галереи, не забывайте делать файлы исполняемыми. Например: %s или %s, или %s"
 
-#: ../includes/setup/constants.inc:296
-msgid "I can't find NetPBM at the location you provided."
+#: ../includes/setup/constants.inc:294
+#, fuzzy
+msgid "I can't find Netpbm at the location you provided."
 msgstr "Я не могу найти NetPBM в каталоге который вы указали."
 
 #
-#: ../includes/setup/constants.inc:308
+#: ../includes/setup/constants.inc:306
 msgid "PNM to JPEG converter"
 msgstr "Конвертер PNM в JPEG"
 
-#: ../includes/setup/constants.inc:309
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#: ../includes/setup/constants.inc:307
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Это значение важно только если вы используете NetPBM. NetPBM использует инструмент для кодирования изображения своего внутреннего формата в JPEG. Этот инструмент называется <i>ppmtojpeg</i> или <i>pnmtojpeg</i> в зависимости от версии NetPBM которую вы установили. Проверьте ваш каталог с NetPBM и посмотрите какой из них у вас установлен, и укажите здесь. Если вы не уверены, просто выберите на угад, а мы попытаемся это проверить."
 
-#: ../includes/setup/constants.inc:314
+#: ../includes/setup/constants.inc:312
 msgid "PNM Composite (Overlay)"
 msgstr ""
 
-#: ../includes/setup/constants.inc:315
+#: ../includes/setup/constants.inc:313
 #, fuzzy
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Это значение важно только если вы используете NetPBM. NetPBM использует инструмент для кодирования изображения своего внутреннего формата в JPEG. Этот инструмент называется <i>ppmtojpeg</i> или <i>pnmtojpeg</i> в зависимости от версии NetPBM которую вы установили. Проверьте ваш каталог с NetPBM и посмотрите какой из них у вас установлен, и укажите здесь. Если вы не уверены, просто выберите на угад, а мы попытаемся это проверить."
 
 #
-#: ../includes/setup/constants.inc:323
+#: ../includes/setup/constants.inc:321
 msgid "Auto-rotate images"
 msgstr "Авторазворот изображений"
 
-#: ../includes/setup/constants.inc:324
+#: ../includes/setup/constants.inc:322
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "Выбор этой опции позволяет галереи автоматически разворачивать загруженные изображения, основываясь на информации хранящейся в данных JPEG EXIF некоторых новых моделях цифровых камер."
 
-#: ../includes/setup/constants.inc:325
+#: ../includes/setup/constants.inc:323
 #, fuzzy
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "Требуется синтаксический анализатор Jhead EXIF v. 1.9 или выше (см. ниже)."
 
-#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
-#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
-#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
-#: ../includes/setup/constants.inc:698 ../includes/setup/constants.inc:738
-#: ../includes/setup/constants.inc:747 ../includes/setup/constants.inc:768
-#: ../includes/setup/constants.inc:837 ../includes/setup/constants.inc:847
-#: ../includes/setup/constants.inc:855 ../includes/setup/constants.inc:899
-#: ../includes/setup/constants.inc:925 ../includes/setup/constants.inc:954
-#: ../includes/setup/constants.inc:962 ../includes/setup/constants.inc:964
-#: ../includes/setup/constants.inc:989 ../includes/setup/constants.inc:1256
-#: ../includes/setup/constants.inc:1274 ../includes/setup/constants.inc:1284
-#: ../includes/setup/constants.inc:1294 ../includes/setup/constants.inc:1303
-#: ../includes/setup/constants.inc:1312 ../includes/setup/constants.inc:1344
-#: ../includes/setup/constants.inc:1385 ../includes/setup/constants.inc:1393
-#: ../includes/setup/constants.inc:1401 ../includes/setup/defaults.inc:167
-#: ../includes/setup/defaults.inc:177 ../includes/setup/defaults.inc:187
-#: ../includes/setup/defaults.inc:197 ../includes/setup/defaults.inc:247
-#: ../includes/setup/defaults.inc:256 ../includes/setup/defaults.inc:284
-#: ../includes/setup/defaults.inc:302 ../includes/setup/defaults.inc:311
-#: ../includes/setup/defaults.inc:328 ../includes/setup/defaults.inc:337
-#: ../includes/setup/defaults.inc:345 ../includes/setup/defaults.inc:422
-#: ../includes/setup/defaults.inc:431 ../includes/setup/defaults.inc:486
-#: ../includes/setup/defaults.inc:488 ../includes/setup/defaults.inc:497
-#: ../includes/setup/defaults.inc:524 ../includes/setup/defaults.inc:548
+#: ../includes/setup/constants.inc:324 ../includes/setup/constants.inc:431
+#: ../includes/setup/constants.inc:453 ../includes/setup/constants.inc:467
+#: ../includes/setup/constants.inc:473 ../includes/setup/constants.inc:648
+#: ../includes/setup/constants.inc:697 ../includes/setup/constants.inc:737
+#: ../includes/setup/constants.inc:746 ../includes/setup/constants.inc:767
+#: ../includes/setup/constants.inc:836 ../includes/setup/constants.inc:846
+#: ../includes/setup/constants.inc:854 ../includes/setup/constants.inc:898
+#: ../includes/setup/constants.inc:924 ../includes/setup/constants.inc:953
+#: ../includes/setup/constants.inc:961 ../includes/setup/constants.inc:963
+#: ../includes/setup/constants.inc:988 ../includes/setup/constants.inc:1255
+#: ../includes/setup/constants.inc:1273 ../includes/setup/constants.inc:1283
+#: ../includes/setup/constants.inc:1293 ../includes/setup/constants.inc:1302
+#: ../includes/setup/constants.inc:1311 ../includes/setup/constants.inc:1343
+#: ../includes/setup/constants.inc:1384 ../includes/setup/constants.inc:1392
+#: ../includes/setup/constants.inc:1400 ../includes/setup/defaults.inc:165
+#: ../includes/setup/defaults.inc:175 ../includes/setup/defaults.inc:185
+#: ../includes/setup/defaults.inc:195 ../includes/setup/defaults.inc:242
+#: ../includes/setup/defaults.inc:251 ../includes/setup/defaults.inc:279
+#: ../includes/setup/defaults.inc:297 ../includes/setup/defaults.inc:306
+#: ../includes/setup/defaults.inc:323 ../includes/setup/defaults.inc:332
+#: ../includes/setup/defaults.inc:340 ../includes/setup/defaults.inc:417
+#: ../includes/setup/defaults.inc:426 ../includes/setup/defaults.inc:481
+#: ../includes/setup/defaults.inc:483 ../includes/setup/defaults.inc:492
+#: ../includes/setup/defaults.inc:519 ../includes/setup/defaults.inc:543
+#: ../includes/setup/defaults.inc:632
 msgid "Yes"
 msgstr "Да"
 
-#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
-#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
-#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
-#: ../includes/setup/constants.inc:693 ../includes/setup/constants.inc:699
-#: ../includes/setup/constants.inc:739 ../includes/setup/constants.inc:748
-#: ../includes/setup/constants.inc:767 ../includes/setup/constants.inc:838
-#: ../includes/setup/constants.inc:848 ../includes/setup/constants.inc:856
-#: ../includes/setup/constants.inc:897 ../includes/setup/constants.inc:900
-#: ../includes/setup/constants.inc:926 ../includes/setup/constants.inc:955
-#: ../includes/setup/constants.inc:965 ../includes/setup/constants.inc:990
-#: ../includes/setup/constants.inc:1257 ../includes/setup/constants.inc:1275
-#: ../includes/setup/constants.inc:1285 ../includes/setup/constants.inc:1295
-#: ../includes/setup/constants.inc:1304 ../includes/setup/constants.inc:1313
-#: ../includes/setup/constants.inc:1345 ../includes/setup/constants.inc:1386
-#: ../includes/setup/constants.inc:1394 ../includes/setup/constants.inc:1402
-#: ../includes/setup/constants.inc:1442 ../includes/setup/defaults.inc:168
-#: ../includes/setup/defaults.inc:178 ../includes/setup/defaults.inc:188
-#: ../includes/setup/defaults.inc:198 ../includes/setup/defaults.inc:248
-#: ../includes/setup/defaults.inc:257 ../includes/setup/defaults.inc:285
-#: ../includes/setup/defaults.inc:303 ../includes/setup/defaults.inc:312
-#: ../includes/setup/defaults.inc:329 ../includes/setup/defaults.inc:338
-#: ../includes/setup/defaults.inc:346 ../includes/setup/defaults.inc:420
-#: ../includes/setup/defaults.inc:423 ../includes/setup/defaults.inc:489
-#: ../includes/setup/defaults.inc:495 ../includes/setup/defaults.inc:498
-#: ../includes/setup/defaults.inc:525 ../includes/setup/defaults.inc:549
+#: ../includes/setup/constants.inc:324 ../includes/setup/constants.inc:431
+#: ../includes/setup/constants.inc:453 ../includes/setup/constants.inc:467
+#: ../includes/setup/constants.inc:473 ../includes/setup/constants.inc:648
+#: ../includes/setup/constants.inc:692 ../includes/setup/constants.inc:698
+#: ../includes/setup/constants.inc:738 ../includes/setup/constants.inc:747
+#: ../includes/setup/constants.inc:766 ../includes/setup/constants.inc:837
+#: ../includes/setup/constants.inc:847 ../includes/setup/constants.inc:855
+#: ../includes/setup/constants.inc:896 ../includes/setup/constants.inc:899
+#: ../includes/setup/constants.inc:925 ../includes/setup/constants.inc:954
+#: ../includes/setup/constants.inc:964 ../includes/setup/constants.inc:989
+#: ../includes/setup/constants.inc:1256 ../includes/setup/constants.inc:1274
+#: ../includes/setup/constants.inc:1284 ../includes/setup/constants.inc:1294
+#: ../includes/setup/constants.inc:1303 ../includes/setup/constants.inc:1312
+#: ../includes/setup/constants.inc:1344 ../includes/setup/constants.inc:1385
+#: ../includes/setup/constants.inc:1393 ../includes/setup/constants.inc:1401
+#: ../includes/setup/constants.inc:1441 ../includes/setup/defaults.inc:166
+#: ../includes/setup/defaults.inc:176 ../includes/setup/defaults.inc:186
+#: ../includes/setup/defaults.inc:196 ../includes/setup/defaults.inc:243
+#: ../includes/setup/defaults.inc:252 ../includes/setup/defaults.inc:280
+#: ../includes/setup/defaults.inc:298 ../includes/setup/defaults.inc:307
+#: ../includes/setup/defaults.inc:324 ../includes/setup/defaults.inc:333
+#: ../includes/setup/defaults.inc:341 ../includes/setup/defaults.inc:415
+#: ../includes/setup/defaults.inc:418 ../includes/setup/defaults.inc:484
+#: ../includes/setup/defaults.inc:490 ../includes/setup/defaults.inc:493
+#: ../includes/setup/defaults.inc:520 ../includes/setup/defaults.inc:544
+#: ../includes/setup/defaults.inc:633
 msgid "No"
 msgstr "Нет"
 
-#: ../includes/setup/constants.inc:332
+#: ../includes/setup/constants.inc:330
 msgid "JPEG Quality <b>(Advanced)</b>"
 msgstr ""
 
-#: ../includes/setup/constants.inc:333
+#: ../includes/setup/constants.inc:331
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "JPEG формат может менять объем файл в зависимости от качества. Галерея может управлять качеством JPEGов, которые она генерирует когда  вы меняете размер, вращаете или делаете обложку из JPEG изображений. Чем выше качество изображения, тем больше объем файла, чем ниже качество, тем объем файла меньше. Тем не менее, во многих случаях есть момент, с которого улучшая качество увеличивается объем файла, но без заметного влияния на изображение. Не рекомендуется устанавливать этому значению велечину равною &quot;100&quot;. Если вы обратите внимание на то, что ваши файлы обложек и изменившие размеры изображения стали большего объема чем исходные изображения и вам это не нравится, то вы можете попробовать уменьшить эту величину. <b>Примечание</b>, измение величины повлияет на изменение объема файлов только в <i>будущем</i>."
 
-#: ../includes/setup/constants.inc:337
+#: ../includes/setup/constants.inc:335
 msgid "JPEG Quality for resized images"
 msgstr ""
 
-#: ../includes/setup/constants.inc:347
+#: ../includes/setup/constants.inc:345
 msgid "JPEG Quality for highlight images on the startpage"
 msgstr ""
 
-#: ../includes/setup/constants.inc:357
+#: ../includes/setup/constants.inc:355
 msgid "JPEG Quality for thumbs inside the albums"
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:375
+#: ../includes/setup/constants.inc:373
 msgid "Embedded Gallery"
 msgstr "Встроенная галерея"
 
-#: ../includes/setup/constants.inc:376
+#: ../includes/setup/constants.inc:374
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
 msgstr ""
 
-#: ../includes/setup/constants.inc:376
+#: ../includes/setup/constants.inc:374
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
 msgstr ""
 
-#: ../includes/setup/constants.inc:379
+#: ../includes/setup/constants.inc:377
 msgid "GeekLog Dir"
 msgstr "Каталог GeekLog"
 
-#: ../includes/setup/constants.inc:381
+#: ../includes/setup/constants.inc:379
 #, fuzzy
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
 msgstr "Если вы выбрали Geeklog, пожалуйста введите размещение каталога public_html GeekLog."
 
 #
-#: ../includes/setup/constants.inc:393
+#: ../includes/setup/constants.inc:391
 msgid "Main Gallery page"
 msgstr "Основная страница галереи"
 
-#: ../includes/setup/constants.inc:398
+#: ../includes/setup/constants.inc:396
 msgid "Theme"
 msgstr ""
 
-#: ../includes/setup/constants.inc:399
+#: ../includes/setup/constants.inc:397
 msgid "Choose the theme for the mainpage"
 msgstr ""
 
-#: ../includes/setup/constants.inc:401
+#: ../includes/setup/constants.inc:399
 msgid "The classic layout since Gallery 1.0"
 msgstr ""
 
-#: ../includes/setup/constants.inc:402
+#: ../includes/setup/constants.inc:400
+msgid "The classic layout since Gallery 1.0, just with a sidebar ;-)"
+msgstr ""
+
+#: ../includes/setup/constants.inc:401
 msgid "A lightweight layout, with less textual information. Inspired by the Gallery 2 Matrix"
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:408
+#: ../includes/setup/constants.inc:407
 #, fuzzy
 msgid "Show the album tree ?"
 msgstr "Показывать дерево альбомов"
 
-#: ../includes/setup/constants.inc:409
+#: ../includes/setup/constants.inc:408
 #, fuzzy
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr "Если вы включите эту опцию, то увидите полный список всех вложенных альбомов, при просмотре главной страницы вашей галереи. Это облегчит навигацию вложенных альбомов (хотя может привести в беспорядок главную страницу галереи)."
 
-#: ../includes/setup/constants.inc:411 ../includes/setup/constants.inc:430
+#: ../includes/setup/constants.inc:410 ../includes/setup/constants.inc:429
 msgid "This setting has no effect in matrix theme."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:414
+#: ../includes/setup/constants.inc:413
 #, fuzzy
 msgid "No tree"
 msgstr "Примечание"
 
-#: ../includes/setup/constants.inc:415
+#: ../includes/setup/constants.inc:414
 #, php-format
 msgid "%d sublevel"
 msgstr ""
 
-#: ../includes/setup/constants.inc:416 ../includes/setup/constants.inc:417
-#: ../includes/setup/constants.inc:418 ../includes/setup/constants.inc:419
-#: ../includes/setup/constants.inc:420
+#: ../includes/setup/constants.inc:415 ../includes/setup/constants.inc:416
+#: ../includes/setup/constants.inc:417 ../includes/setup/constants.inc:418
+#: ../includes/setup/constants.inc:419
 #, php-format
 msgid "%d sublevels"
 msgstr ""
 
-#: ../includes/setup/constants.inc:421
+#: ../includes/setup/constants.inc:420
 msgid "Complete Tree"
 msgstr ""
 
-#: ../includes/setup/constants.inc:427
+#: ../includes/setup/constants.inc:426
 msgid "Replace album tree with microthumbs"
 msgstr ""
 
-#: ../includes/setup/constants.inc:428
+#: ../includes/setup/constants.inc:427
 msgid "If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:437
+#: ../includes/setup/constants.inc:436
 msgid "Highlight size"
 msgstr "размер обложки"
 
-#: ../includes/setup/constants.inc:438
+#: ../includes/setup/constants.inc:437
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "Размер макетов (в пикселях) показываемых на странице галереи (изображения обложки)."
 
 #
-#: ../includes/setup/constants.inc:445
+#: ../includes/setup/constants.inc:444
 #, fuzzy
 msgid "Highlight Ratio"
 msgstr "размер обложки"
 
-#: ../includes/setup/constants.inc:446
+#: ../includes/setup/constants.inc:445
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
 msgstr ""
 
-#: ../includes/setup/constants.inc:447 ../includes/setup/defaults.inc:104
+#: ../includes/setup/constants.inc:446 ../includes/setup/defaults.inc:102
 msgid "As the original image"
 msgstr ""
 
-#: ../includes/setup/constants.inc:447
+#: ../includes/setup/constants.inc:446
 #, fuzzy
 msgid "Square highlight"
 msgstr "Обложка альбома"
 
 #
-#: ../includes/setup/constants.inc:452
+#: ../includes/setup/constants.inc:451
 msgid "Show Owner"
 msgstr "Показывать владельца "
 
-#: ../includes/setup/constants.inc:453
+#: ../includes/setup/constants.inc:452
 msgid "Show album owner's name next to each album?"
 msgstr "Показывать имя владельца рядом с каждым альбомом?"
 
 #
-#: ../includes/setup/constants.inc:459
+#: ../includes/setup/constants.inc:458
 msgid "Albums per page"
 msgstr "Альбомов на страницу"
 
 #
-#: ../includes/setup/constants.inc:460
+#: ../includes/setup/constants.inc:459
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "Сколько альбомов отображать на страницу галереи?"
 
 #
-#: ../includes/setup/constants.inc:466
+#: ../includes/setup/constants.inc:465
 msgid "Search Engine"
 msgstr "Поисковый движок"
 
 #
-#: ../includes/setup/constants.inc:467
+#: ../includes/setup/constants.inc:466
 msgid "Display search engine on main Gallery page?"
 msgstr "Показывать поле для поиска на главной странице галереи?"
 
-#: ../includes/setup/constants.inc:472
+#: ../includes/setup/constants.inc:471
 msgid "Accurate Photo Count"
 msgstr ""
 
-#: ../includes/setup/constants.inc:473
+#: ../includes/setup/constants.inc:472
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr ""
 
-#: ../includes/setup/constants.inc:479
+#: ../includes/setup/constants.inc:478
 msgid "Frame around albums"
 msgstr "Рамка вокруг альбомов"
 
-#: ../includes/setup/constants.inc:480
+#: ../includes/setup/constants.inc:479
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr "На главной странице, изображение которое представляет альбом, имеет вокруг него рамку. Доступны следющие стили:"
 
 #
-#: ../includes/setup/constants.inc:491
+#: ../includes/setup/constants.inc:490
 msgid "Optional tools"
 msgstr "Дополнительные инструмнтальные средства"
 
-#: ../includes/setup/constants.inc:495
+#: ../includes/setup/constants.inc:494
 msgid "Archives"
 msgstr ""
 
-#: ../includes/setup/constants.inc:500 ../includes/setup/constants.inc:513
-#: ../includes/setup/constants.inc:526 ../includes/setup/constants.inc:539
+#: ../includes/setup/constants.inc:499 ../includes/setup/constants.inc:512
+#: ../includes/setup/constants.inc:525 ../includes/setup/constants.inc:538
 #, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Путь к <b>%s</b>. Например: %s или %s. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
 
-#: ../includes/setup/constants.inc:555
+#: ../includes/setup/constants.inc:554
 msgid "EXIF Data"
 msgstr "EXIF данные"
 
-#: ../includes/setup/constants.inc:560 ../includes/setup/constants.inc:573
+#: ../includes/setup/constants.inc:559 ../includes/setup/constants.inc:572
 #, fuzzy, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Путь к анализатору <b>jhead</b> EXIF. Например: %s или %s. Это не обязательно, если у вас нет в наличии этого файла, то особо не беспокойтесь об этом."
 
 #
-#: ../includes/setup/constants.inc:589
+#: ../includes/setup/constants.inc:588
 msgid "Other"
 msgstr "Разное"
 
-#: ../includes/setup/constants.inc:594
+#: ../includes/setup/constants.inc:593
 #, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "Путь к утилите <b>jpegtran</b>. Например: %s или %s. Это не обязательно, если у вас нет в наличии этой утилиты, то особо не беспокойтесь об этом."
 
-#: ../includes/setup/constants.inc:614
+#: ../includes/setup/constants.inc:613
 msgid "Languages and locales"
 msgstr "Языки и локальные установки"
 
 #
-#: ../includes/setup/constants.inc:618
+#: ../includes/setup/constants.inc:617
 msgid "Default language"
 msgstr "Встроенный язык"
 
-#: ../includes/setup/constants.inc:620
+#: ../includes/setup/constants.inc:619
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "Это язык, который вы увидите как %s, а также для пользователей у которых нет установленных настроек."
 
-#: ../includes/setup/constants.inc:622
+#: ../includes/setup/constants.inc:621
 msgid "Language given by Browser"
 msgstr ""
 
-#: ../includes/setup/constants.inc:627
+#: ../includes/setup/constants.inc:626
 msgid "Multi language mode"
 msgstr "Многоязычный режим"
 
-#: ../includes/setup/constants.inc:628
+#: ../includes/setup/constants.inc:627
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "Галерея имеет три многоязычных режима. Это влияет на язык, который пользователь увидит при посещении сайта."
 
-#: ../includes/setup/constants.inc:631
+#: ../includes/setup/constants.inc:630
 msgid "Gallery is only displayed in one language"
 msgstr "Язык галереи только один"
 
-#: ../includes/setup/constants.inc:632
+#: ../includes/setup/constants.inc:631
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "Язык галереи такой же как выбран в браузере"
 
-#: ../includes/setup/constants.inc:633
+#: ../includes/setup/constants.inc:632
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "Пользователь может выбрать язык через выпадающее меню или национальные флаги."
 
 #
-#: ../includes/setup/constants.inc:637
+#: ../includes/setup/constants.inc:636
 msgid "Available languages"
 msgstr "Доступные языки"
 
-#: ../includes/setup/constants.inc:640
+#: ../includes/setup/constants.inc:639
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "Эти языки будут доступны пользователю для выбора через выпадающее меню или национальные флаги, если бы вы выбрали 3 режим, и будет доступно для зарегистрированных пользователей, как их встроенный язык во 2 или 3 режиме."
 
-#: ../includes/setup/constants.inc:646
+#: ../includes/setup/constants.inc:645
 msgid "Show flags?"
 msgstr "Показывать флаги?"
 
-#: ../includes/setup/constants.inc:648
+#: ../includes/setup/constants.inc:647
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "В 3 режиме вы можете выбрать отображать национальные флаги для доступных языков, вместо небольшого выпадающего меню."
 
-#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
-#: ../includes/setup/constants.inc:1281
+#: ../includes/setup/constants.inc:653 ../includes/setup/constants.inc:664
+#: ../includes/setup/constants.inc:1280
 msgid "Advanced"
 msgstr "Расширенный"
 
-#: ../includes/setup/constants.inc:654
+#: ../includes/setup/constants.inc:653
 msgid "Format for date strings."
 msgstr "Формат для строк даты."
 
-#: ../includes/setup/constants.inc:655 ../includes/setup/constants.inc:666
+#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "Эта строка формата будет использована для отображения %s в %s. Рекомендуется использовать %s, который изменит формат в зависимости от языкового выбора. Тем не менее, если вы хотите изменить строку, пожалуйста посмотрите %sдокументацию по PHP%s."
 
-#: ../includes/setup/constants.inc:656
+#: ../includes/setup/constants.inc:655
 msgid "date without time"
 msgstr "даты без времени"
 
-#: ../includes/setup/constants.inc:657 ../includes/setup/constants.inc:668
+#: ../includes/setup/constants.inc:656 ../includes/setup/constants.inc:667
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/en/function.strftime.php"
 
-#: ../includes/setup/constants.inc:658
+#: ../includes/setup/constants.inc:657
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "Например, %s отобразит дату в таком формате: %s."
 
-#: ../includes/setup/constants.inc:665
+#: ../includes/setup/constants.inc:664
 msgid "Format for date/time strings."
 msgstr "Формат для строк даты/времени."
 
-#: ../includes/setup/constants.inc:667
+#: ../includes/setup/constants.inc:666
 msgid "date with time"
 msgstr "даты со временем"
 
-#: ../includes/setup/constants.inc:669
+#: ../includes/setup/constants.inc:668
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "Например, %s отобразит дату и время в таком формате: %s."
 
 #
-#: ../includes/setup/constants.inc:686 ../includes/setup/constants.inc:841
+#: ../includes/setup/constants.inc:685 ../includes/setup/constants.inc:840
 msgid "Email"
 msgstr "E-mail"
 
-#: ../includes/setup/constants.inc:687
+#: ../includes/setup/constants.inc:686
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "Если у вас есть проблемы с e-mail, пожалуйста запустите %s для диагностики."
 
 #
-#: ../includes/setup/constants.inc:688
+#: ../includes/setup/constants.inc:687
 msgid "Check Email"
 msgstr "Проверка email"
 
 #
-#: ../includes/setup/constants.inc:691
+#: ../includes/setup/constants.inc:690
 msgid "Enable email"
 msgstr "Разрешить email"
 
-#: ../includes/setup/constants.inc:693
+#: ../includes/setup/constants.inc:692
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "Использовать e-mail для всей галереи. Если вы выберите %s, то ни один из параметров этой секции действовать не будет."
 
-#: ../includes/setup/constants.inc:695
+#: ../includes/setup/constants.inc:694
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr "Если вы включите этот параметр, тем самым вы даете вашим пользователям возможность запрашивать у галереи потерянный пароль через e-mail."
 
-#: ../includes/setup/constants.inc:696
+#: ../includes/setup/constants.inc:695
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr "Вам нужно включить этот параметр, если вы хотите включить самостоятельную регистрацию."
 
 #
-#: ../includes/setup/constants.inc:704
+#: ../includes/setup/constants.inc:703
 msgid "Admin email address"
 msgstr "Email адрес администратора"
 
-#: ../includes/setup/constants.inc:705
+#: ../includes/setup/constants.inc:704
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr "Этот параметр должен указывать на действующий e-mail адрес, чтобы получать уведомления при определнных действиях пользователей, а также чтобы пользователи знали куда сообщать в случае возникновения каких-либо проблем. Вы можете указать несколько адресов разделяя их запятыми."
 
 #
-#: ../includes/setup/constants.inc:712
+#: ../includes/setup/constants.inc:711
 msgid "Sender email address"
 msgstr "Email адрес отправителя"
 
-#: ../includes/setup/constants.inc:713
+#: ../includes/setup/constants.inc:712
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr "Этот параметр должен указывать на действующий e-mail адрес. Для автоматической отправки галереей сообщений используется этот адрес как обратный. Вы должны проверять этот e-mail адрес для вернувшихся сообщений и ответов пользователей."
 
-#: ../includes/setup/constants.inc:720
+#: ../includes/setup/constants.inc:719
 msgid "Email subject prefix"
 msgstr "Префикс темы email"
 
-#: ../includes/setup/constants.inc:721
+#: ../includes/setup/constants.inc:720
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr "Все e-mail галереи будут иметь это как первую часть в теме сообщения."
 
-#: ../includes/setup/constants.inc:727
+#: ../includes/setup/constants.inc:726
 msgid "Welcome email message text"
 msgstr "Текст приветстивия email сообщения"
 
-#: ../includes/setup/constants.inc:735
+#: ../includes/setup/constants.inc:734
 #, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr "Позволяет получать на e-mail учетной записи &quot;admin&quot; сообщение, всякий раз, при добавлении комментария в любом альбоме"
 
-#: ../includes/setup/constants.inc:736
+#: ../includes/setup/constants.inc:735
 msgid "Admin comment email"
 msgstr "Комментарии на email администратора"
 
-#: ../includes/setup/constants.inc:744
+#: ../includes/setup/constants.inc:743
 #, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr "Позволяет получать на e-mail учетной записи &quot;admin&quot; сообщение, всякий раз, когда были сделаны изменения в любом альбоме"
 
-#: ../includes/setup/constants.inc:745
+#: ../includes/setup/constants.inc:744
 msgid "Admin Other Changes email"
 msgstr "Другие изменения на email администратора"
 
-#: ../includes/setup/constants.inc:753
+#: ../includes/setup/constants.inc:752
 msgid "Admin notification of email activity"
 msgstr "Уведомлять администратора на email об активности"
 
-#: ../includes/setup/constants.inc:754
+#: ../includes/setup/constants.inc:753
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr "Вы можете вести записи каждого отправленного e-mail сообщения галереи."
 
-#: ../includes/setup/constants.inc:756
+#: ../includes/setup/constants.inc:755
 msgid "Send summary email"
 msgstr "Отправлять итоги по e-mail"
 
-#: ../includes/setup/constants.inc:757
+#: ../includes/setup/constants.inc:756
 msgid "Log to a file"
 msgstr "Запись в файл"
 
-#: ../includes/setup/constants.inc:758
+#: ../includes/setup/constants.inc:757
 msgid "Send duplicate email"
 msgstr "Отправлять дубликаты по e-mail"
 
-#: ../includes/setup/constants.inc:764
+#: ../includes/setup/constants.inc:763
 msgid "Use SMTP server."
 msgstr ""
 
-#: ../includes/setup/constants.inc:765
+#: ../includes/setup/constants.inc:764
 msgid "Use a smtp server to process outgoing gallery email, instead of the internal PHP mail() function. This server can (not must) run on a different machine (ie: Your ISPs mail server)."
 msgstr ""
 
-#: ../includes/setup/constants.inc:776
+#: ../includes/setup/constants.inc:775
 #, fuzzy
 msgid "SMTP Settings"
 msgstr "Просмотреть настройки"
 
-#: ../includes/setup/constants.inc:780
+#: ../includes/setup/constants.inc:779
 msgid "SMTP Server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:781
+#: ../includes/setup/constants.inc:780
 msgid "The name or IP address of the SMTP Server you want to use."
 msgstr ""
 
-#: ../includes/setup/constants.inc:788
+#: ../includes/setup/constants.inc:787
 msgid "Sender hostname"
 msgstr ""
 
-#: ../includes/setup/constants.inc:789
+#: ../includes/setup/constants.inc:788
 msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
 msgstr ""
 
-#: ../includes/setup/constants.inc:796
+#: ../includes/setup/constants.inc:795
 msgid "SMTP Port"
 msgstr ""
 
-#: ../includes/setup/constants.inc:797
+#: ../includes/setup/constants.inc:796
 msgid "The port on the SMTP server you are connecting to."
 msgstr ""
 
-#: ../includes/setup/constants.inc:804
+#: ../includes/setup/constants.inc:803
 msgid "SMTP account name"
 msgstr ""
 
-#: ../includes/setup/constants.inc:805
+#: ../includes/setup/constants.inc:804
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
-#: ../includes/setup/constants.inc:812
+#: ../includes/setup/constants.inc:811
 #, fuzzy
 msgid "SMTP password"
 msgstr "Пароль"
 
-#: ../includes/setup/constants.inc:813
+#: ../includes/setup/constants.inc:812
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:829
+#: ../includes/setup/constants.inc:828
 #, fuzzy
 msgid "Registration"
 msgstr "Регистрация в галереи"
 
-#: ../includes/setup/constants.inc:830
+#: ../includes/setup/constants.inc:829
 msgid "Adds the possibility that user can registrate themself."
 msgstr ""
 
-#: ../includes/setup/constants.inc:831
+#: ../includes/setup/constants.inc:830
 #, fuzzy
 msgid "You need to enable emailing if you want to use this feature."
 msgstr "Вам нужно включить этот параметр, если вы хотите включить самостоятельную регистрацию."
 
-#: ../includes/setup/constants.inc:834
+#: ../includes/setup/constants.inc:833
 msgid "Allow visitors to self register."
 msgstr "Разрешить посетителям регистрироваться."
 
-#: ../includes/setup/constants.inc:835
+#: ../includes/setup/constants.inc:834
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Разрешить посетителям вашего сайта создавать свои собственные учетные записи для входа."
 
 #
-#: ../includes/setup/constants.inc:844
+#: ../includes/setup/constants.inc:843
 msgid "Self registered users can create albums."
 msgstr "Самостоятельно зарегистрированные пользователи могут создавать альбомы."
 
-#: ../includes/setup/constants.inc:845
+#: ../includes/setup/constants.inc:844
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr "Разрешить зарегистрированным пользователям создавать свои собственные альбомы, как только они зарегистрируются. При отключении этой возможности, вы должны давать им разрешение вручную прежде, чем они смогут создавать или изменять любое содержание галереи. Этот параметр будет проигнорирован, если самостоятельная регистрация будет отключена."
 
-#: ../includes/setup/constants.inc:852
+#: ../includes/setup/constants.inc:851
 msgid "Enable bulk account creation"
 msgstr "Разрешить массовое создание учетных записей"
 
-#: ../includes/setup/constants.inc:853
+#: ../includes/setup/constants.inc:852
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "Эта опция позволяет вам создавать сразу несколько новых учетных записей создавая файл с новыми пользователяи."
 
 #
-#: ../includes/setup/constants.inc:866
+#: ../includes/setup/constants.inc:865
 msgid "Gallery wide slideshow"
 msgstr "Широкий показ слайдов галереи"
 
-#: ../includes/setup/constants.inc:867
+#: ../includes/setup/constants.inc:866
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Добавляет ссылку для показа слайдов на главную страницу. Примечание, для больших галерей это может очень медленно работать и использовать много системных ресурсов."
 
-#: ../includes/setup/constants.inc:868 ../includes/setup/defaults.inc:464
+#: ../includes/setup/constants.inc:867 ../includes/setup/defaults.inc:459
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Это не относится к упрощенной технологии показа слайдов."
 
 #
-#: ../includes/setup/constants.inc:871
+#: ../includes/setup/constants.inc:870
 msgid "Slideshow preferences"
 msgstr "Настройки показа слайдов"
 
 #
-#: ../includes/setup/constants.inc:873 ../includes/setup/constants.inc:881
-#: ../includes/setup/constants.inc:933 ../includes/setup/constants.inc:943
-#: ../includes/setup/constants.inc:1055 ../includes/setup/constants.inc:1069
-#: ../includes/setup/constants.inc:1083 ../includes/setup/constants.inc:1097
-#: ../includes/setup/constants.inc:1111 ../includes/setup/constants.inc:1125
-#: ../includes/setup/defaults.inc:140 ../includes/setup/defaults.inc:470
-#: ../includes/setup/defaults.inc:478
+#: ../includes/setup/constants.inc:872 ../includes/setup/constants.inc:880
+#: ../includes/setup/constants.inc:932 ../includes/setup/constants.inc:942
+#: ../includes/setup/constants.inc:1054 ../includes/setup/constants.inc:1068
+#: ../includes/setup/constants.inc:1082 ../includes/setup/constants.inc:1096
+#: ../includes/setup/constants.inc:1110 ../includes/setup/constants.inc:1124
+#: ../includes/setup/defaults.inc:138 ../includes/setup/defaults.inc:465
+#: ../includes/setup/defaults.inc:473
 msgid "Off"
 msgstr "Выкл"
 
-#: ../includes/setup/constants.inc:874 ../includes/setup/defaults.inc:471
+#: ../includes/setup/constants.inc:873 ../includes/setup/defaults.inc:466
 msgid "No slideshow link will appear."
 msgstr "Ссылка показа слайдов не появится."
 
-#: ../includes/setup/constants.inc:875 ../includes/setup/constants.inc:882
-#: ../includes/setup/defaults.inc:472 ../includes/setup/defaults.inc:479
+#: ../includes/setup/constants.inc:874 ../includes/setup/constants.inc:881
+#: ../includes/setup/defaults.inc:467 ../includes/setup/defaults.inc:474
 msgid "Ordered"
 msgstr "Упорядоченно"
 
-#: ../includes/setup/constants.inc:876 ../includes/setup/defaults.inc:473
+#: ../includes/setup/constants.inc:875 ../includes/setup/defaults.inc:468
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Изображения будут отображаться в той же последовательности в которой они появляются в галерее."
 
 #
-#: ../includes/setup/constants.inc:877 ../includes/setup/constants.inc:883
-#: ../includes/setup/defaults.inc:474 ../includes/setup/defaults.inc:480
+#: ../includes/setup/constants.inc:876 ../includes/setup/constants.inc:882
+#: ../includes/setup/defaults.inc:469 ../includes/setup/defaults.inc:475
 msgid "Random"
 msgstr "Беспорядочно"
 
-#: ../includes/setup/constants.inc:878 ../includes/setup/defaults.inc:475
+#: ../includes/setup/constants.inc:877 ../includes/setup/defaults.inc:470
 msgid "Images will appear in a random order."
 msgstr "Изображения появляются в произвольном порядке."
 
 #
-#: ../includes/setup/constants.inc:888 ../includes/setup/defaults.inc:503
+#: ../includes/setup/constants.inc:887 ../includes/setup/defaults.inc:498
 msgid "Slideshow length"
 msgstr "Длина показа слайдов"
 
-#: ../includes/setup/constants.inc:889 ../includes/setup/defaults.inc:504
+#: ../includes/setup/constants.inc:888 ../includes/setup/defaults.inc:499
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Число изображений для показа слайдов. Установите в 0 или не заполняйте для отображения всех изображений. Укажите число, если режим показа слайдов беспорядочный и вы хотите отображать только выбранные изображения."
 
-#: ../includes/setup/constants.inc:896 ../includes/setup/defaults.inc:494
+#: ../includes/setup/constants.inc:895 ../includes/setup/defaults.inc:489
 msgid "Allow slideshow to loop"
 msgstr "Разрешить цикличиский показ слайдов"
 
-#: ../includes/setup/constants.inc:897
+#: ../includes/setup/constants.inc:896
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Этот параметр позволит посетителям повторять показ слайдов до тех пор, пока они не закроют окно или не перейдут на другую страницу. Установите %s, если вы хотите сохранить производительность."
 
 #
-#: ../includes/setup/constants.inc:905
+#: ../includes/setup/constants.inc:904
 msgid "Slideshow Mode"
 msgstr "Режим показа слайдов"
 
-#: ../includes/setup/constants.inc:906
+#: ../includes/setup/constants.inc:905
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
 msgstr "Позвоялет вам установить способ показа слайдов по умолчанию. &quot;Java Applet&quot; требует от пользователя установки Java Runtime Environment в своем браузере, но имеет возможность просматривать во весь экран. &quot;JavaScript&quot; поддерживается всеми современными браузерами без дополнительных плагинов, но имеет множество ограничений в отличии от Java Applet."
 
-#: ../includes/setup/constants.inc:908
+#: ../includes/setup/constants.inc:907
 msgid "Java Applet"
 msgstr "Java Applet"
 
-#: ../includes/setup/constants.inc:909
+#: ../includes/setup/constants.inc:908
 msgid "JavaScript"
 msgstr "JavaScript"
 
 #
-#: ../includes/setup/constants.inc:919
+#: ../includes/setup/constants.inc:918
 msgid "Comments"
 msgstr "Комментарии"
 
 #
-#: ../includes/setup/constants.inc:922
+#: ../includes/setup/constants.inc:921
 msgid "Enable commenting"
 msgstr "Разрешить комментарии"
 
-#: ../includes/setup/constants.inc:923
+#: ../includes/setup/constants.inc:922
 #, fuzzy
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr "Эта опция включает или отключает возможность вашим пользователям делать комментарии. Если вы установите этот параметр в &quot;нет&quot;, то отключите все функции комментариев."
 
-#: ../includes/setup/constants.inc:931
+#: ../includes/setup/constants.inc:930
 msgid "Indicate if there are comments available"
 msgstr "Показать, есть ли доступные комментарии"
 
-#: ../includes/setup/constants.inc:934
+#: ../includes/setup/constants.inc:933
 msgid "No indication that an item has comments."
 msgstr "Не показывать, что элемент имеет комментарии."
 
 #
-#: ../includes/setup/constants.inc:935 ../includes/setup/constants.inc:944
+#: ../includes/setup/constants.inc:934 ../includes/setup/constants.inc:943
 msgid "Photos"
 msgstr "Фотографии"
 
-#: ../includes/setup/constants.inc:936
+#: ../includes/setup/constants.inc:935
 msgid "Images that have comments will be marked."
 msgstr "Изображения, которые имеют комментарии будут отмечены."
 
 #
-#: ../includes/setup/constants.inc:937 ../includes/setup/constants.inc:945
+#: ../includes/setup/constants.inc:936 ../includes/setup/constants.inc:944
 msgid "Albums"
 msgstr "Альбомы"
 
-#: ../includes/setup/constants.inc:938
+#: ../includes/setup/constants.inc:937
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Альбомы и вложенные альбомы, которые имеют комментарии будут отмечены."
 
 #
-#: ../includes/setup/constants.inc:939 ../includes/setup/constants.inc:946
-#: ../includes/setup/defaults.inc:578
+#: ../includes/setup/constants.inc:938 ../includes/setup/constants.inc:945
+#: ../includes/setup/defaults.inc:573
 msgid "Both"
 msgstr "Оба"
 
-#: ../includes/setup/constants.inc:940
+#: ../includes/setup/constants.inc:939
 msgid "Images and albums that have comments will be marked."
 msgstr "Изображения и альбомы, которые имеют комментарии будут отмечены."
 
-#: ../includes/setup/constants.inc:951
+#: ../includes/setup/constants.inc:950
 msgid "Display date of last comment?"
 msgstr "Показывать дату последнего комментария?"
 
-#: ../includes/setup/constants.inc:952
+#: ../includes/setup/constants.inc:951
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr "Если элемент имеет комментарии, отображать дату последнего комментария, вместо %s."
 
-#: ../includes/setup/constants.inc:960
+#: ../includes/setup/constants.inc:959
 msgid "Anonymous comments from known users?"
 msgstr "Анонимные комментарии для зарегистрированных пользователей?"
 
-#: ../includes/setup/constants.inc:961
+#: ../includes/setup/constants.inc:960
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr "Для зарегистрированных пользователей в комментариях автоматически используется формат описанный ниже, если не установленно %s."
 
-#: ../includes/setup/constants.inc:970
+#: ../includes/setup/constants.inc:969
 #, fuzzy
 msgid "Add comments inside the photo page"
 msgstr "Добавлять комментарии на странице фотографии"
 
-#: ../includes/setup/constants.inc:971
+#: ../includes/setup/constants.inc:970
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
 msgstr "Вы хотите добавлять комментарии внутри страницы просмотра фотографии или предпочитаете ссылку на всплывающее окно"
 
-#: ../includes/setup/constants.inc:973
+#: ../includes/setup/constants.inc:972
 msgid "Popup"
 msgstr "Всплывающем окне"
 
-#: ../includes/setup/constants.inc:974
+#: ../includes/setup/constants.inc:973
 msgid "Inside"
 msgstr "Внутри"
 
-#: ../includes/setup/constants.inc:979
+#: ../includes/setup/constants.inc:978
 #, fuzzy
 msgid "Maximum length of comments"
 msgstr "Максимальная длина комментариев"
 
-#: ../includes/setup/constants.inc:980
+#: ../includes/setup/constants.inc:979
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
 msgstr "Введите допустимое значение для максимальной длины комментариев, чтобы предотвратить злоупотребления. Галерея ограничивает ввод комментариев не более чем 1000 символами. Это значение будет использоваться, если не превышает 1000."
 
-#: ../includes/setup/constants.inc:986
+#: ../includes/setup/constants.inc:985
 #, fuzzy
 msgid "Can every permitted user see a comments overview"
 msgstr "Возможность любому видеть обзор комментариев"
 
-#: ../includes/setup/constants.inc:987
+#: ../includes/setup/constants.inc:986
 #, fuzzy
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "Позволяет любому видеть полный обзор всех комментариев. Установите &quot;нет&quot;, если только администратор и владельцы могут использовать эту функцию."
 
 #
-#: ../includes/setup/constants.inc:1000
+#: ../includes/setup/constants.inc:999
 #, fuzzy
 msgid "Watermarking"
 msgstr "Каталог водяных знаков"
 
-#: ../includes/setup/constants.inc:1002
+#: ../includes/setup/constants.inc:1001
 msgid "Choose whether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1003
+#: ../includes/setup/constants.inc:1002
 #, fuzzy
 msgid "Watermarking is not possible in this installation !"
 msgstr "NetPBM не используется в этой установке."
 
 #
-#: ../includes/setup/constants.inc:1006
+#: ../includes/setup/constants.inc:1005
 msgid "Watermark directory"
 msgstr "Каталог водяных знаков"
 
-#: ../includes/setup/constants.inc:1007
+#: ../includes/setup/constants.inc:1006
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr "Полный путь на физическом диске в каталог, где будут храниться ваши изображения с водяными знаками. Этот каталог может содержать .png, .tif, и .gif изображения используемые для перекрытия видимыми водяными знаками на фото. Эти форматы поддерживают прозрачность или буквенные каналы. <b>Оставьте не заполненным, чтобы отключить возможность ставить водяные знаки.</b> Отметьте, что этот каталог должет иметь доступ на запись пользователей, которые запускают приложение на веб сервере (в вашем случае это пользователь %s)."
 
-#: ../includes/setup/constants.inc:1017
+#: ../includes/setup/constants.inc:1016
 msgid "Which Imagetype is watermarked"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1018
+#: ../includes/setup/constants.inc:1017
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:1023
+#: ../includes/setup/constants.inc:1022
 #, fuzzy
 msgid "Watermark both resized and full images"
 msgstr "Каталог водяных знаков"
 
 #
-#: ../includes/setup/constants.inc:1024
+#: ../includes/setup/constants.inc:1023
 #, fuzzy
 msgid "Watermark resized image only"
 msgstr "Каталог водяных знаков"
 
 #
-#: ../includes/setup/constants.inc:1025
+#: ../includes/setup/constants.inc:1024
 #, fuzzy
 msgid "Watermark full sized image only"
 msgstr "Каталог водяных знаков"
 
-#: ../includes/setup/constants.inc:1035
+#: ../includes/setup/constants.inc:1034
 msgid "Statistics"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1036
+#: ../includes/setup/constants.inc:1035
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1037
+#: ../includes/setup/constants.inc:1036
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1038
+#: ../includes/setup/constants.inc:1037
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1039
+#: ../includes/setup/constants.inc:1038
 msgid "Caches will also refresh themselves after they have expired."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1040
+#: ../includes/setup/constants.inc:1039
 msgid "The expire time in seconds is specified for each cache below."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1041
+#: ../includes/setup/constants.inc:1040
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1045
+#: ../includes/setup/constants.inc:1044
 msgid "Available Stats for 'normal' users"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1046
+#: ../includes/setup/constants.inc:1045
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1047
+#: ../includes/setup/constants.inc:1046
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1052
+#: ../includes/setup/constants.inc:1051
 msgid "View cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1054 ../includes/setup/constants.inc:1068
-#: ../includes/setup/constants.inc:1082 ../includes/setup/constants.inc:1096
-#: ../includes/setup/constants.inc:1110 ../includes/setup/constants.inc:1124
+#: ../includes/setup/constants.inc:1053 ../includes/setup/constants.inc:1067
+#: ../includes/setup/constants.inc:1081 ../includes/setup/constants.inc:1095
+#: ../includes/setup/constants.inc:1109 ../includes/setup/constants.inc:1123
 msgid "On"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1060
+#: ../includes/setup/constants.inc:1059
 msgid "View cache expiration"
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:1066
+#: ../includes/setup/constants.inc:1065
 #, fuzzy
 msgid "Comment cache"
 msgstr "Комментарии"
 
-#: ../includes/setup/constants.inc:1074
+#: ../includes/setup/constants.inc:1073
 msgid "Comment cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1080
+#: ../includes/setup/constants.inc:1079
 msgid "Date cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1088
+#: ../includes/setup/constants.inc:1087
 msgid "Date cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1094
+#: ../includes/setup/constants.inc:1093
 #, fuzzy
 msgid "Vote cache"
 msgstr "Класс голосующих"
 
-#: ../includes/setup/constants.inc:1102
+#: ../includes/setup/constants.inc:1101
 msgid "Vote cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1108
+#: ../includes/setup/constants.inc:1107
 msgid "Rating cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1116
+#: ../includes/setup/constants.inc:1115
 msgid "Rating cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1122
+#: ../includes/setup/constants.inc:1121
 msgid "Capturedate cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1130
+#: ../includes/setup/constants.inc:1129
 msgid "Capturedate cache expiration"
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:1141
+#: ../includes/setup/constants.inc:1140
 #, fuzzy
 msgid "Blocks"
 msgstr "По часовой стрелке"
 
-#: ../includes/setup/constants.inc:1142
+#: ../includes/setup/constants.inc:1141
 msgid "These settings are for the blocks provided by Gallery."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1146
+#: ../includes/setup/constants.inc:1145
 msgid "RandomBlock Settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1150
+#: ../includes/setup/constants.inc:1149
 msgid "RandomBlock Source"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1151
+#: ../includes/setup/constants.inc:1150
 msgid "You can either use a random pictures from the whole Gallery or from certain albums."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1157
+#: ../includes/setup/constants.inc:1156
 #, fuzzy
 msgid "Frame around random photo."
 msgstr "Рамка вокруг альбомов"
 
-#: ../includes/setup/constants.inc:1163
+#: ../includes/setup/constants.inc:1162
 msgid "Width of solid/dotted frameborder around random photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1172
+#: ../includes/setup/constants.inc:1171
 msgid "Color of solid/dotted frameborder around random photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1178
+#: ../includes/setup/constants.inc:1177
 msgid "Random Block cache time"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1179
+#: ../includes/setup/constants.inc:1178
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1182
+#: ../includes/setup/constants.inc:1181
 msgid "24 Hours"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1183
+#: ../includes/setup/constants.inc:1182
 msgid "12 Hours"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1184
+#: ../includes/setup/constants.inc:1183
 msgid "6 Hours"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1185
+#: ../includes/setup/constants.inc:1184
 msgid "1 Hour"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1186
+#: ../includes/setup/constants.inc:1185
 msgid "30 Minutes"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1190
+#: ../includes/setup/constants.inc:1189
 msgid "Random Block retrieval attempts"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1191
+#: ../includes/setup/constants.inc:1190
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1202
+#: ../includes/setup/constants.inc:1201
 msgid "Featured-photo-block settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1206
+#: ../includes/setup/constants.inc:1205
 #, fuzzy
 msgid "Frame around featured photo."
 msgstr "Рамка вокруг альбомов"
 
-#: ../includes/setup/constants.inc:1212
+#: ../includes/setup/constants.inc:1211
 msgid "Width of solid/dotted frameborder around featured photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1221
+#: ../includes/setup/constants.inc:1220
 msgid "Color of solid/dotted frameborder around featured photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1235
+#: ../includes/setup/constants.inc:1234
 msgid "Technical"
 msgstr "Технический"
 
-#: ../includes/setup/constants.inc:1236
+#: ../includes/setup/constants.inc:1235
 msgid "The settings in this section are intended for advanced users only."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1238
+#: ../includes/setup/constants.inc:1237
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1242
+#: ../includes/setup/constants.inc:1241
 #, fuzzy
 msgid "Debug Level"
 msgstr "Режим отладки"
 
-#: ../includes/setup/constants.inc:1243
+#: ../includes/setup/constants.inc:1242
 #, fuzzy
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr "Включить режим отладки, чтобы можно было диагностировать возникающие проблемы?"
 
-#: ../includes/setup/constants.inc:1244
+#: ../includes/setup/constants.inc:1243
 #, fuzzy
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr "Примечание: Не оставляйте этот режим включенным в эксплуатируемой системе! Иначе вы даете возможность пользователям увидеть больше информации о вашей галерее и системе, чем хотели бы!"
 
-#: ../includes/setup/constants.inc:1246
+#: ../includes/setup/constants.inc:1245
 msgid "No Debug"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1247
+#: ../includes/setup/constants.inc:1246
 msgid "Normal"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1248
+#: ../includes/setup/constants.inc:1247
 msgid "High (former Debug 'on')"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1249
+#: ../includes/setup/constants.inc:1248
 #, fuzzy
 msgid "Paranoid"
 msgstr "Полароид"
 
-#: ../includes/setup/constants.inc:1253
+#: ../includes/setup/constants.inc:1252
 msgid "Disable register_globals check"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1254
+#: ../includes/setup/constants.inc:1253
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:1262
+#: ../includes/setup/constants.inc:1261
 msgid "Time Limit"
 msgstr "Предельный срок"
 
-#: ../includes/setup/constants.inc:1263
+#: ../includes/setup/constants.inc:1262
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "Максимальное количество времени в секундах для любой разовой операции. Если вы получаете сообщение об ошибке <b>Операция превысила максимальное время выполнения</b>, вы можете попробовать увеличить это значение. Предупреждаем, если вы сделаете это значение слишком большим, то <i>можете</i> получить процесс, который зависнит на долгое время без каких-либо действий. Значение по умолчанию - 30, которое можно считать приемлемым."
 
-#: ../includes/setup/constants.inc:1271
+#: ../includes/setup/constants.inc:1270
 #, fuzzy
 msgid "ImageMagick high quality"
 msgstr "%d из %d исполняемых файлов ImageMagick установлено."
 
-#: ../includes/setup/constants.inc:1272
+#: ../includes/setup/constants.inc:1271
 msgid "If this setting is 'yes' and you use ImageMagick then resized Images will have a slightly(!) higher quality, but with the drawback of a higher load and a higher creation time."
 msgstr ""
 
 #
-#: ../includes/setup/constants.inc:1281
+#: ../includes/setup/constants.inc:1280
 msgid "Cache EXIF data"
 msgstr "Кеш EXIF данных"
 
-#: ../includes/setup/constants.inc:1282
+#: ../includes/setup/constants.inc:1281
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "EXIF данные извлеченные из JPEG файлов могут быть кешированы после того как будут прочитаны первый раз. Если вы кешируете эти данные, то может так случиться, что файл данных альбома получиться слишком большой, что замедлит просмотр ваших альбомов. Но, если не кешировать эти данные, то они будут извлекаться каждый раз после просмотра пользователем свойств фотографии, что также может замедлять просмотр."
 
-#: ../includes/setup/constants.inc:1291
+#: ../includes/setup/constants.inc:1290
 msgid "Developer Mode"
 msgstr "Режим разработчика"
 
-#: ../includes/setup/constants.inc:1292
+#: ../includes/setup/constants.inc:1291
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr "Включает режим разработчика, чтобы видеть все предупреждения и уведомления PHP. Включение этого режима не рекомендуется для пользователей, которые не знакомы с PHP."
 
-#: ../includes/setup/constants.inc:1300
+#: ../includes/setup/constants.inc:1299
 msgid "Use Syslog"
 msgstr "Использовать Syslog"
 
-#: ../includes/setup/constants.inc:1301
+#: ../includes/setup/constants.inc:1300
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr "Отчет о начале и окончании сеансов пользователей, и о серьезных ошибках через syslog (UNIX) или cистемный журнал событий (Windows)"
 
-#: ../includes/setup/constants.inc:1309
+#: ../includes/setup/constants.inc:1308
 #, php-format
 msgid "Use %s"
 msgstr "Использовать %s"
 
-#: ../includes/setup/constants.inc:1310
+#: ../includes/setup/constants.inc:1309
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Галерея использует систему блокировки называемая flock() для дополнительной защиты данных от разрушения. Не все платформы поддерживают эту возможность. Если вы видите ошибку типа <i>Не возможно заблокировать данные</i>, тогда установите это значение в <i>нет</i>."
 
 #
-#: ../includes/setup/constants.inc:1318
+#: ../includes/setup/constants.inc:1317
 msgid "Status code"
 msgstr "Код состояния"
 
-#: ../includes/setup/constants.inc:1319
+#: ../includes/setup/constants.inc:1318
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Ожидаемый код состояния галереи после успешного вызова <i>exec()</i>. Галерея попытается вычислить это сама, так что вероятно вам не нужно будет изменять это значение, если у вас не возникают с этим проблемы."
 
 #
-#: ../includes/setup/constants.inc:1325
+#: ../includes/setup/constants.inc:1324
 msgid "Session variable"
 msgstr "Переменная сессии"
 
-#: ../includes/setup/constants.inc:1326
+#: ../includes/setup/constants.inc:1325
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "Это переменная сессии используется для всей информации о сеансе галереи. Измените ее, если галерея конфликтует с другим PHP приложениями на вашем веб сайте."
 
-#: ../includes/setup/constants.inc:1337
+#: ../includes/setup/constants.inc:1336
 msgid "RSS Publisher"
 msgstr "RSS издатель"
 
-#: ../includes/setup/constants.inc:1338
+#: ../includes/setup/constants.inc:1337
 msgid "Options for the Gallery RSS Publisher"
 msgstr "Настройки для RSS издателя галереи"
 
-#: ../includes/setup/constants.inc:1341
+#: ../includes/setup/constants.inc:1340
 msgid "Enable RSS Generator"
 msgstr "Включить генератор RSS"
 
-#: ../includes/setup/constants.inc:1342
+#: ../includes/setup/constants.inc:1341
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr "Включить или отключить генератор RSS галереи"
 
-#: ../includes/setup/constants.inc:1349
+#: ../includes/setup/constants.inc:1348
 msgid "RSS Content"
 msgstr "Содержимое RSS"
 
-#: ../includes/setup/constants.inc:1350
+#: ../includes/setup/constants.inc:1349
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr "Определяет какая информация должна быть включена в вашу RSS подачу."
 
-#: ../includes/setup/constants.inc:1352
+#: ../includes/setup/constants.inc:1351
 msgid "Basic information only"
 msgstr "Только основная информация"
 
-#: ../includes/setup/constants.inc:1353
+#: ../includes/setup/constants.inc:1352
 msgid "Album highlight"
 msgstr "Обложка альбома"
 
-#: ../includes/setup/constants.inc:1354
+#: ../includes/setup/constants.inc:1353
 msgid "All image thumbnails"
 msgstr "Все макеты фотографий"
 
-#: ../includes/setup/constants.inc:1355
+#: ../includes/setup/constants.inc:1354
 msgid "All image thumbnails and captions"
 msgstr "Все макеты фотографий и заголовки"
 
 #
-#: ../includes/setup/constants.inc:1359
+#: ../includes/setup/constants.inc:1358
 msgid "RSS Highlight"
 msgstr "RSS обложка"
 
-#: ../includes/setup/constants.inc:1360
+#: ../includes/setup/constants.inc:1359
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1366
+#: ../includes/setup/constants.inc:1365
 msgid "Maximum Albums Returned"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1367
+#: ../includes/setup/constants.inc:1366
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1374
+#: ../includes/setup/constants.inc:1373
 msgid "Visible Albums Only"
 msgstr "Только видимые альбомы"
 
-#: ../includes/setup/constants.inc:1375
+#: ../includes/setup/constants.inc:1374
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1377
+#: ../includes/setup/constants.inc:1376
 msgid "Display Visible Albums Only"
 msgstr "Отображать только видимые альбомы"
 
-#: ../includes/setup/constants.inc:1378
+#: ../includes/setup/constants.inc:1377
 msgid "Display Hidden Albums"
 msgstr "Отображать скрытые альбомы"
 
-#: ../includes/setup/constants.inc:1382
+#: ../includes/setup/constants.inc:1381
 msgid "Use dc:date"
 msgstr "Использовать dc:date"
 
-#: ../includes/setup/constants.inc:1383
+#: ../includes/setup/constants.inc:1382
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1390
+#: ../includes/setup/constants.inc:1389
 msgid "Use Big Photo"
 msgstr "Использовать большое фото"
 
-#: ../includes/setup/constants.inc:1391
+#: ../includes/setup/constants.inc:1390
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1398
+#: ../includes/setup/constants.inc:1397
 msgid "Use Photo Tag"
 msgstr "Использовать фото тег"
 
-#: ../includes/setup/constants.inc:1399
+#: ../includes/setup/constants.inc:1398
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1411
+#: ../includes/setup/constants.inc:1410
 msgid "Paths for upload from server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1414
+#: ../includes/setup/constants.inc:1413
 msgid "Allowed paths for upload from Server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1415
+#: ../includes/setup/constants.inc:1414
 msgid "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the 'From local Server' method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1430
+#: ../includes/setup/constants.inc:1429
 msgid "Captcha"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1431
+#: ../includes/setup/constants.inc:1430
 msgid "Protect your Gallery against comment spam with captcha."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1433
+#: ../includes/setup/constants.inc:1432
 msgid "Gallery creates captha images that contains letter and number that have to be entered. These images are not readable by robots."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1435
+#: ../includes/setup/constants.inc:1434
 msgid "There are more settings, but those are in a separate file. For details look into includes/captcha/captcha_init.php"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1438
+#: ../includes/setup/constants.inc:1437
 msgid "Enable Captcha ?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1443
+#: ../includes/setup/constants.inc:1442
 msgid "Yes, for everybody"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1444
+#: ../includes/setup/constants.inc:1443
 msgid "Yes, but only for anonymous users."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1451
+#: ../includes/setup/constants.inc:1450
 msgid "Your PHP does not support the GD library, thus the captcha images can not be created. Captcha support will be disabled."
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:41
+#: ../includes/setup/defaults.inc:39
 msgid "Layout"
 msgstr "Расположение"
 
 #
-#: ../includes/setup/defaults.inc:45
+#: ../includes/setup/defaults.inc:43
 msgid "Default Columns"
 msgstr "Колонок по умолчанию"
 
-#: ../includes/setup/defaults.inc:46
+#: ../includes/setup/defaults.inc:44
 msgid "The default number of columns in an album."
 msgstr "Количество колонок в альбоме по умолчанию."
 
 #
-#: ../includes/setup/defaults.inc:51
+#: ../includes/setup/defaults.inc:49
 msgid "Default Rows"
 msgstr "Строк по умолчанию"
 
-#: ../includes/setup/defaults.inc:52
+#: ../includes/setup/defaults.inc:50
 msgid "The default number of rows in an album."
 msgstr "Количество строк в альбоме по умолчанию."
 
-#: ../includes/setup/defaults.inc:62
+#: ../includes/setup/defaults.inc:60
 msgid "Appearance"
 msgstr "Внешний вид"
 
 #
-#: ../includes/setup/defaults.inc:65
+#: ../includes/setup/defaults.inc:63
 msgid "Border color"
 msgstr "Цвет бордюра"
 
-#: ../includes/setup/defaults.inc:66
+#: ../includes/setup/defaults.inc:64
 #, fuzzy, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "Цвет бордюра изображения по умолчанию. Подробности о %sцветах%s здесь."
 
 #
-#: ../includes/setup/defaults.inc:72
+#: ../includes/setup/defaults.inc:70
 msgid "Border width"
 msgstr "Ширина бордюра"
 
-#: ../includes/setup/defaults.inc:73
+#: ../includes/setup/defaults.inc:71
 #, fuzzy
 msgid "Default width of (image) borders."
 msgstr "Ширина бордюра изображения по умолчанию."
 
 #
-#: ../includes/setup/defaults.inc:78
+#: ../includes/setup/defaults.inc:76
 msgid "Default Font"
 msgstr "Шрифт по умолчанию"
 
-#: ../includes/setup/defaults.inc:79
+#: ../includes/setup/defaults.inc:77
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Шрифт по умолчанию. Например: <i>arial</i> или <i>trebuchet</i>"
 
 #
-#: ../includes/setup/defaults.inc:90
+#: ../includes/setup/defaults.inc:88
 msgid "Image Processing and Display"
 msgstr "Обработка и показ изображений"
 
 #
-#: ../includes/setup/defaults.inc:94
+#: ../includes/setup/defaults.inc:92
 msgid "Thumbnail size"
 msgstr "Размер макета"
 
-#: ../includes/setup/defaults.inc:95
+#: ../includes/setup/defaults.inc:93
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "Размер (в пикселях) макета альбома по умолчанию."
 
 #
-#: ../includes/setup/defaults.inc:101
+#: ../includes/setup/defaults.inc:99
 #, fuzzy
 msgid "Thumbnail Ratio"
 msgstr "Размер макета"
 
-#: ../includes/setup/defaults.inc:102
+#: ../includes/setup/defaults.inc:100
 msgid "The ratio in which the thumbnails are made"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:105
+#: ../includes/setup/defaults.inc:103
 msgid "Square thumbs"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:111
+#: ../includes/setup/defaults.inc:109
 msgid "Resized image size"
 msgstr "Изменение размера изображения"
 
-#: ../includes/setup/defaults.inc:112
+#: ../includes/setup/defaults.inc:110
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "Когда в альбом добавлены огромные изображения, промежуточный вариант автоматически будет сгенерирован с этим размером."
 
 #
-#: ../includes/setup/defaults.inc:115
+#: ../includes/setup/defaults.inc:113
 msgid "off"
 msgstr "выкл"
 
-#: ../includes/setup/defaults.inc:126
+#: ../includes/setup/defaults.inc:124
 msgid "Resized JPEG/PNG images file size"
 msgstr "Объем файла JPEG/PNG изображений при изменении размера"
 
-#: ../includes/setup/defaults.inc:127
+#: ../includes/setup/defaults.inc:125
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "Объем файла (в килобайтах) JPEG/PNG изображений по умолчанию при изменении размера. Изменение этого значения, может замедлить загрузку файла, но ускорит отображение на странице, особенно для людей с dialup соединением. Установите в 0, если не хотите изменять объем файла."
 
-#: ../includes/setup/defaults.inc:134
+#: ../includes/setup/defaults.inc:132
 msgid "Maximum image size"
 msgstr "Максимальный размер изображения"
 
-#: ../includes/setup/defaults.inc:135
+#: ../includes/setup/defaults.inc:133
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Вы можете дополнительно ограничить размер ваших изображений для загрузки в галерею."
 
 #
-#: ../includes/setup/defaults.inc:136 ../includes/setup/defaults.inc:156
+#: ../includes/setup/defaults.inc:134 ../includes/setup/defaults.inc:154
 #, fuzzy
 msgid "Warning:"
 msgstr "Предупреждение"
 
-#: ../includes/setup/defaults.inc:137
+#: ../includes/setup/defaults.inc:135
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Включение этой возможности оставит вас <b>без исходного полноразмерного изображения</b> в вашей галерее, но позволит вам сохранить свободное пространство на жестком диске. Галерея попытается сохранить комментарии JPEG и данные EXIF после сжатия изображения, но это потребует <b>ImageMagick</b> или дополнительные <b>jhead</b> программы (см. Шаг 2)."
 
-#: ../includes/setup/defaults.inc:148 ../includes/setup/defaults.inc:149
-#: ../includes/setup/defaults.inc:150
+#: ../includes/setup/defaults.inc:146 ../includes/setup/defaults.inc:147
+#: ../includes/setup/defaults.inc:148
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../includes/setup/defaults.inc:154
+#: ../includes/setup/defaults.inc:152
 msgid "Maximum JPEG/PNG image file size"
 msgstr "Максимальный объем файла JPEG/PNG изображения"
 
-#: ../includes/setup/defaults.inc:155
+#: ../includes/setup/defaults.inc:153
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "Вы можете дополнительно ограничить объем файла ваших JPEG/PNG изображений для загрузки в галерею."
 
-#: ../includes/setup/defaults.inc:157
+#: ../includes/setup/defaults.inc:155
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "Включение этой возможности оставит вас <b>без исходного качества изображения</b> в вашей галерее. Установите результирующий объем файла (в килобайтах) по умолчанию. Изменение этого значения, может замедлить загрузку файла, но ускорит отображение на странице, особенно для людей с dialup соединением. Установите в 0, если не хотите ограничивать объем файла."
 
-#: ../includes/setup/defaults.inc:164
+#: ../includes/setup/defaults.inc:162
 msgid "Preserve Names"
 msgstr "Сохранять имена"
 
-#: ../includes/setup/defaults.inc:165
+#: ../includes/setup/defaults.inc:163
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "При загрузке изображений в галерею, сохранять исходные имена? Если вы выберите <i>нет</i>, галерея назначит новое имя для каждого фото или фильма, которые загружаются."
 
-#: ../includes/setup/defaults.inc:174
+#: ../includes/setup/defaults.inc:172
 msgid "Add to beginning"
 msgstr "Добавлять в начало"
 
-#: ../includes/setup/defaults.inc:175
+#: ../includes/setup/defaults.inc:173
 msgid "New images added to beginning rather than end of albums."
 msgstr "Новые изображения добавлять в начало, а не в конец альбомов."
 
-#: ../includes/setup/defaults.inc:183
+#: ../includes/setup/defaults.inc:181
 msgid "Fit-to-window"
 msgstr "Подгонять изображение под размер окна"
 
-#: ../includes/setup/defaults.inc:184
+#: ../includes/setup/defaults.inc:182
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "При просмотре фотографий, которые не имеют промежуточных вариантов, галерея может автоматически поменять размеры изображения, чтобы оно поместилось в окне браузера (используется JavaScript). Эта возможность не будет работать при интеграции в портале, например в Nuke."
 
-#: ../includes/setup/defaults.inc:193
+#: ../includes/setup/defaults.inc:191
 msgid "Visitor size prefs"
 msgstr "Настройка размера при просмотре"
 
-#: ../includes/setup/defaults.inc:194
+#: ../includes/setup/defaults.inc:192
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "Предлагает посетителям выбрать всегда просматривать развернутый вариант изображения вместо промежуточного размера. Это значение сохраняется только на время установленной сессии."
 
 #
-#: ../includes/setup/defaults.inc:207
+#: ../includes/setup/defaults.inc:205
 msgid "Options"
 msgstr "Опции"
 
-#: ../includes/setup/defaults.inc:212
+#: ../includes/setup/defaults.inc:210
 msgid "Printing Services"
 msgstr "Сервис печати фотографий"
 
-#: ../includes/setup/defaults.inc:213
+#: ../includes/setup/defaults.inc:211
 #, fuzzy
-msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
+msgid "Allow visitors to print photos directly from the album. Fotokasten is a print service based in Germany. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "Позволяет печатать фотографии непосредственно из альбома. Fotokasten - услуга печати фотографий расположенная в Германии, хороша для Европейского рынка. EZ Prints, PhotoAccess и Shutterfly - находятся в Соединенных Штатах. Все указанные услуги делают небольшой взнос в проект Gallery от каждого отпечатанного снимка, который вы сделаете. Если вы отметите Shutterfly с отметкой &quot;с взносом&quot;, галерея начислит дополнительные 2 цента (US) за каждое напечатанное фото, 1.8 цента из которых пожертвование на проект Gallery. EZ Prints, PhotoAccess и Fotokasten не начисляют дополнительные взносы для Gallery. Использование этого сервиса является замечательным способом помочь вам поддержать это свободное программное обеспечение."
 
-#: ../includes/setup/defaults.inc:236
+#: ../includes/setup/defaults.inc:231
 msgid "Account for the mPUSH service"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:237
+#: ../includes/setup/defaults.inc:232
 #, php-format
 msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:243
+#: ../includes/setup/defaults.inc:238
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:244
+#: ../includes/setup/defaults.inc:239
 msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:245
+#: ../includes/setup/defaults.inc:240
 msgid "This option requires the Email feature to be enabled."
 msgstr "Эта опция требует чтобы email возможности были включены."
 
 #
-#: ../includes/setup/defaults.inc:253
+#: ../includes/setup/defaults.inc:248
 msgid "Gallery Link"
 msgstr "Ссылка на галерею"
 
-#: ../includes/setup/defaults.inc:254
+#: ../includes/setup/defaults.inc:249
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Показывать ссылку на верхний уровень галереи в альбомах? Если вы отключите эту возможность, то пользователь не сможет выйти из альбома. Это полезно, когда вы хотите встроить альбом в вебсайт и не допускать пользователя (легко) просматривать другие альбомы галереи."
 
 #
-#: ../includes/setup/defaults.inc:262
+#: ../includes/setup/defaults.inc:257
 #, fuzzy
 msgid "Default Album Permissions"
 msgstr "Колонок по умолчанию"
 
-#: ../includes/setup/defaults.inc:263
+#: ../includes/setup/defaults.inc:258
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:265 ../includes/setup/defaults.inc:376
-#: ../includes/setup/defaults.inc:383
+#: ../includes/setup/defaults.inc:260 ../includes/setup/defaults.inc:371
+#: ../includes/setup/defaults.inc:378
 msgid "Everybody"
 msgstr "Всем"
 
-#: ../includes/setup/defaults.inc:266
+#: ../includes/setup/defaults.inc:261
 msgid "Logged-In Users"
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:267 ../includes/setup/defaults.inc:374
-#: ../includes/setup/defaults.inc:382
+#: ../includes/setup/defaults.inc:262 ../includes/setup/defaults.inc:369
+#: ../includes/setup/defaults.inc:377
 msgid "Nobody"
 msgstr "Никому"
 
-#: ../includes/setup/defaults.inc:277
+#: ../includes/setup/defaults.inc:272
 msgid "Data displayed"
 msgstr "Отображаемые данные"
 
-#: ../includes/setup/defaults.inc:281
+#: ../includes/setup/defaults.inc:276
 msgid "Click counts"
 msgstr "Счетчик кликов"
 
 #
-#: ../includes/setup/defaults.inc:282
+#: ../includes/setup/defaults.inc:277
 msgid "Display click counts within Albums?"
 msgstr "Показывать счетчик кликов внутри альбомов?"
 
 #
-#: ../includes/setup/defaults.inc:290
+#: ../includes/setup/defaults.inc:285
 msgid "Custom Fields"
 msgstr "Дополнительные поля"
 
-#: ../includes/setup/defaults.inc:292
+#: ../includes/setup/defaults.inc:287
 #, fuzzy
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Location, Film Type</i>"
 msgstr "Дополнительные поля, которые доступны при вводе различной инофрмации для каждого изображения. Они должны быть разделены запятыми. Например: <i>Description, Location, Film Type</i>"
 
-#: ../includes/setup/defaults.inc:299
+#: ../includes/setup/defaults.inc:294
 #, fuzzy
 msgid "Clickable image dimensions"
 msgstr "Показывать ссылки с размерами изображения"
 
-#: ../includes/setup/defaults.inc:300
+#: ../includes/setup/defaults.inc:295
 msgid "If set to 'yes', then clickable dimensions for each available size of the picture are shown beneath the thumbnails . You may click on these instead of the thumbnail to either image."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:308
+#: ../includes/setup/defaults.inc:303
 msgid "Dimensions-link opens popup"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:309
+#: ../includes/setup/defaults.inc:304
 msgid "If you show the dimensions-links, you can choose whether you just want the images to appear in a popup, or open the complete photoview."
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:322
+#: ../includes/setup/defaults.inc:317
 msgid "Item Owner"
 msgstr "Владелец объекта"
 
 #
-#: ../includes/setup/defaults.inc:325
+#: ../includes/setup/defaults.inc:320
 msgid "Photo owner modification"
 msgstr "Владельцам редактировать свои фотографии"
 
 #
-#: ../includes/setup/defaults.inc:326
+#: ../includes/setup/defaults.inc:321
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "Разрешить владельцам фотографий редактировать и поворачивать/вращать свои собственные фотографии?"
 
 #
-#: ../includes/setup/defaults.inc:334
+#: ../includes/setup/defaults.inc:329
 msgid "Photo owner deletion"
 msgstr "Владельцам удалять свои фотографии"
 
 #
-#: ../includes/setup/defaults.inc:335
+#: ../includes/setup/defaults.inc:330
 msgid "Allow photo owners to delete their own photos?"
 msgstr "Разрешить владельцам фотографий удалять свои собственные фотографии?"
 
 #
-#: ../includes/setup/defaults.inc:342
+#: ../includes/setup/defaults.inc:337
 msgid "Photo owner display"
 msgstr "Показывать владельца фотографии"
 
-#: ../includes/setup/defaults.inc:343
+#: ../includes/setup/defaults.inc:338
 msgid "Display the name of photo owners with the caption?"
 msgstr "Показывать имя владельца с заголовоком фотографии?"
 
 #
-#: ../includes/setup/defaults.inc:356
+#: ../includes/setup/defaults.inc:351
 msgid "Polling configuration"
 msgstr "Конфигурация опроса"
 
-#: ../includes/setup/defaults.inc:358
+#: ../includes/setup/defaults.inc:353
 #, fuzzy, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version then %s."
 msgstr "Эти настройки позволят посетителям давать оценки содержанию альбома. Вы установите значения по умолчанию для опросов, которые будут относиться для новых альбомов, а также для всех существующих альбомов, если вы обновляете галерею и ее версия ранее %s."
 
-#: ../includes/setup/defaults.inc:361
+#: ../includes/setup/defaults.inc:356
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "В каждом альбоме голосование может быть отключено, быть только для зарегистрированных пользователей или открыто для всех посетителей."
 
-#: ../includes/setup/defaults.inc:363
+#: ../includes/setup/defaults.inc:358
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Имеется два вида голосования: %s, который позволяет расставить фотографии в порядке убывания приоритета, самые понравившиеся, на первое место, на второе, третье и т.д., и %s, позвоволяет оценивать любые или все фотографии без ограничения. %s - напоминает обзор фильма, где все изображения могут получить (например) 5 баллов, тогда как %s полезен для вытесняющей конкуренции."
 
 #
-#: ../includes/setup/defaults.inc:364 ../includes/setup/defaults.inc:367
-#: ../includes/setup/defaults.inc:392 ../includes/setup/defaults.inc:398
+#: ../includes/setup/defaults.inc:359 ../includes/setup/defaults.inc:362
+#: ../includes/setup/defaults.inc:387 ../includes/setup/defaults.inc:393
 msgid "Rank"
 msgstr "Ранг"
 
-#: ../includes/setup/defaults.inc:365 ../includes/setup/defaults.inc:366
-#: ../includes/setup/defaults.inc:394 ../includes/setup/defaults.inc:399
+#: ../includes/setup/defaults.inc:360 ../includes/setup/defaults.inc:361
+#: ../includes/setup/defaults.inc:389 ../includes/setup/defaults.inc:394
 msgid "Critique"
 msgstr "Критика"
 
-#: ../includes/setup/defaults.inc:371
+#: ../includes/setup/defaults.inc:366
 msgid "Voter class"
 msgstr "Класс голосующих"
 
-#: ../includes/setup/defaults.inc:372
+#: ../includes/setup/defaults.inc:367
 msgid "Voting is available to:"
 msgstr "Голосование доступно:"
 
-#: ../includes/setup/defaults.inc:375
+#: ../includes/setup/defaults.inc:370
 msgid "Voting is off."
 msgstr "Голосование отключено."
 
-#: ../includes/setup/defaults.inc:377
+#: ../includes/setup/defaults.inc:372
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Проголосовать может каждый. Голоса записываются по ID сессии."
 
 #
-#: ../includes/setup/defaults.inc:378 ../includes/setup/defaults.inc:384
+#: ../includes/setup/defaults.inc:373 ../includes/setup/defaults.inc:379
 msgid "Logged in"
 msgstr "Пользователям"
 
-#: ../includes/setup/defaults.inc:379
+#: ../includes/setup/defaults.inc:374
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Проголосовать смогут только зарегистрированные пользователи. Голоса записываются по ID пользователя, и голосующий может вернуться и изменить свой выбор."
 
-#: ../includes/setup/defaults.inc:389
+#: ../includes/setup/defaults.inc:384
 msgid "Poll type"
 msgstr "Вид опроса"
 
-#: ../includes/setup/defaults.inc:390
+#: ../includes/setup/defaults.inc:385
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Галерея предлагает два вида опроса для голосования за изображения. См. выше для более подробной информации."
 
-#: ../includes/setup/defaults.inc:393
+#: ../includes/setup/defaults.inc:388
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Пользователи имеют набор голосов, которые они могут распределить по имеющимся изображениям."
 
-#: ../includes/setup/defaults.inc:395
+#: ../includes/setup/defaults.inc:390
 msgid "Enables users to give all images points without restriction."
 msgstr "Позволяет пользователям давать любые оценки для любых изображений без ограничений."
 
 #
-#: ../includes/setup/defaults.inc:404
+#: ../includes/setup/defaults.inc:399
 msgid "Number of choices"
 msgstr "Количество баллов"
 
-#: ../includes/setup/defaults.inc:405
+#: ../includes/setup/defaults.inc:400
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Количество баллов, которое будет доступно для голосования в виде радио-кнопок или как выпадающее меню."
 
-#: ../includes/setup/defaults.inc:410
+#: ../includes/setup/defaults.inc:405
 msgid "Vote hint"
 msgstr "Подсказка для голосования"
 
-#: ../includes/setup/defaults.inc:411
+#: ../includes/setup/defaults.inc:406
 msgid "This is displayed above the voting options under each image."
 msgstr "Это сообщение будет отображаться под каждым изображением для голосования."
 
 #
-#: ../includes/setup/defaults.inc:413
+#: ../includes/setup/defaults.inc:408
 msgid "Vote for this image"
 msgstr "Оцените это изображение"
 
-#: ../includes/setup/defaults.inc:418 ../includes/setup/defaults.inc:430
+#: ../includes/setup/defaults.inc:413 ../includes/setup/defaults.inc:425
 msgid "Show vote results"
 msgstr "Показать результаты голосования"
 
-#: ../includes/setup/defaults.inc:419
+#: ../includes/setup/defaults.inc:414
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "Показывать итоги и график на странице альбома с изображениями, которые получили наивысшую оценку и отобразить ссылку на полный результат. Если это значение установить в <i>%s</i>, то результаты голосования будут доступны только для админа и владельцев альбома."
 
-#: ../includes/setup/defaults.inc:428
+#: ../includes/setup/defaults.inc:423
 msgid "Number of results displayed"
 msgstr "Число отображаемых результатов"
 
-#: ../includes/setup/defaults.inc:429
+#: ../includes/setup/defaults.inc:424
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "Если опция %s установлена в %s, то отобразить график с этим числом наилучших оценок. (Результаты всех оценок будут доступны по указанной ссылке.)"
 
-#: ../includes/setup/defaults.inc:436
+#: ../includes/setup/defaults.inc:431
 msgid "Orientation of vote choices?"
 msgstr "Ориентация пунктов голосования?"
 
-#: ../includes/setup/defaults.inc:437
+#: ../includes/setup/defaults.inc:432
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "Опрос вида Ранг будет отображать оценки друг за другом (горизонтально) или друг под другом (вертикально). Не имеет эффекта в опросе вида Критика, при голосовании используется выпадающее меню."
 
 #
-#: ../includes/setup/defaults.inc:440
+#: ../includes/setup/defaults.inc:435
 msgid "Horizontal"
 msgstr "Горизонтально"
 
-#: ../includes/setup/defaults.inc:441
+#: ../includes/setup/defaults.inc:436
 msgid "Vertical"
 msgstr "Вертикально"
 
-#: ../includes/setup/defaults.inc:444
+#: ../includes/setup/defaults.inc:439
 msgid "Vote words and values"
 msgstr "Оценка голоса и его величина"
 
-#: ../includes/setup/defaults.inc:445
+#: ../includes/setup/defaults.inc:440
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Это позволит вам настроить текст, который будет отображен для каждой оценки, плюс число с соответсвющим весом."
 
-#: ../includes/setup/defaults.inc:447
+#: ../includes/setup/defaults.inc:442
 msgid "Excellent"
 msgstr "Отлично"
 
 #
-#: ../includes/setup/defaults.inc:448
+#: ../includes/setup/defaults.inc:443
 msgid "Very Good"
 msgstr "Очень хорошо"
 
 #
-#: ../includes/setup/defaults.inc:449
+#: ../includes/setup/defaults.inc:444
 msgid "Good"
 msgstr "Хорошо"
 
-#: ../includes/setup/defaults.inc:450
+#: ../includes/setup/defaults.inc:445
 msgid "Average"
 msgstr "Средне"
 
 #
-#: ../includes/setup/defaults.inc:451
+#: ../includes/setup/defaults.inc:446
 msgid "Poor"
 msgstr "Плохо"
 
 #
-#: ../includes/setup/defaults.inc:463
+#: ../includes/setup/defaults.inc:458
 msgid "Album Slideshow"
 msgstr "Показ слайдов альбома"
 
 #
-#: ../includes/setup/defaults.inc:468
+#: ../includes/setup/defaults.inc:463
 msgid "Slideshow Type"
 msgstr "Тип показа слайдов"
 
 #
-#: ../includes/setup/defaults.inc:485
+#: ../includes/setup/defaults.inc:480
 msgid "Recursive slideshow"
 msgstr "Рекурсивный показ слайдов"
 
-#: ../includes/setup/defaults.inc:486
+#: ../includes/setup/defaults.inc:481
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "Установить %s, если вы хотите включать изображения во вложенных альбомах, как часть показа слайдов."
 
-#: ../includes/setup/defaults.inc:495
+#: ../includes/setup/defaults.inc:490
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Этот параметр позволит посетителям повторять показ слайдов до тех пор, пока они не закроют окно или не перейдут на другую страницу. Установите %s, если вы хотите сохранить производительность."
 
-#: ../includes/setup/defaults.inc:516 ../includes/setup/defaults.inc:520
-#: ../includes/setup/defaults.inc:530
+#: ../includes/setup/defaults.inc:511 ../includes/setup/defaults.inc:515
+#: ../includes/setup/defaults.inc:525
 msgid "Microthumb Photo Navigation"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:517
+#: ../includes/setup/defaults.inc:512
 msgid "These settings apply to the microthumb photo navigation system.  The microthumbs are only visible when viewing individual images."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:521
+#: ../includes/setup/defaults.inc:516
 msgid "Uses microthumbs for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the microthumb navigation system AND the old style navigation system."
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:526
+#: ../includes/setup/defaults.inc:521
 #, fuzzy
 msgid "both"
 msgstr "Оба"
 
 #
-#: ../includes/setup/defaults.inc:532 ../includes/setup/defaults.inc:539
+#: ../includes/setup/defaults.inc:527 ../includes/setup/defaults.inc:534
 #, fuzzy
 msgid "Fixed"
 msgstr "Неудачно!"
 
-#: ../includes/setup/defaults.inc:533
+#: ../includes/setup/defaults.inc:528
 msgid "Displays prev and next groups of thumbs, changing only to display next group of thumbs."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:534 ../includes/setup/defaults.inc:540
+#: ../includes/setup/defaults.inc:529 ../includes/setup/defaults.inc:535
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:535
+#: ../includes/setup/defaults.inc:530
 msgid "Displays previous and next images, with current image between."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:544
+#: ../includes/setup/defaults.inc:539
 msgid "Show Microthumb for First/Last"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:545
+#: ../includes/setup/defaults.inc:540
 msgid "This allows you to turn on and off the display of the first and last microthumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:553
+#: ../includes/setup/defaults.inc:548
 msgid "Number of Previous Microthumbs"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:554
+#: ../includes/setup/defaults.inc:549
 msgid "This is the number of previous microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:563
+#: ../includes/setup/defaults.inc:558
 #, fuzzy
 msgid "Number of Next Microthumbs"
 msgstr "Количество баллов"
 
-#: ../includes/setup/defaults.inc:564
+#: ../includes/setup/defaults.inc:559
 msgid "This is the number of next microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:573
+#: ../includes/setup/defaults.inc:568
 msgid "Location of Microthumb Navigation"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:574
+#: ../includes/setup/defaults.inc:569
 msgid "Displays the microthumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the microthumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:577
+#: ../includes/setup/defaults.inc:572
 msgid "Top"
 msgstr "Вверх"
 
-#: ../includes/setup/defaults.inc:579
+#: ../includes/setup/defaults.inc:574
 msgid "Bottom"
 msgstr "Вниз"
 
-#: ../includes/setup/defaults.inc:583
+#: ../includes/setup/defaults.inc:578
 msgid "Height of Microthumbs"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:584
+#: ../includes/setup/defaults.inc:579
 msgid "The size of microthumbs will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
-#: ../includes/setup/defaults.inc:589
+#: ../includes/setup/defaults.inc:584
 msgid "Bonus to Current Microthumb's Size"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:590
+#: ../includes/setup/defaults.inc:585
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
 msgstr ""
 
 #
-#: ../includes/setup/defaults.inc:600 ../setup/frame_test.php:28
+#: ../includes/setup/defaults.inc:595 ../setup/frame_test.php:27
 msgid "Frames"
 msgstr "Рамки"
 
-#: ../includes/setup/defaults.inc:601
+#: ../includes/setup/defaults.inc:596
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Каждое изображение (макет, уменьшенные и развернутые фотографии) в %s может иметь рамку. Доступны следующие стили:"
 
 #
-#: ../includes/setup/defaults.inc:605
+#: ../includes/setup/defaults.inc:600
 msgid "Subalbum frames"
 msgstr "Рамки вложенного альбома"
 
-#: ../includes/setup/defaults.inc:606
+#: ../includes/setup/defaults.inc:601
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "Эта рамка появится вокруг макета изображения, представляющего вложенный альбом."
 
 #
-#: ../includes/setup/defaults.inc:612
+#: ../includes/setup/defaults.inc:607
 msgid "Frame around thumbs"
 msgstr "Рамка вокруг макетов"
 
-#: ../includes/setup/defaults.inc:613
+#: ../includes/setup/defaults.inc:608
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "Эта рамка появится вокруг макета изображения, представляющего фотографию или фильм."
 
 #
-#: ../includes/setup/defaults.inc:618
+#: ../includes/setup/defaults.inc:613
 msgid "Frame around images"
 msgstr "Рамка вокруг изображений"
 
-#: ../includes/setup/defaults.inc:619
+#: ../includes/setup/defaults.inc:614
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Эта рамка появится вокруг развернутой и уменьшенной фотографиями."
+
+#: ../includes/setup/defaults.inc:624
+msgid "Effects"
+msgstr ""
+
+#: ../includes/setup/defaults.inc:628
+msgid "Lightbox effect"
+msgstr ""
+
+#: ../includes/setup/defaults.inc:629
+msgid "When you click on the thumb in the album view, you can either be directed to the single photo view, or have a nice effect called 'lightbox'."
+msgstr ""
 
 #: ../includes/setup/stepbar.inc:22
 #, fuzzy
 msgid "Gallery Logo"
 msgstr "Галерея"
 
-#: ../setup/welcome.inc:33 ../setup/check.inc:86 ../setup/confirm.inc:521
-#: ../setup/constants.inc:81 ../setup/defaults.inc:48 ../setup/write.inc:201
+#: ../setup/welcome.inc:32 ../setup/check.inc:79 ../setup/confirm.inc:516
+#: ../setup/constants.inc:80 ../setup/defaults.inc:47 ../setup/write.inc:205
 #, fuzzy
 msgid "Gallery configuration wizard"
 msgstr "мастер конфигурации"
 
 #
-#: ../setup/welcome.inc:40 ../setup/index.php:119
+#: ../setup/welcome.inc:39 ../setup/index.php:118
 #, fuzzy
 msgid "Welcome"
 msgstr "Добро пожаловать, %s"
 
 #
-#: ../setup/welcome.inc:43 ../setup/welcome.inc:152
+#: ../setup/welcome.inc:42 ../setup/welcome.inc:151
 #, fuzzy
 msgid "_Next Step >>"
 msgstr "Следующий шаг"
 
-#: ../setup/welcome.inc:46
+#: ../setup/welcome.inc:45
 msgid "Installation Type:"
 msgstr ""
 
 #
-#: ../setup/welcome.inc:48
+#: ../setup/welcome.inc:47
 #, fuzzy
 msgid "easy"
 msgstr "Пауза:"
 
-#: ../setup/welcome.inc:49
+#: ../setup/welcome.inc:48
 #, fuzzy
 msgid "advanced"
 msgstr "Расширенный"
 
-#: ../setup/welcome.inc:62
+#: ../setup/welcome.inc:61
 #, php-format
 msgid "Installation of '%s' version: %s"
 msgstr ""
 
-#: ../setup/welcome.inc:65
+#: ../setup/welcome.inc:64
 #, php-format
 msgid "Configuration of '%s' version: %s"
 msgstr ""
 
 #
-#: ../setup/welcome.inc:71
+#: ../setup/welcome.inc:70
 #, fuzzy
 msgid "Welcome to the Setup of Gallery."
 msgstr "Затем запустите %sмастер конфигурации%s."
 
-#: ../setup/welcome.inc:74
+#: ../setup/welcome.inc:73
 msgid "Gallery must be configured before you can use it."
 msgstr "Галерея должна быть сконфигурирована до того как вы сможете ее использовать."
 
-#: ../setup/welcome.inc:79
+#: ../setup/welcome.inc:78
 msgid "1."
 msgstr "1."
 
-#: ../setup/welcome.inc:81
+#: ../setup/welcome.inc:80
 #, fuzzy
 msgid "Create an empty file config.php in the main folder of your Gallery."
 msgstr "Создайте пустой файл .htaccess и пустой файл config.php"
 
-#: ../setup/welcome.inc:82
+#: ../setup/welcome.inc:81
 msgid "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosts.)"
 msgstr ""
 
-#: ../setup/welcome.inc:86
+#: ../setup/welcome.inc:85
 msgid "2."
 msgstr "2."
 
-#: ../setup/welcome.inc:87
+#: ../setup/welcome.inc:86
 msgid "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend that you don't put it in your Gallery folder, but that's up to you."
 msgstr ""
 
-#: ../setup/welcome.inc:90
+#: ../setup/welcome.inc:89
 #, fuzzy
 msgid "Make sure that both files and the folder are read and writeable for your webserver!"
 msgstr "Убедитесь, что как файлы так и каталог доступны на чтение и запись вашим веб сервером!"
 
 #
-#: ../setup/welcome.inc:101
+#: ../setup/welcome.inc:100 ../setup/login.inc:119
 #, fuzzy
 msgid "Your Gallery needs a reconfiguration."
 msgstr "Конфигурацию галереи нужно заменить"
 
-#: ../setup/welcome.inc:103
+#: ../setup/welcome.inc:102 ../setup/login.inc:121
 #, fuzzy
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
 msgstr "Настройки вашей галереи были сконфигурированы в старой версии галереи и устарели. Пожалуйста, перезапустите мастер конфигурации! Как это сделать:"
 
-#: ../setup/welcome.inc:111
+#: ../setup/welcome.inc:110
 msgid "To configure/install Gallery there are only five steps in this simple procedure."
 msgstr ""
 
 #
-#: ../setup/welcome.inc:118
+#: ../setup/welcome.inc:117
 #, fuzzy
 msgid "Start:"
 msgstr "Сортировать"
 
-#: ../setup/welcome.inc:119
+#: ../setup/welcome.inc:118
 msgid "Basic instructions and the choice for installation type."
 msgstr ""
 
 #
-#: ../setup/welcome.inc:123
+#: ../setup/welcome.inc:122
 #, fuzzy
 msgid "Step 1:"
 msgstr "Шаг 1"
 
-#: ../setup/welcome.inc:124
+#: ../setup/welcome.inc:123
 msgid "The installer will check to see if your web space can run Gallery."
 msgstr ""
 
 #
-#: ../setup/welcome.inc:127
+#: ../setup/welcome.inc:126
 #, fuzzy
 msgid "Step 2:"
 msgstr "Шаг 2"
 
-#: ../setup/welcome.inc:128
+#: ../setup/welcome.inc:127
 msgid "You will be asked to enter settings needed to run Gallery such as the location of Gallery, language settings, etc."
 msgstr ""
 
 #
-#: ../setup/welcome.inc:131
+#: ../setup/welcome.inc:130
 #, fuzzy
 msgid "Step 3:"
 msgstr "Шаг 1"
 
-#: ../setup/welcome.inc:132
+#: ../setup/welcome.inc:131
 msgid "Define default settings for new albums. Predefined values are provided or you can customize them as needed."
 msgstr ""
 
 #
-#: ../setup/welcome.inc:135
+#: ../setup/welcome.inc:134
 #, fuzzy
 msgid "Step 4:"
 msgstr "Шаг 1"
 
 #
-#: ../setup/welcome.inc:136
+#: ../setup/welcome.inc:135
 #, fuzzy
 msgid "Installation confirmation."
 msgstr "Конфигурация опроса"
 
 #
-#: ../setup/welcome.inc:139
+#: ../setup/welcome.inc:138
 #, fuzzy
 msgid "Step 5:"
 msgstr "Шаг 1"
 
 #
-#: ../setup/welcome.inc:140
+#: ../setup/welcome.inc:139
 #, fuzzy
 msgid "Saving the configuration."
 msgstr "Конфигурация опроса"
 
-#: ../setup/welcome.inc:148
+#: ../setup/welcome.inc:147
 #, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 msgstr "Если вы испытываете проблемы, вы можете найти подсказку на %sстранице помощи галереи%s."
 
 #
-#: ../setup/check.inc:29 ../setup/check.inc:30
+#: ../setup/check.inc:27 ../setup/check.inc:28
 #, fuzzy
 msgid "Success!"
 msgstr "Успешно"
 
 #
-#: ../setup/check.inc:35 ../setup/check.inc:36
+#: ../setup/check.inc:33 ../setup/check.inc:34
 #, fuzzy
 msgid "Warning, but optional."
 msgstr "это необязательно"
 
 #
-#: ../setup/check.inc:41 ../setup/check.inc:42
+#: ../setup/check.inc:39 ../setup/check.inc:40
 #, fuzzy
 msgid "Serious warning, but optional."
 msgstr "Серьезное предупреждние"
 
 #
-#: ../setup/check.inc:47 ../setup/check.inc:48
+#: ../setup/check.inc:45 ../setup/check.inc:46
 #, fuzzy
 msgid "Serious warning, no go!"
 msgstr "Серьезное предупреждние"
 
 #
-#: ../setup/check.inc:53 ../setup/check.inc:54
+#: ../setup/check.inc:51 ../setup/check.inc:52
 #, fuzzy
 msgid "Failure!"
 msgstr "Отказ"
 
 #
-#: ../setup/check.inc:62
+#: ../setup/check.inc:60
 #, fuzzy
 msgid "Gallery Dia_gnostics Page"
 msgstr "страница диагностики галереи"
 
 #
-#: ../setup/check.inc:66
+#: ../setup/check.inc:64
 #, fuzzy
 msgid "Gallery _help page"
 msgstr "страница помощи галереи"
 
-#
-#: ../setup/check.inc:71
-#, fuzzy
-msgid "_documentation"
-msgstr "документация"
-
-#: ../setup/check.inc:93
+#: ../setup/check.inc:86
 msgid "Installation check"
 msgstr ""
 
-#: ../setup/check.inc:98
+#: ../setup/check.inc:91
 #, fuzzy
 msgid "This page will validate your system to make sure that you have all the necessary components installed, permissions set and that everything is configured reasonably."
 msgstr "Эта страница подтвердит вашу установку, чтобы убедиться, что вы имеете все необходимые компоненты и разрешения в этой системе и что все сконфигурировано корректно."
 
-#: ../setup/check.inc:102
-#, php-format
-msgid "Having problems?  Try the %s, %s and %s."
-msgstr "Проблемы? Вам помогут %s, %s и %s."
-
-#: ../setup/check.inc:109
+#: ../setup/check.inc:94
 #, php-format
 msgid "Having problems?  Try the %s and %s."
 msgstr "Проблемы? Вам помогут %s и %s."
 
-#: ../setup/check.inc:241
+#: ../setup/check.inc:224
 msgid "Legend:"
 msgstr ""
 
-#: ../setup/check.inc:260
+#: ../setup/check.inc:242
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Многоязычный режим"
 
-#: ../setup/check.inc:262
+#: ../setup/check.inc:244
 msgid "You must fix them before you can continue."
 msgstr "Вы должны устранить их прежде чем вы сможете продолжить."
 
-#: ../setup/check.inc:270
+#: ../setup/check.inc:251
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "Ваша установка имеет <b>серьезные предупреждения</b>!<br>Можете продолжить на свой риск..."
 
-#: ../setup/check.inc:276
+#: ../setup/check.inc:256
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "При установке обнаружены предупреждения, но это нормально. Продолжайте!"
 
-#: ../setup/check.inc:283
+#: ../setup/check.inc:262
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr ""
 
 #
-#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/constants.inc:271
-#: ../setup/defaults.inc:59 ../setup/defaults.inc:172
+#: ../setup/check.inc:270 ../setup/constants.inc:91 ../setup/constants.inc:273
+#: ../setup/defaults.inc:58 ../setup/defaults.inc:171
 #, fuzzy
 msgid "_Next Step &gt;&gt;"
 msgstr "Следующий шаг"
 
 #
-#: ../setup/check_imagemagick.php:26
+#: ../setup/check_imagemagick.php:25
 msgid "Gallery ImageMagick Check"
 msgstr "Проверка ImageMagick галереи"
 
 #
-#: ../setup/check_mail.php:27
+#: ../setup/check_mail.php:25
 msgid "Check Mail"
 msgstr "Проверка почты"
 
-#: ../setup/check_mail.php:38
+#: ../setup/check_mail.php:36
 #, php-format
 msgid "Test email from %s"
 msgstr "Тест e-mail с %s"
 
-#: ../setup/check_mail.php:39
+#: ../setup/check_mail.php:37
 msgid "This email was automatically generated."
 msgstr "Этот e-mail был автоматически сгенерирован."
 
-#: ../setup/check_mail.php:40
+#: ../setup/check_mail.php:38
 msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
 msgstr "Если вы получили это ошибочно, то пожалуйста проигнорируйте, чтобы не получать подобные сообщения."
 
-#: ../setup/check_mail.php:41
+#: ../setup/check_mail.php:39
 #, php-format
 msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
 msgstr ""
 
-#: ../setup/check_mail.php:46
+#: ../setup/check_mail.php:44
 msgid "Attempt to send Testmail from config wizard."
 msgstr ""
 
-#: ../setup/check_mail.php:52
+#: ../setup/check_mail.php:50
 #, php-format
 msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes."
 msgstr ""
 
-#: ../setup/check_mail.php:54
+#: ../setup/check_mail.php:52
 msgid "If you don't receive it please confirm the email address used was correct."
 msgstr ""
 
-#: ../setup/check_mail.php:56
+#: ../setup/check_mail.php:54
 #, fuzzy, php-format
 msgid "If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified."
 msgstr "Тестовое сообщение отправлено на <b>%s</b>, и должно дойти через несколько минут. Если вы не получите это сообщение, то удостоверьтесь, что указанный e-mail адрес был введен верно. Если вы не можете получить e-mail, то должно быть эта функция отключена на этом сервере и %s не может ее использовать, пока это не будет исправлено."
 
 #
-#: ../setup/check_mail.php:63
+#: ../setup/check_mail.php:61
 msgid "You must use a valid email address"
 msgstr "Вы должны использовать правильные e-mail адреса"
 
-#: ../setup/check_mail.php:65
+#: ../setup/check_mail.php:63
 msgid "Try again?"
 msgstr "Попробовать еще?"
 
-#: ../setup/check_mail.php:71
+#: ../setup/check_mail.php:69
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Эта проверка позволит вам удостовериться, что отправка почты в вашей системе настроена правильно. Ниже укажите свой e-mail адрес и вам будет отправлен e-mail. Если вы получите сообщение, то будете знать, что отправка почты в вашей системе работает нормально."
 
 #
-#: ../setup/check_mail.php:77 ../setup/check_mail.php:85
+#: ../setup/check_mail.php:75 ../setup/check_mail.php:83
 #, fuzzy, php-format
 msgid "%s not set in php.ini."
 msgstr "%s не установлен."
 
 #
-#: ../setup/check_mail.php:95
+#: ../setup/check_mail.php:93
 #, fuzzy
 msgid "Your _email address:"
 msgstr "Ваш e-mail адрес:"
 
 #
-#: ../setup/check_mail.php:98
+#: ../setup/check_mail.php:96
 #, fuzzy
 msgid "_Send Email"
 msgstr "Отправить e-mail"
 
 #
-#: ../setup/check_netpbm.php:26
-msgid "Gallery NetPBM Check"
+#: ../setup/check_netpbm.php:25
+#, fuzzy
+msgid "Gallery Netpbm Check"
 msgstr "Проверка NetPBM галереи"
 
 #
-#: ../setup/check_versions.php:26
+#: ../setup/check_versions.php:25
 msgid "Check Versions"
 msgstr "Проверка версий"
 
@@ -2924,163 +2938,173 @@ msgstr "Следующие файлы обновлены."
 msgid "Show/hide more information"
 msgstr ""
 
-#
-#: ../setup/confirm.inc:39
-msgid "documentation"
-msgstr "документация"
-
-#: ../setup/confirm.inc:50
+#: ../setup/confirm.inc:47
 #, fuzzy, php-format
-msgid "You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding.  See the %s for more details."
+msgid "You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding."
 msgstr "Вы должны создать пустой файл с именем %s и установить атрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
 
-#: ../setup/confirm.inc:61
+#: ../setup/confirm.inc:58
 #, fuzzy, php-format
-msgid "The %s file in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
+msgid "The %s file in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding."
 msgstr "Вы должны создать пустой файл с именем %s и установить атрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
 
-#: ../setup/confirm.inc:69
+#: ../setup/confirm.inc:66
 #, fuzzy, php-format
-msgid "The %s file in your Gallery mainfolder is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
+msgid "The %s file in your Gallery mainfolder is not writable by the webserver - chmod it 777 before proceeding."
 msgstr "Файл %s не разрешен на запись веб сервером - установить атрибут 777 перед тем как продолжить. Смотри %s для подробной информации."
 
 #
-#: ../setup/confirm.inc:103 ../setup/confirm.inc:206 ../setup/confirm.inc:331
+#: ../setup/confirm.inc:100 ../setup/confirm.inc:204 ../setup/confirm.inc:326
 msgid "missing"
 msgstr "отсутствует"
 
 #
-#: ../setup/confirm.inc:103
+#: ../setup/confirm.inc:100
 msgid "it's optional"
 msgstr "это необязательно"
 
 #
-#: ../setup/confirm.inc:206 ../setup/confirm.inc:331
+#: ../setup/confirm.inc:204 ../setup/confirm.inc:326
 msgid "optional"
 msgstr "необязательный"
 
 #
-#: ../setup/confirm.inc:228
+#: ../setup/confirm.inc:226
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b> должен быть абсолютный URL!"
 
 #
-#: ../setup/confirm.inc:240
+#: ../setup/confirm.inc:238
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b> должно быть правильное имя файла (не каталог)!"
 
 #
-#: ../setup/confirm.inc:251
+#: ../setup/confirm.inc:249
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b> должен быть положительным числом"
 
 #
-#: ../setup/confirm.inc:260
+#: ../setup/confirm.inc:258
 #, fuzzy, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
 msgstr "%s: <b>&quot;%s&quot;</b> должен быть положительным числом"
 
 #
-#: ../setup/confirm.inc:268
+#: ../setup/confirm.inc:266
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> не должен быть нулем"
 
 #
-#: ../setup/confirm.inc:278
+#: ../setup/confirm.inc:276
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> должен быть исполняемым файлом!"
 
-#: ../setup/confirm.inc:287
+#: ../setup/confirm.inc:285
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "Каталог %s не существует. Пожалуйста, создайте его."
 
 #
-#: ../setup/confirm.inc:293
+#: ../setup/confirm.inc:291
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s существует, но не каталог. Пожалуйста исправьте это."
 
+#: ../setup/confirm.inc:298
+#, php-format
+msgid "%s: %s exists, but is not writeable by the webserver user."
+msgstr ""
+
+#: ../setup/confirm.inc:299
+#, php-format
+msgid "Try: %s"
+msgstr ""
+
 #: ../setup/confirm.inc:301
 #, php-format
-msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
+msgid "Or if that doesn't work: %s"
+msgstr ""
+
+#: ../setup/confirm.inc:303
+#, php-format
+msgid "Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr ""
 
 #
-#: ../setup/confirm.inc:379
+#: ../setup/confirm.inc:374
 #, fuzzy, php-format
 msgid "%s: <b>%s</b> must be enabled for this feature to function!"
 msgstr "%s: <b>%s</b> должно быть включено для этой возможности, для работоспособности!"
 
-#: ../setup/confirm.inc:404
+#: ../setup/confirm.inc:399
 #, fuzzy, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "Не найден %s. Проверьте ваш каталог NetPBM, посмотрите какой конвертер PNG->JPEG у вас имеется (или просто попробуйте использовать вместо этого %s). Пожалуйста, проверьте вашу конфигурацию (или используйте ImageMagick)."
 
-#: ../setup/confirm.inc:412
+#: ../setup/confirm.inc:407
 #, fuzzy, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "Не найден %s. Проверьте ваш каталог NetPBM, посмотрите какой конвертер PNG->JPEG у вас имеется (или просто попробуйте использовать вместо этого %s). Пожалуйста, проверьте вашу конфигурацию (или используйте ImageMagick)."
 
-#: ../setup/confirm.inc:424
+#: ../setup/confirm.inc:419
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Вы должны указать путь для %s или %s для функционирования галереи!!"
 
-#: ../setup/confirm.inc:428 ../setup/confirm.inc:432
+#: ../setup/confirm.inc:423 ../setup/confirm.inc:427
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s не правильно настроен для использования как графический пакет. Убедитесь, что вы ввели путь к исполняемым файлам %s на шаге 2."
 
-#: ../setup/confirm.inc:439
+#: ../setup/confirm.inc:434
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "Ваш сервер установил ограничения open_basedir PHP, и некоторые ваши пути не в списке ограниченных путей"
 
-#: ../setup/confirm.inc:441
+#: ../setup/confirm.inc:436
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr ""
 
-#: ../setup/confirm.inc:528
+#: ../setup/confirm.inc:523
 #, fuzzy
 msgid "Confirmation"
 msgstr "Конфигурация %s"
 
 #
-#: ../setup/confirm.inc:531 ../setup/confirm.inc:574
+#: ../setup/confirm.inc:526 ../setup/confirm.inc:569
 #, fuzzy
 msgid "&lt;&lt; Edit Config"
 msgstr "Редактировать конфигурацию"
 
 #
-#: ../setup/confirm.inc:533 ../setup/confirm.inc:577
+#: ../setup/confirm.inc:528 ../setup/confirm.inc:572
 #, fuzzy
 msgid "Save Config &gt;&gt;"
 msgstr "Сохранить конфигурацию"
 
-#: ../setup/confirm.inc:536 ../setup/confirm.inc:580 ../setup/login.inc:89
+#: ../setup/confirm.inc:531 ../setup/confirm.inc:575 ../setup/login.inc:101
 msgid "Refresh"
 msgstr "Обновить"
 
-#: ../setup/confirm.inc:544
+#: ../setup/confirm.inc:539
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "Подтвердите, что настройки, которые вы ввели верны. Если все что вы видите на этой странице вводит вас в заблуждение, то можете не рискуя ни чем, не принимать это во внимание."
 
-#: ../setup/confirm.inc:547
+#: ../setup/confirm.inc:542
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Подтвердите, что настройки которые вы ввели корректны. Если ниже выделеная красным выведена ошибка, вы должны ее устранить прежде чем сохранять ваши настройки."
 
-#: ../setup/confirm.inc:556
+#: ../setup/confirm.inc:551
 msgid "No errors."
 msgstr "Нет ошибок."
 
 #
-#: ../setup/confirm.inc:556
+#: ../setup/confirm.inc:551
 #, php-format
 msgid "One error."
 msgid_plural "%d errors."
@@ -3088,457 +3112,461 @@ msgstr[0] "%d ошибка"
 msgstr[1] "%d ошибки"
 msgstr[2] "%d ошибок"
 
-#: ../setup/confirm.inc:557
+#: ../setup/confirm.inc:552
 msgid "See Details below."
 msgstr "Смотри подробности ниже."
 
-#: ../setup/confirm.inc:584
+#: ../setup/confirm.inc:579
 msgid "There are errors in your configuration."
 msgstr "Обнаружены ошибки в вашей конфигурации."
 
-#: ../setup/confirm.inc:586
+#: ../setup/confirm.inc:581
 msgid "Please go back and fix them!"
 msgstr "Пожалуйста вернитесь чтобы их устранить!"
 
-#: ../setup/constants.inc:88
+#: ../setup/constants.inc:87
 #, fuzzy
 msgid "Settings"
 msgstr "Просмотреть настройки"
 
-#: ../setup/constants.inc:91 ../setup/constants.inc:268
-#: ../setup/defaults.inc:58 ../setup/defaults.inc:169
+#: ../setup/constants.inc:90 ../setup/constants.inc:270
+#: ../setup/defaults.inc:57 ../setup/defaults.inc:168
 #, fuzzy
 msgid "&lt;&lt; _Previous Step"
 msgstr "Предыдущий шаг"
 
-#: ../setup/constants.inc:96 ../setup/defaults.inc:63
+#: ../setup/constants.inc:95 ../setup/defaults.inc:62
 #, php-format
 msgid "Installation type: %s"
 msgstr ""
 
-#: ../setup/constants.inc:103
+#: ../setup/constants.inc:102
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "На этом шаге вы переделываете различные установки галереи. Если вы впервые модифицируюте галерею, вы обратите внимание, как мы попытались выбрать подходящие значения по умолчанию. Все-таки, вы вероятно будете делать незначительные изменения. Если вы уже сконфигурировали галерею раньше, то вы обратите внимание, что на этой странице уже загружены ваши текущие установки, так что вам не нужно будет делать много изменений."
 
-#: ../setup/constants.inc:105 ../setup/defaults.inc:75
+#: ../setup/constants.inc:104 ../setup/defaults.inc:74
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr "Для заполнения значений, которые вам необходимы, переключайтесь между соответствующими закладками. Некторые, но не все значения обязательные к заполнению. Если вы завершили заполнение нужных значений на этом шаге, то переходите к следующему."
 
-#: ../setup/constants.inc:114 ../setup/constants.inc:269
-#: ../setup/defaults.inc:88 ../setup/defaults.inc:170
+#: ../setup/constants.inc:113 ../setup/constants.inc:271
+#: ../setup/defaults.inc:87 ../setup/defaults.inc:169
 #, fuzzy
 msgid "&lt; Previous Tab"
 msgstr "Предыдущая таб."
 
-#: ../setup/constants.inc:115 ../setup/constants.inc:270
-#: ../setup/defaults.inc:89 ../setup/defaults.inc:171
+#: ../setup/constants.inc:114 ../setup/constants.inc:272
+#: ../setup/defaults.inc:88 ../setup/defaults.inc:170
 #, fuzzy
 msgid "Next Tab &gt;"
 msgstr "Следующая таб."
 
 #
-#: ../setup/constants.inc:116 ../setup/constants.inc:272
-#: ../setup/defaults.inc:90 ../setup/defaults.inc:173
+#: ../setup/constants.inc:115 ../setup/constants.inc:274
+#: ../setup/defaults.inc:89 ../setup/defaults.inc:172
 msgid "Use Defaults"
 msgstr "Использовать установки по умолчанию"
 
 #
-#: ../setup/defaults.inc:55
+#: ../setup/defaults.inc:54
 #, fuzzy
 msgid "Defaults"
 msgstr "Строк по умолчанию"
 
-#: ../setup/defaults.inc:70
+#: ../setup/defaults.inc:69
 msgid "Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!"
 msgstr "Здесь вы можете модифицировать значения по умолчанию для <b>новых альбомов</b>, которые вы создадите. Эти параметры не имеют эффекта для существующих альбомов!"
 
-#: ../setup/defaults.inc:72
+#: ../setup/defaults.inc:71
 msgid "Note that these are <b>not master switches</b>. This means you can change those settings for each separately."
 msgstr "Отметьте, что это не <b>главные переключатели</b>. Это означает что вы можете изменить настройки для каждого в отдельности."
 
-#: ../setup/defaults.inc:73
+#: ../setup/defaults.inc:72
 msgid "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "Если вы настраиваете галерею первый раз, обратите внимание как мы попытались выбрать приемлемые значения для вас. Если вы уже настраивали галерею перед этим, то можете заметить что страница загружена с вашими текущими значениями, так что вероятно вам не нужно будет делать много изменений."
 
-#: ../setup/defaults.inc:78
+#: ../setup/defaults.inc:77
 msgid "Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully."
 msgstr "Примечание для пользователей обновляющим предыдущую версию: новые параметры, которых не было в старой версии будут добавлены ко всем существцющим альбомам. Если потом вы захотите их изменить, то должны будете это сделать отдельно в каждом альбоме. Пожалуйста, выбирайте такие значения очень тщательно."
 
 #
-#: ../setup/diagnostics.php:27
+#: ../setup/diagnostics.php:25
 msgid "Gallery Diagnostics Page"
 msgstr "страница диагностики галереи"
 
 #
-#: ../setup/diagnostics.php:34
+#: ../setup/diagnostics.php:32
 msgid "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly."
 msgstr "Эта страница обеспечивает некторой диагностической информацией о вашем сервере, чтобы помочь вам выявить проблемы и предохранить галерею от не правильного функционирования."
 
-#: ../setup/diagnostics.php:35
+#: ../setup/diagnostics.php:33
 msgid "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of."
 msgstr "Мастер конфигурации пробует все типы диагностики, чтобы попытаться найти и отработать любые вопросы, которые находятся в вашей системе, но возможно существуют другие проблемы о которых мы не задумывались."
 
-#: ../setup/diagnostics.php:36
+#: ../setup/diagnostics.php:34
 msgid "You can use these tools to find out more about your setup"
 msgstr "Вы можете использовать эти инструменты, чтобы узнать больше о вашей установке:"
 
-#: ../setup/diagnostics.php:43
+#: ../setup/diagnostics.php:41
 msgid "Tool"
 msgstr "Инструмент"
 
-#: ../setup/diagnostics.php:44
+#: ../setup/diagnostics.php:42
 msgid "Description"
 msgstr "Описание"
 
-#: ../setup/diagnostics.php:48
+#: ../setup/diagnostics.php:46
 #, fuzzy
 msgid "PHP _Info"
 msgstr "PHP Info"
 
-#: ../setup/diagnostics.php:51
+#: ../setup/diagnostics.php:49
 msgid "This page provides information about your PHP installation."
 msgstr "Эта страница представляет информацию об установленном у вас PHP."
 
-#: ../setup/diagnostics.php:52
+#: ../setup/diagnostics.php:50
 msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)"
 msgstr "Это хорошее место изучить различные параметры конфигурации PHP и найти текущие параметры вашей системы (иногда трудно что-либо сделать, когда вы имеете дело с машиной интернет-сервис провайдера)"
 
 #
-#: ../setup/diagnostics.php:58
+#: ../setup/diagnostics.php:56
 #, fuzzy
-msgid "Check _NetPBM"
+msgid "Check _Netpbm"
 msgstr "Проверка почты"
 
-#: ../setup/diagnostics.php:61
+#: ../setup/diagnostics.php:59
 #, fuzzy
 msgid "This page provides information about your Netpbm binaries."
 msgstr "Эта страница представляет информацию о пакете NetPBM."
 
-#: ../setup/diagnostics.php:62
+#: ../setup/diagnostics.php:60
 #, fuzzy
 msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm)."
 msgstr "Вы можете использовать эту страницу только после того как завершите настройку конфигурации (имеется ввиду, что вы уже указали в настройках галереи верный путь к NetPBM)."
 
 #
-#: ../setup/diagnostics.php:68
+#: ../setup/diagnostics.php:66
 #, fuzzy
 msgid "Check Image_Magick"
 msgstr "Путь к ImageMagick"
 
-#: ../setup/diagnostics.php:71
+#: ../setup/diagnostics.php:69
 msgid "This page provides information about your ImageMagick binaries."
 msgstr "Эта страница представляет информацию о пакете ImageMagick."
 
-#: ../setup/diagnostics.php:72
+#: ../setup/diagnostics.php:70
 msgid "You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick)."
 msgstr "Вы можете использовать эту страницу только после того как завершите настройку конфигурации (имеется ввиду, что вы уже указали в настройках галереи верный путь к ImageMagick)."
 
 #
-#: ../setup/diagnostics.php:78
+#: ../setup/diagnostics.php:76
 #, fuzzy
 msgid "Check _Sessions"
 msgstr "Проверка сессий"
 
-#: ../setup/diagnostics.php:81
+#: ../setup/diagnostics.php:79
 msgid "This page runs a very simple test on your PHP session configuration."
 msgstr "Эта страница выполняет очень простой тест с вашей настройкой сессий в PHP."
 
-#: ../setup/diagnostics.php:82
+#: ../setup/diagnostics.php:80
 msgid "Gallery requires that your PHP installation is configured with proper session support."
 msgstr "Галереи требуется, чтобы ваши установки PHP были настроены с поддержкой сессий."
 
 #
-#: ../setup/diagnostics.php:88
+#: ../setup/diagnostics.php:86
 #, fuzzy
 msgid "Check _Email"
 msgstr "Проверка email"
 
-#: ../setup/diagnostics.php:91
+#: ../setup/diagnostics.php:89
 msgid "This page will simply send a test email."
 msgstr "Эта страница просто отправит тестовое сообщение по e-mail."
 
-#: ../setup/diagnostics.php:92
+#: ../setup/diagnostics.php:90
 #, php-format
 msgid "This allows you to see if you can use the email functions in %s."
 msgstr "Это позволит вам увидеть можете ли вы использовать функции e-mail в %s."
 
 #
-#: ../setup/diagnostics.php:97
+#: ../setup/diagnostics.php:95
 #, fuzzy
 msgid "Check _Versions"
 msgstr "Проверка версий"
 
-#: ../setup/diagnostics.php:100
+#: ../setup/diagnostics.php:98
 #, php-format
 msgid "This page is for %s upgrades that have problems."
 msgstr "Эта страница для обновления %s."
 
-#: ../setup/diagnostics.php:101
+#: ../setup/diagnostics.php:99
 #, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Позволяет вам проверить правильная ли версия у всех файлов вашей %s."
 
 #
-#: ../setup/frame_test.php:28 ../setup/index.php:44
+#: ../setup/frame_test.php:27 ../setup/index.php:47
 msgid "Gallery Configuration"
 msgstr "Конфигурация галереи"
 
-#: ../setup/frame_test.php:53
+#: ../setup/frame_test.php:54
 #, fuzzy
 msgid "No Frame"
 msgstr "Нет рамок"
 
-#: ../setup/frame_test.php:54
+#: ../setup/frame_test.php:55
 msgid "No frames"
 msgstr "Нет рамок"
 
 #
-#: ../setup/frame_test.php:55
+#: ../setup/frame_test.php:56
 msgid "Dots"
 msgstr "Многоточие"
 
-#: ../setup/frame_test.php:56
+#: ../setup/frame_test.php:57
 msgid "Just a simple dashed border around the thumb."
 msgstr "Простой штрих-пунктирный бордюр вокруг макета"
 
-#: ../setup/frame_test.php:57
+#: ../setup/frame_test.php:58
 msgid "Solid"
 msgstr "Сплошной"
 
-#: ../setup/frame_test.php:58
+#: ../setup/frame_test.php:59
 msgid "Just a simple solid border around the thumb."
 msgstr "Простой сплошной бордюр вокруг макета"
 
-#: ../setup/frame_test.php:60
+#: ../setup/frame_test.php:61
 msgid "The frame from Nico Kaisers Siriux theme."
 msgstr ""
 
-#: ../setup/frame_test.php:81
+#: ../setup/frame_test.php:86
 #, php-format
 msgid "Skipping %s."
 msgstr "Пропущен %s."
 
-#: ../setup/frame_test.php:86
+#: ../setup/frame_test.php:92
 #, php-format
 msgid "Can't open %s"
 msgstr "Не могу открыть %s"
 
-#: ../setup/frame_test.php:137
+#: ../setup/frame_test.php:149
 #, fuzzy
 msgid "_Close Window"
 msgstr "Закрыть окно"
 
-#: ../setup/index.php:120
+#: ../setup/index.php:119
 msgid "1- Installation Check"
 msgstr ""
 
-#: ../setup/index.php:121
+#: ../setup/index.php:120
 #, fuzzy
 msgid "2 - Settings"
 msgstr "Просмотреть настройки"
 
 #
-#: ../setup/index.php:122
+#: ../setup/index.php:121
 #, fuzzy
 msgid "3 - Defaults"
 msgstr "Использовать установки по умолчанию"
 
-#: ../setup/index.php:123
+#: ../setup/index.php:122
 msgid "4 - Confirm"
 msgstr ""
 
 #
-#: ../setup/index.php:124
+#: ../setup/index.php:123
 #, fuzzy
 msgid "5 - Save"
 msgstr "Сохранить"
 
-#: ../setup/index.php:135
+#: ../setup/index.php:134
 msgid "Security violation"
 msgstr "Нарушение безопасности"
 
-#: ../setup/login.inc:43
+#: ../setup/login.inc:44
 msgid "Please enter username and password."
 msgstr "Пожалуйста введите имя пользователя и пароль."
 
-#: ../setup/login.inc:65
-msgid "Invalid username or password"
+#: ../setup/login.inc:66
+#, fuzzy
+msgid "Invalid username or password, or user is not an admin."
 msgstr "Неверные имя или пароль"
 
-#: ../setup/login.inc:74
-msgid "User is not an admin - access denied"
-msgstr ""
+#
+#: ../setup/login.inc:76
+#, fuzzy
+msgid "User is not an admin - access denied."
+msgstr "%s - не правильный e-mail адрес."
 
-#: ../setup/login.inc:83
+#: ../setup/login.inc:87 ../setup/login.inc:92
 #, php-format
 msgid "Reset %s Password"
 msgstr "Сбросить пароль %s"
 
-#: ../setup/login.inc:86
+#: ../setup/login.inc:95
 #, php-format
-msgid "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."
+msgid "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;."
 msgstr ""
 
-#: ../setup/login.inc:100
+#: ../setup/login.inc:97
 #, php-format
-msgid "%s configuration"
-msgstr "Конфигурация %s"
+msgid "Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."
+msgstr ""
 
-#: ../setup/login.inc:106
+#: ../setup/login.inc:125
 #, fuzzy
 msgid "You must log in as an administrator to edit this Gallery configuration."
 msgstr "Вы должны войти под администратором, чтобы редактировать конфигурацию этого сервера."
 
-#: ../setup/login.inc:108
+#: ../setup/login.inc:127
 msgid "If you have forgotten the password to your admin account, you can easily reset it."
 msgstr ""
 
-#: ../setup/login.inc:110
+#: ../setup/login.inc:129
 #, php-format
-msgid "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."
+msgid "Create a blank file named '%s' (yes, no extension) in the <i><b>setup</b></i> directory of your Gallery, then refresh this page and follow the instructions on this page."
 msgstr ""
 
-#: ../setup/login.inc:122
+#: ../setup/login.inc:141
 #, fuzzy
 msgid "_Username"
 msgstr "Имя пользователя"
 
-#: ../setup/login.inc:123
+#: ../setup/login.inc:142
 #, fuzzy
 msgid "_Password"
 msgstr "Пароль"
 
 #
-#: ../setup/login.inc:128
+#: ../setup/login.inc:147
 #, fuzzy
 msgid "_Log me in"
 msgstr "Вход"
 
-#: ../setup/login.inc:129
+#: ../setup/login.inc:148
 #, fuzzy
 msgid "_Reset"
 msgstr "Сброс"
 
-#: ../setup/login.inc:130
+#: ../setup/login.inc:149
 #, fuzzy
 msgid "_Cancel"
 msgstr "Отмена"
 
 #
-#: ../setup/session_test.php:38
-msgid "Session Test"
-msgstr "Проверка сессии"
+#: ../setup/session_test.php:37
+#, fuzzy
+msgid "Check Session"
+msgstr "Проверка сессий"
 
-#: ../setup/session_test.php:41
+#: ../setup/session_test.php:42
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
 msgstr "Если сессии настроены парвильно в вашем PHP, то ниже вы должны увидеть id сессии."
 
-#: ../setup/session_test.php:43
+#: ../setup/session_test.php:44
 msgid "The &quot;page views&quot; number should increase every time you reload the page."
 msgstr "Число &quot;просмотров страницы&quot; должно увеличиваться каждый раз, как вы обновите страницу."
 
-#: ../setup/session_test.php:45
+#: ../setup/session_test.php:46
 #, fuzzy
-msgid "Clicking &quot;Start over&quot; should reset the page view number back to 1."
+msgid "Clicking &quot;Start over&quot; should reset the page view number back to 1 (But you need to login again)."
 msgstr "Щелкая на %s можно установить число просмотра страницы в 1."
 
-#: ../setup/session_test.php:50
+#: ../setup/session_test.php:51
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
 msgstr "Если это <b>не</b> работает, тогда у вас вероятно возникли проблемы с установкой PHP."
 
-#: ../setup/session_test.php:52
+#: ../setup/session_test.php:53
 msgid "Gallery will not work properly until PHP's session management is configured properly."
 msgstr "Галерея не будет работать нормально, пока управление сессиями PHP не будет правильно настроено."
 
-#: ../setup/session_test.php:61
+#: ../setup/session_test.php:62
 msgid "Your session id is"
 msgstr "Ваш id сессии"
 
-#: ../setup/session_test.php:65
+#: ../setup/session_test.php:66
 msgid "Page views in this session"
 msgstr "Просмотров страницы в течении этой сессии"
 
 #
-#: ../setup/session_test.php:69
+#: ../setup/session_test.php:70
 msgid "Server IP address"
 msgstr "IP адрес сервера"
 
-#: ../setup/session_test.php:77
+#: ../setup/session_test.php:78
 #, fuzzy
 msgid "_Reload"
 msgstr "Переупорядочить %s"
 
 #
-#: ../setup/session_test.php:78
+#: ../setup/session_test.php:79
 #, fuzzy
 msgid "_Start over"
 msgstr "Начать заново"
 
-#: ../setup/write.inc:164
+#: ../setup/write.inc:168
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "Пароль пользователя %s был изменен."
 
-#: ../setup/write.inc:168
+#: ../setup/write.inc:172
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "Учетная запись названная %s создана для вас с паролем, который вы определили."
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:190
 #, fuzzy
 msgid "We suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "Мы советуем вам изменить атрибуты файлов .htacces и config.php на 644 для повышения безопасности."
 
-#: ../setup/write.inc:194
+#: ../setup/write.inc:198
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr ""
 
 #
-#: ../setup/write.inc:208
+#: ../setup/write.inc:212
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../setup/write.inc:216
+#: ../setup/write.inc:220
 msgid "Your configuration has been successfully saved!"
 msgstr "Ваша конфигурация успешно сохранена!"
 
 #
-#: ../setup/write.inc:223
+#: ../setup/write.inc:227
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "Вы можете перенастроить галерею в любое время, перезапустите этот мастер конфигурации."
 
-#: ../setup/write.inc:225
+#: ../setup/write.inc:229
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "Ваши данные сохранятся, так что вам не нужно будет вводить все заново!"
 
-#: ../setup/write.inc:230
+#: ../setup/write.inc:234
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "Пожалуйста подпишитесь на список рассылки %s. Это очень низкий объем рассылки, который будет держать вас в курсе важных изменений в %s. В ней мы объявляем о новых версиях, сообщаем об исправленных ошибках и о любых вопросах безопасности и их решения."
 
 #
-#: ../setup/write.inc:235
+#: ../setup/write.inc:239
 #, fuzzy
 msgid "Enter your Gallery"
 msgstr "Вход в галерею"
 
 #
-#: ../setup/write.inc:253
+#: ../setup/write.inc:257
 msgid "Failure"
 msgstr "Отказ"
 
-#: ../setup/write.inc:254
+#: ../setup/write.inc:258
 #, php-format
 msgid "Unable to write to %s."
 msgstr "Невозможно записать в %s."
 
-#: ../setup/write.inc:257
+#: ../setup/write.inc:261
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "У вас отсутствует %s или %s."
 
-#: ../setup/write.inc:261
+#: ../setup/write.inc:265
 msgid "Review Settings"
 msgstr "Просмотреть настройки"
 
@@ -3560,91 +3588,117 @@ msgstr "Загрузка файлов конфигурации. Если вы видите ошибку, то вероятно вы не з
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Кажется, что вы не настроили вашу ГАЛЕРЕЮ. Пожалуйста запустите и завершите мастер конфигурации."
 
-#: ../templates/setup/im-netpbm-test.tpl:62
+#: ../templates/setup/im-netpbm-test.tpl:63
 msgid "OK"
 msgstr "OK"
 
 #
-#: ../templates/setup/im-netpbm-test.tpl:69
+#: ../templates/setup/im-netpbm-test.tpl:70
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "Давайте посмотрим сможем ли мы вычислить какую операционную систему вы используете."
 
 #
-#: ../templates/setup/im-netpbm-test.tpl:73
+#: ../templates/setup/im-netpbm-test.tpl:74
 msgid "This is what your system reports"
 msgstr "Отчет вашей системы"
 
-#: ../templates/setup/im-netpbm-test.tpl:76
+#: ../templates/setup/im-netpbm-test.tpl:77
 msgid "This is the type of system on which PHP was compiled"
 msgstr "Тип системы в которой был откомпилирован PHP"
 
 #
-#: ../templates/setup/im-netpbm-test.tpl:79
+#: ../templates/setup/im-netpbm-test.tpl:80
 msgid "Make sure that the values above make sense to you."
 msgstr "Убедитесь, что значения указанные выше имеют смысл для вас."
 
-#: ../templates/setup/im-netpbm-test.tpl:82
+#: ../templates/setup/im-netpbm-test.tpl:83
 #, php-format
 msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr "Найдите ключевые слова похожие на %s, %s, %s и т.п. выведенные вверху."
 
 #
-#: ../templates/setup/im-netpbm-test.tpl:85
+#: ../templates/setup/im-netpbm-test.tpl:87
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr "Если обе попытки завершились неудачей, вы должны спросить вашего интернет сервис провайдера, какую операционную систему вы используете."
 
-#: ../templates/setup/im-netpbm-test.tpl:86
+#: ../templates/setup/im-netpbm-test.tpl:96
 #, php-format
 msgid "You can check via %s, they can often tell you."
 msgstr "Вы можете проверить через %s, возможно вы сможете узнать нужную вам информацию."
 
-#: ../templates/setup/im-netpbm-test.tpl:98
+#: ../templates/setup/im-netpbm-test.tpl:106
 #, php-format
 msgid "You told the config wizard that your %s binaries live here:"
 msgstr "Вы сообщили мастеру конфигурации, что ваш %s находится здесь:"
 
-#: ../templates/setup/im-netpbm-test.tpl:101
+#: ../templates/setup/im-netpbm-test.tpl:109
 #, php-format
 msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
 msgstr "Если это неправильно (или если здесь пустое значение), перезапустите мастер конфигурации и введите где расположен %s."
 
-#: ../templates/setup/im-netpbm-test.tpl:107
+#: ../templates/setup/im-netpbm-test.tpl:115
 #, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
 msgstr "<b>Примечание:</b> Ваш %s каталог (%s) не в вашем open_basedir списке %s"
 
-#: ../templates/setup/im-netpbm-test.tpl:112
+#: ../templates/setup/im-netpbm-test.tpl:120
 msgid "The open_basedir list is specified in php.ini."
 msgstr "open_basedir список определен в php.ini."
 
-#: ../templates/setup/im-netpbm-test.tpl:113
+#: ../templates/setup/im-netpbm-test.tpl:121
 msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
 msgstr "Результат, мы не можем выполнить все наши основные проверки в файлах, чтобы убедиться, что они существуют и они доступны для запуска."
 
-#: ../templates/setup/im-netpbm-test.tpl:128
+#: ../templates/setup/im-netpbm-test.tpl:136
 #, php-format
 msgid "We are going to test each %s binary individually."
 msgstr "Мы собираемся протестировать каждый исполняемый файл %s индивидуально."
 
 #
-#: ../templates/setup/im-netpbm-test.tpl:133
+#: ../templates/setup/im-netpbm-test.tpl:141
 msgid "Checking:"
 msgstr "Проверяется:"
 
-#: ../templates/setup/im-netpbm-test.tpl:162
+#: ../templates/setup/im-netpbm-test.tpl:170
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "Если вы видите ошибку с жалобами на чтение или запись %s, то вероятно проблема в привелегиях/настройках вашей системы. Если упоминается %s, то это потому что ваша система сконфигурирована с включенным %s."
 
-#: ../templates/setup/im-netpbm-test.tpl:166
+#: ../templates/setup/im-netpbm-test.tpl:174
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "Вы должны поговорить с вашим системным администратором об этом или заглянуть на %sстраницу помощи галереи%s."
 
-#: ../templates/setup/im-netpbm-test.tpl:171
+#: ../templates/setup/im-netpbm-test.tpl:179
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "При возникновении других ошибок, пожалуйста сошлитесь на список возможных ответов в %s, чтобы получить более подробную информацию."
+
+#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#~ msgstr "Галерея предпочитает NetPBM версии 9.9 и выше. Вы можете установить уже готовые испоняемые файлы достаточные для галереи со %sстраницы загрузки галереи%s, либо самим откомпилировать и установить целый пакет NetPBM с %sсайта NetPBM%s."
+
+#, fuzzy
+#~ msgid "<b>safe_mode</b> is enabled on this server."
+#~ msgstr "<b>safe_mode</b> отключен."
+
+#
+#, fuzzy
+#~ msgid "_documentation"
+#~ msgstr "документация"
+
+#~ msgid "Having problems?  Try the %s, %s and %s."
+#~ msgstr "Проблемы? Вам помогут %s, %s и %s."
+
+#
+#~ msgid "documentation"
+#~ msgstr "документация"
+
+#~ msgid "%s configuration"
+#~ msgstr "Конфигурация %s"
+
+#
+#~ msgid "Session Test"
+#~ msgstr "Проверка сессии"
 
 #, fuzzy
 #~ msgid "I've found part of ImageMagick , but some critical components are missing (see below)."
@@ -3846,10 +3900,6 @@ msgstr "При возникновении других ошибок, пожалуйста сошлитесь на список возможны
 #
 #~ msgid "You must specify valid admin email addresses"
 #~ msgstr "Вы должны указать правильный e-mail адрес администратора"
-
-#
-#~ msgid "%s is not a valid email address."
-#~ msgstr "%s - не правильный e-mail адрес."
 
 #
 #~ msgid "Valid sender email address given."

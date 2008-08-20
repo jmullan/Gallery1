@@ -188,10 +188,8 @@ function process($file, $tag, $name, $setCaption="") {
 		}
 
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
-
 		$files_to_process	= array();
-		$dir_handle		= fs_opendir($temp_dirname);
-
+		$dir_handle			= fs_opendir($temp_dirname);
 		while (false !== ($content_filename = readdir($dir_handle))) {
 			if(! isXSSclean($content_filename) ||
 			   $content_filename == "." || $content_filename == '..')
@@ -199,7 +197,7 @@ function process($file, $tag, $name, $setCaption="") {
 				continue;
 			}
 
-			$content_file_ext	= getExtension($content_filename);
+			$content_file_ext		= getExtension($content_filename);
 			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
 
 			if (isAcceptableFormat($content_file_ext) ||

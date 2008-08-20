@@ -12,10 +12,10 @@ function insertSectionToggle() {
 	function configSection(inittab) {
 
 		this.toggle = function(id) {
-			document.getElementById(this.oldtab).style.display 		= 'none';
+			document.getElementById(this.oldtab).style.display 	= 'none';
 			document.getElementById('tab_' + this.oldtab).className	= '';
-			document.getElementById(id).style.display				= 'inline';
-			document.getElementById('tab_' + id).className			= 'g-activeTab';
+			document.getElementById(id).style.display		= 'inline';
+			document.getElementById('tab_' + id).className		= 'g-activeTab';
 
 			this.oldtab = id;
 			document.getElementById('initialtab').value = id;
