@@ -67,10 +67,9 @@ $adminbox['text']	 = gTranslate('core', "Comments for this Album");
 $adminbox['commands']	 = makeIconMenu($adminCommandIcons, 'right');
 $adminbox['bordercolor'] = $bordercolor;
 
-$breadcrumb["text"] = returnToPathArray($gallery->album, true);
-
 $navigator['fullWidth'] = '100';
 $navigator['widthUnits'] ='%';
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>

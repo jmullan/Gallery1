@@ -124,7 +124,6 @@ $fullname	 = $tmpUser->getFullname();
 $email		 = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-
 echo '<div class="g-sitedesc">';
 echo gTranslate('core', "You can change your user information here.");
 echo gTranslate('core', "You must enter the new password twice.");

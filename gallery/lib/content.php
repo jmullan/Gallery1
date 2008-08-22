@@ -532,7 +532,7 @@ function includeTemplate($tplName, $skinname='') {
  * Displays the ownename, if an email is available, then as mailto: link
  * @param  object  $owner
  * @return string
- * @author Jens Tkotz <jens@peino.de
+ * @author Jens Tkotz
  */
 function showOwner($owner) {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -1591,7 +1591,7 @@ function unhtmlentities($string) {
 	global $gallery;
 
 	if (empty($string)) {
-		return $string;
+		return '';
 	}
 
 	if (function_exists('html_entity_decode')) {
@@ -1667,12 +1667,22 @@ function sanitizeInput($value) {
 	return $sanitized;
 }
 
+/**
+ * Returns string that is safe to display in a HTML Page.
+ *
+ * @param string	$string
+ * @return string	$safe_string
+ * @author Jens Tkotz
+ */
 function gHtmlSafe($string) {
 	if (empty($string)) {
-		return $string;
+		$safe_string = $string;
 	}
 	else {
-		return gallery_htmlentities(unhtmlentities($string));
+		$safe_string = gallery_htmlentities(unhtmlentities($string));
 	}
+
+	return $safe_string;
 }
+
 ?>

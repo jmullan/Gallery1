@@ -58,10 +58,10 @@ $stats['types'] = array (
 				 'text' => _("Sort by the latest added image first"),
 				 'linktext' => _("latest added")),
 	'cdate'		=> array('type' => 'radio',
-				 'default' => '', 
+				 'default' => '',
 				 'name' =>'type',
 				 'text' => _("Sort by image capture date"),
-				 'linktext' => _("latest shots")),	
+				 'linktext' => _("latest shots")),
 	'comments'	=> array('type' => 'radio',
 				 'default' => '',
 				 'name' =>'type',
@@ -121,7 +121,7 @@ $stats['options'] = array (
 				  'default' => '',
 				 'text' => _("Show timing basic information"))
 );
-	
+
 $stats['layout'] = array(
 	'reverse'	=> array('type' => 'checkbox',
 				 'default' => '',
@@ -145,7 +145,7 @@ $stats['layout'] = array(
 				 'default' => (isset($gallery->app->default["cols"])) ? $gallery->app->default["cols"] : 3,
 				 'text' => _("Controls the number of columns to display in grid mode")),
 	'addLinksPos'	=> array('type' => 'select',
-				 'options' => array ('abovecomments'	=> _("Above the comments"), 
+				 'options' => array ('abovecomments'	=> _("Above the comments"),
 						     'oncaptionline'	=> _("In the caption line"),
 						     'abovestats'	=> _("Above the stats"),
 						     'belowcomments'	=> _("Below the comments")),

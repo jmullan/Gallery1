@@ -105,10 +105,7 @@ else {
 				$ret = rmdirRecursive($gallery->app->albumDir . '/' . $invalidAlbum);
 
 				if($ret) {
-					printInfoBox(array(array(
-						'type' => 'success',
-						'text' => gTranslate('core', "Album deleted.")
-					)));
+					echo gallery_success(gTranslate('core', "Album deleted."));
 				}
 				else {
 					echo gallery_error(gTranslate('core', "Album not deleted!"));
@@ -140,10 +137,7 @@ else {
 				if($ret) {
 					$targetAlbum->save(array(i18n("Item '$id' deleted from '$album' because the target image file is missing")));
 
-					printInfoBox(array(array(
-						'type' => 'success',
-						'text' => gTranslate('core', "Item deleted.")
-					)));
+					echo gallery_success(gTranslate('core', "Item deleted."));
 				}
 				else {
 					echo gallery_error(gTranslate('core', "Item not deleted!"));

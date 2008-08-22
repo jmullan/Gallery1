@@ -376,10 +376,10 @@ function showChoice2($target, $args, $popup = true) {
 /**
  * Returns the HTML Code for a submit button (<input type="submit">).
  *
- * @param string	$name			 Name of the button.
- * @param string	$value			Value shown on the button.
- * @param array	 $additionalAttrs  Additional HTML attributes
- * @return string   $html			 The HTML code.
+ * @param string    $name              Name of the button.
+ * @param string    $value            Value shown on the button.
+ * @param array     $additionalAttrs  Additional HTML attributes
+ * @return string   $html             The HTML code.
  * @author Jens Tkotz
  */
 function gSubmit($name, $value, $additionalAttrs = array()) {

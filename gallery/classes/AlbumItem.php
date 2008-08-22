@@ -220,12 +220,12 @@ class AlbumItem {
 		if ($this->version < 32) {
 			if (isset($this->itemCaptureDate)) {
 				$this->itemCaptureDate = mktime(
-				$this->itemCaptureDate['hours'],
-				$this->itemCaptureDate['minutes'],
-				$this->itemCaptureDate['seconds'],
-				$this->itemCaptureDate['mon'],
-				$this->itemCaptureDate['mday'],
-				$this->itemCaptureDate['year']
+				  $this->itemCaptureDate['hours'],
+				  $this->itemCaptureDate['minutes'],
+				  $this->itemCaptureDate['seconds'],
+				  $this->itemCaptureDate['mon'],
+				  $this->itemCaptureDate['mday'],
+				  $this->itemCaptureDate['year']
 				);
 				$changed = 1;
 			}
@@ -383,22 +383,22 @@ class AlbumItem {
 			if ($srcitem->image->thumb_width > 0  && !$srcitem->isMovie()) {
 				// Crop it first
 				$ret = cut_image("$srcdir/".$srcitem->image->name.".$tag",
-				"$dir/$name.tmp.$tag",
-				$srcitem->image->thumb_x,
-				$srcitem->image->thumb_y,
-				$srcitem->image->thumb_width,
-				$srcitem->image->thumb_height);
+				  "$dir/$name.tmp.$tag",
+				  $srcitem->image->thumb_x,
+				  $srcitem->image->thumb_y,
+				  $srcitem->image->thumb_width,
+				  $srcitem->image->thumb_height);
 
 				// Then resize it down
 				if ($ret) {
 					$ret = resize_image(
-					"$dir/$name.tmp.$tag",
-					"$dir/$name.highlight.$tag",
-					$size,
-					0,
-					0,
-					true,
-					$gallery->app->highlightJpegImageQuality
+						"$dir/$name.tmp.$tag",
+						"$dir/$name.highlight.$tag",
+						$size,
+						0,
+						0,
+						true,
+						$gallery->app->highlightJpegImageQuality
 					);
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
@@ -407,13 +407,13 @@ class AlbumItem {
 				if (fs_file_exists($gallery->app->movieThumbnail)) {
 					$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
 					$ret = resize_image(
-					$gallery->app->movieThumbnail,
-					"$dir/$name.highlight.$tag",
-					$size,
-					0,
-					0,
-					true,
-					$gallery->app->highlightJpegImageQuality
+						$gallery->app->movieThumbnail,
+						"$dir/$name.highlight.$tag",
+						$size,
+						0,
+						0,
+						true,
+						$gallery->app->highlightJpegImageQuality
 					);
 				}
 				else {

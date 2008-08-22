@@ -39,7 +39,6 @@ else if(!isset($gallery->album)) {
 	$loadOk = $gallery->album->load($pieces[0]);
 }
 
-
 if(isXSSclean($ecard["template_name"])) {
 	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 }
