@@ -28,10 +28,11 @@ class Album {
 	var $tsilb = "TSILB";
 
 	/*
-	* This variable contains data that is useful for the lifetime
-	* of the album object but which should not be saved in the
-	* database.  Data like the mirrorUrl which we want to validate
-	* the first time we touch an album.
+	 * transient
+	 * This variable contains data that is useful for the lifetime
+	 * of the album object but which should not be saved in the
+	 * database.  Data like the mirrorUrl which we want to validate
+	 * the first time we touch an album.
 	*/
 	var $transient;
 
@@ -281,13 +282,13 @@ class Album {
 		}
 
 		/* If the last album is a root album (= has no parent) and a returnto link is wanted,
-		 * add the link to Gallery mainpage
+		 *  add the link to Gallery mainpage
 		 */
 		if ($withGalleryLink && !isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
 			$parentAlbumsArray[] = array(
-			'prefixText' => gTranslate('core', "Gallery"),
-			'title' => $gallery->app->galleryTitle,
-			'url' => makeGalleryUrl("albums.php"));
+				'prefixText'	=> gTranslate('core', "Gallery"),
+				'title'		=> clearGalleryTitle(),
+				'url'		=> makeGalleryUrl("albums.php"));
 		}
 
 		$parentAlbumsArray = array_reverse($parentAlbumsArray, true);
@@ -520,7 +521,7 @@ class Album {
 			}
 
 			if (isset($this->fields['print_photos']['shutterfly']) &&
-				!isset($this->fields['print_photos']['shutterfly']['checked'])) {
+			    !isset($this->fields['print_photos']['shutterfly']['checked'])) {
 				unset($this->fields['print_photos']['shutterfly']);
 			}
 		}
@@ -2408,22 +2409,21 @@ class Album {
 	function isItemOwner($uid, $index) {
 		global $gallery;
 
-		if($uid == $this->getItemOwner($index)) {
+		$ownerID = $this->getItemOwner($index);
+
+		if($uid == $ownerID) {
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
-		if($this->getItemOwner($index) == $everybodyUid) {
+		if($ownerID == $everybodyUid) {
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
-		$nobody		= $gallery->userDB->getNobody();
-		$nobodyUid	= $nobody->getUid();
-		if ($uid == $nobodyUid) {
-			return true;
-		}
-
+		debugMessage(sprintf(gTranslate('core', "Userid %d is NOT owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 		return false;
 	}
 
@@ -2714,6 +2714,8 @@ class Album {
 	}
 
 	function getPerm($permName, $uid) {
+		global $gallery;
+
 		if (isset($this->fields['perms'][$permName])) {
 			$perm = $this->fields['perms'][$permName];
 		}
@@ -2725,7 +2727,6 @@ class Album {
 			return true;
 		}
 
-		global $gallery;
 
 		/* If everybody has the perm, then we do too */
 		$everybody = $gallery->userDB->getEverybody();
@@ -2797,35 +2798,192 @@ class Album {
 		}
 	}
 
-	// -------------
-	function canRead($uid) {
+
+	/**
+	 * Is a user allowed to add comments?
+	 * Owner and admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canAddComments($uid) {
+		global $gallery;
+
 		if ($this->isOwner($uid)) {
 			return true;
 		}
 
-		// In the default case where there are no permissions for the album,
-		// let everybody see it.
-		if (!isset($this->fields['perms'])) {
-			return 1;
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canAddComments", $uid);
+	}
+
+	/**
+	 * Is a user allowed to add items to the album?
+	 * Owner and admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canAddTo($uid) {
+		global $gallery;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canAddTo", $uid);
+	}
+
+	/**
+	 * Is a user allowed to change album texts?
+	 * Owner and admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canChangeText($uid) {
+		global $gallery;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canChangeText", $uid);
+	}
+
+	/**
+	 * Is a user allowed to create subalbums?
+	 * Owner and admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canCreateSubAlbum($uid) {
+		global $gallery;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canCreateSubAlbum", $uid);
+	}
+
+	/**
+	 * Is a user allowed to create subalbums?
+	 * Admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canDelete($uid) {
+		global $gallery;
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canDelete", $uid);
+	}
+
+	/**
+	 * Is a user allowed to create subalbums?
+	 * Admins are always allowed.
+	 * NOTE: Added in 1.5.9 that admins are always allowed.
+	 *       REMOVED that owners can do this always!
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canDeleteFrom($uid) {
+		global $gallery;
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
+		}
+
+		return $this->getPerm("canDeleteFrom", $uid);
+	}
+
+	/**
+	 * Who can see the album?
+	 * Admins and owners always can.
+	 * NOTE: Added in 1.5.9 that admins are always allowed.
+	 *       REMOVED that everybody can see an album if no permissions are set.
+	 *
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canRead($uid) {
+		global $gallery;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
+			return true;
 		}
 
 		return $this->getPerm("canRead", $uid);
 	}
 
+
+	/**
+	 * Would a user be possible to see this album from root down?
+	 * Recursive call of 'canRead'
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function canReadRecurse($uid) {
 		global $albumDB;
+
 		if (empty($albumDB)) {
 			$albumDB = new AlbumDB();
 		}
 
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		elseif ($this->canRead($uid)) {
+		if ($this->canRead($uid)) {
 			if ($this->isRoot() || empty($this->fields['parentAlbumName'])) {
 				return true;
 			}
+
 			$parent = $albumDB->getAlbumByName($this->fields['parentAlbumName'], false);
+
 			return $parent->canReadRecurse($uid);
 		}
 		else {
@@ -2833,57 +2991,48 @@ class Album {
 		}
 	}
 
-	// -------------
-	function canWrite($uid) {
+	/**
+	 * Is a user allowed to view comments?
+	 * Owner and admins are always allowed.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canViewComments($uid) {
+		global $gallery;
+
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-		return $this->getPerm("canWrite", $uid);
-	}
 
-	// -------------
-	function canDelete($uid) {
-		if ($this->isOwner($uid)) {
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
 			return true;
 		}
-		return $this->getPerm("canDelete", $uid);
+
+		return $this->getPerm("canViewComments", $uid);
 	}
 
-	// -------------
-	function canDeleteFrom($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canDeleteFrom", $uid);
-	}
-
-	// -------------
-	function canAddTo($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canAddTo", $uid);
-	}
-
-	// -------------
-	function canChangeText($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canChangeText", $uid);
-	}
-
-	// -------------
-	function canCreateSubAlbum($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canCreateSubAlbum", $uid);
-	}
-
-	// -------------
+	/**
+	 * Who can see the full/original images?
+	 * Admins and owners always can.
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function canViewFullImages($uid) {
+		global $gallery;
+
 		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
 			return true;
 		}
 
@@ -2932,25 +3081,43 @@ class Album {
 		return false;
 	}
 
-	// -------------
-	function canAddComments($uid) {
+	/**
+	 * Can i user modify items in this album?
+	 * Rotate, Resize, Watermark, Reorder
+	 * But not: Delete or Move!
+	 * Note: Added in 1.5.9 that admins are always allowed.
+	 *
+	 * @param string    $uid
+	 * @return boolean
+	 */
+	function canWrite($uid) {
+		global $gallery;
+
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-		return $this->getPerm("canAddComments", $uid);
-	}
 
-	// -------------
-	function canViewComments($uid) {
-		if ($this->isOwner($uid)) {
+		$user = $gallery->userDB->getUserByUid($uid);
+
+		if ($user->isAdmin()) {
 			return true;
 		}
-		return $this->getPerm("canViewComments", $uid);
+
+		return $this->getPerm("canWrite", $uid);
 	}
 
-	// -------------
+	/**
+	 * Is a user owner of an album?
+	 * Also special users like nobody, everbody or loggedIn can be the owner!
+	 * An admin does not own every album!
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function isOwner($uid) {
 		global $gallery;
+
+		//debugMessage(sprintf(gTranslate('core',"OwnerUID of album '%s' is '%s' || Tested uid is '%s'"), $this->fields['name'], $this->fields['owner'], $uid), __FILE__, __LINE__);
 
 		if(!isset($this->fields['owner'])) {
 			return false;
@@ -2962,7 +3129,15 @@ class Album {
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
+
 		if($this->fields['owner'] == $everybodyUid) {
+			return true;
+		}
+
+		$loggedIn	= new LoggedinUser();
+		$loggedInUid	= $loggedIn->getUid();
+
+		if($this->fields['owner'] == $loggedInUid && $gallery->user->isLoggedIn()) {
 			return true;
 		}
 
@@ -3246,7 +3421,9 @@ class Album {
 			return false;
 		}
 		for ($i = 0; $i<$this->fields['poll_scale']; $i++ ) {
-			if ($this->fields['poll_nv_pairs'][$i]['value'] != $album->fields['poll_nv_pairs'][$i]['value'] ) {
+			if ($this->fields['poll_nv_pairs'][$i]['value'] !=
+			    $album->fields['poll_nv_pairs'][$i]['value'] )
+			{
 				return false;
 			}
 		}
@@ -3280,7 +3457,10 @@ class Album {
 	function getVotingIdByIndex($index) {
 		$albumName = $this->getAlbumName($index);
 
-		if (!empty($albumName)) {
+		if($albumName === null) {
+			$vote_id = null;
+		}
+		elseif (!empty($albumName)) {
 			$vote_id = "album.$albumName";
 		}
 		else {
