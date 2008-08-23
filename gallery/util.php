@@ -1341,7 +1341,7 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 		$sort_func = $sort_funcs[$sortby];
 	}
 
-	debugMessage($code, __FILE__, __LINE__, 3);
+	debugMessage($code, __FILE__, __LINE__, 4);
 
 	if($keepIndexes) {
 		uasort($data, $sort_func);
@@ -1492,5 +1492,6 @@ require_once(dirname(__FILE__) . '/lib/imageManipulation.php');
 require_once(dirname(__FILE__) . '/lib/mail.php');
 require_once(dirname(__FILE__) . '/lib/filesystem.php');
 require_once(dirname(__FILE__) . '/lib/text.php');
+require_once(dirname(__FILE__) . '/lib/progressbar.php');
 
 ?>

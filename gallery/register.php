@@ -33,21 +33,13 @@ list($uname, $old_password, $new_password1, $new_password2) =
 list($fullname, $email, $send_email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php printf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle) ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle) ?></div>
-  <div class="popup">
-<?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
+echo printPopupStart(gTranslate('core', "Register new user"), '', 'left');
+
+if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
 	<?php echo gTranslate('core', "This Gallery does not support self-registration by visitors.") ?>
 	<br><br>
-	<form> <input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick='parent.close()'> </form>
+	<?php echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()'); ?>
   </div>
 </body>
 </html>
@@ -68,19 +60,27 @@ $allowChange['member_file']	= false;
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
-        if($fullname != strip_tags($fullname)) {
+	if (! isXSSclean($uname)) {
+		$gErrors['uname'] = gTranslate('core', "Your username containes invalid data!");
+		$errorCount++;
+	}
+	elseif (empty($uname)) {
+		$gErrors['fullname'] = gTranslate('core', "You must specify a username.");
+		$errorCount++;
+	}
+
+	if(! isXSSclean($fullname)) {
             $gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
             $errorCount++;
         }
+	elseif (empty($fullname)) {
+		$gErrors['fullname'] = gTranslate('core', "You must specify a name.");
+		$errorCount++;
+	}
 
 	$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
 
 	if ($gErrors['uname']) {
-		$errorCount++;
-	}
-
-	if (empty($fullname) || !strcmp($fullname, '')) {
-		$gErrors['fullname'] = gTranslate('core', "You must specify a name.");
 		$errorCount++;
 	}
 
@@ -90,7 +90,6 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (!$errorCount) {
-
 	    $password = generate_password(10);
 	    $tmpUser = new Gallery_User();
 	    $tmpUser->setUsername($uname);
@@ -123,10 +122,9 @@ if (!empty($formaction) && $formaction == 'create') {
 	        echo gallery_error(gTranslate('core', "Email could not be sent.  Please contact gallery administrator to register on this site"));
 	    }
 ?>
-		<center>
-		<?php echo gButton('close',  gTranslate('core', "Close"), 'parent.close()'); ?>
+		<br><br>
+		<?php echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()'); ?>
 		</center>
-		</div>
 		</body>
 		</html>
 <?php

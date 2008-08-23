@@ -91,8 +91,8 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 
 	if ($addComments) {
 		/* Default is the popup link.
-		* addType given through function call overrides default.
-		*/
+		 * addType given through function call overrides default.
+		 */
 		if (empty($addType)) {
 			$addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
 		}
@@ -215,7 +215,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 					// try to find Joomla cookie (this is shaky)
 					foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
 						if (strlen($cookie1_name) == 32 &&
-						strlen($cookie1_value) == 32) {
+						    strlen($cookie1_value) == 32) {
 							// this is probably the right cookie...
 							break;
 						}
@@ -678,7 +678,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
 	$units = array('&nbsp;&nbsp;B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 	$unit_count = (count($units) - 1);
 
-	$pass = 0; // set zero, for Bytes
+	$pass = 0;	// set zero, for Bytes
 	while( $filesize >= 1024 && $pass < $unit_count ) {
 		$filesize /= 1024;
 		$pass++;
@@ -864,9 +864,10 @@ function _getStyleSheetLink($filename, $skinname = '') {
 	$base = dirname(dirname(__FILE__));
 
 	if (!$skinname &&
-		isset($gallery->app) &&
-		isset($gallery->app->skinname) &&
-		!$GALLERY_EMBEDDED_INSIDE) {
+	    isset($gallery->app) &&
+	    isset($gallery->app->skinname) &&
+	    !$GALLERY_EMBEDDED_INSIDE)
+	{
 		$skinname = $gallery->app->skinname;
 	}
 
@@ -1517,55 +1518,6 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 	$html = '<br>' . $html;
 
 	return $html;
-}
-
-/**
- * Returns the HTML code for a progressbar.
- *
- * @param string  $id       HTML ID you want to assing to the progressbar
- * @param string  $label    A descriptive Label
- * @return string $html
- * @author Jens Tkotz
- */
-function addProgressbar($id, $label = '') {
-	global $gallery;
-	static $jsSet = false;
-
-	$html = '';
-
-	if(!$jsSet) {
-		$html .= jsHtml('progressbar.js');
-	}
-
-	$html .= "\n<div class=\"g-emphasis\">$label</div>\n";
-	$html .= "<div id=\"$id\" class=\"progressBar\"><div id=\"progressBarDone_$id\" class=\"progressBarDone\"></div></div>\n";
-	$html .= "<div id=\"progressDescription_$id\"></div>\n";
-	$html .= "<div id=\"progressAddText_$id\"></div>\n";
-
-	return $html;
-}
-
-/**
- * Wrapper around js function updateProgressBar. Updates a progressbar.
- *
- * @param string  $htmlId       HTML ID of the progressbar you want to update.
- * @param string  $status       Optional text you want to write in the description field.
- * @param float   $percentDone
- */
-function updateProgressBar($htmlId, $status, $percentDone) {
-	echo "\n<script type=\"text/javascript\">updateProgressBar('$htmlId', '$status', $percentDone)</script>";
-	my_flush();
-}
-
-/**
- * Wrapper around js function addProgressBarText. Updates a progressbar.
- *
- * @param string  $htmlId    HTML ID of the progressbar you want to update.
- * @param string  $text
- */
-function addProgressBarText($htmlId, $text) {
-	echo "\n<script type=\"text/javascript\">addProgressBarText('$htmlId', '$text')</script>";
-	my_flush();
 }
 
 /**

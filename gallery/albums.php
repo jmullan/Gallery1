@@ -403,7 +403,14 @@ for ($i = $start; $i <= $end; $i++) {
     </table>
 
   <?php
-	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
+	echo "\n<div class=\"admin\">";
+  	$adminAlbumCommandsArray = getAlbumCommands($gallery->album, false);
+	if(!empty($adminAlbumCommandsArray)) {
+		foreach ($adminAlbumCommandsArray as $trash => $command ) {
+			echo $command['html'];
+		}
+	}
+	echo "</div>";
 
 	/*
 	* Description
