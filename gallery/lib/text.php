@@ -19,15 +19,12 @@
  *
  * $Id: text.php 16777 2007-07-18 22:15:34Z jenst $
  */
-?>
-<?php
 
 /**
  * @package text
  * @author Jens Tkotz
  */
-?>
-<?php
+
 /**
  * Returns a truncated text.
  * 3 Types of position are supported:

@@ -170,7 +170,7 @@ function getParentAlbums($childAlbum, $addChild = false) {
 	$pAlbum = $childAlbum;
 	$parentNameArray = array();
 
-	if ($addChild == true) {
+	if ($addChild) {
 		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
 	}
 
@@ -241,7 +241,10 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
 				$i++;
 				$link = $navAlbum['prefixText'] .': ';
 				if($i == $numParents) {
-					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow");
+					$link .= galleryLink(
+							$navAlbum['url'],
+							$navAlbum['title'] ."&nbsp;$lastUpArrow"
+					);
 				}
 				else {
 					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
@@ -252,8 +255,9 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
 		}
 		elseif ($photoview) {
 			$pathArray[] = galleryLink(
-						makeAlbumUrl($gallery->album->fields['name']),
-						$gallery->album->fields['title'] ."&nbsp;$lastUpArrow");
+					makeAlbumUrl($gallery->album->fields['name']),
+					$gallery->album->fields['title'] ."&nbsp;$lastUpArrow"
+			);
 		}
 	}
 	else {
@@ -441,7 +445,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	if (checkRequirements('canChangeText')) {
 		$albumCommands[] = array(
 			'class'	=> 'url',
-			'text'	=> gTranslate('common',"Edit captions"),
+			'text'	=> gTranslate('common', "Edit captions"),
 			'html'	=> galleryLink(
 					makeGalleryUrl(
 						'captionator.php',
@@ -467,7 +471,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 		/* User is allowed to change album permissions */
 		$albumCommands[] = array(
-			'text'	=> gTranslate('common',"Permissions"),
+			'text'	=> gTranslate('common', "Permissions"),
 			'html'	=> popup_link(gTranslate('common',"Permissions"),
 						"album_permissions.php?set_albumName={$albumName}",
 						0, true,
@@ -477,7 +481,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 		/* And to change album properties */
 		$albumCommands[] = array(
-			'text'	=> gTranslate('common',"Properties"),
+			'text'	=> gTranslate('common', "Properties"),
 			'html'	=> popup_link(gTranslate('common',"Properties"),
 						"edit_appearance.php?set_albumName={$albumName}",
 						0, true,
@@ -489,7 +493,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* Watermarking support is enabled and user is allowed to watermark images/albums */
 		if (checkRequirements('photosExist','watermarkingEnabled')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common',"Watermark&nbsp;album"),
+				'text'	=> gTranslate('common', "Watermark&nbsp;album"),
 				'html'	=> popup_link(gTranslate('common',"Watermark&nbsp;album"),
 							"watermark_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("watermark_album.php?set_albumName=$albumName")
@@ -503,7 +507,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to delete the album */
 		if (checkRequirements('canDeleteAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common',"Delete album"),
+				'text'	=> gTranslate('common', "Delete album"),
 				'html'	=> popup_link(gTranslate('common',"Delete album"),
 							"delete_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("delete_album.php?set_albumName=$albumName")
@@ -515,7 +519,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to delete the subalbum */
 		if (checkRequirements('canDeleteAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common',"Delete this (sub)album"),
+				'text'	=> gTranslate('common', "Delete this (sub)album"),
 				'html'	=> popup_link2(
 							gTranslate('common', "Delete this (sub)album"),
 							makeGalleryUrl('delete_item.php',
@@ -536,7 +540,6 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		}
 	}
 
-
 	/* Options shown only in thumbsview */
 	if(!$mainpage) {
 		if (checkRequirements('canWriteToAlbum', 'photosExist')) {
@@ -546,7 +549,6 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 								 "sort_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("sort_album.php?set_albumName=$albumName")
 			);
-
 
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Resize all"),

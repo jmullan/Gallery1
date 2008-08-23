@@ -37,12 +37,12 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 		case 'int_ZeroEmpty':
 			$status = isValidGalleryInteger($value, true, true);
 
-			break;
+		break;
 
 		case 'int_ZeroNotEmpty':
 			$status = isValidGalleryInteger($value, true, false);
 
-			break;
+		break;
 
 		case 'int_NotZeroNotEmpty':
 			$status = isValidGalleryInteger($value, false, false);
@@ -56,8 +56,7 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 			else {
 				$result = array(2, $value, gTranslate('common', "The given frame is not valid."));
 			}
-
-			break;
+		break;
 
 		case 'inChoice':
 			if(in_array($value, $choices)) {
@@ -69,8 +68,7 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 			else {
 				$result = array(2, $value, gTranslate('common', "The given value is not in the allowed list of choices."));
 			}
-
-			break;
+		break;
 
 		case 'filename':
 			$status = isXSSclean($value);
@@ -81,8 +79,7 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 			else {
 				$result = array(2, $value, gTranslate('common', "The given value is not an allowed filename."));
 			}
-
-			break;
+		break;
 
 		case 'text_NotEmpty':
 			if (empty($value)) {
@@ -91,13 +88,12 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 
 			$status = isValidText($value);
 
-			break;
+		break;
 
 		default:
 		case 'text':
 			$status = isValidText($value);
-
-			break;
+		break;
 	}
 
 	/* Handle $result for integers */

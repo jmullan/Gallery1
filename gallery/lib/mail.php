@@ -21,7 +21,7 @@
  */
 
 /**
- * @package	Mail
+ * @package Mail
  */
 
 /**
@@ -125,7 +125,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 
 	if (isset($gallery->app->email_notification) &&
-	  in_array("bcc", $gallery->app->email_notification)) {
+	    in_array("bcc", $gallery->app->email_notification)) {
 		$bcc[] = $gallery->app->adminEmail;
 	}
 
@@ -140,7 +140,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	if($isHTML) {
 		$gallery_mail->setHtmlCharset($gallery->charset);
-        $gallery_mail->setHtml($msg, gTranslate('common', "This is a HTML mail, please have a look at the Attachment."));
+		$gallery_mail->setHtml($msg, gTranslate('common', "This is a HTML mail, please have a look at the Attachment."));
 	}
 	else {
 		$gallery_mail->setText($msg);
@@ -225,9 +225,9 @@ function welcomeMsgPlaceholderList() {
 		'galleryurl'	=> gTranslate('common', "The URL to your Gallery."),
 		'gallerytitle'	=> gTranslate('common', "Title of your Gallery."),
 		'adminemail'	=> gTranslate('common', "Admin email(s)"),
-		'password'		=> gTranslate('common', "Password for the newly created user."),
-		'username'		=> gTranslate('common', "Username"),
-		'fullname'		=> gTranslate('common', "Fullname"),
+		'password'	=> gTranslate('common', "Password for the newly created user."),
+		'username'	=> gTranslate('common', "Username"),
+		'fullname'	=> gTranslate('common', "Fullname"),
 		'newpasswordlink' =>  gTranslate('common', "Will be replaced by a link the new user can click on to create a new password.")
 	);
 
@@ -243,9 +243,9 @@ function resolveWelcomeMsg($placeholders = array()) {
 
 	$welcomeMsg =  welcome_email();
 
-	$placeholders['galleryurl']		= $gallery->app->photoAlbumURL;
+	$placeholders['galleryurl']	= $gallery->app->photoAlbumURL;
 	$placeholders['gallerytitle']	= $gallery->app->galleryTitle;
-	$placeholders['adminemail']		= $gallery->app->adminEmail;
+	$placeholders['adminemail']	= $gallery->app->adminEmail;
 
 	foreach (welcomeMsgPlaceholderList() as $key => $trash) {
 		$welcomeMsg = str_replace('!!'. strtoupper($key) .'!!',
@@ -275,19 +275,19 @@ function emailComments($id, $comment_text, $commenter_name) {
 		$text .= "\n  <head>";
 		$text .= "\n  <title>$subject</title>";
 		$text .= "\n  </head>\n<body>\n<p>";
-	    $text .= sprintf(gTranslate('common', "A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
+		$text .= sprintf(gTranslate('common', "A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
 		$text .= "\n</p>";
-	    $text .= sprintf(gTranslate('common', "The comment was added by %s to this %s in this %s."),
-		$commenter_name,
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. gTranslate('common', "Item") .'</a>',
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. gTranslate('common', "Album") .'</a>');
-	    $text .= "\n<br>". gTranslate('common', "*** Begin comment ***") ."<br>\n";
+		$text .= sprintf(gTranslate('common', "The comment was added by %s to this %s in this %s."),
+		            $commenter_name,
+		            '<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. gTranslate('common', "Item") .'</a>',
+		            '<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. gTranslate('common', "Album") .'</a>');
+		$text .= "\n<br>". gTranslate('common', "*** Begin comment ***") ."<br>\n";
 		$text .= nl2br($comment_text);
-	    $text .= "<br>\n". gTranslate('common', "*** End comment ***") . "\n<p>\n";
-	    $text .= gTranslate('common', "If you no longer wish to receive emails about this item, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the item and album page (you'll need to login first).");
+		$text .= "<br>\n". gTranslate('common', "*** End comment ***") . "\n<p>\n";
+		$text .= gTranslate('common', "If you no longer wish to receive emails about this item, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the item and album page (you'll need to login first).");
 		$text .= "\n</p>\n</body>\n</html>";
 
-        $logmsg = sprintf(gTranslate('common', "New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
+		$logmsg = sprintf(gTranslate('common', "New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
 		gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 	}
@@ -302,14 +302,14 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 	}
 
 	if (isset($gallery->app->email_notification) &&
-		in_array("logfile", $gallery->app->email_notification))
+	    in_array("logfile", $gallery->app->email_notification))
 	{
 		$logfile = $gallery->app->userDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
 
 	if (isset($gallery->app->email_notification) &&
-		in_array("email", $gallery->app->email_notification))
+	    in_array("email", $gallery->app->email_notification))
 	{
 		$subject = gTranslate('common', "Email activity");
 		if ($subject != "Email activity") {

@@ -284,7 +284,7 @@ if (!empty($newAlbum) && $newAlbum != "0") {
 	} //end if ($gallery->album != $postAlbum)
 } //end if (isset($newAlbum))
 elseif ($newAlbum === "0" && !empty($submit)) {
-	echo gallery_error(gTranslate('core', "You can't move an item into an album where it already is."));
+	echo gallery_error(gTranslate('core', "You can't move an item into an album where it already exists."));
 }
 
 if (isset($newIndex) && !isset($error)) {

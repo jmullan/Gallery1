@@ -70,7 +70,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=550,$width=600, $cssclass='', $extraJS='', $icon ='', $addBrackets = true) {
+function popup_link($title, $url, $url_is_complete = 0, $online_only = true, $height = 550, $width = 600, $cssclass='', $extraJS = '', $icon ='', $addBrackets = true) {
 	global $gallery;
 	global $specialIconMode;
 
@@ -86,8 +86,8 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	$width = (int)$width;
 
 	$attrList = array(
-	   'class' => "g-popuplink $cssclass",
-	   'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+		'class' => "g-popuplink $cssclass",
+		'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
 	if(!empty($icon)) {
@@ -125,8 +125,8 @@ function popup_link2($title, $url, $args = array()) {
 	$width = (int)$width;
 
 	$attrList = array(
-	   'class' => "g-popuplink $cssclass",
-	   'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+		'class' => "g-popuplink $cssclass",
+		'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
 	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets);

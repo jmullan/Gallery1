@@ -316,7 +316,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	array_sort_by_fields($options, 'text');
 
 	if(!empty($options) && $caption) {
-		array_unshift($options,array(
+		array_unshift($options, array(
 					'text'		=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
 					'selected'	=> true
 		));
@@ -352,51 +352,55 @@ function showComments ($index, $albumName, $reverse = false) {
 		'class' => 'commentbox')
 	);
 
-    $columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
-    $commentTable->setColumnCount($columns);
+	$columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
+	$commentTable->setColumnCount($columns);
 
-    for ($nr =1; $nr <= $numComments; $nr++) {
-        $comment = $gallery->album->getComment($index, $nr);
+	for ($nr =1; $nr <= $numComments; $nr++) {
+		$comment = $gallery->album->getComment($index, $nr);
 
-        $commenterName = '<b>'. wordwrap($comment->getName(), 50, " ", 1) .'</b>';
-        if ($gallery->user->isAdmin()) {
-            $commenterName .= '@ &nbsp;'. $comment->getIPNumber();
-        }
+		$commenterName = '<b>'. wordwrap($comment->getName(), 50, " ", 1) .'</b>';
+		if ($gallery->user->isAdmin()) {
+			$commenterName .= '@ &nbsp;'. $comment->getIPNumber();
+		}
 
-        $commentTable->addElement(array(
-            'content' => gTranslate('core', "From:"),
-            'cellArgs' => array('class' => 'admin', 'width' => 50, 'height' => '25')));
+		$commentTable->addElement(array(
+			'content'	=> gTranslate('core', "From:"),
+			'cellArgs'	=> array('class' => 'admin', 'width' => 50, 'height' => '25')));
 
-        $commentTable->addElement(array(
-            'content' => $commenterName,
-            'cellArgs' => array('class' => 'admin', 'width' => '55%')));
+		$commentTable->addElement(array(
+			'content'	=> $commenterName,
+			'cellArgs'	=> array('class' => 'admin', 'width' => '55%')));
 
-        $commentTable->addElement(array(
-            'content' => '('. $comment->getDatePosted() .')',
-            'cellArgs' => array('class' => 'admin')));
+		$commentTable->addElement(array(
+			'content'	=> '('. $comment->getDatePosted() .')',
+			'cellArgs'	=> array('class' => 'admin')));
 
-        if ($gallery->user->canWriteToAlbum($gallery->album)) {
-            $url = doCommand('delete-comment',
-            array('index'=> $index,
-                'comment_index' => $nr,
-                'albumName' => $albumName)
-            );
+		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+			$url = doCommand('delete-comment', array(
+								'index'		=> $index,
+								'comment_index'	=> $nr,
+								'albumName'	=> $albumName)
+			);
 
-            $commentTable->addElement(array(
-                'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">'. $delCommentText .' </a>')
-            );
-        }
+			$commentTable->addElement(array(
+				'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">'. $delCommentText .' </a>')
+			);
+		}
 
-        $commentTable->addElement(array(
-            'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-            'cellArgs' => array('colspan' => $columns, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc'))
-        );
-    }
-    if ($reverse) {
-        $commentTable['elements'] = array_reverse($commentTable['elements']);
-    }
+		$commentTable->addElement(array(
+			'content'	=> wordwrap($comment->getCommentText(), 100, " ", 1),
+			'cellArgs'	=> array(
+						'colspan'	=> $columns,
+						'style'		=> 'padding-left:10px; border-top:1px solid black',
+						'class'		=> 'albumdesc'))
+		);
+	}
+	
+	if ($reverse) {
+		$commentTable['elements'] = array_reverse($commentTable['elements']);
+	}
 
-    return $commentTable->render();
+	return $commentTable->render();
 }
 
 /**
@@ -548,7 +552,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 				$image_info = array_merge($image_info, parse_csv($fullpath_content_file, ';'));
 			}
 			elseif (isAcceptableFormat($content_file_ext) ||
-					isAcceptableArchive($content_file_ext))
+				isAcceptableArchive($content_file_ext))
 			{
 				$files_to_process[] = array(
 					'filename'	=> $fullpath_content_file,

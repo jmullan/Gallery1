@@ -53,10 +53,10 @@ function arrayToBarGraph ($array, $max_width) {
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
 		$string_to_return .= "\n\t<tr>" .
-			"\n\t<td>(". ++$counter .")</td>" .
-			"\n\t<td>$name ($value)</td>" .
-			"\n\t<td><img src=\"$img_url\" width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>" .
-			"\n\t</tr>";
+					"\n\t<td>(". ++$counter .")</td>" .
+					"\n\t<td>$name ($value)</td>" .
+					"\n\t<td><img src=\"$img_url\" width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>" .
+					"\n\t</tr>";
 	}
 
 	$string_to_return .= "\n  </table>";
@@ -95,7 +95,7 @@ function saveResults($votes) {
 
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote) {
 				if (isset($previous_vote[getVotingID()]) &&
-					$previous_vote[getVotingID()] === intval($vote_value))
+				    $previous_vote[getVotingID()] === intval($vote_value))
 				{
 					unset($gallery->album->fields["votes"][$previous_key][getVotingID()]);
 				}
@@ -135,7 +135,7 @@ function canVote() {
 	}
 
 	if ($gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album)) == 0) {
-	       $canVote = false;
+		$canVote = false;
 	}
 	else if ($gallery->album->getVoterClass() == "Everybody") {
 		$canVote = true;
@@ -325,11 +325,11 @@ function showResultsGraph($num_rows) {
 	$graph = arrayToBarGraph($graph, 300);
 	if ($graph) {
 	    $buf .="<div class=\"g-va-poll-resultbox\"><span class=\"admin\">".
-        	    gTranslate('common',
-        	    "Result from one voter",
-        	    "Result of %d voters",
-        	    sizeof($voters), '', true) .
-    	    '</span>';
+				gTranslate('common',
+						   "Result from one voter",
+						   "Result of %d voters",
+						   sizeof($voters), '', true) .
+				'</span>';
 
 		if ($gallery->album->getPollType() == "critique") {
 			$key_string = '';

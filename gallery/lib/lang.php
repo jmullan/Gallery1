@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 /**
  * @package	Language
@@ -401,10 +401,10 @@ function initLanguage($sendHeader = true) {
 	$checklist = array('direction', 'charset') ;
 
 	/**
-     * This checks wether the previously defined values are available.
-     * All available values are in $nls
-     * If they are not defined we used the defaults from nls.php
-     */
+	 * This checks wether the previously defined values are available.
+	 * All available values are in $nls
+	 * If they are not defined we used the defaults from nls.php
+	 */
 	foreach($checklist as $check) {
 		/* if no ... is given, use default*/
 		if ( !isset($nls[$check][$gallery->language])) {
@@ -428,20 +428,20 @@ function initLanguage($sendHeader = true) {
 	/* Set Locale*/
 	setlocale(LC_ALL,$gallery->locale);
 
-	/**
-     * Set Charset header
-     * We do this only if we are not embedded and the "user" wants it.
-     * Because headers might be sent already.
-     */
+	/*
+	 * Set Charset header
+	 * We do this only if we are not embedded and the "user" wants it.
+	 * Because headers might be sent already.
+	 */
 	if (!headers_sent() && ($sendHeader == true  || ! isset($GALLERY_EMBEDDED_INSIDE))) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 
-	/**
-     * Test if we're using gettext.
-     * if yes, do some gettext settings.
-     * if not emulate _() function or ngettext()
-     */
+	/*
+	 * Test if we're using gettext.
+	 * if yes, do some gettext settings.
+	 * if not emulate _() function or ngettext()
+	 */
 
 	if (gettext_installed()) {
 		bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
@@ -490,9 +490,9 @@ function emulate_ngettext($languages_initialized = false) {
 			// We trim the String to get rid of cr/lf
 			$value = trim($value);
 			if (stristr($value, "msgid") &&
-			! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
-				//  echo "\n<br>---SID". $value;
-				//  echo "\n<br>---PID". $lines[$key+1];
+				! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
+//				echo "\n<br>---SID". $value;
+//				echo "\n<br>---PID". $lines[$key+1];
 				if (stristr($lines[$key+1],"msgid_plural")) {
 					$singular_key=substr($value, 7,-1);
 					$translation[$singular_key]=substr(trim($lines[$key+2]),11,-1);
@@ -687,21 +687,21 @@ function i18n($buf) {
 
 function isSupportedCharset($charset) {
 	$supportedCharsets = array(
-	  'UTF-8',
-	  'ISO-8859-1',
-	  'ISO-8859-15',
-	  'cp1252',
-	  'BIG5',
-	  'GB2312',
-	  'BIG5-HKSCS',
-	  'Shift_JIS',
-	  'EUC-JP'
+		'UTF-8',
+		'ISO-8859-1',
+		'ISO-8859-15',
+		'cp1252',
+		'BIG5',
+		'GB2312',
+		'BIG5-HKSCS',
+		'Shift_JIS',
+		'EUC-JP'
 	);
 
 	$supportedCharsetsNewerPHP = array(
-	  'cp866',
-	  'cp1251',
-	  'KOI8-R'
+		'cp866',
+		'cp1251',
+		//'KOI8-R'
 	);
 
 	/**
@@ -825,8 +825,8 @@ function languageSelector() {
 				}
 				else {
 					$langSelectTable->addElement(array(
-					'content' => $flagImage,
-					'cellArgs' => array('style' => 'padding-bottom:10px')
+						'content' => $flagImage,
+						'cellArgs' => array('style' => 'padding-bottom:10px')
 					));
 				}
 			}
@@ -834,11 +834,11 @@ function languageSelector() {
 
 		if($gallery->app->show_flags !='yes') {
 			$content = drawSelect('newlang',
-				$options,
-				$nls['language'][$gallery->language],
-				1,
-				array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
-				true
+					$options,
+					$nls['language'][$gallery->language],
+					1,
+					array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
+					true
 			);
 
 			$langSelectTable->addElement(array('content' => $content));

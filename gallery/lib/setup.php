@@ -177,10 +177,9 @@ function form_nv_pairs($key, $arr) {
 }
 
 function form_choice($key, $arr) {
-    $attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
+	$attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
 
-    return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
-
+	return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
 }
 
 function form_multiple_choice($key, $arr) {
@@ -1359,23 +1358,23 @@ function test_write_to_dir($dir) {
 }
 
 function inOpenBasedir($dir) {
-    $openBasedir = ini_get('open_basedir');
-    if (empty($openBasedir)) {
-        return true;
-    }
+	$openBasedir = ini_get('open_basedir');
+	if (empty($openBasedir)) {
+		return true;
+	}
 
-    /*
-    * XXX: this is not perfect.  For example, if the open_basedir list
-    * contains "/usr/localx" this code will match "/usr/local".  Let's not
-    * worry too much about that now.
-    */
-    foreach (explode(':', $openBasedir) as $basedir) {
-        if (!strncmp($basedir, $dir, strlen($basedir))) {
-            return true;
-        }
-    }
+	/*
+	* XXX: this is not perfect.  For example, if the open_basedir list
+	* contains "/usr/localx" this code will match "/usr/local".  Let's not
+	* worry too much about that now.
+	*/
+	foreach (explode(':', $openBasedir) as $basedir) {
+		if (!strncmp($basedir, $dir, strlen($basedir))) {
+			return true;
+		}
+	}
 
-    return false;
+	return false;
 }
 
 function make_separator($key, $arr)  {
@@ -1519,8 +1518,9 @@ function verify_email($emailMaster) {
 	}
 
 	if (!empty($emailGreeting) &&
-		!strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
-		!strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
+	    !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
+	    !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" ))
+	{
 	       	$fail[]= sprintf(gTranslate('common', "You must include %s or %s in your welcome email."),
 				"<b>!!PASSWORD!!</b>",
 				"<b>!!NEWPASSWORDLINK!!</b>");

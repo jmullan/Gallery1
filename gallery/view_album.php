@@ -94,7 +94,7 @@ if (!empty($Vote) && canVote()) {
 		for ($index = $start; $index < $start+$perPage; $index ++) {
 			$id = $gallery->album->getPhotoId($index);
 			if (!$votes[$id]) {
-				$votes[$id]=null;
+				$votes[$id] = null;
 			}
 		}
 	}
@@ -105,14 +105,14 @@ $bordercolor = $gallery->album->fields['bordercolor'];
 
 $imageCellWidth = floor(100 / $cols) . '%';
 
-$navigator['page'] = $page;
-$navigator['pageVar'] = 'page';
-$navigator['maxPages'] = $maxPages;
-$navigator['fullWidth'] = '100';
-$navigator['widthUnits'] = '%';
-$navigator['url'] = makeAlbumUrl($gallery->session->albumName);
-$navigator['spread'] = 5;
-$navigator['bordercolor'] = $bordercolor;
+$navigator['page']		= $page;
+$navigator['pageVar']		= 'page';
+$navigator['maxPages']		= $maxPages;
+$navigator['fullWidth']		= '100';
+$navigator['widthUnits']	= '%';
+$navigator['url']		= makeAlbumUrl($gallery->session->albumName);
+$navigator['spread']		= 5;
+$navigator['bordercolor']	= $bordercolor;
 
 $fullWidth = $navigator['fullWidth'] . $navigator['widthUnits'];
 
@@ -142,11 +142,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   	echo "<link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">";
   }
   /* prefetching/navigation */
-  $firstUrl  = makeAlbumUrl($gallery->session->albumName, '', array('page' => 1, 'noCount' => 1));
-  $prevUrl   = makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage, 'noCount' => 1));
-  $nextUrl   = makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage, 'noCount' => 1));
-  $lastUrl   = makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages, 'noCount' => 1));
-  $upUrl	 = makeAlbumUrl($gallery->album->fields['parentAlbumName'], '', array('page' => $maxPages, 'noCount' => 1));
+  $firstUrl	= makeAlbumUrl($gallery->session->albumName, '', array('page' => 1, 'noCount' => 1));
+  $prevUrl	= makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage, 'noCount' => 1));
+  $nextUrl	= makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage, 'noCount' => 1));
+  $lastUrl	= makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages, 'noCount' => 1));
+  $upUrl	= makeAlbumUrl($gallery->album->fields['parentAlbumName'], '', array('page' => $maxPages, 'noCount' => 1));
 
   if (!isset($first)) { ?>
   <link rel="first" href="<?php echo $firstUrl; ?>" >
@@ -156,8 +156,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <link rel="next" href="<?php echo $nextUrl; ?>" >
   <link rel="last" href="<?php echo $lastUrl; ?>" >
 <?php } if ($gallery->album->isRoot() &&
-(!$gallery->session->offline ||
-	 isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
+	    (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
 <?php
 	 } else if (!$gallery->session->offline ||
@@ -177,25 +176,26 @@ if (!empty($gallery->album->fields["linkcolor"]) ||
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet
-if ($gallery->album->fields["linkcolor"]) {
+	if ($gallery->album->fields["linkcolor"]) {
 	?>
-	A:link, A:visited, A:active
-	  { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
-	A:hover
-	  { color: #ff6600; }
+	a:link, a:visited, a:active { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
+	a:hover { color: #ff6600; }
 <?php
-}
-if ($gallery->album->fields["bgcolor"]) {
-	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
-}
-if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-	echo "BODY { background-image:url(".$gallery->album->fields['background']."); } ";
-}
-if ($gallery->album->fields["textcolor"]) {
-	echo "BODY, TD {color:".$gallery->album->fields['textcolor']."; }";
-	echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-	echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-}
+	}
+
+	if ($gallery->album->fields["bgcolor"]) {
+		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+	}
+
+	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+		echo "\nbody { background-image:url(".$gallery->album->fields['background']."); } ";
+	}
+
+	if ($gallery->album->fields["textcolor"]) {
+		echo "\nbody, td {color:".$gallery->album->fields['textcolor']."; }";
+		echo "\n.head {color:".$gallery->album->fields['textcolor']."; }";
+		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+	}
 ?>
   </style>
 <?php } ?>
@@ -414,8 +414,10 @@ if ($gallery->album->getPollShowResults()) {
    </script>
 <?php
 
-echo makeFormIntro('view_album.php',
-array('name' => 'vote_form', 'style' => 'margin-bottom: 0px;'));
+echo makeFormIntro(
+	'view_album.php',
+	array('name' => 'vote_form', 'style' => 'margin-bottom: 0px;')
+);
 
 if (canVote()) {
 	$nv_pairs = $gallery->album->getVoteNVPairs();
