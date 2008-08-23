@@ -2412,18 +2412,18 @@ class Album {
 		$ownerID = $this->getItemOwner($index);
 
 		if($uid == $ownerID) {
-			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
 		if($ownerID == $everybodyUid) {
-			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
-		debugMessage(sprintf(gTranslate('core', "Userid %d is NOT owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+		debugMessage(sprintf(gTranslate('core', "Userid %s is NOT owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 		return false;
 	}
 
