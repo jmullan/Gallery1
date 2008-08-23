@@ -124,7 +124,6 @@ $url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 			break;
 		}
 
-
 		if (value) {
 			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
 		}
@@ -134,7 +133,7 @@ $url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 </script>
 
 <?php
-	echo makeFormIntro('#', array("name" => "stats_form", "onclick" => 'updateUrl()'));
+	echo makeFormIntro('stats.php', array("name" => "stats_form", "onClick" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
@@ -158,7 +157,7 @@ $url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 	echo "\n</table>";
 
 	echo "<br>\n";
-	echo gButton('openStats', gTranslate('core', "Show statistics"), "location.href=document.getElementById('stats_url').value");
+	echo gSubmit('openStats', gTranslate('core', "Show statistics"));
 	echo "\n</form>";
 
 	echo "\n". '<div style="margin-top: 5px" class="left">';

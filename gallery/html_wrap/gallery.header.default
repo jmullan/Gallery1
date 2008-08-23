@@ -1,19 +1,17 @@
 <?php
-// This is the default gallery header (for the main gallery
-// page: albums.php). It's companion is gallery.footer.default. 
-//
-// To override this header, create a file called gallery.header
-// in this directory. 
-//
-// NOTE: This header cets inserted below the <body> tag.
-// 
-// Some tips:
-// * Some application variables:
-//      - Gallery Title: $gallery->app->galleryTitle
-//
-// $Id$
-?>
-<?php
+/* $Id$
+ *
+ * This is the default gallery header (for the main gallery page: albums.php).
+ * It's companion is gallery.footer.default.
+ *
+ * To override this header, create a file called stats.header in this directory.
+ *
+ * NOTE: This header gets inserted below the <body> tag.
+ *
+ * Some application variables:
+ *	- Gallery Title: $gallery->app->galleryTitle
+ */
+
 includeHtmlWrap("wrapper.header");
 
 if (!includeTemplate('gallery.header.tpl')) {

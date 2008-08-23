@@ -777,7 +777,7 @@ if ($navigator["maxPages"] > 1) {
 includeLayout('navtableend.inc');
 
 echo languageSelector();
-includeHtmlWrap("stats.footer");
+includeHtmlWrap("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
