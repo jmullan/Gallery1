@@ -21,6 +21,7 @@
 */
 
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/classes/Colors.php');
 
 list($page, $votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
@@ -184,7 +185,9 @@ if (!empty($gallery->album->fields["linkcolor"]) ||
 	}
 
 	if ($gallery->album->fields["bgcolor"]) {
+		$bgcolor = new RGBColor($gallery->album->fields['bgcolor']);
 		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+		echo "\n#adminbox td {background-color:". $bgcolor->getDarken() ."; }";
 	}
 
 	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
@@ -194,7 +197,6 @@ if (!empty($gallery->album->fields["linkcolor"]) ||
 	if ($gallery->album->fields["textcolor"]) {
 		echo "\nbody, td {color:".$gallery->album->fields['textcolor']."; }";
 		echo "\n.head {color:".$gallery->album->fields['textcolor']."; }";
-		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
 	}
 ?>
   </style>
@@ -289,7 +291,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
+if (checkRequirements('comments_overview_for_all')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;comments"),

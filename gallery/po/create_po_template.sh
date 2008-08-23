@@ -15,7 +15,7 @@ xgettext -LPHP				\
 	--keyword=gTranslate:2,3	\
 	--no-wrap 			\
 	--msgid-bugs-address="gallery-translations@lists.sourceforge.net" \
-	-o - | tail +7 >> gallery-core.pot
+	-o - | tail -n +7 >> gallery-core.pot
 
 ##### CONFIG .pot
 cat copyright-header.txt > gallery-config.pot
@@ -25,7 +25,7 @@ xgettext -LPHP				\
 	--keyword=gTranslate:2,3	\
 	--no-wrap 			\
 	--msgid-bugs-address="gallery-translations@lists.sourceforge.net" \
-	-o - | tail +7 >> gallery-config.pot
+	-o - | tail -n +7 >> gallery-config.pot
 
 ##### COMMON .pot
 cat copyright-header.txt > gallery-common.pot
@@ -35,4 +35,4 @@ xgettext -LPHP				\
 	--keyword=gTranslate:2,3	\
 	--no-wrap 			\
 	--msgid-bugs-address="gallery-translations@lists.sourceforge.net" \
-	-o - | tail +7 >> gallery-common.pot
+	-o - | tail -n +7 >> gallery-common.pot
