@@ -120,7 +120,7 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 				$result = array(1, $value, gTranslate('core', "The value is not an allowed string."));
 			}
 			else {
-				$result = array(2, $default, gTranslate('core', "The value is not a allowed string and was set to a given default."));
+				$result = array(2, $default, gTranslate('core', "The value is not an allowed string and was set to a given default."));
 			}
 		}
 		else {
@@ -400,7 +400,7 @@ function validAlbumName($name) {
 }
 
 /**
- * Calculated the password strength of a password
+ * Calculates the password strength of a password.
  *
  * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
  * Written by firas kassem [2007.04.05]
@@ -512,7 +512,7 @@ function cleanRepetition($partLen, $string) {
 }
 
 /**
- * Checks whether a value seems to be a valid timestamp
+ * Checks whether a value seems to be a valid timestamp.
  *
  * @param integer  $timestamp
  * @return boolean $valid
@@ -599,7 +599,7 @@ function checkWatermarkSetting($wmName, $wmAlign, $wmSelect, $previewFull, $wmAl
 	if(! watermarkPicExists($wmName)) {
 		$notice_messages[] = array(
 			'type' => 'error',
-			'text' => gTranslate('core', "No valid watermark image choosen.")
+			'text' => gTranslate('core', "No valid watermark image chosen.")
 		);
 	}
 

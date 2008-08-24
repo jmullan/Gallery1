@@ -86,7 +86,7 @@ if (!empty($preserve)) {
 	foreach ($tmp as $key) {
 		$preserve[$key] = true;
 		if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
-			$gallery->session->configForm->$key = "";
+			$gallery->session->configForm->$key = '';
 			continue;
 		}
 	}

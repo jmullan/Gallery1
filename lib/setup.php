@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 function evenOdd_row($fields) {
 	$html = '';
@@ -176,8 +176,8 @@ function form_password($key, $arr) {
 function form_nv_pairs($key, $arr) {
 	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
-	$x=0;
-	$buf="\n<table>"
+	$x = 0;
+	$buf = "\n<table>"
 		. "<tr>"
 		. "<td><b>". gTranslate('common', "Name") . "</b></td>"
 		. "<td><b>". gTranslate('common', "Value") ."</b></td>"
@@ -1018,8 +1018,9 @@ function check_locale() {
 	// Set locale correct back
 	if (isset($gallery->locale)) {
 		setlocale(LC_ALL,$gallery->locale);
-	} else {
-		setlocale(LC_ALL,"");
+	}
+	else {
+		setlocale(LC_ALL, '');
 	}
 
 	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
@@ -1037,11 +1038,11 @@ function check_locale() {
 function config_maybe_locales() {
 	global $locale_check, $locales;
 
-	$results = array();
-	$locales = $locale_check;
-	$available = $locales["available_locales"];
-	$maybe = $locales["maybe_locales"];
-	$unavailable = $locales["unavailable_locales"];
+	$results	= array();
+	$locales	= $locale_check;
+	$available	= $locales["available_locales"];
+	$maybe		= $locales["maybe_locales"];
+	$unavailable	= $locales["unavailable_locales"];
 
 	// If we are in Linux, our PHP has gettext,
 	// but we could not find any locale we skip the whole aliasing part.
@@ -1220,7 +1221,8 @@ function check_safe_mode() {
 	if (empty($safe_mode) ||
 	    !strcasecmp($safe_mode, "off") ||
 	    !strcasecmp($safe_mode, "0") ||
-	    !strcasecmp($safe_mode, "false")) {
+	    !strcasecmp($safe_mode, "false"))
+	{
 		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {
@@ -1524,11 +1526,12 @@ function verify_email($emailMaster) {
 	}
 
 	if (!empty($emailGreeting) &&
-	  !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
-	  !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
+	    !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
+	    !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" ))
+	{
 	       	$fail[]= sprintf(gTranslate('common', "You must include %s or %s in your welcome email."),
-			"<b>!!PASSWORD!!</b>",
-			"<b>!!NEWPASSWORDLINK!!</b>");
+				 "<b>!!PASSWORD!!</b>",
+				 "<b>!!NEWPASSWORDLINK!!</b>");
 	}
 
 	return array($success, $fail);

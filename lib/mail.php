@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 /**
  * @package Mail
@@ -27,9 +27,9 @@
 /**
  * Checks whether an emailstring has a valid format or not
  *
- * @param string	$email
+ * @param string    $email
  * @return boolean
-*/
+ */
 function check_email($email) {
 	return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,6}$/', $email) >0;
 }
@@ -106,9 +106,9 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	if (! check_email($from)) {
 		if (isDebugging() && $from) {
-		    echo "\n<br>".
-			gallery_error(sprintf(gTranslate('common', "Sender address %s is invalid, using %s."),
-			$from, $gallery->app->senderEmail));
+			echo "\n<br>". 
+				gallery_error(sprintf(gTranslate('common', "Sender address %s is invalid, using %s."),
+							  $from, $gallery->app->senderEmail));
 		}
 		$from = $gallery->app->senderEmail;
 		$reply_to = $gallery->app->adminEmail;
@@ -221,12 +221,12 @@ Your %s Administrator.");
 
 function welcomeMsgPlaceholderList() {
 	$placeholders = array(
-		'galleryurl'	  => gTranslate('common', "The URL to your Gallery."),
-		'gallerytitle'	  => gTranslate('common', "Title of your Gallery."),
-		'adminemail'	  => gTranslate('common', "Admin email(s)"),
-		'password'	  => gTranslate('common', "Password for the newly created user."),
-		'username'	  => gTranslate('common', "Username"),
-		'fullname'	  => gTranslate('common', "Fullname"),
+		'galleryurl'	=> gTranslate('common', "The URL to your Gallery."),
+		'gallerytitle'	=> gTranslate('common', "Title of your Gallery."),
+		'adminemail'	=> gTranslate('common', "Admin email(s)"),
+		'password'	=> gTranslate('common', "Password for the newly created user."),
+		'username'	=> gTranslate('common', "Username"),
+		'fullname'	=> gTranslate('common', "Fullname"),
 		'newpasswordlink' =>  gTranslate('common', "Will be replaced by a link the new user can click on to create a new password.")
 	);
 

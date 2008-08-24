@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 class Album {
 	var $fields;
@@ -526,7 +526,7 @@ class Album {
 			}
 
 			if (isset($this->fields['print_photos']['shutterfly']) &&
-			!isset($this->fields['print_photos']['shutterfly']['checked'])) {
+			    !isset($this->fields['print_photos']['shutterfly']['checked'])) {
 				unset($this->fields['print_photos']['shutterfly']);
 			}
 		}
@@ -1731,6 +1731,7 @@ class Album {
 		if ( ($photo[0]->isHighlight()) && ($this->numPhotos(1) > 0) && (!$forceResetHighlight==-1)) {
 			$needToRehighlight = 1;
 		}
+
 		$photo[0]->delete($this->getAlbumDir());
 		if (($needToRehighlight) || ($forceResetHighlight==1)){
 			// Prevent hidden items, albums, and movies from
@@ -2070,7 +2071,7 @@ class Album {
 		return (array($numItemsTotal, $numAlbums, $numPhotos));
 	}
 
-	function numVisibleItems($user, $returnVisibleItems=false) {
+	function numVisibleItems($user, $returnVisibleItems = false) {
 		$uuid = $user->getUid();
 
 		if ($returnVisibleItems) {
@@ -2102,7 +2103,8 @@ class Album {
 
 		if ($returnVisibleItems) {
 			return array($numPhotos, $numAlbums, $visibleItems);
-		} else {
+		}
+		else {
 			return array($numPhotos, $numAlbums);
 		}
 	}
@@ -2273,6 +2275,7 @@ class Album {
 	function getItemCaptureDate($index) {
 		$photo = $this->getPhoto($index);
 		$itemCaptureDate = $photo->getItemCaptureDate();
+
 		// populating old photos with data
 		if (!$itemCaptureDate) {
 			$this->setItemCaptureDate($index);
@@ -2381,6 +2384,7 @@ class Album {
 
 	function getComment($photoIndex, $commentIndex) {
 		$photo = $this->getPhoto($photoIndex);
+
 		return $photo->getComment($commentIndex);
 	}
 
@@ -2497,7 +2501,7 @@ class Album {
 		echo addProgressbar(
 				$progressbarID,
 				sprintf(
-					gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
+					gTranslate('core', "Updating album: '<i>%s</i>' (%s) with %d items."),
 					$this->fields['title'],
 					$this->fields['name'],
 					$numItems)
@@ -2510,7 +2514,7 @@ class Album {
 				$np = $nestedAlbum->numPhotos(1);
 
 				echo "<br>";
-				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items."), $this->getAlbumName($i), $np);
 				$nestedAlbum->makeThumbnails($recursive);
 				$nestedAlbum->save();
 			}
@@ -2748,7 +2752,7 @@ class Album {
 			// An error occurred.
 			return array(
 				'junk1' => '',
-            	'Error' => sprintf(gTranslate('core', "Error getting EXIF data. Expected status 0, got %s."),$status),
+				'Error' => sprintf(gTranslate('core', "Error getting EXIF data. Expected status 0, got %s."),$status),
 				'status' => $status);
 		}
 
@@ -3625,12 +3629,12 @@ class Album {
 			}
 		}
 
-	if(isDebugging() && !empty($messages)) {
-		if(!headers_sent()) {
-		printPopupStart(gTranslate('core', "Email problems"));
+		if(isDebugging() && !empty($messages)) {
+			if(!headers_sent()) {
+				printPopupStart(gTranslate('core', "Email problems"));
+			}
+			echo infoBox($messages);
 		}
-		echo infoBox($messages);
-	}
 
 		return array_unique($emails);
 	}

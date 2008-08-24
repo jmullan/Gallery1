@@ -343,12 +343,12 @@ function getImagePath($name, $skinname = '') {
 	}
 
 	/* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
-	$base			= getGalleryBaseUrl();
+	$base		= getGalleryBaseUrl();
 	$defaultname	= dirname(dirname(__FILE__)) . "/images/$name";
-	$fullname		= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
+	$fullname	= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
 
-	$defaultURL		= "$base/images/$name";
-	$fullURL		= "$base/skins/$skinname/images/$name";
+	$defaultURL	= "$base/images/$name";
+	$fullURL	= "$base/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		$retUrl = $fullURL;
@@ -497,7 +497,6 @@ function galleryLink($url = '', $text ='', $attrList = array(), $icon = '', $add
 
 	return $html;
 }
-
 
 function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array(), $useAccesskey = true) {
 	global $gallery;

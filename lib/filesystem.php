@@ -200,7 +200,7 @@ function parse_csv ($filename, $delimiter = ';') {
  * @param string $destination   Foldername where the archive is extracted to. Be carefull!
  * @return boolean              True on succes, otherwise false.
  * @author Jens Tkotz
- * @Since 1.6
+ * @Since 1.5.8
  */
 function extractArchive($archive, $ext, $destination) {
 	global $gallery;

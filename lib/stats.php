@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 function getmicrotime() {
 	list($usec, $sec) = explode(" ", microtime());
@@ -93,9 +91,10 @@ function readGalleryStatsCache( $cacheFilename, $start, $numPhotos ) {
 					debugMessage(sprintf(gTranslate('core', "Album name : %s ; index: %s"), $data[0], $data[1]), __FILE__, __LINE__, 1);
 
 					$arrPhotos[$start+$i] = array("albumName" => $data[0],
-					'photoId' => $data[1],
-					'rating' => $data[2],
-					'ratingcount' => $data[3] );
+						'photoId' => $data[1],
+						'rating' => $data[2],
+						'ratingcount' => $data[3]
+					);
 				}
 			}
 			myFlock($fd, LOCK_UN);

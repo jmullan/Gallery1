@@ -101,6 +101,7 @@ includeLayout('breadcrumb.inc');
 				value = document.stats_form.elements[i].value;
 			break;
 		}
+
 		if (value) {
 			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
 		}

@@ -383,6 +383,7 @@ function showComments ($index, $albumName, $reverse = false) {
 						 'class'	=> 'left g-desc-cell g-comment-text-cell'))
 		);
 	}
+	
 	if ($reverse) {
 		$commentTable['elements'] = array_reverse($commentTable['elements']);
 	}
@@ -739,4 +740,5 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 
 	return $error;
 }
+
 ?>

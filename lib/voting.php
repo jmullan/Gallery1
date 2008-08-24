@@ -238,23 +238,27 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 function showResultsGraph($num_rows) {
 	global $gallery;
 
-	$results = array();
-	$results_count = array();
-	$nv_pairs = $gallery->album->getVoteNVPairs();
-	$buf = '';
+	$results	= array();
+	$results_count	= array();
+	$nv_pairs	= $gallery->album->getVoteNVPairs();
+	$buf		= '';
 
 	$voters = array();
 	foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
-		$accum_votes = 0;
-		$count = 0;
+		$accum_votes	= 0;
+		$count		= 0;
+
 		foreach ($image_votes as $voter => $vote_value ) {
 			$voters[$voter] = true;
+
 			if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
 				$vote_value = $gallery->album->getPollScale();
 			}
+
 			$accum_votes += $nv_pairs[$vote_value]["value"];
 			$count++;
 		}
+
 		if ($accum_votes > 0)  {
 			$results_count[$element]=$count;
 			if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
@@ -391,7 +395,7 @@ function showResults($id) {
 	foreach ($vote_tally as $key => $value) {
 		$html .= sprintf("\n<tr><td>%s</td><td>:</td><td>%s</td>",
 			$nv_pairs[$key]["name"],
-			gTranslate('common', "one vote", "%d votes", $value, '', true));
+			gTranslate('common', "One vote", "%d votes", $value, '', true));
 	}
 
 	$html .= "</table>";
@@ -409,10 +413,8 @@ function buildVotingInputFields() {
 	$nv_pairs = $gallery->album->getVoteNVPairs();
 	$votingInputFieldArray = array();
 	for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-		$votingInputFieldArray[] =
-			"<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";
-		$votingInputFieldArray[] =
-			"<input type=\"text\" name=\"nv_pairs[$i][value]\" value=\"". $nv_pairs[$i]["value"] ."\">";
+		$votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";
+		$votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][value]\" value=\"". $nv_pairs[$i]["value"] ."\">";
 	}
 
 	return $votingInputFieldArray;

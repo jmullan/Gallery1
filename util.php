@@ -733,8 +733,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	if (! $tool) {
 		debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
 		return false;
-	}
-	else {
+	} else {
 		debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
 	}
 
@@ -970,7 +969,8 @@ function getSVNRevision($file) {
 	$contents = file($path);
 	foreach ($contents as $line) {
 		if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24$", trim($line), $matches) ||
-			ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches)) {
+		    ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches))
+		{
 			if ($matches[1]) {
 				return $matches[1];
 			}
@@ -1189,7 +1189,7 @@ function getMimeType($filename) {
 	}
 
 	$extension = getExtension($filename);
-	$mimetype = $mime_extension_map[$extension];
+	$mimetype  = $mime_extension_map[$extension];
 
 	echo debugMessage(sprintf(gTranslate('core', "MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
 	return $mimetype;
@@ -1385,8 +1385,10 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
 	if(! fs_mkdir($dir)) {
 		echo gallery_error(
-          sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
-		  $gallery->app->tmpDir));
+			sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
+		  		$gallery->app->tmpDir)
+		);
+
 		return false;
 	}
 
@@ -1475,7 +1477,7 @@ function array_flaten($array) {
 }
 
 /**
- * This function returns the Gallery Title as a string thats save to show in <title>...</title>
+ * This function returns the Gallery Title as a string that's safe to show in <title>...</title>
  *
  * @param string $topic	 optional
  * @return string $ret

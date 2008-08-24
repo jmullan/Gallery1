@@ -24,7 +24,8 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create', 'cancel'));
+list($formaction, $create, $cancel) =
+	getRequestVar(array('formaction', 'create', 'cancel'));
 
 list($uname, $old_password, $new_password1, $new_password2) =
 	getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
@@ -53,8 +54,8 @@ $allowChange['fullname']	= true;
 $allowChange['email']		= true;
 $allowChange['default_language']= true;
 $allowChange['create_albums']	= false;
-$allowChange["send_email"]	= false;
-$allowChange["member_file"]	= false;
+$allowChange['send_email']	= false;
+$allowChange['member_file']	= false;
 
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {

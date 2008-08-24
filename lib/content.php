@@ -193,6 +193,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 		if (isset($configDefaults)) {
 			$defaults = array_merge($defaults, $configDefaults);
 		}
+
 		if (isset($configOverrides)) {
 			$overrides = array_merge($overrides, $configOverrides);
 		}
@@ -410,8 +411,10 @@ function printMicroChildren2($tree, $depth = 0) {
 
 function printMetaData($image_info) {
 	// Print meta data
-	echo "<table border=\"1\">\n";
 	$row = 0;
+
+	echo "<table border=\"1\">\n";
+
 	foreach ($image_info as $info) {
 		echo '<tr>';
 		if ($row == 0) {
@@ -826,8 +829,8 @@ function getStyleSheetLink() {
 			$styleSheetLinks .= _getStyleSheetLink("screen");
 		}
 
-		if(!empty($gallery->album->fields['lightbox']) && 
-		   $gallery->album->fields['lightbox'] == "yes") 
+		if(!empty($gallery->album->fields['lightbox']) &&
+		   $gallery->album->fields['lightbox'] == "yes")
 		{
 			$styleSheetLinks .= _getStyleSheetLink("lightbox");
 		}
@@ -853,9 +856,10 @@ function _getStyleSheetLink($filename, $skinname = '') {
 	$base = dirname(dirname(__FILE__));
 
 	if (!$skinname &&
-	  isset($gallery->app) &&
-	  isset($gallery->app->skinname) &&
-	  !$GALLERY_EMBEDDED_INSIDE) {
+	    isset($gallery->app) &&
+	    isset($gallery->app->skinname) &&
+	    !$GALLERY_EMBEDDED_INSIDE)
+	{
 		$skinname = $gallery->app->skinname;
 	}
 
@@ -914,7 +918,7 @@ function _getStyleSheetLink($filename, $skinname = '') {
 //	to any album to which they have write permissions
 //	AND not to the album to which it already belongs.
 //
- * -jpk
+// -jpk
 
  *
  * @param boolean $rootDisplay
@@ -927,6 +931,7 @@ function albumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto
 	global $gallery, $albumDB, $index;
 
 	$uptodate = true;
+	// This gets only root albums. TODO: Naming
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
 	$albumOptionList = array();
@@ -1029,7 +1034,7 @@ function nestedAlbumOptionList($level, $albumName, $movePhoto, $readOnly) {
 			$nestedAlbum->load($myName);
 
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
-			  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
+			    ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 .= $nestedAlbum->fields['title'];
 				$val2 = truncateText($val2, 20, 'right');
@@ -1146,6 +1151,7 @@ function available_skins($description_only = false) {
 			$skininc = "$dir/$file/style.def";
 			$name = '';
 			$description = '';
+
 			$skincount++;
 
 			if (fs_file_exists($skininc)) {
@@ -1787,7 +1793,7 @@ function unhtmlentities($string) {
 		}
 
 		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
-			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
+			$return = html_entity_decode($string, ENT_COMPAT ,$charset);
 		}
 		else {
 			// For unsupported charsets you may do this:
@@ -1815,6 +1821,7 @@ function unhtmlentities($string) {
  */
 function sanitizeInput($value) {
 	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+
 	static $safehtml;
 
 	if (empty($safehtml)) {

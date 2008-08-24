@@ -340,18 +340,18 @@ function showColorpicker($attrs = array(), $addCallBack = false) {
 
 	$id = $name = $attrs['name'];
 
-	$html .='<script type="text/javascript">';
-	$html .="window.addEvent('load', function() {";
-	$html .="var g_colorpicker_$id = new MooRainbow('colorpicker_$id', {";
-	$html .="id: 'gal_colorpicker_$id',";
-	$html .="destination : '$id',";
-	$html .="imgPath: '". makeGalleryUrl("images/moorainbow/") ."',";
-	$html .="onComplete: function(color) {";
-	$html .="\$('$id').value = color.hex;";
-	$html .="}";
-	$html .="});";
-	$html .="});";
-	$html .="</script>";
+	$html .= '<script type="text/javascript">';
+	$html .= "window.addEvent('load', function() {";
+	$html .= "var g_colorpicker_$id = new MooRainbow('colorpicker_$id', {";
+	$html .= "id: 'gal_colorpicker_$id',";
+	$html .= "destination : '$id',";
+	$html .= "imgPath: '". makeGalleryUrl("images/moorainbow/") ."',";
+	$html .= "onComplete: function(color) {";
+	$html .= "\$('$id').value = color.hex;";
+	$html .= "}";
+	$html .= "});";
+	$html .= "});";
+	$html .= "</script>";
 
 	$html .= "\n<table cellspacing=\"0\">";
 	$html .= "\n<tr>";
@@ -382,7 +382,7 @@ function showByteCalculator($id, $initValue = 0, $positionBelow = false, $change
 		$html .= "</a>\n";
 
 		$units = array(
-			1			=> gTranslate('common', "Byte"),
+			1		=> gTranslate('common', "Byte"),
 			1024		=> gTranslate('common', "KB"),
 			1048576		=> gTranslate('common', "MB"),
 			1073741824	=> gTranslate('common', "GB"),
@@ -413,7 +413,9 @@ function showChoice($label, $target, $args, $class = '') {
 	if (empty($args['set_albumName'])) {
 		$args['set_albumName'] = $gallery->session->albumName;
 	}
+
 	$args['type'] = 'popup';
+
 	echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 

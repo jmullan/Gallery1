@@ -33,7 +33,7 @@
  * @param   string  $domain
  * @param   string  $singular
  * @param   string  $plural
- * @param   int	 $count
+ * @param   int     $count
  * @param   string  $nonetext
  * @return  string  $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author  Jens Tkotz
@@ -74,6 +74,7 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
 		else {
 			$translation = ngettext($singular, $plural, $count);
 		}
+
 		if($short) {
 			$translation = sprintf($translation, $count);
 		}
@@ -137,10 +138,10 @@ function setLangDefaults($nls) {
 function getEnvLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	global $board_config;						/* Needed for phpBB2			*/
-	global $_CONF;								/* Needed for GeekLog   		*/
-	global $mosConfig_locale, $mosConfig_lang;	/* Needed for Mambo / Joomla!	*/
-	global $currentlang;						/* Needed for CPGNuke		*/
+	global $board_config;                       /* Needed for phpBB2    		*/
+	global $_CONF;                              /* Needed for GeekLog   		*/
+	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo / Joomla!	*/
+	global $currentlang;                        /* Needed for CPGNuke		*/
 
 	$envLang = NULL;
 
@@ -247,7 +248,7 @@ function initLanguage($sendHeader = true) {
 
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	/**
+	/*
 	 * Init was already done. Just return, or do a reinit
 	 * if the giving userlanguage is different than the current language
 	*/
@@ -275,7 +276,7 @@ function initLanguage($sendHeader = true) {
 			}
 		}
 		if (!ngettext_installed()) {
-			function ngettext($singular, $quasi_plural,$num=0) {
+			function ngettext($singular, $quasi_plural,$num = 0) {
 				if ($num == 1) {
 					return $singular;
 				}
@@ -290,7 +291,7 @@ function initLanguage($sendHeader = true) {
 		return;
 	}
 
-	/**
+	/*
 	 * Does the user wants a new lanuage ?
 	 * This is used in Standalone and *Nuke
 	 */
@@ -367,7 +368,7 @@ function initLanguage($sendHeader = true) {
 	/* if an alias for the (new or Env) language is given, use it*/
 	$gallery->language = getLanguageAlias($gallery->language) ;
 
-	/**
+	/*
 	 *  Fall back to Default Language if :
 	 *	- we cant detect Language
 	 *	- Nuke/phpBB2 sent an unsupported
@@ -399,8 +400,8 @@ function initLanguage($sendHeader = true) {
 	/* Check defaults */
 	$checklist = array('direction', 'charset') ;
 
-	/**
-     * This checks wether the previously defined values are available.
+	/*
+	 * This checks wether the previously defined values are available.
 	 * All available values are in $nls
 	 * If they are not defined we used the defaults from nls.php
 	 */
@@ -427,7 +428,7 @@ function initLanguage($sendHeader = true) {
 	/* Set Locale*/
 	setlocale(LC_ALL,$gallery->locale);
 
-	/**
+	/*
 	 * Set Charset header
 	 * We do this only if we are not embedded and the "user" wants it.
 	 * Because headers might be sent already.
@@ -436,7 +437,7 @@ function initLanguage($sendHeader = true) {
 		header('Content-Type: text/html; charset=' . $gallery->charset);
 	}
 
-	/**
+	/*
 	 * Test if we're using gettext.
 	 * if yes, do some gettext settings.
 	 * if not emulate _() function or ngettext()
@@ -467,10 +468,10 @@ function getTranslationFile() {
 		$filename = dirname(dirname(__FILE__)) . '/locale/' .
 		$gallery->language . '/'.
 		$gallery->language . '-gallery_' .  where_i_am()  . '.po';
-		$translationfile=file($filename);
+		$translationfile = file($filename);
 	}
 
-return $translationfile;
+	return $translationfile;
 }
 
 /** Substitute ngettext function
@@ -486,8 +487,8 @@ function emulate_ngettext($languages_initialized = false) {
 
 		$lines=getTranslationFile();
 		foreach ($lines as $key => $value) {
-		//We trim the String to get rid of cr/lf
-			$value=trim($value);
+			// We trim the String to get rid of cr/lf
+			$value = trim($value);
 			if (stristr($value, "msgid") &&
 				! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
 //				echo "\n<br>---SID". $value;
@@ -497,16 +498,16 @@ function emulate_ngettext($languages_initialized = false) {
 					$translation[$singular_key]=substr(trim($lines[$key+2]),11,-1);
 					$plural_key=substr(trim($lines[$key+1]), 14,-1);
 					$translation[$plural_key]=substr(trim($lines[$key+3]),11,-1);
-//	echo "\n<br>SK". $singular_key;
-//	echo "\n<br>ST". $translation[$singular_key];
-//	echo "\n<br>PK". $plural_key;
-//	echo "\n<br>PT". $translation[$plural_key];
+					//	echo "\n<br>SK". $singular_key;
+					//	echo "\n<br>ST". $translation[$singular_key];
+					//	echo "\n<br>PK". $plural_key;
+					//	echo "\n<br>PT". $translation[$plural_key];
 				}
 			}
 		}
 	}
 
-		// Substitute ngettext() function
+	// Substitute ngettext() function
 	if(! $languages_initialized) {
 		function ngettext($singular, $quasi_plural,$num=0) {
 //			echo "\n<br>----";
@@ -557,25 +558,25 @@ function emulate_gettext($languages_initialized) {
 		$gallery->language . '/'.
 		$gallery->language . '-gallery_' .  where_i_am()  . '.po';
 
-		$lines=file($filename);
+		$lines = file($filename);
 
 		foreach ($lines as $key => $value) {
 			/* We trim the String to get rid of cr/lf */
-			$value=trim($value);
+			$value = trim($value);
 			if (stristr($value, "msgid") &&
 				! stristr($lines[$key-1],"fuzzy") &&
 				! stristr($lines[$key],"msgid_plural") &&
 				! stristr($value,"msgid_plural")) {
 
-				$new_key=substr($value, 7,-1);
+				$new_key = substr($value, 7,-1);
 				$translation[$new_key] = substr(trim($lines[$key+1]),8,-1);
-//		echo "\n<br>NK". $new_key;
-//		echo "\n<br>NT". $translation[$new_key];
+				//  echo "\n<br>NK". $new_key;
+				//  echo "\n<br>NT". $translation[$new_key];
 			}
 		}
 	}
 
-		// Substitute _() gettext function
+	// Substitute _() gettext function
 	if(! $languages_initialized) {
 		function _($search) {
 			global $gallery;
@@ -685,7 +686,7 @@ function i18n($buf) {
 }
 
 function isSupportedCharset($charset) {
-	$supportedCharsets=array(
+	$supportedCharsets = array(
 		'UTF-8',
 		'ISO-8859-1',
 		'ISO-8859-15',
@@ -697,7 +698,7 @@ function isSupportedCharset($charset) {
 		'EUC-JP'
 	);
 
-	$supportedCharsetsNewerPHP=array(
+	$supportedCharsetsNewerPHP = array(
 		'cp866',
 		'cp1251',
 		//'KOI8-R'
@@ -744,8 +745,8 @@ function automaticFieldsList() {
  */
 function translateableFields() {
 	return array(
-		'title'			=> gTranslate('common', "title"),
-		'Title'			=> gTranslate('common', "Title"),
+		'title'		=> gTranslate('common', "title"),
+		'Title'		=> gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
         'AltText'		=> gTranslate('common', "Alt text / Tooltip"),
@@ -780,10 +781,10 @@ function languageSelector() {
 		$nls = getNLS();
 
 		foreach ($gallery->app->available_lang as $value) {
-			/**
+			/*
 			 * We only allow show languages which are available in gallery.
 			 * These could differ to the languages defined in config.php.
-			*/
+			 */
 			if (! isset($nls['language'][$value])) continue;
 
 			if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
@@ -833,10 +834,10 @@ function languageSelector() {
 
 		if($gallery->app->show_flags !='yes') {
 			$content = drawSelect('newlang',
-						$options,
-						$nls['language'][$gallery->language],
-						1,
-						array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
+					$options,
+					$nls['language'][$gallery->language],
+					1,
+					array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
 			);
 
 			$langSelectTable->addElement(array('content' => $content));

@@ -68,7 +68,8 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
 		else if (trim($line) == $start_string) {
 			$skipping = true;
 			$old_htaccess = false;
-		} else {
+		}
+		else {
 			$htaccess_save[] = $line;
 		}
 	}

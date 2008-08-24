@@ -21,9 +21,12 @@
 		}
 		$index++;
 		$class = $index % 2 ? 'dark' : 'light';
-		if (($localeData['plugins']['core']['percentDone'] < 50 || $localeData['plugins']['common']['percentDone'] <40) && $pluginData['percentDone'] <50) {
+
+		if (($localeData['plugins']['core']['percentDone'] < 50 || $localeData['plugins']['common']['percentDone'] <40) &&
+		     $pluginData['percentDone'] < 50) {
 			$wclass = 'kicked';
-		} else {
+		}
+		else {
 			$wclass = $class;
 		}
 ?>
