@@ -27,13 +27,13 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 // Hack checks
-if (! isset($gallery->album ||
-    !$gallery->user->canAddToAlbum($gallery->album)) 
+if (! isset($gallery->album) ||
+    !$gallery->user->canAddToAlbum($gallery->album))
 {
 	printPopupStart(gTranslate('core', "Add items"), '', 'left');
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
    	exit;
-)
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 

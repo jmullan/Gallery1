@@ -508,16 +508,21 @@ if ($numPhotos) {
 				if ($gallery->album->fields['lightbox'] == "yes") {
 					list($album, $highlight) = $myAlbum->getHighlightedItem();
 
-					$gallery->html_wrap['imageHref']	= $highlight->getPhotoPath($album->getAlbumDirURL("full"));
-					$gallery->html_wrap['attrlist']['rel']  = 'lightbox[gallery]';
-					$gallery->html_wrap['attrlist']['id'] 	= "thumblink_$i";
+					if(!empty($highlight)) {
+						$gallery->html_wrap['imageHref']	= $highlight->getPhotoPath($album->getAlbumDirURL("full"));
+						$gallery->html_wrap['attrlist']['rel']  = 'lightbox[gallery]';
+						$gallery->html_wrap['attrlist']['id'] 	= "thumblink_$i";
+					}
+					else {
+						$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
+					}
 				}
 				else {
-					$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
+					$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
 				}
 
-				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];
-				$gallery->html_wrap['type']		= 'inline_albumthumb.frame';
+				$gallery->html_wrap['frame']	= $gallery->album->fields['album_frame'];
+				$gallery->html_wrap['type']	= 'inline_albumthumb.frame';
 
 				// Further album infos
 				$albumItems[$nr]['infos'][] =

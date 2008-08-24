@@ -2795,6 +2795,10 @@ class Album {
 		return strftime($gallery->app->dateString,$time);
 	}
 
+	/**
+	 * @Todo: Sync with edit_appearance. Don't wanna touch both everytime.
+	 *
+	 */
 	function setNestedProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbum($i)) {
@@ -2817,6 +2821,7 @@ class Album {
 				$nestedAlbum->fields['rows']			= $this->fields['rows'];
 				$nestedAlbum->fields['cols']			= $this->fields['cols'];
 				$nestedAlbum->fields['fit_to_window']		= $this->fields['fit_to_window'];
+				$nestedAlbum->fields['lightbox']		= $this->fields['lightbox'];
 				$nestedAlbum->fields['use_fullOnly']		= $this->fields['use_fullOnly'];
 				$nestedAlbum->fields['print_photos']		= $this->fields['print_photos'];
 				$nestedAlbum->fields['slideshow_type']		= $this->fields['slideshow_type'];
