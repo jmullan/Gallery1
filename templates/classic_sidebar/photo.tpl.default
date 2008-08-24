@@ -110,11 +110,6 @@ if ($GALLERY_EMBEDDED_INSIDE) {
 	echo _getStyleSheetLink('sidebar');
 }
 
-if (!empty($allImageAreas)) {
-	echo jsHTML('wz/wz_tooltip.js');
-	echo jsHTML('wz/tip_balloon.js');
-}
-
 if ($fitToWindow) {
 	echo jsHTML('fitToWindow.js.php');
 }
@@ -151,38 +146,11 @@ if ($fitToWindow) {
 		<!-- No Admin bar in this theme -->
 <?php
 
-echo jsHTML('sidebar.js');
 includeLayout('breadcrumb.inc');
 
 ?>
 <a id="photo_url" href="<?php echo $photoURL ?>"></a>
 <a id="page_url" href="<?php echo $page_url ?>"></a>
-
-<?php if (!$gallery->album->isMovie($id) && !empty($gallery->album->fields["print_photos"]) && !$gallery->session->offline) :?>
-<script language="javascript1.2" type="text/JavaScript">
-	function doPrintService(input) {
-		if (!input) {
-			input = document.print_form.print_services.value;
-		}
-		switch (input) {
-			case 'fotokasten':
-				window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print_with_Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
-			break;
-			case 'photoaccess':
-				document.photoAccess.returnUrl.value=document.location;
-				document.photoAccess.submit();
-			break;
-			case 'shutterfly':
-				document.sflyc4p.returl.value=document.location;
-				document.sflyc4p.submit();
-			break;
-			case 'mpush':
-				window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->default['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
-			break;
-		}
-	}
-</script>
-<?php endif ?>
 
 <?php
 
@@ -207,10 +175,8 @@ if(isset($imageMapHTML)) {
 }
 
 $description = nl2br($gallery->album->getDescription($index));
-?>
 
-<?php
-	echo infoBox($comment_messages);
+echo infoBox($comment_messages);
 ?>
 
 <!-- image -->
@@ -306,6 +272,43 @@ includeTemplate('info_donation-block');
 includeTemplate('overall.footer');
 
 include_once(GALLERY_BASE .'/includes/view_photo/hidden_print_services.php');
+
+// Add Javascript as late as possible
+// See http://developer.yahoo.com/performance/rules.html#js_bottom
+
+if (!$gallery->album->isMovie($id) && !empty($gallery->album->fields["print_photos"]) && !$gallery->session->offline){ ?>
+<script language="javascript1.2" type="text/JavaScript">
+	function doPrintService(input) {
+		if (!input) {
+			input = document.print_form.print_services.value;
+		}
+		switch (input) {
+			case 'fotokasten':
+				window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print_with_Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
+			break;
+			case 'photoaccess':
+				document.photoAccess.returnUrl.value=document.location;
+				document.photoAccess.submit();
+			break;
+			case 'shutterfly':
+				document.sflyc4p.returl.value=document.location;
+				document.sflyc4p.submit();
+			break;
+			case 'mpush':
+				window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->default['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			break;
+		}
+	}
+</script>
+<?php
+}
+
+echo jsHTML('sidebar.js');
+
+if (!empty($allImageAreas)) {
+	echo jsHTML('wz/wz_tooltip.js');
+	echo jsHTML('wz/tip_balloon.js');
+}
 
 if ($fitToWindow) {
 ?>

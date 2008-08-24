@@ -46,7 +46,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeTemplate('gallery.header', '', 'classic');
 
-echo '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
 echo $searchBar;
 
 // We do not longer use adminbox.inc here
@@ -175,6 +174,8 @@ if ($navigator['maxPages'] > 1) {
 includeTemplate('info_donation-block');
 
 includeTemplate('overall.footer');
+
+echo jsHTML('jopen.js');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

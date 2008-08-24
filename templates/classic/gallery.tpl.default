@@ -59,6 +59,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 includeTemplate("gallery.header", '', 'classic');
 
+// Todo: Add Javascript as late as possible.
+// See http://developer.yahoo.com/performance/rules.html#js_bottom
+
 if (isset($dynsubalbumTree)) {
 	if ($GALLERY_EMBEDDED_INSIDE) {
 		echo _getStyleSheetLink('yui/folders/tree');
@@ -183,7 +186,7 @@ echo infoBox($notice_messages, $notice_caption);
 		</td>
 		<!-- End Text Cell -->
 
-<?php if (!empty($content['subalbumTree']) || isset($dynsubalbumTree) ) { $cells=3; ?>
+<?php if (!empty($content['subalbumTree']) || isset($dynsubalbumTree) ) { $cells = 3; ?>
 	<?php if (!empty($content['subalbumTree'])) : ?>
 		<!-- Subalbumtree -->
 		<td class="g-subalbumTree-box"><?php echo $content['albumdesc']['subalbumTree'] ?></td>

@@ -126,7 +126,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				$options[] = array(
 					'text'	=> gTranslate('core', "Crop image"),
 					'value'	=> showChoice2('crop_photo.php', array('index' => $i), false),
-					'icon'	=> ($withIcons) ? 'imageedit/frame_edit.gif' : ''
+					'icon'	=> ($withIcons) ? 'imageedit/cut.png' : ''
 				);
 			}
 		}
@@ -383,7 +383,7 @@ function showComments ($index, $albumName, $reverse = false) {
 						 'class'	=> 'left g-desc-cell g-comment-text-cell'))
 		);
 	}
-	
+
 	if ($reverse) {
 		$commentTable['elements'] = array_reverse($commentTable['elements']);
 	}

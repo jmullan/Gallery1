@@ -98,13 +98,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeTemplate('photo.header', '', 'classic');
 
-if (!empty($allImageAreas)) {
-	echo jsHTML('wz/wz_tooltip.js');
-	echo jsHTML('wz/tip_balloon.js');
-}
-
 if ($fitToWindow) {
-	echo jsHTML('fitToWindow.js.php');
+	echo jsHTML("fitToWindow.js.php?imageWidth=$imageWidth&amp;imageHeight=$imageHeight");
 }
 
 // We do not longer use adminbox.inc here
@@ -274,6 +269,11 @@ includeTemplate('overall.footer');
  * Dont change anything below !
 */
 include_once(GALLERY_BASE .'/includes/view_photo/hidden_print_services.php');
+
+if (!empty($allImageAreas)) {
+	echo jsHTML('wz/wz_tooltip.js');
+	echo jsHTML('wz/tip_balloon.js');
+}
 
 if ($fitToWindow) {
 ?>

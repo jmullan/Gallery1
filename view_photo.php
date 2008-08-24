@@ -209,7 +209,7 @@ while ($navpage > 0) {
 }
 
 $useIcons = (!$iconsForItemOptions || $gallery->app->useIcons == 'no') ? false : true;
-$albumItemOptions = getItemActions($index, $useIcons);
+$albumItemOptions = getItemActions($index, $useIcons, false, !$useIcons);
 
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 
@@ -409,7 +409,6 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons && $gallery->app->theme != 'class
 $iconElements[] = LoginLogoutButton($currentUrlResized);
 
 $breadcrumb['bordercolor'] = $bordercolor;
-
 
 /* Item actions */
 $itemActions = array();

@@ -19,9 +19,11 @@
  *
  * $Id$
 */
+
+$imageWidth  = (isset($_GET['imageWidth']))  ? intval($_GET['imageWidth']) : 1024;
+$imageHeight = (isset($_GET['imageHeight'])) ? intval($_GET['imageHeight']) : 768;
+
 ?>
-<script type="text/javascript">
-<!--
 
 /*
  * These values define the margin between your image and the navigation and or a left block.
@@ -136,6 +138,3 @@ function sizeChange() {
 }
 
 sizeChange = new sizeChange();
-
-// -->
-</script>
