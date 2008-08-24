@@ -50,6 +50,10 @@ function getRequestVar($str) {
 
 		$ret = & $_REQUEST[$str];
 
+		if ("$ret" == "0") {
+			return $ret;
+		}
+
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes_deep($ret);
 		}
@@ -252,7 +256,7 @@ function getDimensions($file) {
 	switch($gallery->app->graphics) {
 		case 'Netpbm':
 			list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-						Netpbm('pnmfile', '--allimages'));
+						netpbm('pnmfile', '--allimages'));
 		break;
 
 		case "ImageMagick":
@@ -926,33 +930,6 @@ function where_i_am() {
 	return $location;
 }
 
-// Returns the CVS version as a string, NULL if file can't be read, or ""
-// if version can't be found.
-function getCVSVersion($file) {
-	$path = dirname(__FILE__) . "/$file";
-
-	if (!fs_file_exists($path)) {
-		return NULL;
-	}
-
-	if (!fs_is_readable($path)) {
-		return NULL;
-	}
-
-	$contents = file($path);
-
-	foreach ($contents as $line) {
-		if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24$", trim($line), $matches) ||
-		ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24 ", trim($line), $matches)) {
-			if ($matches[1]) {
-				return $matches[1];
-			}
-		}
-	}
-
-	return '';
-}
-
 // Returns the SVN revision  as a string, NULL if file can't be read, or ""
 // if version can't be found.
 function getSVNRevision($file) {
@@ -1352,7 +1329,7 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 		$sort_func = $sort_funcs[$sortby];
 	}
 
-	debugMessage($code, __FILE__, __LINE__, 3);
+	debugMessage($code, __FILE__, __LINE__, 4);
 
 	if($keepIndexes) {
 		uasort($data, $sort_func);

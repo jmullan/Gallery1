@@ -1,3 +1,15 @@
+2008-08-24 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b9
+
+ * Fix: HTML_Safe removes 0 from a string,
+        so check for 0 in getRequestVar()
+
+ * Fix: Typo in getDimensions that could make problems
+        when using Netpbm.
+
+ * Removed: function getCVSVersion as we use SVN ;-)
+
+ * Change: Increased debuglevel for array_sort_by_fields to 4
+
 2008-08-24 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b8
 
  * FIX: Reworked new_password.php
