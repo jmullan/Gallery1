@@ -35,15 +35,15 @@ list($photoIndex, $ecard, $submit_action) =
 
 printPopupStart(gTranslate('core', "Send this photo as eCard"));
 
-if(! isValidGalleryInteger($photoIndex)) {
+$ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
+
+if(! isValidGalleryInteger($ecard['photoIndex'])) {
 	echo gallery_error(gTranslate('core', "Invalid element chosen."));
 	echo "\n<br><br>";
 	echo gButton('closeButton', gTranslate('core', "_Close Window."),'parent.close()');
 	echo "</div></body></html>";
 	exit;
 }
-
-$ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
 
 if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
 	echo infoBox($global_notice_messages);
@@ -79,8 +79,8 @@ if (! empty($submit_action)) {
 		}
 	}
 
-    if (!check_email($ecard["email_recipient"]) || !check_email($ecard["email_sender"])) {
-        $error_msg .= gTranslate('core', "The sender or recipient email adress is not valid.");
+	if (!check_email($ecard["email_recipient"]) || !check_email($ecard["email_sender"])) {
+		$error_msg .= gTranslate('core', "The sender or recipient email adress is not valid.");
 		$error_msg .= '<br>';
 	}
 
@@ -98,6 +98,7 @@ if (! empty($submit_action)) {
 	if (empty($error_msg)) {
 		$ecard_HTML_data = parse_ecard_template($ecard, $ecard_data_to_parse, false);
 		$result = send_ecard($ecard, $ecard_HTML_data, $ecard_PLAIN_data);
+
 		if ($result) {
 			$ecard_send = true;
 		}

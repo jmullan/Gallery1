@@ -151,18 +151,21 @@ function updatePictureAndArea() {
 	areatext = document.getElementById('areatext');
 	selected = 0;
 	count_selected = 0;
+	paint = false;
 
 	jg.clear();
-	for (i = 0; i < el.length; ++i) {
-		if (el.options[i].selected == true) {
-			area_index = el.options[i].value;
-			jg.drawPolygon(map[area_index]['x_coords'], map[area_index]['y_coords']);
-			selected = area_index;
-			count_selected++;
+
+	if(el) {
+		for (i = 0; i < el.length; ++i) {
+			if (el.options[i].selected == true) {
+				area_index = el.options[i].value;
+				jg.drawPolygon(map[area_index]['x_coords'], map[area_index]['y_coords']);
+				selected = area_index;
+				count_selected++;
+				paint = true;
+			}
 		}
 	}
-
-	jg.paint();
 
 	if (count_selected == 1) {
 		areaurl.value = map[selected]['url'];
@@ -171,6 +174,15 @@ function updatePictureAndArea() {
 	else {
 		areaurl.value = '';
 		areatext.value = '';
+
+		if(xVals != '') {
+			jg.drawPolygon(xVals, yVals);
+			paint = true;
+		}
+	}
+
+	if(paint) {
+		jg.paint();
 	}
 }
 

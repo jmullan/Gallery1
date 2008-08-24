@@ -329,7 +329,7 @@ function showResultsGraph($num_rows) {
 
 	$graph = arrayToBarGraph($graph, 300);
 	if ($graph) {
-		$buf .= '<div class="g-sitedesc"><span class="g-admin">'.
+	    $buf .="<div class=\"g-va-poll-resultbox\"><span class=\"admin\">".
 				gTranslate('common',
 						   "Result from one voter",
 						   "Result of %d voters",
@@ -379,9 +379,10 @@ function showResults($id) {
 
 	$html = "<table class=\"g-voting-results\">";
 
-	$html .= "\n<tr><td colspan=\"3\" class=\"center\">".
+/*	$html .= "\n<tr><td colspan=\"3\" class=\"center\">".
 			gTranslate('common', "Poll results") .
 			"</td></tr>";
+*/
 
 	$index = $gallery->album->getIndexByVotingId($id);
 	$html .= "\n<tr><td colspan=\"3\" class=\"left\">" .

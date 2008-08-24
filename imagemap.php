@@ -26,8 +26,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($full, $index, $imageareas, $formaction) =
-	getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
+list($full, $index, $imageareas, $formaction, $create) =
+	getRequestVar(array('full', 'index', 'imageareas', 'formaction', 'create'));
 
 // Hack check and prevent errors
 if (empty($gallery->album) || ! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
@@ -61,6 +61,10 @@ if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
 	$full = NULL;
 }
 
+if(!empty($create)) {
+	$formaction = 'create';
+}
+
 switch($formaction) {
 	case 'delete':
 		if(!empty($imageareas)) {
@@ -72,12 +76,13 @@ switch($formaction) {
 		break;
 
 	case 'create':
-		list($xvals, $yvals, $url, $text) = getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
+		list($xvals, $yvals, $url, $text) =
+			getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
+
 		if (isset($xvals) && isset($yvals)) {
 			$xcoords = explode(',', $xvals);
 			$ycoords = explode(',', $yvals);
-
-			if (!empty($xcoords)) {
+			if(sizeof($xcoords) >= 3 && sizeof($ycoords) >= 3) {
 				$coords = $xcoords[0] .',' . $ycoords[0];
 
 				for ($i = 1 ; $i < sizeof($xcoords); $i++) {
@@ -94,16 +99,26 @@ switch($formaction) {
 
 				$gallery->album->save();
 			}
+			else {
+				$error = gallery_error(gTranslate('core', "An imagemap should at least have three points."));
+			}
 		}
+		else {
+			$error = gallery_error(gTranslate('core', "An imagemap should at least have three points."));
+		}
+
 		break;
 
 	case 'update':
 		list($url, $text) = getRequestVar(array('areaurl', 'areatext'));
 
 		foreach($imageareas as $area_index) {
-			$gallery->album->updateImageArea($index, $area_index, array(
-				'url'	  => $url,
-				'hover_text' => $text)
+			$gallery->album->updateImageArea(
+					$index,
+					$area_index,
+					array(
+						'url'		=> $url,
+						'hover_text'	=> $text)
 			);
 		}
 
@@ -157,22 +172,7 @@ $perPage = $rows * $cols;
 $page = (int)(ceil($index / ($rows * $cols)));
 
 $iconElements = array();
-if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
-	if ($gallery->user->isLoggedIn()) {
-		$iconElements[] = galleryLink(
-		doCommand("logout", array(), "view_album.php", array("page" => $page)),
-			gTranslate('core', "log_out"),
-			array(),
-			'exit.gif'
-		);
-	}
-	else {
-		$iconElements[] = popup_link(
-			gTranslate('core', "_login"),
-			'login.php', false, true, 500, 500, '','','identity.gif'
-		);
-	}
-}
+$iconElements[] = LoginLogoutButton();
 
 $navigator["id"] = $id;
 $navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
@@ -223,13 +223,17 @@ else {
 <?php
 echo gTranslate('core', "Here you can create, edit or delete imagemaps for the selected photo.");
 echo "\n<br>";
-echo gTranslate('core', "Click the question mark icon for helpful instructions.");
+echo gTranslate('core', "Click the questionmark icon for helpful instructions.");
 echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/imagemap.php',
 	false, false, 500, 500, '', '', '', false, false);
 ?>
 </div>
 
 <?php
+if(isset($error)) {
+	echo $error;
+}
+
 echo makeFormIntro('imagemap.php',
 	array('name' => 'areas'),
 	array('index' => $index, 'formaction' => '')
@@ -237,45 +241,54 @@ echo makeFormIntro('imagemap.php',
 ?>
 <table width="100%">
 <tr>
-  <td width="300" style="vertical-align: top;">
+  <td width="390" style="vertical-align: top;">
 	<?php $type = (isDebugging()) ? 'text':'hidden'; ?>
 	<input type="<?php echo $type; ?>" name="ausg" id="current_position">
 	<input type="<?php echo $type; ?>" name="xvals">
 	<input type="<?php echo $type; ?>" name="yvals">
-	<br>
-	<?php echo gButton('clearButton', gTranslate('core', "Clear and reset canvas"),'resetAndClear()'); ?>
-	<div class="floatleft"><?php echo gTranslate('core', "Brush color:"); ?></div>&nbsp;
-	<?php echo showColorpicker(array('name' => 'brushColor', 'value' => '#FFFFFF')); ?>
-	<hr>
-	<?php echo gTranslate('core', "Optional link-url"); ?><br>
-	<input type="text" size="50" name="areaurl" id="areaurl"><br>
-	<?php echo gTranslate('core', "Description"); ?><br>
-	<?php if($GALLERY_EMBEDDED_INSIDE_TYPE != 'phpnuke') { ?>
-	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
-	<?php } else { ?>
-	<input type="text" id="areatext" size="40">
-	<?php } ?>
-	<input type="submit" class="g-button" value="<?php echo gTranslate('core', "Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
-	<hr>
 <?php
+	echo showColorpicker(array('name' => 'brushColor', 'value' => '#FFFFFF'), true, true, gTranslate('core', "Brush color:"));
+	echo "\n<br>";
+	echo gTranslate('core', "Optional link-url");
+	echo "\n<br>";
+	echo gInput('text', 'areaurl', null, false, null, array('size' => 50));
+	echo gTranslate('core', "Description");
+	echo "\n<br>";
+	if($GALLERY_EMBEDDED_INSIDE_TYPE != 'phpnuke') {
+		echo gInput('textarea', 'areatext', null, false, null, array('cols' => 40, 'rows' => 5));
+	}
+	else {
+		echo gInput('textarea', 'areatext', null, false, null, array('cols' => 40));
+	}
+
+	echo gButton('clearButton', gTranslate('core', "Clear and reset canvas"), 'resetAndClear();');
+	echo gSubmit('create', gTranslate('core', "Save new Imagemap"));
+
 //print_r($photo);
 if (!empty($allImageAreas)) {
 	$selectSize = (sizeof($allImageAreas) > 10) ? 10:sizeof($allImageAreas);
 
+		echo "\n<br><br>";
+		echo "\n<fieldset><legend class=\"g-emphasis\">". gTranslate('core', "Edit existing ImageMaps"). '</legend>';
+
 	echo gTranslate('core', "Select entries to show ImageMap areas in your photo.");
-	echo "<br><select id=\"imageareas\" name=\"imageareas[]\" size=\"$selectSize\" multiple onChange=\"updatePictureAndArea()\">";
+		echo "<br>\n";
+		echo "<select id=\"imageareas\" name=\"imageareas[]\" size=\"$selectSize\" multiple onChange=\"updatePictureAndArea()\">";
 	foreach($gallery->album->getAllImageAreas($index) as $nr => $coords) {
 		echo "\n<option value=\"$nr\">Map $nr</option>";
 	}
-	echo "\n</select>";
+		echo "\n</select><br><br>";
 
-	echo "\n<hr>";
-	echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Delete selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='delete'\">";
+		echo gInput('radio', 'formaction', gTranslate('core', "Delete selected ImageMap(s)"), false, 'delete');
+		echo "\n<br>";
+		echo gInput('radio', 'formaction', gTranslate('core', "Update selected ImageMap(s)"), false, 'update');
+		echo "\n<br><br>";
 
-	echo "\n<hr>";
-	echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
+		echo gSubmit('submit', gTranslate('core', "Perform action"));
+		echo "\n<br><br>";
+		echo gallery_info(gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!"));
 
-	echo '<div class="g-attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
+		echo "\n</fieldset>";
 }
 else {
 	echo gTranslate('core', "No ImageMaps");
@@ -291,6 +304,12 @@ else {
 </table>
 </form>
 
+  </td>
+</tr>
+<!-- End Real Content -->
+<!-- Start Footer Part -->
+<tr>
+  <td>
 <?php
 
 includeLayout('breadcrumb.inc');

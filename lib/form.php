@@ -314,19 +314,18 @@ function emptyFormVar($name) {
  * @return string	$html
  * @author Jens Tkotz
  */
-function showColorpicker($attrs = array(), $addCallBack = false) {
+function showColorpicker($attrs = array(), $addCallBack = false, $updatePreview = false, $label = '') {
 	static $initDone = false;
+
+	$id = $name = $attrs['name'];
+	$imgColorpicker = gImage("colorpicker.png", gTranslate('core', "colorpicker"));
 
 	$html = '';
 
-	if($addCallBack) {
-		$callBack = " callBack(document.getElementById('gColorpickerHEX').innerHTML);";
-	}
-	else {
-		$callBack = '';
-	}
+	$callBack = ($addCallBack) ? ' callBack(color.hex);' : '';
+	$updateOnComplete = ($updatePreview) ? " \$('mooDestination_$id').style.backgroundColor=color.hex;" : '';
 
-		if(! $initDone) {
+	if(! $initDone) {
 		$html .= _getStyleSheetLink('mooRainbow');
 		$html .= "\n";
 		$html .= jsHTML('rgbcolor.js');
@@ -336,25 +335,23 @@ function showColorpicker($attrs = array(), $addCallBack = false) {
 		$initDone = true;
 	}
 
-	$imgColorpicker = gImage("colorpicker.png", gTranslate('core', "colorpicker"));
-
-	$id = $name = $attrs['name'];
-
 	$html .= '<script type="text/javascript">';
 	$html .= "window.addEvent('load', function() {";
 	$html .= "var g_colorpicker_$id = new MooRainbow('colorpicker_$id', {";
 	$html .= "id: 'gal_colorpicker_$id',";
 	$html .= "destination : '$id',";
-	$html .= "imgPath: '". makeGalleryUrl("images/moorainbow/") ."',";
+	$html .= "imgPath: '". getGalleryBaseUrl() . "/images/moorainbow/',";
 	$html .= "onComplete: function(color) {";
 	$html .= "\$('$id').value = color.hex;";
+	$html .= $callBack;
+	$html .= $updateOnComplete;
 	$html .= "}";
 	$html .= "});";
 	$html .= "});";
 	$html .= "</script>";
 
 	$html .= "\n<table cellspacing=\"0\">";
-	$html .= "\n<tr>";
+	$html .= "\n<tr><td>$label </td>";
 	$html .= gInput('text', $name,'','cell', $attrs['value'], array('size' => 8, 'maxlength' => 7));
 	$html .= "\n\t<td id=\"mooDestination_$id\" width=\"20\" style=\"background-color: {$attrs['value'] }\"></td>";
 	$html .= "\n\t<td id=\"colorpicker_$id\">${imgColorpicker}</td>";
