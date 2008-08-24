@@ -482,6 +482,20 @@ function testRequirement($test) {
 			$result = ($gallery->album->lastCommentDate("no") != -1);
 		break;
 
+		case 'comments_overview_for_all':
+			if($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album) ||
+			   (isset($gallery->app->comments_overview_for_all) &&
+			    $gallery->app->comments_overview_for_all == 'yes' &&
+			    $gallery->user->canViewComments($gallery->album)
+			   ))
+			{
+				$result = true;
+			}
+			else {
+				$result = false;
+			}
+		break;
+
 		case 'canAddToAlbum':
 			$result = $gallery->user->canAddToAlbum($gallery->album);
 		break;
@@ -826,7 +840,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	/* Options shown only on the mainpage */
 	else {
 		/* User is allowed to view ALL comments */
-		if (checkRequirements('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments')) {
+		if (checkRequirements('comments_overview_for_all')) {
 			$albumCommands[] = array(
 				'class'	=> 'url',
 				'text'	=> gTranslate('common',"View&nbsp;comments"),

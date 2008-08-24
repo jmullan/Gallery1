@@ -208,6 +208,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 	/* Okay, we are embedded */
 	switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'postnuke':
+		case 'zikula':
 			/* We're in embedded in Postnuke */
 			include_once(dirname(__FILE__) . "/classes/Database.php");
 			if (!function_exists("pnUserGetVar")) {

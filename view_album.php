@@ -203,7 +203,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
+if (checkRequirements('comments_overview_for_all')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;_comments"),
@@ -529,7 +529,8 @@ if ($numPhotos) {
 				switch ($gallery->app->comments_indication) {
 					case 'albums':
 					case 'both':
-						$lastCommentDate = $myAlbum->lastCommentDate($gallery->app->comments_indication_verbose);
+						$lastCommentDate =
+							$myAlbum->lastCommentDate($gallery->app->comments_indication_verbose);
 						if ($lastCommentDate > 0) {
 							$contains .= lastCommentString($lastCommentDate, $displayCommentLegend);
 						}

@@ -204,6 +204,18 @@ function makeGalleryUrl($target = '', $args = array()) {
 				$args["include"] = $target;
 			break;
 
+			case 'zikula':
+				$url = $urlprefix . pnGetBaseURI()."/index.php";
+
+				$args["name"] = $GALLERY_MODULENAME;
+				/*
+				 * include *must* be last so that the JavaScript code in
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+
+			break;
+
 			case 'mambo':
 			case 'joomla':
 				$args['option'] = $GALLERY_MODULENAME;
