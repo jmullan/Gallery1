@@ -165,12 +165,14 @@ function form_password($key, $arr) {
 		$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
 	}
 
-	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
-		. '<div style="margin-top: 3px;"></div>'
+	$html = gInput('password', $key . '[0]', null, false, $arr['value'][0], array('addCheck' => true))
+		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. gTranslate('common', "Please retype your password here")
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
 		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
+
+	return $html;
 }
 
 function form_nv_pairs($key, $arr) {
@@ -448,7 +450,7 @@ function check_exec() {
 	if (!empty($disabled)) {
 		foreach(explode(',', $disabled) as $disabled_func) {
 			if(eregi('^exec$', $disabled_func)) {
-				$fail['fail-exec'] = 1;
+				$fail['fail-exec'] = true;
 			}
 		}
 	}
@@ -494,13 +496,13 @@ function check_php() {
 
 	if (!function_exists('version_compare') ||
 		!version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
-		$fail['fail-too-old'] = 1;
+		$fail['fail-too-old'] = true;
 	}
 	elseif (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
 		$success[] = sprintf(gTranslate('common', "PHP v%s is OK."), $version);
 	}
 	else {
-		$fail['fail-buggy__FILE__'] = 1;
+		$fail['fail-buggy__FILE__'] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -518,11 +520,11 @@ function check_mod_rewrite()  {
 			$success[] = gTranslate('common', "mod_rewrite is enabled.");
 		}
 		else {
-			$fail["fail-mod-rewrite"] = 1;
+			$fail["fail-mod-rewrite"] = true;
 		}
 	}
 	else {
-		$fail["fail-mod-rewrite-nohtaccess"] = 1;
+		$fail["fail-mod-rewrite-nohtaccess"] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -654,7 +656,7 @@ function check_graphics($location = '', $graphtool = '') {
 	}
 
 	if ($missing == count($netpbm)) {
-		$fail['fail-netpbm'] = 1;
+		$fail['fail-netpbm'] = true;
 		/* Any other warning doesnt care */
 		$warn = array();
 	}
@@ -733,7 +735,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 	}
 
 	if ($missing == count($imagick)) {
-		$fail['fail-imagemagick'] = 1;
+		$fail['fail-imagemagick'] = true;
 		/* Any other warning doesnt care */
 		$warn = array();
 	}
@@ -1023,20 +1025,24 @@ function check_locale() {
 		setlocale(LC_ALL, '');
 	}
 
-	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
-	if( sizeof($available_locales) == 0 && sizeof($maybe_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+	/* DAMN, there are no suitable locales, we use Linux but our PHP uses gettext */
+	if(sizeof($available_locales) == 0 &&
+	   sizeof($maybe_locales) == 0 &&
+	   getOS() == OS_LINUX &&
+	   gettext_installed())
+	{
 		return NULL;
 	}
 
 	return array(
-		'available_locales'   => $available_locales,
-		'maybe_locales'		  => $maybe_locales,
-		'unavailable_locales' => $unavailable_locales
+		'available_locales'	=> $available_locales,
+		'maybe_locales'		=> $maybe_locales,
+		'unavailable_locales'	=> $unavailable_locales
 	);
 }
 
 function config_maybe_locales() {
-	global $locale_check, $locales;
+	global $gallery, $locale_check, $locales;
 
 	$results	= array();
 	$locales	= $locale_check;
@@ -1094,10 +1100,19 @@ function config_maybe_locales() {
 			$choices[$value] = $value;
 		}
 
+		$selected = '';
 		if (getOS() != OS_WINDOWS) {
 			$choices[''] = gTranslate('common', "System locale");
 			next($choices);
+
+			if(!empty($gallery->app->locale_alias[$key])) {
+				$selected = $gallery->app->locale_alias[$key];
+			}
+			else {
+				$selected = key($choices);
+			}
 		}
+
 
 		$results["locale_alias['$key']"] = array (
 			'prompt' => $nr . '.) ' . $nls['language'][$key],
@@ -1106,7 +1121,7 @@ function config_maybe_locales() {
 			'key' => $key,
 			'type' => 'block_element',
 			'choices' => $choices,
-			'value' => (getOS() != OS_WINDOWS) ? key($choices) : '',
+			'value' => $selected,
 			'allow_empty' => true,
 			'remove_empty' => true
 		);
@@ -1226,7 +1241,7 @@ function check_safe_mode() {
 		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {
-		$fail["fail-safe-mode"] = 1;
+		$fail["fail-safe-mode"] = true;
 	}
 
 	return array($success, $fail,$warn);
@@ -1239,7 +1254,7 @@ function check_magic_quotes() {
 	if (!get_magic_quotes_gpc()) {
 		$success[] = gTranslate('common', "magic_quotes are off.");
 	} else {
-		$fail["fail-magic-quotes"] = 1;
+		$fail["fail-magic-quotes"] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -1290,7 +1305,7 @@ function check_register_globals() {
 	$globals_enabled = ini_get('register_globals');
 
 	if (!empty($globals_enabled) && !eregi('no|off|false', $globals_enabled)) {
-		$fail['warn-register_globals'] = 1;
+		$fail['warn-register_globals'] = true;
 	}
 	else {
 		$success[] = gTranslate('common', "register_globals is off.");
@@ -1890,8 +1905,8 @@ function getCheckStatus($result, $check) {
 		return 0;
 	}
 
-	if (isset($check['optional']) && $check['optional'] == 1) {
-		if (isset($check["serious"]) && $check["serious"] == 1) {
+	if (isset($check['optional']) && $check['optional']) {
+		if (isset($check["serious"]) && $check["serious"]) {
 			if(empty($fail)) {
 				return 5;
 			}
@@ -1904,7 +1919,7 @@ function getCheckStatus($result, $check) {
 		}
 	}
 	else {
-		if (isset($check["serious"]) && $check["serious"] == 1) {
+		if (isset($check["serious"]) && $check["serious"]) {
 			return 51;
 		}
 		else {

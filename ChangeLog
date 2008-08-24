@@ -1,3 +1,20 @@
+2008-08-24 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b5
+
+ * Fix: Password strengthmeter in setup broke change or
+        set of new admin password.
+
+ * Change: Set true instead of 1 for some check results.
+           Example:
+		$fail['fail-exec'] = 1
+	   -->	$fail['fail-exec'] = true;
+
+ * Fix: Current settings of locale_alias were not selected
+        and thus could overwritten by a different value.
+
+   Thanks to Andrew Vasilyev.
+
+ * Fix: Avoid PHP notice in layout/userData.inc
+
 2008-08-24 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b4
 
  * Fix: Line-ending in bars014 skin
