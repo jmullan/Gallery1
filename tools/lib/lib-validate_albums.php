@@ -81,37 +81,4 @@ function findMissingFiles($album, $albumPath) {
 	}
 }
 
-/**
- * Removes recursively (!) a directory and its content.
- *
- * @param string $path
- * @return boolean
- */
-function removeInvalidAlbum($path) {
-	if(!isXSSclean($path)) {
-		return false;
-	}
-	
-	if(!fs_is_dir($path)) {
-		return true;
-	}
-
-	$removePath = opendir($path);
-
-	while (($file = readdir($removePath)) !== false) {
-		if ($file == '.' || $file == '..') {
-			continue;
-		}
-
-		if (fs_is_dir($path . '/' . $file)) {
-			removeInvalidAlbum($path . '/' . $file);
-		} else {
-			unlink($path . '/' . $file);
-		}
-	}
-	closedir($removePath);
-	rmdir($path);
-
-	return true;
-}
 ?>

@@ -91,8 +91,8 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton();
 
-$adminbox['text']     = gTranslate('core', "Admin options");
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	= '<span class="g-title">'.  gTranslate('core', "Admin options") .'</span>';
+$adminbox['commands']	= makeIconMenu($iconElements, 'right');
 
 $breadcrumb['text'][] = languageSelector();
 

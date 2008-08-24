@@ -44,8 +44,6 @@ $messages = array();
 $addon = '';
 $iconElements = array();
 
-$adminbox['text'] = gTranslate('core', "Find Orphans");
-
 $iconElements[] = galleryIconLink(
 				makeGalleryUrl("admin-page.php"),
 				'navigation/return_to.gif',
@@ -58,16 +56,28 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	 = '<span class="g-title">'. gTranslate('core', "Find Orphans") .'</span>';
+$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 
-/* --- Lets Start the real output --- */
+$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle(gTranslate('core', "Find Orphans")), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo clearGalleryTitle(gTranslate('core', "Find Orphans")) ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
 }
 
-	includeLayout('adminbox.inc');
-	includeLayout('breadcrumb.inc');
+includeTemplate("gallery.header", '', 'classic');
+
+includeLayout('adminbox.inc');
+includeLayout('breadcrumb.inc');
 
 if (empty($action)) {
 	if (!empty($orphanAlbums)) {
@@ -181,12 +191,17 @@ else {
 		}
 	}
 }
+?>
+</div>
+<?php
+echo infoBox($messages) . $addon;
 
-	echo infoBox($messages) . $addon;
+includeTemplate("overall.footer");
 
-	includeTemplate("overall.footer");
-	if (!$GALLERY_EMBEDDED_INSIDE) {
+if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
 </html>
-<?php } ?>
+<?php
+}
+?>

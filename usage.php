@@ -29,7 +29,7 @@ list($action, $sortby, $order) = getRequestVar(array('action', 'sortby', 'order'
 $iconElements = array();
 $messages = array();
 
-$adminbox['text'] = gTranslate('core', "Filesystem usage");
+$adminbox['text'] = '<span class="g-title">'. gTranslate('core', "Filesystem usage") .'</span>';
 
 if (!($gallery->user->isAdmin())) {
 	if ($gallery->user->isLoggedIn()) {
@@ -79,8 +79,21 @@ $orderChoices = array(
 /* --- Lets Start the real output --- */
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle(gTranslate('core', "User / album Usage")), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+<title><?php echo clearGalleryTitle(gTranslate('core', "User / album Usage")) ?></title>
+<?php
+	common_header() ;
+?>
+</head>
+<body>
+<?php
 }
+
+includeTemplate("gallery.header", '', 'classic');
+
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');

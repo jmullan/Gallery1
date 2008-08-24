@@ -36,9 +36,9 @@ if (!$gallery->user->isAdmin()) {
 
 require_once(dirname(__FILE__) .'/lib/lib-despam_comments.php');
 
-$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-$adminbox['text'] = gTranslate('core', "Find and remove comment spam");
+$g1_mode = getRequestVar('g1_mode');
 
+$iconElements	= array();
 $iconElements[] = galleryIconLink(
 				makeGalleryUrl("admin-page.php"),
 				'navigation/return_to.gif',
@@ -49,18 +49,27 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
-
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	 = '<span class="g-title">'. gTranslate('core', "Find and remove comment spam") .'</span>';
+$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 
-$g1_mode = getRequestVar('g1_mode');
-
-/* Begin HTML output */
+$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle(gTranslate('core', "Find and remove comment spam")), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo clearGalleryTitle(gTranslate('core', "Comment Spam")) ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
 }
+
+includeTemplate("gallery.header", '', 'classic');
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
@@ -68,13 +77,12 @@ includeLayout('breadcrumb.inc');
 
 <table width="100%">
 <tr>
+	<td style="vertical-align:top;">
+	<?php offerOptions(); ?>
+	</td>
+
+	<td class="g-border-left" style="padding-left: 10px; width:100%">
 <?php
-echo '<td style="vertical-align:top;">';
-offerOptions();
-echo "</td>";
-
-echo '<td class="g-border-left" style="padding-left: 10px; width:100%">';
-
 switch($g1_mode) {
 	case 'deleteComments':
 		deleteComments();
@@ -103,10 +111,11 @@ switch($g1_mode) {
 	default:
 	break;
 }
-echo "</td></tr>\n";
 ?>
+	</td>
+</tr>
 </table>
-
+</div>
 <?php
 includeTemplate("overall.footer");
 

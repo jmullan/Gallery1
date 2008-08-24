@@ -47,18 +47,29 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['text'] = gTranslate('core', "Gallery statistics - Wizard");
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	= '<span class="g-title">'.  gTranslate('core', "Assemble your Gallery statistic") .'</span>';
+$adminbox['commands']	= makeIconMenu($iconElements, 'right');
 
 $breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle($adminbox['text']), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo clearGalleryTitle(gTranslate('core', "Statistic Wizard")) ?></title>
+  <?php common_header(); ?>
+</head>
+<body>
+<?php
 }
 
+includeTemplate("gallery.header");
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
 
+$url = makeGalleryHeaderUrl('stats.php');
+$url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 ?>
 <div class="g-content-popup">
 <?php
@@ -68,7 +79,7 @@ includeLayout('breadcrumb.inc');
   function updateUrl() {
 	var value;
 	var url;
-	url='<?php echo makeGalleryUrl('stats.php') .'?'; ?>';
+	url='<?php echo $url; ?>';
 
 	/* This javascript goes through all elements of the form 'stats_form'
 	** depending if set or not it generates an string that represents the parameters for stats.php
@@ -80,6 +91,13 @@ includeLayout('breadcrumb.inc');
 			document.stats_form.showGrid.checked == false) {
 			continue;
 		}
+
+		if(document.stats_form.elements[i].name == 'name' ||
+		   document.stats_form.elements[i].name == 'include')
+		{
+			continue;
+		}
+
 		switch(document.stats_form.elements[i].type) {
 			case 'submit':
 				continue;
@@ -111,7 +129,7 @@ includeLayout('breadcrumb.inc');
 </script>
 
 <?php
-	echo makeFormIntro('stats.php', array('name' => 'stats_form', 'onChange' => 'updateUrl()'));
+	echo makeFormIntro('stats.php', array('name' => 'stats_form', 'onClick' => 'updateUrl()'));
 ?>
 	<table width="100%" class="g-stats-wizard">
 	<tr>

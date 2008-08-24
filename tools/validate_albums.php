@@ -26,19 +26,21 @@ require(dirname(__FILE__) . '/lib/lib-validate_albums.php');
 // Security check
 if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeAlbumHeaderUrl());
-		exit;
+	exit;
 }
 
 // Ensure that the results we get aren't due to caching
 clearstatcache();
+
+
 
 $results = array(
 	'file_missing' => array(),
 	'invalid_album' => array(),
 );
 
-$iconElements = array();
 $action = getRequestVar('action');
+$iconElements = array();
 
 if(!empty($action)) {
 	if($action == 'unlinkInvalidAlbum') {
@@ -64,16 +66,25 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['text'] = $title;
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	 = '<span class="g-title">'. $title .'</span>';
+$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 
-
-/* Begin HTML output */
+$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle($title), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo $title; ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
 }
+
+includeTemplate("gallery.header", '', 'classic');
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
@@ -84,7 +95,7 @@ if (!empty($action)) {
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
 
 			if ($verified) {
-				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
+				$ret = rmdirRecursive($gallery->app->albumDir . '/' . $invalidAlbum);
 
 				if($ret) {
 					echo gallery_success(gTranslate('core', "Album deleted."));
@@ -151,7 +162,7 @@ if (!empty($action)) {
 			break;
 
 		default:
-			echo gallery_error(gTranslate('core', "Invalid action !"));
+			echo gallery_error(gTranslate('core', "Invalid action!"));
 			break;
 	}
 ?>
@@ -265,7 +276,9 @@ else {
 		}
 		echo "\n</fieldset><br>";
 	}
-
+?>
+</div>
+<?php
 	includeTemplate("overall.footer");
 
 	if (!$GALLERY_EMBEDDED_INSIDE) {
