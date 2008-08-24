@@ -111,7 +111,7 @@ if ($GALLERY_EMBEDDED_INSIDE) {
 }
 
 if ($fitToWindow) {
-	echo jsHTML('fitToWindow.js.php');
+	echo jsHTML("fitToWindow.js.php?imageWidth=$imageWidth&amp;imageHeight=$imageHeight");
 }
 
 ?>
