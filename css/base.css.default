@@ -278,7 +278,7 @@ table.g-breadcrumb {
 
 /* Cell for thumbnail */
 .g-album-image-cell {
-    vertical-align: middle ;
+    vertical-align: top ;
     text-align: center;
     padding: 5px;
     margin: 5px;
@@ -328,7 +328,8 @@ table.g-albums-table .g-albumdesc-cell {
 }
 
 .g-voting-results {
-    margin: 0 auto;
+	margin: 0 auto;
+        border-top: 1px solid #fff;
 }
 
 .g-vote-box {
@@ -514,12 +515,22 @@ table.g-albums-table .g-albumdesc-cell {
 }
 
 .g-success {
+    color: #000;
     background-color: #cbffaf;
     border: 1px solid #aaa;
     padding: 1px;
     padding-left: 5px;
     margin-bottom: 1px;
     -moz-border-radius: 8px;
+}
+
+
+.g-error td a {
+    color: #000;
+}
+
+.g-error td a:hover {
+    text-decoration:underline;
 }
 
 /******************** End infoBox ********************/

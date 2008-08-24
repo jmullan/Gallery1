@@ -44,14 +44,14 @@ if (!$gallery->session->viewedAlbum[$albumName]) {
 	$gallery->album->incrementClicks();
 }
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album->fields['bordercolor'];
 
-$cols = $gallery->album->fields["cols"];
+$cols = $gallery->album->fields['cols'];
 $imageCellWidth = floor(100 / $cols) . "%";
-$fullWidth="100%";
+$fullWidth = "100";
 
-$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-$adminbox['text'] = gTranslate('core', "Poll Results");
+$adminbox['bordercolor']	= $gallery->app->default['bordercolor'];
+$adminbox['text']		= gTranslate('core', "Poll Results");
 
 $iconElements[] = galleryIconLink(
 				makeAlbumUrl($gallery->session->albumName),
@@ -63,12 +63,14 @@ $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
-$navigator["page"] = 1;
-$navigator["pageVar"] = "page";
-$navigator["maxPages"] = 1;
-$navigator["url"] = makeAlbumUrl($gallery->session->albumName);
-$navigator["spread"] = 5;
-$navigator["bordercolor"] = $bordercolor;
+$navigator['page']		= 1;
+$navigator['pageVar']		= 'page';
+$navigator['maxPages']		= 1;
+$navigator['url']		= makeAlbumUrl($gallery->session->albumName);
+$navigator['spread']		= 5;
+$navigator['bordercolor'] 	= $bordercolor;
+$navigator['fullWidth']		= $fullWidth;
+$navigator['widthUnits'] 	= '%';
 
 $albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields['title']) . ' :: '. gTranslate('core', "Poll Results"));
 
@@ -125,6 +127,8 @@ while ($i < $numPhotos) {
 	else {
 		$content = $gallery->album->getCaption($index) . "<br>";
 	}
+
+	$content = "<b>$content</b>";
 
 	$content .= showResults($ranks[$i]);
 

@@ -28,26 +28,26 @@ list($hash, $uname, $save, $new_password1, $new_password2) =
 list($fullname, $email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
-$errorCount = 0;
 
 printPopupStart(gTranslate('core', "Make New Password"));
-
 if (empty($hash) || empty($uname)) {
 	showInvalidReqMesg();
 	exit;
 }
 
-if (!empty($uname) ) {
 	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-	if (! empty($tmpUser) && !$tmpUser->checkRecoverPasswordHash($hash)) {
-		if($tmpUser->lastAction ==  "new_password_request") {
-			showInvalidReqMesg(gTranslate('core', "The recovery password is not the expected value, please try again."));
-			exit;
-		}
-		else {
+
+// Invalid username given
+if (empty($tmpUser)) {
 			showInvalidReqMesg();
 			exit;
 		}
+
+// Given Hash is wrong
+if(!$tmpUser->checkRecoverPasswordHash($hash)) {
+	if($tmpUser->lastAction ==  "new_password_request") {
+		showInvalidReqMesg(gTranslate('core', "The recovery password is not the expected value, please try again."));
+		exit;
 	}
 	else {
 		showInvalidReqMesg();
@@ -56,20 +56,16 @@ if (!empty($uname) ) {
 }
 
 if (!empty($save)) {
-	$saveOk = true;
-
 	if (empty($new_password1) ) {
 		$gErrors['new_password1'] = gTranslate('core', "You must provide your new password.");
-		$saveOk = false;
 	}
 	else if (strcmp($new_password1, $new_password2)) {
 		$gErrors['new_password2'] = gTranslate('core', "Passwords did not match!");
-		$errorCount++;
 	}
 	else {
-		$gErrors['new_password1'] = $gallery->userDB->validPassword($new_password1);
-		if ($gErrors['new_password1']) {
-			$saveOk = false;
+		$pwStatus = $gallery->userDB->validPassword($new_password1);
+		if($pwStatus != null) {
+			$gErrors['new_password1'] = $pwStatus;
 		}
 	}
 
@@ -78,15 +74,13 @@ if (!empty($save)) {
 		$gErrors['fullname'] =
 			sprintf(gTranslate('core', "%s contained invalid data, sanitizing input."),
 					sanitizeInput($fullname));
-		$saveOk = false;
 	}
 
 	if (!empty($email) && !check_email($email)) {
 		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-		$saveOk = false;
 	}
 
-	if ($saveOk) {
+	if (empty($gErrors)) {
 		$tmpUser->setFullname($fullname);
 		$tmpUser->setEmail($email);
 
@@ -105,7 +99,16 @@ if (!empty($save)) {
 
 		// Switch over to the new username in the session
 		$gallery->session->username = $uname;
-		header("Location: " . makeAlbumHeaderUrl());
+
+		if(!empty($notice_messages)) {
+			printInfoBox($notice_messages);
+		}
+
+		echo gallery_success(gTranslate('core', "The password was successfully saved."));
+		echo "\n<br>";
+		echo gButton('main', gTranslate('core', "Go to Gallery"), "location.href='". makeGalleryUrl() ."'");
+		includeTemplate('overall.footer');
+		exit;
 	}
 }
 
@@ -133,9 +136,9 @@ include(dirname(__FILE__) . '/layout/userData.inc');
 
 ?>
 <p>
-<input type="hidden" name="hash" value="<?php echo $hash ?>">
+<?php echo gInput('hidden', 'hash', null, false, $hash); ?>
 <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-<?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='". $gallery->app->photoAlbumURL ."'"); ?>
+<?php echo gButton('cancel', gTranslate('core', "C_ancel"), "location.href='". $gallery->app->photoAlbumURL ."'"); ?>
 </form>
 
 <?php includeTemplate('overall.footer'); ?>
