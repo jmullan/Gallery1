@@ -456,6 +456,17 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
 	$attrList['class'] = 'g-button';
 	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
 
+	switch($name) {
+		case 'close':
+			$attrList['class'] .= ' g-button-negative';
+		break;
+
+		default:
+			$attrList['class'] .= ' g-button-positive';
+		break;
+
+	}
+
 	if($attrList['accesskey'] != '') {
 	   $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
 	}
@@ -637,6 +648,17 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 	}
 	else {
 		$attrList['name'] = $name;
+	}
+
+	switch($name) {
+		case 'save':
+			$attrList['class'] .= ' g-button-positive';
+		break;
+
+		case 'close':
+		case 'cancel':
+			$attrList['class'] .= ' g-button-negative';
+		break;
 	}
 
 	$attrList = array_merge($attrList, $additionalAttrs);

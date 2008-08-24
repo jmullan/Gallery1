@@ -443,8 +443,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-tabset a.g-activeTab {
-	/* Colors as the same as a button */
-    border-bottom: 1px solid #66a;
+	border-bottom: 1px solid #66a;
 }
 
 /******************** Begin infoBox ********************/
@@ -633,42 +632,62 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 	border: 1px solid #99f;
 }
 
-input:hover.g-button, input:focus.g-button {
-    background-color: #370093;
-    color: #fff;
-}
-
 .g-form-text {
 }
 
 .g-form-text:focus {
 }
 
-.g-button, .g-tabset a.g-activeTab {
+.g-tabset a.g-activeTab {
     color: #FFF;
     background-color: #53a;
 }
 
 .g-button {
-	border-bottom: 1px solid #333;
-	border-right: 1px solid #000;
-	border-left: 1px solid #C4C4B8;
-	border-top: 1px solid #C4C4B8;
-	-moz-border-radius: 5px;
-	padding-top: 0; padding-bottom: 0;
-	padding-left: 2px; padding-right: 2px;
+	color: #363636;
+	background-image: url(../images/backgrounds/formbg.gif);
+
+	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+	font-weight: bold;
+
+	cursor:pointer;
+	padding: 1px 2px;
+
+	border:outset 1px #aaa;
+	border-style: outset;
+
+	-moz-border-radius: 3px;
 }
 
 .g-buttonDisable, input:focus.g-buttonDisable {
-    color: #000;
-    background-color: gray;
-    border: 1px solid #efefff;
-    -moz-border-radius: 5px;
-    padding-top: 0; padding-bottom: 0;
-    padding-left: 2px; padding-right: 2px;
+	color: #9f9f9f;
+	background-image: url(../images/backgrounds/formbg.gif);
+
+	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+	font-weight: bold;
+
+	padding: 1px 2px;
+
+	border:outset 1px #fff;
+	border-style: outset;
+
+	-moz-border-radius: 3px;
 }
 
-.g-button:hover {
+.g-button:hover, input:hover.g-button, input:focus.g-button {
+	color: #235689;
+}
+
+.g-button-positive:hover, input:hover.g-button-positive, input:focus.g-button-positive {
+	color: #327214;
+	background: #f6ffd2;
+	border-color: #b6c870;
+}
+
+.g-button-negative:hover, input:hover.g-button-negative, input:focus.g-button-negative {
+	color: #d12f19;
+	background: #fbe3e4;
+	border-color: red;
 }
 
 .g-button:focus {
@@ -787,7 +806,7 @@ input:hover.g-button, input:focus.g-button {
 	margin-bottom: 2px;
 }
 
-/* Should be the same as a button */
+/* Should be the same as tabs */
 .g-current-step {
 	color: #FFF;
 	background: #53a;

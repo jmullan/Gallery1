@@ -88,7 +88,7 @@ $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 echo gButton('add', gTranslate('core', "_Add comment"), 'javascript: '. popup($url));
 
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gsubmit('submit', gTranslate('core', "_Delete marked comments"));
+	echo gsubmit('delete_comments', gTranslate('core', "_Delete marked comments"));
 }
 ?>
         </form>

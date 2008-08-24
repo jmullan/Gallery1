@@ -107,9 +107,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php }
 
 /* User maybe wants to delete comments */
-list($index, $comment_index, $submit) = getRequestVar(array('index', 'comment_index', 'submit'));
+list($index, $comment_index, $delete_comments) = getRequestVar(array('index', 'comment_index', 'delete_comments'));
 
-if (!empty($submit) && $gallery->user->canWriteToAlbum($gallery->album) &&
+if (!empty($delete_comments) && $gallery->user->canWriteToAlbum($gallery->album) &&
     !empty($comment_index) &&
 	!empty($index) && $comment_index[$index])
 {
@@ -146,7 +146,7 @@ includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
 
 if (!$gallery->user->canViewComments($gallery->album)) {
-	echo "<p>". gallery_error(_("Sorry.  You are not allowed to see comments of this album.")) ."</p>";
+	echo "<p>". gallery_error(gTranslate('core', "Sorry.  You are not allowed to see comments of this album.")) ."</p>";
 }
 else {
 	$numPhotos = $gallery->album->numPhotos(1);
