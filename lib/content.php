@@ -943,24 +943,27 @@ function albumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto
 			'selected' => true,
 			'disabled' => null
 		);
+
+
+		// Create a ROOT option for the user to move the album to the main display
+		if ($gallery->user->canCreateAlbums() && $rootDisplay) {
+			$albumOptionList[] = array(
+				'text'	=> gTranslate('common', "Move to top level"),
+				'value'	=> '.root'
+			);
+		}
 	}
 
-	// Create a ROOT option for the user to move the album to the main display
-	if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-		$albumOptionList[] = array(
-			'text'	=> gTranslate('common', "Move to top level"),
-			'value'	=> '.root'
-		);
-	}
-
-	// Display all albums that the user can move album to
+	$curAlbumName	= $gallery->album->fields['name'];
+	// Create a list of all albums where the user can copy/move items to
 	for ($i = 1; $i <= $mynumalbums; $i++) {
 		$myAlbum	= $albumDB->getAlbum($gallery->user, $i);
 		$myAlbumName	= $myAlbum->fields['name'];
 		$myAlbumTitle	= $myAlbum->fields['title'];
 
 		if ($gallery->user->canWriteToAlbum($myAlbum) ||
-		  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
+                    ($readOnly && $gallery->user->canReadAlbum($myAlbum)))
+		{
 			if ($myAlbum->versionOutOfDate()) {
 				$uptodate = false;
 				continue;
@@ -968,7 +971,7 @@ function albumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto
 
 			$myAlbumTitle = truncateText($myAlbumTitle, 20, 'right');
 
-			if (!$readOnly && ($myAlbum == $gallery->album)) {
+			if ($myAlbumName == $curAlbumName) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
 				$albumOptionList[] = array(
@@ -1040,15 +1043,24 @@ function nestedAlbumOptionList($level, $albumName, $movePhoto, $readOnly) {
 				$val2 = truncateText($val2, 20, 'right');
 
 				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
-					// Don't allow user to move to here (value=0), but
-					// notify them that this is their current location
-					$nestedAlbumOptionList[] = array(
-						'text'	=> "$val2 (". gTranslate('common', "Current location") .")",
-						'value'	=> 0
-					);
+					if ($movePhoto) {
+						// Don't allow user to move to here (value=0), but
+						// notify them that this is their current location
+						$nestedAlbumOptionList[] = array(
+							'text'	=> "$val2 (". gTranslate('common', "Current location") .")",
+							'value'	=> 0
+						);
+					}
+					else {
+						// Don't allow user to move to here (value=0), but
+						// notify them that this is their current location
+						$nestedAlbumOptionList[] = array(
+							'text'	=> "$val2 (". gTranslate('common', "Current location") .")",
+							'value'	=> $myName
+						);
+					}
 				}
-				elseif (!$readOnly &&
-					($myName == $currentAlbumName))
+				elseif (!$readOnly && ($myName == $currentAlbumName))
 				{
 				  	$nestedAlbumOptionList[] = array(
 						'text'	=> "$val2 (". gTranslate('common', "This album itself"). ")",
@@ -1175,7 +1187,7 @@ function available_skins($description_only = false) {
 
 			if ($screenshot) {
 				$name = popup_link($name, $screenshot, 1, false,
-				500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
+				500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ', false, false);
 			}
 
 			$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
@@ -1796,20 +1808,26 @@ function unhtmlentities($string) {
 			$return = html_entity_decode($string, ENT_COMPAT ,$charset);
 		}
 		else {
-			// For unsupported charsets you may do this:
-			$trans_tbl = get_html_translation_table (HTML_ENTITIES);
-			$trans_tbl = array_flip ($trans_tbl);
-			$return = strtr ($string, $trans_tbl);
+			$return = old_unhtmlentities($string);
 		}
 	}
 	else {
-		// For users with PHP prior to 4.3.0 you may do this:
-		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
-		$trans_tbl = array_flip ($trans_tbl);
-		$return = strtr ($string, $trans_tbl);
+		$return = old_unhtmlentities($string);
 	}
 
 	return $return;
+}
+
+function old_unhtmlentities($string)
+{
+    // replace numeric entities
+    $string = preg_replace('~&#x([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $string);
+    $string = preg_replace('~&#([0-9]+);~e', 'chr("\\1")', $string);
+    // replace literal entities
+    $trans_tbl = get_html_translation_table(HTML_ENTITIES);
+    $trans_tbl = array_flip($trans_tbl);
+
+    return strtr($string, $trans_tbl);
 }
 
 /**
@@ -1838,7 +1856,8 @@ function sanitizeInput($value) {
 		//echo "\n</ul>";
 	}
 	else {
-		$sanitized = gHtmlSafe($safehtml->parse($value));
+		//$sanitized = gHtmlSafe($safehtml->parse($value));
+		$sanitized = unhtmlentities($safehtml->parse($value));
 
 		if($sanitized != $value) {
 			//echo "--->". $sanitized;

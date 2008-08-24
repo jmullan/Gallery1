@@ -360,10 +360,22 @@ class Abstract_User {
 
 	function isOwnerOfAlbum($album) {
 		if ($album->isOwner($this->uid)) {
-			return true;
+			$ret = true;
+		}
+		else {
+			$ret = false;
 		}
 
-		return false;
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(sprintf(gTranslate('core',"User %s is owner of album '%s'"), $this->getUsername(), $album->fields['name']), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(sprintf(gTranslate('core',"User %s  is NOT owner of album '%s'"), $this->getUsername(), $album->fields['name']), __FILE__, __LINE__);
+			}
+		}
+
+		return $ret;
 	}
 
 	function isLoggedIn() {

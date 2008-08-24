@@ -167,7 +167,7 @@ echo $gallery->album->getThumbnailTag($index)
 		$indexArray[$i] = $i;
 	}
 
-	list($uptodate, $albumOptionList) = albumOptionList(0,0,1);
+	list($uptodate, $albumOptionList) = albumOptionList(0,0,0);
 // Display album list for a photo and display num photos to copy
 ?>
 <table>
