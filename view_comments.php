@@ -110,7 +110,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 list($index, $comment_index, $submit) = getRequestVar(array('index', 'comment_index', 'submit'));
 
 if (!empty($submit) && $gallery->user->canWriteToAlbum($gallery->album) &&
-	!empty($comment_index) && isValidGalleryInteger($comment_index) &&
+    !empty($comment_index) &&
 	!empty($index) && $comment_index[$index])
 {
 	$saveMsg = '';

@@ -69,19 +69,7 @@ foreach ($outfile_list as $outfile => $optional) {
 	}
 }
 
-$header = "<?php\n";
-
-$header .= "/* \n"
-	." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
-	." * don't implicitly create a new stdClass() when you use a variable \n"
-	." * like a class. \n"
-	." */ \n"
-	."if (!isset(\$gallery)) { \n"
-	."        \$gallery = new stdClass(); \n"
-	."}\n"
-	."if (!isset(\$gallery->app)) { \n"
-	."        \$gallery->app = new stdClass(); \n"
-	."}\n\n";
+$header = "<?php\n\n";
 
 $gallery->session->configData = "/* Version  */\n";
 $gallery->session->configData .= "\$gallery->app->config_version = '$gallery->config_version';\n";

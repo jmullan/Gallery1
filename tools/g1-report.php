@@ -237,7 +237,8 @@ function parsePoFiles($poFiles) {
 			if (!isset($poData[$locale]['plugins'][$plugin])) {
 				$poData[$locale]['plugins'][$plugin]['missing'] = 1;
 				$poData[$locale]['plugins'][$plugin]['percentDone'] = 0;
-			} else {
+			}
+			else {
 				/*
 				* debug
 				printf("[$locale, $plugin] [%d, %d]<br>",
@@ -280,9 +281,11 @@ function percentColor($percent) {
 	$border=50;
 	if ($percent < $border) {
 		$color = "#". dechex(255 - $percent * 2) . "0000";
-	} else {
+	}
+	else {
 		$color= "#00" . dechex( 55 + $percent * 2 ). "00";
 	}
+
 	if (strlen($color) <6) {
 		$color= "#0" . $color;
 	}
