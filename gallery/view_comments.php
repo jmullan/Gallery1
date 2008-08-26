@@ -33,7 +33,8 @@ if (empty ($gallery->album) || !$gallery->album->isLoaded()) {
 }
 
 // Further hack check
-if (! ($gallery->user->isAdmin() ||
+if (! ($gallery->app->comments_enabled == 'yes' ||
+       $gallery->user->isAdmin() ||
        $gallery->user->isOwnerOfAlbum($gallery->album) ||
        ( $gallery->user->canViewComments($gallery->album) && isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes")
       ))
