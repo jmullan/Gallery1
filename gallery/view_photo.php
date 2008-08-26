@@ -328,7 +328,7 @@ $albumItemOptions = getItemActions($index, $useIcons);
 
 if ($fitToWindow) {
 	/* Include Javascript */
-	echo jsHTML('fitToWindow.js.php');
+	echo jsHTML("fitToWindow.js.php?imageWidth=$imageWidth&amp;imageHeight=$imageHeight");
 }
 ?>
 <!-- Top Nav Bar -->

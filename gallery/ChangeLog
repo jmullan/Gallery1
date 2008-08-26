@@ -1,3 +1,19 @@
+2008-08-26 Jens Tkotz <jens@peino.de> 1.5.9-svn-b8
+
+ * Fix: Password strengthmeter in setup broke change or
+        set of new admin password.
+
+ * Fix: FitToWindow broken.
+
+ * Fix: sanitizeInput returns just the unhtmlentities value instead of
+        using gHtmlSafe which does a surrounding htmlentities.
+
+ * Change: Update Walter Zorns
+                wz_tooltip.js to 5.20
+                tip_balloon.js to 1.6
+
+ * Fix: Line endings in wz_jsgraphics.js
+
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b7
 
  * New: classes/Colors.php, which is a PHP port of rgbcolor.js
@@ -31,6 +47,23 @@
  * Fix: Remove redundant CSS in base.css.default
 
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b4
+
+ * CHANGE: Added always allowment for admins to
+        canAddComments
+        canAddTo
+        canChangeText
+        canWrite
+        canDelete
+        canViewComments
+        canViewFullImages
+        canAddComments
+
+
+ * CHANGE: Remove album owner to be always to allowed to
+        canDeleteFrom
+
+ * Change: REMOVED that everybody can see an album if no permissions are set.
+
 
  * Change: Remove wrong check for nobody in Album::isItemOwner
 

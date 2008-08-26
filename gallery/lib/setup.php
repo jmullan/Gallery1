@@ -133,7 +133,7 @@ function form_password($key, $arr) {
 		$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
 	}
 
-	$html = gInput('password', $key[0], null, false, $arr['value'][0], array('addCheck' => true))
+	$html = gInput('password', $key . '[0]', null, false, $arr['value'][0], array('addCheck' => true))
 		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. gTranslate('common', "Please retype your password here")
