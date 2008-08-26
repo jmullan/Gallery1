@@ -1,9 +1,10 @@
 /**
  * Gallery SVN ID:
- * $Id: multiInput.js.php 13850 2006-06-19 12:37:37Z jenst $
+ * $Id: tip_ballons.js 13850 2006-06-19 12:37:37Z jenst $
  */
 
-tip_balloon.js  v. 1.5
+/*
+tip_balloon.js  v. 1.6
 
 The latest version is available at
 http://www.walterzorn.com
@@ -11,11 +12,15 @@ or http://www.devira.com
 or http://www.walterzorn.de
 
 Initial author: Walter Zorn
-Last modified: 11.4.2008
+Last modified: 15.7.2008
 
 Extension for the tooltip library wz_tooltip.js.
 Implements balloon tooltips.
 */
+
+// Make sure that the core file wz_tooltip.js is included first
+if(typeof config == "undefined")
+	alert("Error:\nThe core tooltip script file 'wz_tooltip.js' must be included first, before the plugin files!");
 
 // Here we define new global configuration variable(s) (as members of the
 // predefined "config." class).
@@ -69,7 +74,7 @@ balloon.OnCreateContentString = function()
 {
 	if(!tt_aV[BALLOON])
 		return false;
-
+		
 	var aImg, sImgZ, sCssCrn, sVaT, sVaB, sCssImg;
 
 	// Cache balloon images in advance:
@@ -84,7 +89,7 @@ balloon.OnCreateContentString = function()
 	sVaB = 'vertical-align:bottom;" valign="bottom"';
 	sCssImg = 'padding:0px;margin:0px;border:0px;';
 	sImgZ = '" style="' + sCssImg + '" />';
-
+	
 	tt_sContent = '<table border="0" cellpadding="0" cellspacing="0" style="width:auto;padding:0px;margin:0px;left:0px;top:0px;"><tr>'
 				// Left-top corner
 				+ '<td' + sCssCrn + sVaB + '>'
@@ -143,11 +148,16 @@ balloon.OnSubDivsCreated = function()
 {
 	if(tt_aV[BALLOON])
 	{
+		var bdy = tt_GetElt("bALlO0nBdY");
+
+		// Insert a TagToTip() HTML element into the central body TD
+		if (tt_t2t && !tt_aV[COPYCONTENT] && bdy)
+			tt_MovDomNode(tt_t2t, tt_GetDad(tt_t2t), bdy);
 		balloon.iStem = tt_aV[ABOVE] * 1;
 		balloon.aStem = [tt_GetElt("bALlOOnT"), tt_GetElt("bALlOOnB")];
 		balloon.aStem[balloon.iStem].style.display = "inline";
 		if (balloon.width < -1)
-			Balloon_MaxW();
+			Balloon_MaxW(bdy);
 		return true;
 	}
 	return false;
@@ -167,7 +177,7 @@ balloon.OnMoveAfter = function()
 			balloon.aStem[iStem].style.display = "inline";
 			balloon.iStem = iStem;
 		}
-
+		
 		balloon.aStem[iStem].style.left = Balloon_CalcStemX() + "px";
 		return true;
 	}
@@ -192,10 +202,8 @@ function Balloon_CacheImgs(sPath)
 	}
 	return aImg;
 }
-function Balloon_MaxW()
+function Balloon_MaxW(bdy)
 {
-	var bdy = tt_GetElt("bALlO0nBdY");
-
 	if (bdy)
 	{
 		var iAdd = tt_bBoxOld ? (balloon.padding << 1) : 0, w = tt_GetDivW(bdy);

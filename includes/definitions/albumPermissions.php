@@ -61,7 +61,7 @@ function userBox($perm) {
 	$html .= "\n\t". gSubmit("submit[$perm]", '-->') .'<br><br>';
 	$html .= "\n\t" .gSubmit("submit[$perm]", '<--');
 	$html .= "\n</div>";
-	$html .= drawSelect("actionUid", $ids[$perm], '', 7);
+	$html .= drawSelect("actionUids", $ids[$perm], '', 7);
 
 	return $html;
 }

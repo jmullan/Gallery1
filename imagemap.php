@@ -304,12 +304,9 @@ else {
 </table>
 </form>
 
-  </td>
-</tr>
 <!-- End Real Content -->
 <!-- Start Footer Part -->
-<tr>
-  <td>
+
 <?php
 
 includeLayout('breadcrumb.inc');
