@@ -53,8 +53,9 @@ else {
 $albumName = $gallery->session->albumName;
 
 $noCount = getRequestVar('noCount');
-if ($noCount != 1 && !isset($gallery->session->viewedAlbum[$albumName]) &&
-	!$gallery->session->offline)
+if ($noCount != 1 &&
+    !isset($gallery->session->viewedAlbum[$albumName]) &&
+    !$gallery->session->offline)
 {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
@@ -283,7 +284,7 @@ if (!empty($adminCommands)) {
 }
 
 if ($gallery->album->fields["slideshow_type"] != "off" &&
-($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
+   ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
 	$iconText = getIconText('display.gif', gTranslate('core', "Slideshow"));
 	$iconElements[] = '<a href="'
 	. makeGalleryUrl("slideshow.php",
@@ -291,7 +292,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if (checkRequirements('comments_overview_for_all')) {
+if (checkRequirements('hasComments', 'comments_overview_for_all')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;comments"),
