@@ -1791,7 +1791,7 @@ function unhtmlentities($string) {
 	global $gallery;
 
 	if (empty($string)) {
-		return '';
+		return $string;
 	}
 
 	if (function_exists('html_entity_decode')) {

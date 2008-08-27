@@ -50,10 +50,6 @@ function getRequestVar($str) {
 
 		$ret = & $_REQUEST[$str];
 
-		if ("$ret" == "0") {
-			return $ret;
-		}
-
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes_deep($ret);
 		}
