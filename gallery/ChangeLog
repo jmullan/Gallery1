@@ -1,8 +1,16 @@
+2008-08-28 Jens Tkotz <jens@peino.de> 1.5.9-svn-b12
+
+ * FIX: unhtmlentities() changed 0 values to '',
+        that broke sanitizeInput() and thus getRequestVar()
+
+   I am very angry about my self,
+   as this caused a lot trouble at various places.
+
 2008-08-27 Jens Tkotz <jens@peino.de> 1.5.9-svn-b11
 
  * Fix: Gallery works now in turkish! HOOORAY !
 
-   Thanks to katpatuka for fixing thins LOONG outstanding bug.
+   Thanks to katpatuka for fixing this LOONG outstanding bug.
 
 2008-08-26 Jens Tkotz <jens@peino.de> 1.5.9-svn-b10
 
