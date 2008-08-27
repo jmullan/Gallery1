@@ -424,9 +424,17 @@ function initLanguage($sendHeader = true) {
 
 	/* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
 	putenv("LC_ALL=". $gallery->language);
+	if($gallery->language == 'tr_TR') {
+		putenv("LC_CTYPE=C");
+	}
 
 	/* Set Locale*/
-	setlocale(LC_ALL,$gallery->locale);
+	setlocale(LC_ALL, $gallery->locale);
+
+	if($gallery->language == 'tr_TR') {
+		setlocale(LC_CTYPE, 'C');
+	}
+
 
 	/*
 	 * Set Charset header
