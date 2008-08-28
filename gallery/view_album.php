@@ -597,7 +597,7 @@ if ($numPhotos) {
 			echo "<div style=\"width: {$divCellWidth}px;\"  align=\"center\" class=\"vafloat\">\n";
 			/* Do the clickable-dimensions row */
 			if (!strcmp($gallery->album->fields['showDimensions'], 'yes')) {
-				echo '<span class="dim">';
+				echo '<span class="dim fineprint">';
 				$photo	= $gallery->album->getPhoto($i);
 				$image	= $photo->image;
 				if (!empty($image) && !$photo->isMovie()) {

@@ -619,7 +619,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	/* Options shown only on the mainpage */
 	else {
 		/* User is allowed to view ALL comments */
-		if (checkRequirements('comments_overview_for_all')) {
+		if (checkRequirements('comments_enabled', 'hasComments', 'comments_overview_for_all')) {
 			$albumCommands[] = array(
 				'class'	=> 'url',
 				'text'	=> gTranslate('common',"View&nbsp;comments"),

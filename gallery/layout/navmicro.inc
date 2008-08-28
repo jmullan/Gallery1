@@ -163,7 +163,7 @@ if(!includeTemplate('navmicro.tpl')) {
 	<td width="5"><?php echo $navThumbsCur; ?></td>
 	<td nowrap width="40%" align="left"><?php echo $navThumbsNext; ?></td>
 	<?php } elseif ($gallery->album->fields["nav_thumbs_style"] == 'fixed') { ?>
-	<td colspan="3"><?php echo $navBlogThumb; ?></td>
+	<td colspan="3" align="center"><?php echo $navBlogThumb; ?></td>
 	<?php } ?>
 	<td><?php echo $navThumbsLast; ?></td>
 </tr>
