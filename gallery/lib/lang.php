@@ -709,27 +709,21 @@ function isSupportedCharset($charset) {
 	$supportedCharsetsNewerPHP = array(
 		'cp866',
 		'cp1251',
-		//'KOI8-R'
+		'KOI8-R'
 	);
 
 	/**
-	 * Check if we are using PHP >= 4.1.0
-	 * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+	 * Minimum PHP for Gallery 1.5.x is PHP >= 4.1.0
+	 * So we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
 	 * Otherwise they are messed.
 	 * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
 	 */
-	if (function_exists('version_compare')) {
-		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
-			 (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
+	if (in_array($charset, $supportedCharsets) ||
+	    (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
 			return true;
-		}
-		else {
-			/* Unsupported Charset*/
-			return false;
-		}
 	}
 	else {
-		/* PHP too old*/
+		/* Unsupported Charset*/
 		return false;
 	}
 }

@@ -20,9 +20,9 @@
  * $Id$
  */
 
-$gallery->version = '1.5.9-svn-b13';
+$gallery->version = '1.5.9-svn-b14';
 $gallery->config_version = 97;
-$gallery->album_version = 38.1;
+$gallery->album_version = 38;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";
 
