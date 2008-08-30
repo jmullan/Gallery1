@@ -383,7 +383,7 @@ function showResults($id) {
 	$index = $gallery->album->getIndexByVotingId($id);
 	$html .= "\n<tr><td colspan=\"3\" align=\"". langLeft() . '">' .
 			sprintf(gTranslate('common',
-			"Position %d overall, due to this votes:"),
+			"Position %d overall, due to these votes:"),
 			$gallery->album->getRank($index)) .
 			"</td></tr>";
 

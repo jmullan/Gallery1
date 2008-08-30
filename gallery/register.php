@@ -61,7 +61,7 @@ $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
 	if (! isXSSclean($uname)) {
-		$gErrors['uname'] = gTranslate('core', "Your username containes invalid data!");
+		$gErrors['uname'] = gTranslate('core', "Your username contains invalid data!");
 		$errorCount++;
 	}
 	elseif (empty($uname)) {
@@ -70,7 +70,7 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if(! isXSSclean($fullname)) {
-            $gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
+            $gErrors["fullname"] = gTranslate('core', "Your fullname contains invalid data!");
             $errorCount++;
         }
 	elseif (empty($fullname)) {
