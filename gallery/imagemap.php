@@ -273,7 +273,7 @@ echo makeFormIntro('imagemap.php',
 		echo gInput('textarea', 'areatext', null, false, null, array('cols' => 40, 'rows' => 5));
 	}
 	else {
-		echo gInput('textarea', 'areatext', null, false, null, array('cols' => 40));
+		echo gInput('text', 'areatext', null, false, null, array('cols' => 40));
 	}
 
 	echo gButton('clearButton', gTranslate('core', "Clear and reset canvas"), 'resetAndClear();');
