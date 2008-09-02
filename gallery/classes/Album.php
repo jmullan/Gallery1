@@ -1673,18 +1673,21 @@ class Album {
 	 * @return string
 	 */
 	function getThumbnailTag($index, $size = 0, $attrs = array()) {
+		static $usedIDs = array();
+
 		if ($index === null) {
 			return '';
-		}
-
-		if(empty($attrs['id'])) {
-			$attrs['id'] = "thumbnail_${index}";
 		}
 
 		$photo = $this->getPhoto($index);
 
 		if(! $photo) {
 			return '';
+		}
+
+		if(empty($attrs['id']) && ! in_array($index, $usedIDs)) {
+			$attrs['id'] = "thumbnail_${index}";
+			$usedIDs[] = $index;
 		}
 
 		if ($photo->isAlbum()) {

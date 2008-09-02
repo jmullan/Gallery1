@@ -32,6 +32,7 @@
 $iconsForItemOptions = true;
 
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/classes/Colors.php');
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) ||
@@ -272,6 +273,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
   		echo "\n  ". '<link rel="next" href="'. $nextUrl .'">';
   	}
+
   	if ($navigator['allIds'][$navcount-1] != 'unknown') {
   		echo "\n  ". '<link rel="last" href="'. $lastUrl .'">';
   	}
@@ -280,37 +282,44 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   echo "\n  ". '<link rel="up" href="' . $upUrl .'">';
 
   if ($gallery->album->isRoot() &&
-  (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
+      (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])))
+  {
   	echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
   }
-?>
 
+  if (!empty($gallery->album->fields["linkcolor"]) ||
+      !empty($gallery->album->fields["bgcolor"]) ||
+      !empty($gallery->album->fields['background']) ||
+      !empty($gallery->album->fields["textcolor"]))
+  {
+?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet
-if (!empty($gallery->album->fields["linkcolor"])) {
+	if ($gallery->album->fields["linkcolor"]) {
 	?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
-    A:hover
-      { color: #ff6600; }
+	a:link, a:visited, a:active { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
+	a:hover { color: #ff6600; }
 <?php
-}
-if (!empty($gallery->album->fields["bgcolor"])) {
-	echo "BODY { background-color:" . $gallery->album->fields['bgcolor'] . "; }";
-}
-if (!empty($gallery->album->fields["background"])) {
-	echo "BODY { background-image:url(" . $gallery->album->fields['background'] . "); } ";
-}
-if (!empty($gallery->album->fields["textcolor"])) {
-	echo "BODY, TD, P, DIV, SPAN { color:" . $gallery->album->fields['textcolor'] . "; }\n";
-	echo ".head { color:" . $gallery->album->fields['textcolor'] . "; }\n";
-	if (!empty($gallery->album->fields["bgcolor"])) {
-		echo ".headbox { background-color:" . $gallery->album->fields['bgcolor'] . "; }\n";
 	}
-}
+
+	if ($gallery->album->fields["bgcolor"]) {
+		$bgcolor = new RGBColor($gallery->album->fields['bgcolor']);
+		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+		echo "\n#adminbox td {background-color:". $bgcolor->getDarken() ."; }";
+	}
+
+	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+		echo "\nbody { background-image:url(".$gallery->album->fields['background']."); } ";
+	}
+
+	if ($gallery->album->fields["textcolor"]) {
+		echo "\nbody, td {color:".$gallery->album->fields['textcolor']."; }";
+		echo "\n.head {color:".$gallery->album->fields['textcolor']."; }";
+	}
 ?>
   </style>
+<?php } ?>
 
   </head>
   <body dir="<?php echo $gallery->direction ?>">
