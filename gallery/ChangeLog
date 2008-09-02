@@ -1,3 +1,16 @@
+2008-09-02 Jens Tkotz <jens@peino.de> 1.5.9-svn-b18
+
+ * Fix: Imagemap
+	- Position of Image were got wrong in IE with horizontal scrolling.
+	- Init of canvas was done to early, broke display of maps in IE.
+
+   Thanks to "Spack" form the forums for reporting this.
+
+ * Change: Layout and buttons/actions for Imagemap page.
+
+ * Change: Only add automatic ALT tag for images if its not set manual.
+           Setting to '' IS a manual value now, which means empty ALT text.
+
 2008-09-02 Jens Tkotz <jens@peino.de> 1.5.9-svn-b17
 
  * New: Added arrowkey navigation for microthumbs.

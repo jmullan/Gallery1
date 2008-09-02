@@ -884,7 +884,7 @@ class AlbumItem {
 	}
 
 	function getPhotoTag($dir, $full = false, $attrs) {
-		if (empty($attrs['alt'])) {
+		if (!isset($attrs['alt'])) {
 			$attrs['alt'] = $this->getAlttext();
 		}
 

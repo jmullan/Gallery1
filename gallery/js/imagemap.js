@@ -23,8 +23,8 @@ function initPaintArea() {
 
 	if(typeof map != "undefined") {
 		/* Update map coords */
-		for(i=0; i< map.length; ++i) {
-			for (j=0; j< map[i]['x_coords'].length; ++j) {
+		for(i = 0; i < map.length; ++i) {
+			for (j = 0; j < map[i]['x_coords'].length; ++j) {
 				map[i]['x_coords'][j] = map[i]['x_coords'][j] + minX;
 				map[i]['y_coords'][j] = map[i]['y_coords'][j] + minY;
 			}
@@ -54,7 +54,7 @@ function dpl_mouse_move(e) {
 	// for ie add scroll position
 	//
 	if (document.all && !document.captureEvents) {
-		xPos    += document[docEl].scrollTop;
+		xPos    += document[docEl].scrollLeft;
 		yPos    += document[docEl].scrollTop;
 	}
 
@@ -65,7 +65,8 @@ function dpl_mouse_move(e) {
 	// display position
 	if(!(xPos < minX || yPos < minY || xPos > minX+width || yPos > minY+height)) {
 		el.style.backgroundColor='green';
-	} else {
+	}
+	else {
 		el.style.backgroundColor='red';
 		imgPosX = 0;
 		imgPosY = 0;
@@ -87,7 +88,7 @@ function dpl_mouse_click(e) {
 	// for ie add scroll position
 	//
 	if (document.all && !document.captureEvents) {
-		xPos    += document[docEl].scrollTop;
+		xPos    += document[docEl].scrollLeft;
 		yPos    += document[docEl].scrollTop;
 	}
 
@@ -141,12 +142,12 @@ function resetAndClear() {
 	yVals = new Array();
 	imgxVals = new Array();
 	imgyVals = new Array();
-	document.areas.xvals.value    =  xVals;
-	document.areas.yvals.value    =  yVals;
+	document.areas.xvals.value =  xVals;
+	document.areas.yvals.value =  yVals;
 }
 
 function updatePictureAndArea() {
-	el = document.getElementById('imageareas');
+	el = document.getElementById('selected_areas');
 	areaurl = document.getElementById('areaurl');
 	areatext = document.getElementById('areatext');
 	selected = 0;
@@ -165,7 +166,6 @@ function updatePictureAndArea() {
 				paint = true;
 			}
 		}
-
 	}
 
 	if (count_selected == 1) {
