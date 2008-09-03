@@ -89,10 +89,10 @@ if (!empty($newAlbum) && $newAlbum != "0") {
 	if ($gallery->session->albumName == $newAlbum) {
 		echo gallery_error(gTranslate('core', "You can't move items into the album they already exist in."));
 	}
-	elseif (! $postAlbum) {
+	elseif (! $postAlbum && $newAlbum != ".root") {
 		echo gallery_error(gTranslate('core', "Invalid destination chosen."));
 	}
-	elseif (!$gallery->user->canWriteToAlbum($postAlbum)) {
+	elseif (!$gallery->user->canWriteToAlbum($postAlbum) && $newAlbum != ".root") {
 		echo gallery_error(sprintf(gTranslate('core', "You do not have the required permissions to write to %s!"), $newAlbum));
 	}
 	elseif ((isset($postAlbum->fields['name']) || $newAlbum == ".root") &&
