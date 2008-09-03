@@ -78,15 +78,15 @@ if ($gallery->session->albumListPage > $maxPages) {
 $pixelImage = '<img src="' . getImagePath('pixel_trans.gif') . '" width="1" height="1" alt="pixel_trans">';
 $borderColor = $gallery->app->default["bordercolor"];
 
-$navigator["page"] = $gallery->session->albumListPage;
-$navigator["pageVar"] = "set_albumListPage";
-$navigator["url"] = makeGalleryUrl("albums.php");
-$navigator["maxPages"] = $maxPages;
-$navigator["spread"] = 6;
-$navigator["fullWidth"] = 100;
-$navigator["widthUnits"] = "%";
-$navigator["bordercolor"] = $borderColor;
-$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
+$navigator["page"]		= $gallery->session->albumListPage;
+$navigator["pageVar"]		= "set_albumListPage";
+$navigator["url"]		= makeGalleryUrl("albums.php");
+$navigator["maxPages"]		= $maxPages;
+$navigator["spread"]		= 6;
+$navigator["fullWidth"]		= 100;
+$navigator["widthUnits"]	= "%";
+$navigator["bordercolor"]	= $borderColor;
+$displayCommentLegend		= 1;  // this determines if we display "* Item contains a comment" at end of page
 
 $currentUrl = makeGalleryUrl("albums.php", array("page" => $gallery->session->albumListPage));
 
@@ -288,7 +288,8 @@ if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $g
 		foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
 			echo "<br>$tmpAlbumName\n";
 		}
-	echo "\n</p>". gTranslate('core', "Please move it/them out of the albums directory.") ;
+
+		echo "\n</p>". gTranslate('core', "Please move it/them out of the albums directory.") ;
 	}
 
 	if(sizeof($albumDB->outOfDateAlbums)) {
@@ -296,7 +297,7 @@ if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $g
 			Gallery(), sizeof($albumDB->outOfDateAlbums));
 
 		echo "\n<br>";
-		echo sprintf(gTranslate('core', "Please %s."), popup_link(gTranslate('core', "upgrade those albums"), "upgrade_album.php",0,0,500,500,"error"));
+		printf(gTranslate('core', "Please %s."), popup_link(gTranslate('core', "upgrade those albums"), "upgrade_album.php",0,0,500,500,"error"));
 	}
 	echo "\n</div></center>\n";
 }
@@ -305,8 +306,10 @@ if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
     echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
     echo "\n<p class=\"head\"><u>". gTranslate('core', "Attention!") ."</u></p>";
 
-    echo sprintf(gTranslate('core', 'The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(gTranslate('core', "%s and try again."),
-    popup_link(gTranslate('core', "Log in"), "login.php", false, true, 500, 500))));
+    printf(gTranslate('core', 'The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s'),
+    	($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(gTranslate('core', "%s and try again."),
+	popup_link(gTranslate('core', "Log in"), "login.php", false, true, 500, 500)))
+    );
     echo "\n</div></center>\n";
     $gallery->session->gRedirDone = true;
 }
@@ -404,7 +407,7 @@ for ($i = $start; $i <= $end; $i++) {
 
   <?php
 	echo "\n<div class=\"admin\">";
-  	$adminAlbumCommandsArray = getAlbumCommands($gallery->album, false);
+  	$adminAlbumCommandsArray = getAlbumCommands($gallery->album, false, true);
 	if(!empty($adminAlbumCommandsArray)) {
 		foreach ($adminAlbumCommandsArray as $trash => $command ) {
 			echo $command['html'];

@@ -527,6 +527,23 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 				'value'	=> build_popup_url("delete_album.php?set_albumName=$albumName")
 			);
 		}
+
+		/* User is allowed to change the album */
+		if (checkRequirements('canWriteToAlbum')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Move album"),
+				'html'	=> popup_link(gTranslate('common',"Move album"),
+							"move_album.php?set_albumName={$albumName}&index=$i&reorder=0"),
+				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=0")
+			);
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common'," Reorder album"),
+				'html'	=> popup_link(gTranslate('common',"Reorder album"),
+							"move_album.php?set_albumName={$albumName}&index=$i&reorder=1"),
+				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=1")
+			);
+		}
 	}
 	/* Options that are only shown for subalbums */
 	else {
@@ -541,8 +558,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 									'set_albumName'	=> $album->fields['parentAlbumName'],
 									'index' => $i,
 									'id' => $id,
-									'gallery_popup' => true)),
-							array('accesskey' => true)),
+									'gallery_popup' => true))
+								),
 				'value'	=> build_popup_url(makeGalleryUrl('delete_item.php',
 								array(
 									'set_albumName' => $album->fields['parentAlbumName'],

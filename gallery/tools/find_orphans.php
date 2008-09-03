@@ -299,7 +299,7 @@ if (empty($action)) {
 		<br>
 		<?php echo makeFormIntro("tools/find_orphans.php", array("method" => "GET")); ?>
 		<input type="hidden" name="action" value="images">
-		<input type="submit" value="<?php echo gTranslate('core', "Delete Orphaned Files!") ?>">
+		<?php echo gSubmit('delete', gTranslate('core', "Delete Orphaned Files!")); ?>
 		</form>
 		</center>
 <?php
