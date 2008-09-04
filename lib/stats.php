@@ -314,10 +314,10 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		);
 
 		$statsCaption = $statsAlbum->getCaption($photoIndex);
-		$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
+		$statsCaptionName = $statsAlbum->getCaptionName($photoIndex);
 		$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
 
-		$captionText = '<a href="'. $statsUrl .'">'. $statsCaption .'</a>&nbsp;&nbsp;';
+		$captionText = "<a href=\"$statsUrl\">$statsCaption </a> $statsCaptionName";
 
 		if ($addLinksPos == 'oncaptionline' ) {
 			$captionText .= showAddVoteAddCommentLinks($photoId, $page);

@@ -182,11 +182,11 @@ if(!includeTemplate('navigator.tpl')) {
 <!-- Navigator -->
 <table cellspacing="0" cellpadding="0" id="<?php echo $id; ?>" dir="<?php echo $gallery->direction; ?>">
 <tr>
-	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $fpContent ?></td>
-	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $ppContent ?></td>
+	<td class="arrows <?php echo $pClass ?>" width="25" height="18"><?php echo $fpContent ?></td>
+	<td class="arrows <?php echo $pClass ?>" width="25" height="18"><?php echo $ppContent ?></td>
 	<td height="18"><?php echo $mpContent; ?></td>
-	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $npContent ?></td>
-	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $lpContent ?></td>
+	<td class="arrows <?php echo $nClass ?>" width="25" height="18"><?php echo $npContent ?></td>
+	<td class="arrows <?php echo $nClass ?>" width="25" height="18"><?php echo $lpContent ?></td>
 </tr>
 </table>
 <?php
