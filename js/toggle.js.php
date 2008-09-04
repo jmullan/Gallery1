@@ -5,7 +5,6 @@
  * $Id: toggle.js 16543 2007-06-07 14:40:26Z jenst $
 */
 
-
 if(file_exists(dirname(dirname(__FILE__)) . '/config.php')) {
 	require_once(dirname(dirname(__FILE__)) . '/config.php');
 }

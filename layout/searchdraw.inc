@@ -1,11 +1,13 @@
-<?php /* $Id$ */ ?>
 <?php
+/* $Id$ */
+
 global $searchdraw;
 
 // If the border color is not passed in, we do a black/white combo
 if ($searchdraw["bordercolor"]) {
 	$borderIn = $searchdraw["bordercolor"];
-} else {
+}
+else {
 	$borderIn = "#FFFFFF";
 }
 

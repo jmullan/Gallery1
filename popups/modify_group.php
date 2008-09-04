@@ -154,18 +154,18 @@ if (!isset($failure) || $failure != 'fatal') {
 
 <table align="center" cellspacing="5">
 <tr>
-	<th><?php echo gTranslate('core', "Current members"); ?></th>
-	<th>&nbsp;</th>
 	<th><?php echo gTranslate('core', "Available user"); ?></th>
+	<th>&nbsp;</th>
+	<th><?php echo gTranslate('core', "Current members"); ?></th>
 </tr>
 <tr>
-	<td width="33%"><?php echo drawSelect('currentMembers[]', $currentMembers, '', 15, array('id' => 'currentMembersBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
-	<td class="center">
-	  <?php echo gButton('add', gTranslate('core', "<-- Add"), "moveSelected('availableUserBox', 'currentMembersBox')"); ?>
-	  <br><br>
-	  <?php echo gButton('remove', gTranslate('core', "Remove -->"), "moveSelected('currentMembersBox', 'availableUserBox')"); ?>
-	</td>
 	<td width="33%"><?php echo drawSelect('availableUser[]', $availableUsers, '', 15, array('id' => 'availableUserBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
+	<td class="center">
+	  <?php echo gButton('add', gTranslate('core', "Add -->"), "moveSelected('availableUserBox', 'currentMembersBox')"); ?>
+	  <br><br>
+	  <?php echo gButton('remove', gTranslate('core', "<-- Remove"), "moveSelected('currentMembersBox', 'availableUserBox')"); ?>
+	</td>
+	<td width="33%"><?php echo drawSelect('currentMembers[]', $currentMembers, '', 15, array('id' => 'currentMembersBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
 </tr>
 </table>
 
@@ -178,17 +178,20 @@ else {
 		array('name' => 'groupmodify_form'),
 		array('type' => 'popup'));
 }
-	echo "\n\t<div class=\"center\">";
 
-	if(! isset($failure)) {
-		echo gSubmit('save', gTranslate('core', "_Save"));
-		echo "\n<br>";
-	}
+echo "\n\t<div class=\"center\">";
 
-	echo gSubmit('backToGroup', gTranslate('core', "Back to _groupmanagement"));
-	if (!$GALLERY_EMBEDDED_INSIDE) {
-		echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
-	}
+if(! isset($failure)) {
+	echo gSubmit('save', gTranslate('core', "_Save"));
+}
+
+echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
+echo "<br>";
+
+echo gSubmit('backToGroup', gTranslate('core', "_Group management"));
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	echo gSubmit('backToUser', gTranslate('core', "_User management"));
+}
 ?>
 	</div>
 </form>

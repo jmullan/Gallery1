@@ -61,36 +61,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   	echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
   }
 
-  if( ! empty($gallery->album->fields["linkcolor"]) ||
- 	  !empty($gallery->album->fields["bgcolor"]) ||
-  	  !empty($gallery->album->fields["textcolor"]))
-  {
-	echo "\n<style type=\"text/css\">";
-	// the link colors have to be done here to override the style sheet
-	if ($gallery->album->fields["linkcolor"]) {
-		echo "\n  a:link, a:visited, a:active {";
-		echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
-		echo "\n  a:hover { color: #ff6600; }";
-
-	}
-
-	if ($gallery->album->fields["bgcolor"]) {
-		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-	}
-
-	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-	}
-
-	if ($gallery->album->fields["textcolor"]) {
-		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-	}
-
-	echo "\n  </style>";
-	}
+  $customCSS = customCSS();
+  if($customCSS != '') :
 ?>
+  <style type="text/css">
+<?php echo $customCSS; ?>
+  </style>
+<?php endif; ?>
   </head>
   <body>
 <?php

@@ -458,6 +458,7 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
 
 	switch($name) {
 		case 'close':
+		case 'delete':
 			$attrList['class'] .= ' g-button-negative';
 		break;
 
@@ -652,11 +653,14 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 
 	switch($name) {
 		case 'save':
+		case 'add':
 			$attrList['class'] .= ' g-button-positive';
 		break;
 
 		case 'close':
 		case 'cancel':
+		case 'remove':
+		case 'delete':
 			$attrList['class'] .= ' g-button-negative';
 		break;
 	}

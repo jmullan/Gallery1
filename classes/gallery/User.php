@@ -185,7 +185,7 @@ class Gallery_User extends Abstract_User {
 		$rec_pass_hash = $rand;
 		$this->recoverPassHash = md5($rec_pass_hash);
 
-		return makeGalleryUrl(
+		return makeGalleryHeaderUrl(
 			'new_password.php',
 			array('hash' => $rec_pass_hash, 'uname' => $this->getUsername()));
 	}

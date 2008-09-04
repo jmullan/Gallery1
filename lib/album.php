@@ -287,6 +287,10 @@ function customCSS() {
 
 	if ($gallery->album->fields["bgcolor"]) {
 		$customCSS .= "  body { background-color:".$gallery->album->fields['bgcolor']."; }\n";
+
+		require_once(dirname(dirname(__FILE__)) . '/classes/Colors.php');
+		$bgcolor = new RGBColor($gallery->album->fields['bgcolor']);
+		$customCSS .= ".g-adminbar, .g-header, .g-sidebarHeader {background:". $bgcolor->getDarken() ."; }\n";
 	}
 
 	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
