@@ -969,7 +969,7 @@ function albumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto
 				continue;
 			}
 
-			$myAlbumTitle = truncateText($myAlbumTitle, 20, 'right');
+			$myAlbumTitle = truncateText($myAlbumTitle, 30, 'right');
 
 			if ($myAlbumName == $curAlbumName) {
 				// Don't allow the user to move to the current location with
@@ -1040,7 +1040,7 @@ function nestedAlbumOptionList($level, $albumName, $movePhoto, $readOnly) {
 			    ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 .= $nestedAlbum->fields['title'];
-				$val2 = truncateText($val2, 20, 'right');
+				$val2 = truncateText($val2, 30, 'right');
 
 				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
 					if ($movePhoto) {

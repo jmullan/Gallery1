@@ -710,7 +710,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to change the album */
 		if (checkRequirements('canWriteToAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common',"Move album"),
+				'text'	=> gTranslate('common', "Move album"),
 				'html'	=> popup_link(gTranslate('common',"Move album"),
 							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=0",
 							false, true, 550, 600, '', '', 'move.png'
@@ -719,7 +719,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 			);
 
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common',"Reorder album"),
+				'text'	=> gTranslate('common', "Reorder album"),
 				'html'	=> popup_link(gTranslate('common',"Reorder album"),
 							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=1",
 							false, true, 550, 600, '', '', 'move.png'
@@ -840,7 +840,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	/* Options shown only on the mainpage */
 	else {
 		/* User is allowed to view ALL comments */
-		if (checkRequirements('comments_overview_for_all')) {
+		if (checkRequirements('comments_enabled', 'hasComments', 'comments_overview_for_all')) {
 			$albumCommands[] = array(
 				'class'	=> 'url',
 				'text'	=> gTranslate('common',"View&nbsp;comments"),

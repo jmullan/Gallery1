@@ -1,4 +1,4 @@
-<?php
+f%d <?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2008 Bharat Mediratta
@@ -387,7 +387,7 @@ function showResults($id) {
 	$index = $gallery->album->getIndexByVotingId($id);
 	$html .= "\n<tr><td colspan=\"3\" class=\"left\">" .
 			 sprintf(gTranslate('common',
-					"Position %d overall, due to this votes:"),
+					"Position %d overall, due to these votes:"),
 					$gallery->album->getRank($index)) .
 			 "</td></tr>";
 
