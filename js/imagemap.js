@@ -54,7 +54,7 @@ function dpl_mouse_move(e) {
 	// for ie add scroll position
 	//
 	if (document.all && !document.captureEvents) {
-		xPos    += document[docEl].scrollTop;
+		xPos    += document[docEl].scrollLeft;
 		yPos    += document[docEl].scrollTop;
 	}
 
@@ -65,7 +65,8 @@ function dpl_mouse_move(e) {
 	// display position
 	if(!(xPos < minX || yPos < minY || xPos > minX+width || yPos > minY+height)) {
 		el.style.backgroundColor='green';
-	} else {
+	}
+	else {
 		el.style.backgroundColor='red';
 		imgPosX = 0;
 		imgPosY = 0;
@@ -87,7 +88,7 @@ function dpl_mouse_click(e) {
 	// for ie add scroll position
 	//
 	if (document.all && !document.captureEvents) {
-		xPos    += document[docEl].scrollTop;
+		xPos    += document[docEl].scrollLeft;
 		yPos    += document[docEl].scrollTop;
 	}
 
@@ -146,7 +147,7 @@ function resetAndClear() {
 }
 
 function updatePictureAndArea() {
-	el = document.getElementById('imageareas');
+	el = document.getElementById('selected_areas');
 	areaurl = document.getElementById('areaurl');
 	areatext = document.getElementById('areatext');
 	selected = 0;
