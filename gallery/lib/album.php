@@ -538,7 +538,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 			);
 
 			$albumCommands[] = array(
-				'text'	=> gTranslate('common'," Reorder album"),
+				'text'	=> gTranslate('common', "Reorder album"),
 				'html'	=> popup_link(gTranslate('common',"Reorder album"),
 							"move_album.php?set_albumName={$albumName}&index=$i&reorder=1"),
 				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=1")
@@ -660,4 +660,27 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 	return $albumCommands;
 }
+
+/**
+ * returns the a HTML string that shows a breadcrumb to an album
+ *
+ * @param array    $parents
+ * @return string  $html
+ * @author Jens Tkotz
+ */
+function albumBreadcrumb($parents) {
+        $html = '';
+
+        $nr = 0;
+        foreach ($parents as $album) {
+                $html .= $album['title'];
+                $nr ++;
+                if($nr < sizeof($parents)) {
+                        $html .= ' >> ';
+                }
+        }
+
+        return $html;
+}
+
 ?>
