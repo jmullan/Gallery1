@@ -3,7 +3,9 @@
 
 global $navigator, $full, $gallery, $navc;
 
-$navc++;
+if($gallery->album->fields['nav_thumbs'] == 'yes') {
+	$navc++;
+}
 
 if(includeTemplate('navmicro.tpl')) {
 	exit;
@@ -40,7 +42,7 @@ if ( $gallery->album->fields['nav_thumbs_first_last'] == "yes" ) {
 					$gallery->album->fields['nav_thumbs_size'],
 					array('class' => 'nav_micro_first_img'));
 
-	$navThumbsFirst = galleryLink($fpUrl, $fpImage);
+	$navThumbsFirst = galleryLink($fpUrl, $fpImage, array(), '', false, false);
 
 
 	$lpImage = $gallery->album->getThumbnailTagById(
@@ -158,31 +160,37 @@ if ($gallery->album->fields['nav_thumbs_style'] == "fixed") {
 	}
 }
 
-if($navc < 2) {
-	$id = 'g-navtable';
-	if ($navpage > 0) {
-		$prevPage = $navigator["allIds"][$navpage-1];
-		$ppUrl    = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
+if($gallery->album->fields['nav_thumbs'] == 'yes') {
+	if($navc < 2) {
+		$id = 'id="g-navtable"';
 
-		echo galleryLink($ppUrl, '', array('id' => "g-navmicro-backward_$navc"));
+		if ($navpage > 0) {
+			$prevPage = $navigator["allIds"][$navpage-1];
+			$ppUrl    = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
+
+			echo galleryLink($ppUrl, '', array('id' => "g-navmicro-backward_$navc"));
+		}
+
+		if ($navpage < $navcount-1) {
+			$nextPage = $navigator["allIds"][$navpage+1];
+			$npUrl	  = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
+
+			echo galleryLink($npUrl, '', array('id' => "g-navmicro-forward_$navc"));
+		}
 	}
-
-	if ($navpage < $navcount-1) {
-		$nextPage = $navigator["allIds"][$navpage+1];
-		$npUrl	  = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
-
-		echo galleryLink($npUrl, '', array('id' => "g-navmicro-forward_$navc"));
+	else {
+		$id = 'id="g-navtable-bottom"';
 	}
 }
 else {
-	$id = 'g-navtable-bottom';
+	$id = '';
 }
 
 ?>
 <!-- Microthumb Photo Navigator -->
 <?php if ($gallery->album->fields['nav_thumbs_style'] == 'dynamic') :?>
 
-<table width="100%" align="center" id="<?php echo $id; ?>" dir="<?php echo $gallery->direction; ?>">
+<table width="100%" align="center" <?php echo $id; ?> dir="<?php echo $gallery->direction; ?>">
 <tr>
 	<td><?php echo $navThumbsFirst; ?></td>
 	<td nowrap width="40%" class="right"><?php echo $navThumbsPrev; ?></td>
@@ -194,7 +202,7 @@ else {
 
 <?php else : ?>
 
-<table width="100%" align="center" id="<?php echo $id; ?>" dir="<?php echo $gallery->direction; ?>">
+<table width="100%" align="center" <?php echo $id; ?> dir="<?php echo $gallery->direction; ?>">
 <tr>
 	<td><?php echo $navThumbsFirst; ?></td>
 	<td colspan="3" align="center"><?php echo $navBlogThumb; ?></td>
@@ -203,7 +211,7 @@ else {
 </table>
 <?php endif ?>
 <?php
-if($gallery->app->comments_addType != "inside") {
+if($gallery->app->comments_addType != "inside" && $gallery->album->fields['nav_thumbs'] == 'yes') {
 	echo jsHtml('arrowkey_nav.js');
 }
 

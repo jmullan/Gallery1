@@ -203,7 +203,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if (checkRequirements('comments_overview_for_all')) {
+if (checkRequirements('comments_enabled', 'hasComments', 'comments_overview_for_all')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;_comments"),

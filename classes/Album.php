@@ -1087,9 +1087,9 @@ class Album {
 	}
 
 	/**
-	 *  The parameter $msg should be an array ready to pass to sprintf.
-	 * This is so we can translate into appropriate languages for each
-	 * recipient.  You will note that we don't currently translate these messages.
+	 * The parameter $msg should be an array ready to pass to sprintf.
+	 * This is so we can translate into appropriate languages for each recipient.
+	 * You will note that we don't currently translate these messages.
 	 */
 	function save($msg = array(), $resetModDate = 1, $updateSerial = false) {
 		global $gallery, $global_notice_messages;
@@ -1782,18 +1782,21 @@ class Album {
 	 * @return string
 	 */
 	function getThumbnailTag($index, $size = 0, $attrs = array()) {
+		static $usedIDs = array();
+
 		if ($index === null) {
 			return '';
-		}
-
-		if(empty($attrs['id'])) {
-			$attrs['id'] = "thumbnail_${index}";
 		}
 
 		$photo = $this->getPhoto($index);
 
 		if(! $photo) {
 			return '';
+		}
+
+		if(empty($attrs['id']) && ! in_array($index, $usedIDs)) {
+			$attrs['id'] = "thumbnail_${index}";
+			$usedIDs[] = $index;
 		}
 
 		if ($photo->isAlbum()) {
@@ -2613,7 +2616,7 @@ class Album {
 			return true;
 		}
 
-		debugMessage(sprintf(gTranslate('core', "Userid %d is NOT owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+		debugMessage(sprintf(gTranslate('core', "Userid %s is NOT owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 		return false;
 	}
 
@@ -3038,31 +3041,129 @@ class Album {
 		}
 	}
 
-	// -------------
+	/**
+	 * Is a user allowed to add comments?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canAddComments($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canAddComments", $uid);
+	}
+
+	/**
+	 * Is a user allowed to add items to the album?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canAddTo($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canAddTo", $uid);
+	}
+
+	/**
+	 * Is a user allowed to change album texts?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canChangeText($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canChangeText", $uid);
+	}
+
+	/**
+	 * Is a user allowed to create subalbums?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canCreateSubAlbum($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+		return $this->getPerm("canCreateSubAlbum", $uid);
+	}
+
+	/**
+	 * Is a user allowed to delete an album?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canDelete($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		return $this->getPerm("canDelete", $uid);
+	}
+
+	/**
+	 * Is a user allowed to delete items from an album?
+	 * Owners are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canDeleteFrom($uid) {
+		if ($this->isOwner($uid)) {
+			return true;
+		}
+
+		return $this->getPerm("canDeleteFrom", $uid);
+	}
+
+	/**
+	 * Who can see the album?
+	 * Owners always can.
+	 * In the default case where there are no permissions for the album,
+	 * let everybody see it.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function canRead($uid) {
 		if ($this->isOwner($uid)) {
 			return true;
 		}
 
-		// In the default case where there are no permissions for the album,
-		// let everybody see it.
+
 		if (!isset($this->fields['perms'])) {
-			return 1;
+			return true;
 		}
 
 		return $this->getPerm("canRead", $uid);
 	}
 
+
+	/**
+	 * Would a user be possible to see this album from root down?
+	 * Recursive call of 'canRead'
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function canReadRecurse($uid) {
 		global $albumDB;
 		if (empty($albumDB)) {
 			$albumDB = new AlbumDB();
 		}
 
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		elseif ($this->canRead($uid)) {
+		if ($this->canRead($uid)) {
 			if ($this->isRoot() || empty($this->fields['parentAlbumName'])) {
 				return true;
 			}
@@ -3074,55 +3175,28 @@ class Album {
 		}
 	}
 
-	// -------------
-	function canWrite($uid) {
+	/**
+	 * Is a user allowed to view comments?
+	 * Owner are always allowed.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
+	function canViewComments($uid) {
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-		return $this->getPerm("canWrite", $uid);
+
+		return $this->getPerm("canViewComments", $uid);
 	}
 
-	// -------------
-	function canDelete($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canDelete", $uid);
-	}
-
-	// -------------
-	function canDeleteFrom($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canDeleteFrom", $uid);
-	}
-
-	// -------------
-	function canAddTo($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canAddTo", $uid);
-	}
-
-	// -------------
-	function canChangeText($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canChangeText", $uid);
-	}
-
-	// -------------
-	function canCreateSubAlbum($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canCreateSubAlbum", $uid);
-	}
-
-	// -------------
+	/**
+	 * Who can see the full/original images?
+	 * Owners always can.
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function canViewFullImages($uid) {
 		if ($this->isOwner($uid)) {
 			return true;
@@ -3173,23 +3247,28 @@ class Album {
 		return false;
 	}
 
-	// -------------
-	function canAddComments($uid) {
+	/**
+	 * Can i user modify items in this album?
+	 * Rotate, Resize, Watermark, Reorder
+	 * But not: Delete or Move!
+	 *
+	 * @param string    $uid
+	 * @return boolean
+	 */
+	function canWrite($uid) {
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-		return $this->getPerm("canAddComments", $uid);
+		return $this->getPerm("canWrite", $uid);
 	}
 
-	// -------------
-	function canViewComments($uid) {
-		if ($this->isOwner($uid)) {
-			return true;
-		}
-		return $this->getPerm("canViewComments", $uid);
-	}
-
-	// -------------
+	/**
+	 * Is a user owner of an album?
+	 * An admin does not own every album!
+	 *
+	 * @param string   $uid
+	 * @return boolean
+	 */
 	function isOwner($uid) {
 		global $gallery;
 
@@ -3754,13 +3833,14 @@ class Album {
 	}
 
 	/**
-	 * Enter description here...
+	 * Returns the size of an album in Bytes.
+	 * If a user s given, only his/her elements are counted.
 	 *
-	 * @param unknown_type $user
-	 * @param unknown_type $full
-	 * @param unknown_type $visibleOnly
-	 * @param unknown_type $recursive
-	 * @return unknown
+	 * @param object   $user
+	 * @param boolean  $full
+	 * @param boolean  $visibleOnly
+	 * @param boolean  $recursive
+	 * @return integer albumSize
 	 */
 	function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
 		$albumSize = 0;
