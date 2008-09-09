@@ -1030,10 +1030,10 @@ class Album {
 	}
 
 	/**
-     *  The parameter $msg should be an array ready to pass to sprintf.
-     * This is so we can translate into appropriate languages for each
-     * recipient.  You will note that we don't currently translate these messages.
-     */
+	 * The parameter $msg should be an array ready to pass to sprintf.
+	 * This is so we can translate into appropriate languages for each recipient.
+	 * You will note that we don't currently translate these messages.
+	 */
 	function save($msg = array(), $resetModDate = 1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
@@ -1125,10 +1125,10 @@ class Album {
 				$text .= "\n  <title>$subject</title>";
 				$text .= "\n  </head>\n<body>\n<p>";
 				$text .= sprintf(gTranslate('core', "A change has been made to album: %s by %s (IP %s).  The change is: %s"),
-				'<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
-				$gallery->user->printableName($gallery->app->comments_display_name),
-				$_SERVER['REMOTE_ADDR'],
-				$msg_str);
+						'<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
+						$gallery->user->printableName($gallery->app->comments_display_name),
+						$_SERVER['REMOTE_ADDR'],
+						$msg_str);
 
 				$text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)");
 				$text .= "\n</p>\n</body>\n</html>";
@@ -2899,7 +2899,7 @@ class Album {
 	}
 
 	/**
-	 * Is a user allowed to create subalbums?
+	 * Is a user allowed to delete an album?
 	 * Admins are always allowed.
 	 * Note: Added in 1.5.9 that admins are always allowed.
 	 *
@@ -2919,16 +2919,19 @@ class Album {
 	}
 
 	/**
-	 * Is a user allowed to create subalbums?
-	 * Admins are always allowed.
+	 * Is a user allowed to delete items from an album?
+	 * Owner and Admins are always allowed.
 	 * NOTE: Added in 1.5.9 that admins are always allowed.
-	 *       REMOVED that owners can do this always!
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canDeleteFrom($uid) {
 		global $gallery;
+
+		if ($this->isOwner($uid)) {
+			return true;
+		}
 
 		$user = $gallery->userDB->getUserByUid($uid);
 
@@ -3314,7 +3317,7 @@ class Album {
 			return '';
 		}
 
-	return '('. showOwner($owner) .')';
+		return '('. showOwner($owner) .')';
 	}
 
 	/**
@@ -3690,8 +3693,15 @@ class Album {
 	}
 
 	/**
-     *
-    */
+	 * Returns the size of an album in Bytes.
+	 * If a user s given, only his/her elements are counted.
+	 *
+	 * @param object   $user
+	 * @param boolean  $full
+	 * @param boolean  $visibleOnly
+	 * @param boolean  $recursive
+	 * @return integer albumSize
+	 */
 	function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
 
 		$albumSize = 0;

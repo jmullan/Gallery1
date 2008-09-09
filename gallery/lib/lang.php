@@ -400,7 +400,7 @@ function initLanguage($sendHeader = true) {
 	/* Check defaults */
 	$checklist = array('direction', 'charset') ;
 
-	/**
+	/*
 	 * This checks wether the previously defined values are available.
 	 * All available values are in $nls
 	 * If they are not defined we used the defaults from nls.php
@@ -424,6 +424,7 @@ function initLanguage($sendHeader = true) {
 
 	/* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
 	putenv("LC_ALL=". $gallery->language);
+
 	if($gallery->language == 'tr_TR') {
 		putenv("LC_CTYPE=C");
 	}
@@ -434,7 +435,6 @@ function initLanguage($sendHeader = true) {
 	if($gallery->language == 'tr_TR') {
 		setlocale(LC_CTYPE, 'C');
 	}
-
 
 	/*
 	 * Set Charset header

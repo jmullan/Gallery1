@@ -1011,17 +1011,6 @@ function compareVersions($old_str, $new_str) {
 	return 1;
 }
 
-function contextHelp ($link) {
-	global $gallery;
-
-	if ($gallery->app->showContextHelp == 'yes') {
-		return popup_link ('?', 'docs/context-help/' . $link, false, true, 500, 500);
-	}
-	else {
-		return null;
-	}
-}
-
 /**
  * This function strips slashes from an array Key
  * e.g. $foo[\'bar\'] will become $foo['bar']

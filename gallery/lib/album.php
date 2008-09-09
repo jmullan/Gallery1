@@ -669,18 +669,18 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
  * @author Jens Tkotz
  */
 function albumBreadcrumb($parents) {
-        $html = '';
+	$html = '';
 
-        $nr = 0;
-        foreach ($parents as $album) {
-                $html .= $album['title'];
-                $nr ++;
-                if($nr < sizeof($parents)) {
-                        $html .= ' >> ';
-                }
-        }
+	$nr = 0;
+	foreach ($parents as $album) {
+		$html .= $album['title'];
+		$nr ++;
+		if($nr < sizeof($parents)) {
+			$html .= ' >> ';
+		}
+	}
 
-        return $html;
+	return $html;
 }
 
 ?>

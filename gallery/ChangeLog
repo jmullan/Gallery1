@@ -1,16 +1,34 @@
+2008-09-09 Jens Tkotz <jens@peino.de> 1.5.9-svn-b24
+
+ * Change: Removed tools/build_manifest.php
+
+ * CHANGE: Reverted a change done in 1.5.9-svn-b4
+
+   - Still allow that owner can ALWAY delete items from their albums.
+
+ * New: Method Colors::getLighten()
+
+ * Fix: Some wording, indenting
+
+ * Removed: function contextHelp() ; Sorry Andrew.
+ 
+
 2008-09-08 Jens Tkotz <jens@peino.de> 1.5.9-svn-b23
 
  * Fix: translation domain wrong in lib/stats.php
 
    Thanks to Niels Baggesen.
 
+
 2008-09-04 Jens Tkotz <jens@peino.de> 1.5.9-svn-b22
 
  * Fix: &amp; in new Password link caused a invalid request message.
 
+
 2008-09-04 Jens Tkotz <jens@peino.de> 1.5.9-svn-b21
 
  * Fix: Added missing function in lib/album.php
+
 
 2008-09-03 Jens Tkotz <jens@peino.de> 1.5.9-svn-b20
 
@@ -29,11 +47,13 @@
 
  * Fix: Get only albumcommand for rootalbums on mainpage.
 
+
 2008-09-03 Jens Tkotz <jens@peino.de> 1.5.9-svn-b19
 
  * Fix: Moving a subalbum to toplevel broken.
 
    Thanks to piploff from forum.
+
 
 2008-09-02 Jens Tkotz <jens@peino.de> 1.5.9-svn-b18
 
@@ -48,6 +68,7 @@
  * Change: Only add automatic ALT tag for images if its not set manual.
            Setting to '' IS a manual value now, which means empty ALT text.
 
+
 2008-09-02 Jens Tkotz <jens@peino.de> 1.5.9-svn-b17
 
  * New: Added arrowkey navigation for microthumbs.
@@ -55,17 +76,20 @@
  * Fix: Don't show blue adminbox in photoview
 	when user has chosen a background color for albums.
 
+
 2008-08-31 Jens Tkotz <jens@peino.de> 1.5.9-svn-b16
 
  * Fix: Use textfield again in phpNuke for ImageMap description.
         Broke that in b12.
         
+
 2008-08-30 Jens Tkotz <jens@peino.de> 1.5.9-svn-b15
 
  Change: 1.5.9 icon.
 
  Fix: Some wordings.
       Thanks to Julien.
+
 
 2008-08-30 Jens Tkotz <jens@peino.de> 1.5.9-svn-b14
 
@@ -76,6 +100,7 @@
 
  * Fix: _() -> gTranslate in stats.header
 
+
 2008-08-28 Jens Tkotz <jens@peino.de> 1.5.9-svn-b13
 
  * Fix: Link to comments overview on mainpage.
@@ -85,6 +110,7 @@
 
  * Change: Some Layout fixes.
 
+
 2008-08-28 Jens Tkotz <jens@peino.de> 1.5.9-svn-b12
 
  * FIX: unhtmlentities() changed 0 values to '',
@@ -93,21 +119,25 @@
    I am very angry about my self,
    as this caused a lot trouble at various places.
 
+
 2008-08-27 Jens Tkotz <jens@peino.de> 1.5.9-svn-b11
 
  * Fix: Gallery works now in turkish! HOOORAY !
 
    Thanks to katpatuka for fixing this LOONG outstanding bug.
 
+
 2008-08-26 Jens Tkotz <jens@peino.de> 1.5.9-svn-b10
 
  * Fix: Check if comments are enabled at all for comments overview.
+
 
 2008-08-26 Jens Tkotz <jens@peino.de> 1.5.9-svn-b9
 
  * Change: Show links for comments overview only of there are comments.
 
  * Fix: Increased check level for comments overview.
+
 
 2008-08-26 Jens Tkotz <jens@peino.de> 1.5.9-svn-b8
 
@@ -125,6 +155,7 @@
 
  * Fix: Line endings in wz_jsgraphics.js
 
+
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b7
 
  * New: classes/Colors.php, which is a PHP port of rgbcolor.js
@@ -141,9 +172,11 @@
 
         Thans to Julien Elie
 
+
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b6
 
  * New: lib/progressbar.php
+
 
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b5
 
@@ -156,6 +189,7 @@
  * Fix: Security enhancement in register.php
 
  * Fix: Remove redundant CSS in base.css.default
+
 
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b4
 
@@ -185,17 +219,20 @@
  
  * Fix: getVotingIdByIndex for subalbums
  
+
 2008-08-23 Jens Tkotz <jens@peino.de> 1.5.9-svn-b3
  
  * Change: Remove special stats.footer use general.footer
 
  * Fix: Make form action in stats-wizard again stats.php
 
+
 2008-08-18 Jens Tkotz <jens@peino.de> 1.5.9-svn-b2
 
  * Fix: Stats-Wizard did not work (EVER!) in IE6.
 
  Thanks to Andrew Vasilyev
+
 
 2008-08-18 Jens Tkotz <jens@peino.de> 1.5.9-svn-b1
 

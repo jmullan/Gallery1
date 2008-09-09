@@ -1204,7 +1204,8 @@ function check_safe_mode() {
 	if (empty($safe_mode) ||
 	    !strcasecmp($safe_mode, "off") ||
 	    !strcasecmp($safe_mode, "0") ||
-	    !strcasecmp($safe_mode, "false")) {
+	    !strcasecmp($safe_mode, "false"))
+	{
 		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {

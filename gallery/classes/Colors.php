@@ -302,9 +302,9 @@ class RGBColor {
 		$g = $this->g - 30;
 		$b = $this->b - 30;
 
-		if($r < 0) $r =0;
-		if($g < 0) $g =0;
-		if($b < 0) $b =0;
+		if($r < 0) $r = 0;
+		if($g < 0) $g = 0;
+		if($b < 0) $b = 0;
 
 		$r = str_pad(dechex($r), 2, '0', STR_PAD_LEFT);
 		$g = str_pad(dechex($g), 2, '0', STR_PAD_LEFT);
@@ -316,7 +316,26 @@ class RGBColor {
 		else {
 			return "$r$g$b";
 		}
+	}
 
-		// if(red<0) red = 0; if(blue<0) blue = 0; if(green<0) green = 0;
+	function getLighten($withSharp = true) {
+		$r = $this->r + 30;
+		$g = $this->g + 30;
+		$b = $this->b + 30;
+
+		if($r > 255) $r = 255;
+		if($g > 255) $g = 255;
+		if($b > 255) $b = 255;
+
+		$r = str_pad(dechex($r), 2, '0', STR_PAD_LEFT);
+		$g = str_pad(dechex($g), 2, '0', STR_PAD_LEFT);
+		$b = str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
+
+		if($withSharp) {
+			return "#$r$g$b";
+		}
+		else {
+			return "$r$g$b";
+		}
 	}
 }
