@@ -1,3 +1,24 @@
+2008-09-13 Jens Tkotz <jens@peino.de> 1.5.9-svn-b25
+
+ * Fix: Better handling the case when an invalid, or borken image
+        was uploaded.
+
+ * CHANGE: Album::getPerm now returns true anytime for admins.
+           This is better then adding a check to every single permission
+           check like introduced in 1.5.9-svn-b4           
+
+ * CHANGE: Reverted to former 1.5.8 behaviour for album deletion.
+           Owners can always delete their own albums.
+
+ * Change: For better convinience,
+           tell the user how much files are invalid in an archive.
+           In Gallery Remote this info is given in debug mode only.
+
+ * Fix: In windows fs_is_link showed a PHP notice when the checked file is
+        no link. Suppress this notice like done for *nix Systems.
+
+ * Change: Code cleanup, indenting etc.
+
 2008-09-09 Jens Tkotz <jens@peino.de> 1.5.9-svn-b24
 
  * Change: Removed tools/build_manifest.php

@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2008 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -26,7 +26,7 @@ if(!defined('LOAD_SESSIONS')) {
 }
 
 /*
- * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
+ * PHP 4.0.1pl2 introduces a bug where you can't unserialize a
  * stdClass instance correctly.  So create a dummy class to hold all
  * of our session data.
  */
@@ -96,13 +96,14 @@ function createGallerySession($newSession = false) {
 	global $gallery;
 
 	if (!session_id()) {
-		/* 
+		/*
 		 * If no session has been created, set our session cookie name
 		 */
 		session_name('GallerySession');
 		$useStdClass = false;
-	} else {
-		/* 
+	}
+	else {
+		/*
 		 * The session is being created externally.  This means that if
 		 * we store our data in a GallerySession class, we won't be able
 		 * to deserialize it (because it's not being defined before the
@@ -128,7 +129,7 @@ function createGallerySession($newSession = false) {
 	 */
 
 	if (empty($gallery->app->sessionVar)) {
-		$gSessionVar = "gallery_session_" . md5(getcwd()); 
+		$gSessionVar = "gallery_session_" . md5(getcwd());
 	} else {
 		$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
 	}
@@ -177,7 +178,7 @@ if (!isset($gallery->session->offlineAlbums) || $gallery->session->offlineAlbums
 }
 
 /*
- * Process changes to session variables via parameters submitted in a 
+ * Process changes to session variables via parameters submitted in a
  * POST or GET.
  */
 function update_session_var($name, $protected=0) {

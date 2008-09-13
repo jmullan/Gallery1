@@ -1220,9 +1220,9 @@ class Album {
 	 * Resize and optionally shrink all photos of an album. Movies are skipped.
 	 * If wanted this can be done recursive.
 	 *
-	 * @param integer	$target		New size of the longest site in pixel.
-	 * @param integer	$filesize	New minimum filesize.
-	 * @param boolean	$recursive	True if you want to resize elements in subalbums, too.
+	 * @param integer  $target      New size of the longest site in pixel.
+	 * @param integer  $filesize    New minimum filesize.
+	 * @param boolean  $recursive   True if you want to resize elements in subalbums, too.
 	 */
 	function resizeAllPhotos($target, $filesize = 0, $recursive = false) {
 		$numItems = $this->numPhotos(1);
@@ -1356,13 +1356,21 @@ class Album {
 		echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', "Resizing/compressing original file"), __FILE__, __LINE__,1);
 
 		if (isImage($tag)) {
-			resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
+			$resize_status = resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
 		}
 		elseif (isMovie($tag)) {
 			processingMsg(gTranslate('core', "File is a movie, no resizing done."));
 		}
 		else {
 			processingMsg(sprintf(gTranslate('core', "Invalid filetype: %s. Skipping."), $tag));
+		}
+
+		if($resize_status == 10) {
+			$errorMsg = ($plainErrorMessage) ?
+					gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image.") :
+					gallery_error(gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image."));
+
+			return array(false, $errorMsg);
 		}
 
 		/* Create an albumitem */
@@ -1374,15 +1382,9 @@ class Album {
 				fs_unlink($newFile);
 			}
 
-			if($plainErrorMessage) {
-				$errorMsg = gTranslate('core', "Item not added.");
-			}
-			else {
-				$errorMsg = infobox(array(array(
-						'type' => 'error',
-						'text' => gTranslate('core', "Item not added.")
-				)));
-			}
+			$errorMsg = ($plainErrorMessage) ?
+					gTranslate('core', "Item not added.") :
+					gallery_error(gTranslate('core', "Item not added."));
 
 			return array($status, $errorMsg);
 		}
@@ -1775,8 +1777,8 @@ class Album {
 
 			if(isset($attrList['class'])) {
 				$attrList['class'] .= ' title';
-		}
-		else {
+			}
+			else {
 				$attrList['class'] = 'title';
 			}
 
@@ -2608,6 +2610,10 @@ class Album {
 		return strftime($gallery->app->dateString,$time);
 	}
 
+	/**
+	 * @Todo: Sync with edit_appearance. Don't wanna touch both everytime.
+	 *
+	 */
 	function setNestedProperties() {
 		for ($i=1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbum($i)) {
@@ -2716,8 +2722,21 @@ class Album {
 		}
 	}
 
+	/**
+	 * Get a dedicated permission for a user.
+	 * Note: Added in 1.5.9 that admins are always permitted to do something.
+	*/
 	function getPerm($permName, $uid) {
 		global $gallery;
+		static $user;
+
+		if(empty($user) {
+			$user = $gallery->userDB->getUserByUid($uid);
+		}
+
+		if ($user->isAdmin()) {
+			return true;
+		}
 
 		if (isset($this->fields['perms'][$permName])) {
 			$perm = $this->fields['perms'][$permName];
@@ -2801,117 +2820,71 @@ class Album {
 		}
 	}
 
-
 	/**
 	 * Is a user allowed to add comments?
-	 * Owner and admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canAddComments($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
-			return true;
-		}
-
 		return $this->getPerm("canAddComments", $uid);
 	}
 
 	/**
 	 * Is a user allowed to add items to the album?
-	 * Owner and admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canAddTo($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
-			return true;
-		}
-
 		return $this->getPerm("canAddTo", $uid);
 	}
 
 	/**
 	 * Is a user allowed to change album texts?
-	 * Owner and admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canChangeText($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
-			return true;
-		}
-
 		return $this->getPerm("canChangeText", $uid);
 	}
 
 	/**
 	 * Is a user allowed to create subalbums?
-	 * Owner and admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canCreateSubAlbum($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
-			return true;
-		}
-
 		return $this->getPerm("canCreateSubAlbum", $uid);
 	}
 
 	/**
 	 * Is a user allowed to delete an album?
-	 * Admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canDelete($uid) {
-		global $gallery;
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
+		if ($this->isOwner($uid)) {
 			return true;
 		}
 
@@ -2920,22 +2893,13 @@ class Album {
 
 	/**
 	 * Is a user allowed to delete items from an album?
-	 * Owner and Admins are always allowed.
-	 * NOTE: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canDeleteFrom($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
-			return true;
-		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
 			return true;
 		}
 
@@ -2944,7 +2908,7 @@ class Album {
 
 	/**
 	 * Who can see the album?
-	 * Admins and owners always can.
+	 * Owner (and admins) are always allowed.
 	 * NOTE: Added in 1.5.9 that admins are always allowed.
 	 *       REMOVED that everybody can see an album if no permissions are set.
 	 *
@@ -2953,15 +2917,11 @@ class Album {
 	 * @return boolean
 	 */
 	function canRead($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
 
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
+		if (!isset($this->fields['perms'])) {
 			return true;
 		}
 
@@ -2999,22 +2959,13 @@ class Album {
 
 	/**
 	 * Is a user allowed to view comments?
-	 * Owner and admins are always allowed.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canViewComments($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
-			return true;
-		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
 			return true;
 		}
 
@@ -3023,22 +2974,13 @@ class Album {
 
 	/**
 	 * Who can see the full/original images?
-	 * Admins and owners always can.
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
 	 */
 	function canViewFullImages($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
-			return true;
-		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
 			return true;
 		}
 
@@ -3088,27 +3030,18 @@ class Album {
 	}
 
 	/**
-	 * Can i user modify items in this album?
+	 * Can a user modify items in his/her album?
 	 * Rotate, Resize, Watermark, Reorder
 	 * But not: Delete or Move!
-	 * Note: Added in 1.5.9 that admins are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string    $uid
 	 * @return boolean
 	 */
 	function canWrite($uid) {
-		global $gallery;
-
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
-		$user = $gallery->userDB->getUserByUid($uid);
-
-		if ($user->isAdmin()) {
-			return true;
-		}
-
 		return $this->getPerm("canWrite", $uid);
 	}
 
@@ -3703,7 +3636,6 @@ class Album {
 	 * @return integer albumSize
 	 */
 	function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
-
 		$albumSize = 0;
 		$albumItemNames = $this->getAlbumItemNames($user, $full, $visibleOnly, $recursive);
 		$justPureFileNames = array_flaten($albumItemNames);

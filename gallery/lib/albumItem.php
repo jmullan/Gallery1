@@ -395,7 +395,7 @@ function showComments ($index, $albumName, $reverse = false) {
 						'class'		=> 'albumdesc'))
 		);
 	}
-	
+
 	if ($reverse) {
 		$commentTable['elements'] = array_reverse($commentTable['elements']);
 	}
@@ -538,10 +538,15 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
 		$files_to_process	= array();
 		$dir_handle		= fs_opendir($temp_dirname);
+		$invalid_files 		= 0;
+
 		while (false !== ($content_filename = readdir($dir_handle))) {
-			if(! isXSSclean($content_filename) ||
-			   $content_filename == "." || $content_filename == '..')
-			{
+			if($content_filename == "." || $content_filename == '..') {
+				continue;
+			}
+
+			if(! isXSSclean($content_filename)) {
+				$invalid_files++;
 				continue;
 			}
 
@@ -559,6 +564,10 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 					'ext'		=> $content_file_ext
 				);
 			}
+			else {
+				$invalid_files++;
+				continue;
+			}
 		}
 
 		closedir($dir_handle);
@@ -570,10 +579,34 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			echo debugMessage(gTranslate('core', "No Metadata"), __FILE__, __LINE__);
 		}
 
+		if ($invalid_files > 0) {
+			echo gallery_warning(
+				gTranslate('core',
+					   "%d file inside the archive was invalid.",
+					   "%d files inside the archive were invalid.",
+					   $invalid_files,
+					   '',
+					   true
+			));
+		}
+
+		if(sizeof($files_to_process) == 0) {
+			echo gallery_error(gTranslate('core', "The archive contains no valid files!"));
+		}
+		else {
+			echo gallery_info(gTranslate(
+						'core',
+						"Processing %d valid file from the archive.",
+						"Processing %d valid files from the archive.",
+						sizeof($files_to_process),
+						gTranslate('core', "The archive contains no valid files!"),
+						true
+			));
+		}
+
 		/* Now process all valid files we found */
-		echo debugMessage(gTranslate('core', "Processing valid files from archive"), __FILE__, __LINE__);
 		$loop = 0;
-		foreach ($files_to_process as $current_file) {
+		foreach ($files_to_process as $nr => $current_file) {
 			$current_file_name = basename($current_file['filename']);
 			$current_file_ext  = basename($current_file['ext']);
 
@@ -611,6 +644,11 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 				}
 			}
 
+			echo debugMessage(
+				sprintf(gTranslate('core', "Processing file #%d from archive. (Calling processNewImage)"), $nr +1),
+				__FILE__,
+				__LINE__
+			);
 			processNewImage($current_file['filename'],
 							$current_file_ext,
 							$current_file_name,
@@ -628,9 +666,9 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 		echo debugMessage(gTranslate('core', "Start processing single file (image/movie not archive)."), __FILE__, __LINE__);
 
 		if (isAcceptableFormat($ext)) {
-			echo debugMessage(gTranslate('core', "Extension is accepted."), __FILE__, __LINE__, 3);
+			echo debugMessage(gTranslate('core', "Extension is accepted."), __FILE__, __LINE__, 1);
 
-			echo debugMessage(gTranslate('core', "Filename processing."), __FILE__, __LINE__,3);
+			echo debugMessage(gTranslate('core', "Filename processing."), __FILE__, __LINE__, 2);
 
 			/* Remove %20 and the like from name */
 			$name = urldecode($name);

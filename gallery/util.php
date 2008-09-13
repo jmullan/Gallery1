@@ -588,14 +588,14 @@ function getItemCaptureDate($file, $exifData = array()) {
 				elseif (isset($exifData['Image Created'])) {
 					$tempDate = split(" ", $exifData['Image Created'], 2);
 				}
-				
+
 			break;
-			
+
 			case 'jhead':
 				if (isset($exifData['Date/Time'])) {
 					$tempDate = split(" ", $exifData['Date/Time'], 2);
 				}
-				
+
 			break;
 		}
 

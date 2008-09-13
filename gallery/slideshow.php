@@ -33,7 +33,7 @@ if (isset($mode)) {
 }
 else {
 	if (isset($modeCookie)) {
-	    $mode = $modeCookie;
+		$mode = $modeCookie;
 	}
 }
 
