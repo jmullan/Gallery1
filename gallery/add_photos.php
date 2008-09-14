@@ -33,21 +33,12 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-$curCookieParams = session_get_cookie_params();
-
 $cookieName = $gallery->app->sessionVar . '_add_photos_mode';
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-		setcookie(
-			$cookieName,
-			$mode,
-			time()+60*60*24*365,
-			'/',
-			$curCookieParams['domain'],
-			isHttpsConnection()
-		);
+		setcookie($cookieName, $mode, time()+60*60*24*365,'/'); 
 	}
 }
 else {
