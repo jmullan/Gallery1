@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 require(dirname(__FILE__)  . '/init.php');
 
@@ -121,46 +121,43 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $title; ?></title>
 <?php
-common_header();
+	common_header();
 
-// the link colors have to be done here to override the style sheet
-if ($albumName) {
-	if( !empty($gallery->album->fields["linkcolor"]) ||
-	!empty($gallery->album->fields["bgcolor"]) ||
-	!empty($gallery->album->fields["textcolor"]))
-{
-		echo "\n<style type=\"text/css\">";
-		// the link colors have to be done here to override the style sheet
-		if ($gallery->album->fields["linkcolor"]) {
-			echo "\n  a:link, a:visited, a:active {";
-			echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
-			echo "\n  a:hover { color: #ff6600; }";
+	if ($albumName) {
+		if( !empty($gallery->album->fields["linkcolor"]) ||
+			!empty($gallery->album->fields["bgcolor"]) ||
+			!empty($gallery->album->fields["textcolor"]))
+		{
+			echo "\n<style type=\"text/css\">";
+			// the link colors have to be done here to override the style sheet
+			if ($gallery->album->fields["linkcolor"]) {
+				echo "\n  a:link, a:visited, a:active {";
+				echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+				echo "\n  a:hover { color: #ff6600; }";
+			}
 
+			if ($gallery->album->fields["bgcolor"]) {
+				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+			}
+
+			if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+			}
+
+			if ($gallery->album->fields["textcolor"]) {
+				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+			}
+
+			echo "\n  </style>";
 		}
-
-		if ($gallery->album->fields["bgcolor"]) {
-			echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
-
-		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-			echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-		}
-
-		if ($gallery->album->fields["textcolor"]) {
-			echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-			echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-			echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
-
-		echo "\n  </style>";
 	}
-}
 ?>
 </head>
-
 <body>
-
-<?php }
+<?php
+}
 
 includeTemplate("slideshow.header"); ?>
 
@@ -181,7 +178,7 @@ if ($mode != 'low') {
 
 <?php
 
-slideshow_body();
+	slideshow_body();
 
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
@@ -189,6 +186,8 @@ $imageDir = $gallery->app->photoAlbumURL."/images";
 $breadcrumb["text"] = @returnToPathArray($gallery->album, true, true);
 
 $adminbox['commands'] = '';
+
+// todo: on the client, prevent old browsers from using High, and remove High from the bar
 if (!$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
 		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));

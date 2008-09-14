@@ -1197,10 +1197,11 @@ class Album {
 				$text .= "\n  <title>$subject</title>";
 				$text .= "\n  </head>\n<body>\n<p>";
                 		$text .= sprintf(gTranslate('core', "A change has been made to album: %s by %s (IP %s).  The change is: %s"),
-				  '<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
-				  $gallery->user->printableName($gallery->app->name_display),
-				  $_SERVER['REMOTE_ADDR'],
-				$msg_str);
+						'<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
+						$gallery->user->printableName($gallery->app->name_display),
+						$_SERVER['REMOTE_ADDR'],
+						$msg_str
+				);
 
 				$text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)");
 				$text .= "\n</p>\n</body>\n</html>";
@@ -1288,10 +1289,10 @@ class Album {
 	 * Resize and optionally shrink all photos of an album. Movies are skipped.
 	 * If wanted this can be done recursive.
 	 *
-	 * @param integer $target	New size of the longest site in pixel.
-	 * @param integer $filesize	New minimum filesize.
-	 * @param boolean $recursive	True if you want to resize elements in subalbums, too.
-	 * @param boolean $full
+	 * @param integer  $target	New size of the longest site in pixel.
+	 * @param integer  $filesize	New minimum filesize.
+	 * @param boolean  $recursive	True if you want to resize elements in subalbums, too.
+	 * @param boolean  $full
 	 * @return boolean
 	 */
 	function resizeAllPhotos($target, $filesize = 0, $recursive = false, $full = false) {
@@ -1456,13 +1457,21 @@ class Album {
 		echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', "Resizing/compressing original file"), __FILE__, __LINE__,1);
 
 		if (isImage($tag)) {
-			resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
+			$resize_status = resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
 		}
 		elseif (isMovie($tag)) {
 			processingMsg(gTranslate('core', "File is a movie, no resizing done."));
 		}
 		else {
 			processingMsg(sprintf(gTranslate('core', "Invalid filetype: %s. Skipping."), $tag));
+		}
+
+		if($resize_status == 10) {
+			$errorMsg = ($plainErrorMessage) ?
+					gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image.") :
+					gallery_error(gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image."));
+
+			return array(false, $errorMsg);
 		}
 
 		/* Create an albumitem */
@@ -1474,15 +1483,9 @@ class Album {
 				fs_unlink($newFile);
 			}
 
-			if($plainErrorMessage) {
-				$errorMsg = gTranslate('core', "Item not added.");
-			}
-			else {
-				$errorMsg = infobox(array(array(
-						'type' => 'error',
-						'text' => gTranslate('core', "Item not added.")
-				)));
-			}
+			$errorMsg = ($plainErrorMessage) ?
+					gTranslate('core', "Item not added.") :
+					gallery_error(gTranslate('core', "Item not added."));
 
 			return array($status, $errorMsg);
 		}
@@ -2605,14 +2608,14 @@ class Album {
 		$ownerID = $this->getItemOwner($index);
 
 		if($uid == $ownerID) {
-			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
 		if($ownerID == $everybodyUid) {
-			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of'%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
+			debugMessage(sprintf(gTranslate('core', "Userid %s is owner of '%s'"), $uid, $this->fields['name']), __FILE__, __LINE__);
 			return true;
 		}
 
@@ -2911,11 +2914,24 @@ class Album {
 		}
 	}
 
+	/**
+	 * Get a dedicated permission for a user.
+	 * Note: Added in 1.5.9 that admins are always permitted to do something.
+	*/
 	function getPerm($permName, $uid) {
 		require_once(dirname(__FILE__) .'/Group.php');
 		require_once(dirname(__FILE__) .'/gallery/Group.php');
 
 		global $gallery, $GALLERY_EMBEDDED_INSIDE_TYPE;
+		static $user;
+
+		if(empty($user)) {
+			$user = $gallery->userDB->getUserByUid($uid);
+		}
+
+		if ($user->isAdmin()) {
+			return true;
+		}
 
 		if (isset($this->fields['perms'][$permName])) {
 			$perm = $this->fields['perms'][$permName];
@@ -3043,7 +3059,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to add comments?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3057,7 +3073,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to add items to the album?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3071,7 +3087,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to change album texts?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3085,7 +3101,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to create subalbums?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3099,7 +3115,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to delete an album?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3114,7 +3130,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to delete items from an album?
-	 * Owners are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3129,7 +3145,7 @@ class Album {
 
 	/**
 	 * Who can see the album?
-	 * Owners always can.
+	 * Owner (and admins) are always allowed.
 	 * In the default case where there are no permissions for the album,
 	 * let everybody see it.
 	 *
@@ -3140,7 +3156,6 @@ class Album {
 		if ($this->isOwner($uid)) {
 			return true;
 		}
-
 
 		if (!isset($this->fields['perms'])) {
 			return true;
@@ -3159,6 +3174,7 @@ class Album {
 	 */
 	function canReadRecurse($uid) {
 		global $albumDB;
+
 		if (empty($albumDB)) {
 			$albumDB = new AlbumDB();
 		}
@@ -3167,7 +3183,9 @@ class Album {
 			if ($this->isRoot() || empty($this->fields['parentAlbumName'])) {
 				return true;
 			}
+
 			$parent = $albumDB->getAlbumByName($this->fields['parentAlbumName'], false);
+
 			return $parent->canReadRecurse($uid);
 		}
 		else {
@@ -3177,7 +3195,7 @@ class Album {
 
 	/**
 	 * Is a user allowed to view comments?
-	 * Owner are always allowed.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3192,7 +3210,7 @@ class Album {
 
 	/**
 	 * Who can see the full/original images?
-	 * Owners always can.
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string   $uid
 	 * @return boolean
@@ -3248,9 +3266,10 @@ class Album {
 	}
 
 	/**
-	 * Can i user modify items in this album?
+	 * Can a user modify items in his/her album?
 	 * Rotate, Resize, Watermark, Reorder
 	 * But not: Delete or Move!
+	 * Owner (and admins) are always allowed.
 	 *
 	 * @param string    $uid
 	 * @return boolean
@@ -3264,6 +3283,7 @@ class Album {
 
 	/**
 	 * Is a user owner of an album?
+	 * Also special users like nobody, everbody or loggedIn can be the owner!
 	 * An admin does not own every album!
 	 *
 	 * @param string   $uid
@@ -3271,6 +3291,8 @@ class Album {
 	 */
 	function isOwner($uid) {
 		global $gallery;
+
+		//debugMessage(sprintf(gTranslate('core',"OwnerUID of album '%s' is '%s' || Tested uid is '%s'"), $this->fields['name'], $this->fields['owner'], $uid), __FILE__, __LINE__);
 
 		if(!isset($this->fields['owner'])) {
 			return false;
@@ -3282,7 +3304,15 @@ class Album {
 
 		$everybody	= $gallery->userDB->getEverybody();
 		$everybodyUid	= $everybody->getUid();
+
 		if($this->fields['owner'] == $everybodyUid) {
+			return true;
+		}
+
+		$loggedIn	= new LoggedinUser();
+		$loggedInUid	= $loggedIn->getUid();
+
+		if($this->fields['owner'] == $loggedInUid && $gallery->user->isLoggedIn()) {
 			return true;
 		}
 
@@ -3456,7 +3486,7 @@ class Album {
 			return '';
 		}
 
-	return '('. showOwner($owner) .')';
+		return '('. showOwner($owner) .')';
 	}
 
 	/**
@@ -3661,7 +3691,6 @@ class Album {
 		global $gallery;
 		$emails = array();
 		$uids = array();
-		$messages = array();
 
 		/* First check if someone assigned to "type" for this album */
 		if (isset($this->fields['email_me'][$type])) {

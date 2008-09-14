@@ -27,7 +27,7 @@
 /**
  * Copies a file from $source to $dest.
  * @param  string	$source	Full path to source file.
- * @param  string	$des	Full path to destination file.
+ * @param  string	$dest	Full path to destination file.
  * @return boolean	$result	true on success, otherwise false
  */
 function fs_copy($source, $dest) {
@@ -46,7 +46,9 @@ function fs_file_exists($filename) {
 
 function fs_is_link($filename) {
 	$filename = fs_import_filename($filename, 0);
-	return is_link($filename);
+
+	/* if the link is broken it will spew a warning, so ignore it */
+	return @is_link($filename);
 }
 
 function fs_filesize($filename) {
@@ -72,7 +74,7 @@ function fs_file_get_contents($filename, $legacy = false) {
 	}
 	else {
 		$mode = ($legacy) ? 'rt' : 'rb';
-	
+
 		if ($fd = fs_fopen($filename, $mode)) {
 			while (!feof($fd)) {
 				$content .= fread($fd, 65536);
@@ -80,7 +82,7 @@ function fs_file_get_contents($filename, $legacy = false) {
 			fclose($fd);
 		}
 	}
-	
+
 	return $content;
 }
 
@@ -107,7 +109,7 @@ function fs_is_writable($filename) {
 function fs_opendir($path, $withDebug = true) {
 	$path = fs_import_filename($path, 0);
 	$dir_handle = @opendir($path);
-	
+
 	if ($dir_handle) {
 		return $dir_handle;
 	}
@@ -115,7 +117,7 @@ function fs_opendir($path, $withDebug = true) {
 		if($withDebug) {
 			echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
 		}
-		
+
 		return false;
 	}
 }

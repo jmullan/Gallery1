@@ -188,16 +188,22 @@ function process($file, $tag, $name, $setCaption="") {
 		}
 
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+
 		$files_to_process	= array();
-		$dir_handle			= fs_opendir($temp_dirname);
+		$dir_handle		= fs_opendir($temp_dirname);
+		$invalid_files 		= 0;
+
 		while (false !== ($content_filename = readdir($dir_handle))) {
-			if(! isXSSclean($content_filename) ||
-			   $content_filename == "." || $content_filename == '..')
-			{
+			if($content_filename == "." || $content_filename == '..') {
 				continue;
 			}
 
-			$content_file_ext		= getExtension($content_filename);
+			if(! isXSSclean($content_filename)) {
+				$invalid_files++;
+				continue;
+			}
+
+			$content_file_ext	= getExtension($content_filename);
 			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
 
 			if (isAcceptableFormat($content_file_ext) ||
@@ -208,12 +214,26 @@ function process($file, $tag, $name, $setCaption="") {
 					'ext'		=> $content_file_ext
 				);
 			}
+			else {
+				$invalid_files++;
+				continue;
+			}
 		}
 
 		closedir($dir_handle);
 
 		/* Now process all valid files we found */
-		echo debugMessage(gTranslate('core', "Processing valid files from archive"), __FILE__, __LINE__);
+		echo debugMessage(
+			gTranslate(
+				'core',
+				"Processing %d valid file from archive.",
+				"Processing %d valid files from archive.",
+				sizeof($files_to_process),
+				gTranslate('core', "The archive contains no valid files!"),
+				true),
+			__FILE__,
+			__LINE__
+		);
 
 		$loop = 0;
 		foreach ($files_to_process as $current_file) {
@@ -221,10 +241,10 @@ function process($file, $tag, $name, $setCaption="") {
 			$current_file_ext  = basename($current_file['ext']);
 
 			process($current_file['filename'],
-						$current_file_ext,
-						$current_file_name,
-						$caption,
-						$setCaption
+				$current_file_ext,
+				$current_file_name,
+				$caption,
+				$setCaption
 			);
 		}
 		/* End of archive processing */

@@ -131,7 +131,7 @@ function createGallerySession($newSession = false) {
 	if (empty($gallery->app->sessionVar)) {
 		$gSessionVar = "gallery_session_" . md5(getcwd());
 	} else {
-		$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->sessionVar);
+		$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
 	}
 
 	if (isset($_SESSION[$gSessionVar])) {
