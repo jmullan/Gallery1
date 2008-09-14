@@ -177,6 +177,38 @@ includeTemplate('overall.footer');
 
 echo jsHTML('jopen.js');
 
+if (!$gallery->session->offline) { ?>
+
+  <script type="text/javascript">
+
+    var statusWin;
+    function showProgress() {
+        statusWin = <?php echo popup_status("progress_uploading.php"); ?>
+    }
+
+    function hideProgress() {
+        if (typeof(statusWin) != "undefined") {
+            statusWin.close();
+            statusWin = void(0);
+        }
+    }
+
+    function hideProgressAndReload() {
+        hideProgress();
+        location.reload();
+    }
+
+    function chooseOnlyOne(i, form_pos, scale) {
+        for(var j = 0; j < scale; j++) {
+            if(j != i) {
+                eval("document.vote_form['votes["+j+"]']["+form_pos+"].checked=false");
+            }
+        }
+    }
+  </script>
+<?php
+}
+
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
