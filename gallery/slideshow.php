@@ -20,7 +20,7 @@
  * $Id$
  */
 
-	require(dirname(__FILE__)  . '/init.php');
+require(dirname(__FILE__)  . '/init.php');
 
 list($mode) = getRequestVar(array('mode'));
 
@@ -39,7 +39,8 @@ else {
 
 // Hack check
 if (empty($gallery->session->albumName) &&
-	   $gallery->app->gallery_slideshow_type == "off") {
+    $gallery->app->gallery_slideshow_type == "off")
+{
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
@@ -125,44 +126,42 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 	common_header();
 
-// the link colors have to be done here to override the style sheet
-if ($albumName) {
-	if( !empty($gallery->album->fields["linkcolor"]) ||
-	!empty($gallery->album->fields["bgcolor"]) ||
-	!empty($gallery->album->fields["textcolor"]))
-{
-		echo "\n<style type=\"text/css\">";
-		// the link colors have to be done here to override the style sheet
-	if ($gallery->album->fields["linkcolor"]) {
-			echo "\n  a:link, a:visited, a:active {";
-			echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
-			echo "\n  a:hover { color: #ff6600; }";
+	if ($albumName) {
+		if( !empty($gallery->album->fields["linkcolor"]) ||
+			!empty($gallery->album->fields["bgcolor"]) ||
+			!empty($gallery->album->fields["textcolor"]))
+		{
+			echo "\n<style type=\"text/css\">";
+			// the link colors have to be done here to override the style sheet
+			if ($gallery->album->fields["linkcolor"]) {
+				echo "\n  a:link, a:visited, a:active {";
+				echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+				echo "\n  a:hover { color: #ff6600; }";
+			}
 
-       	}
+			if ($gallery->album->fields["bgcolor"]) {
+				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+			}
 
-       	if ($gallery->album->fields["bgcolor"]) {
-			echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-       	}
+			if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+			}
 
-		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-			echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-       	}
+			if ($gallery->album->fields["textcolor"]) {
+				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+			}
 
-       	if ($gallery->album->fields["textcolor"]) {
-			echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-			echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-			echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+			echo "\n  </style>";
 		}
-
-		echo "\n  </style>";
-       	}
-}
+	}
 ?>
 </head>
-
 <body dir="<?php echo $gallery->direction ?>">
 
-<?php }
+<?php
+}
 
 includeHtmlWrap("slideshow.header"); ?>
 
@@ -170,13 +169,13 @@ includeHtmlWrap("slideshow.header"); ?>
 <script type="text/javascript">
 <?php
 if ($mode != 'low') {
-?>
-// Browser capabilities detection ---
-// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low
-if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
-	document.location = "<?php echo makeGalleryUrl('slideshow.php',array('mode' => 'low', "set_albumName" => $gallery->session->albumName)); ?>";
-}
-<?php
+	?>
+	// Browser capabilities detection ---
+	// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low
+	if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
+		document.location = "<?php echo makeGalleryUrl('slideshow.php',array('mode' => 'low', "set_albumName" => $gallery->session->albumName)); ?>";
+	}
+	<?php
 }
 ?>
 </script>
@@ -189,15 +188,14 @@ $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
 $breadcrumb["text"] = @returnToPathArray($gallery->album, true, true);
-
 $breadcrumb["bordercolor"] = $borderColor;
 
-$adminbox["commands"] = "";
+$adminbox['commands'] = '';
 
 // todo: on the client, prevent old browsers from using High, and remove High from the bar
-if ( !$gallery->session->offline) {
+if (!$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
-		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
+		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
 			$adminbox['commands'] .= "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
 		}

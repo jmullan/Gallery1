@@ -77,7 +77,6 @@ $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
 $GR_STAT['MOVE_ALBUM_FAILED']			= 503;
 $GR_STAT['ROTATE_IMAGE_FAILED']			= 504;
 
-
 $response = new Properties();
 $protocol_version = getRequestVar('protocol_version');
 check_proto_version( $response );
@@ -101,15 +100,15 @@ else {
 switch(getRequestVar('cmd') === 0 ? '' : getRequestVar('cmd')) {
 	case 'login':
 		gr_login( $gallery, $response, getRequestVar('uname'), getRequestVar('password') );
-		break;
+	break;
 
 	case 'fetch-albums':
 		gr_fetch_albums( $gallery, $response );
-		break;
+	break;
 
 	case 'fetch-albums-prune':
 		gr_fetch_albums_prune( $gallery, $response, getRequestVar('check_writeable') );
-		break;
+	break;
 
 	case 'add-item':
 		gr_add_item(
@@ -121,11 +120,11 @@ switch(getRequestVar('cmd') === 0 ? '' : getRequestVar('cmd')) {
 			getRequestVar('force_filename'),
 			getRequestVar('auto_rotate')
 		);
-		break;
+	break;
 
 	case 'album-properties':
 		gr_album_properties( $gallery, $response );
-		break;
+	break;
 
 	case 'new-album':
 		gr_new_album(
@@ -135,20 +134,20 @@ switch(getRequestVar('cmd') === 0 ? '' : getRequestVar('cmd')) {
 			getRequestVar('newAlbumTitle'),
 			getRequestVar('newAlbumDesc')
 		);
-		break;
+	break;
 
 	case 'fetch-album-images':
 		gr_fetch_album_images( $gallery, $response, getRequestVar('albums_too') );
-		break;
+	break;
 
 	case 'move-album':
 		gr_move_album( $gallery, $response, getRequestVar('set_destalbumName') );
-		break;
+	break;
 
 	default:
 		$response->setProperty( 'status', $GR_STAT['UNKNOWN_COMMAND'] );
 		$response->setProperty( 'status_text', "Command '" . getRequestVar('cmd') . "' unknown." );
-		break;
+	break;
 }
 
 //@ob_end_clean();
@@ -162,6 +161,7 @@ function gr_login( &$gallery, &$response, $uname, $password ) {
 		$response->setProperty( "server_version", $GR_VER['MAJ'].".".$GR_VER['MIN'] );
 		$response->setProperty( 'status', $GR_STAT['LOGIN_MISSING'] );
 		$response->setProperty( 'status_text', 'Login parameters not found.' );
+
 		return 0;
 	}
 
@@ -219,6 +219,7 @@ function gr_fetch_albums( &$gallery, &$response ) {
 	// add status and repond
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch albums successful.' );
+
 	return 1;
 
 }
@@ -251,6 +252,7 @@ function gr_fetch_albums_prune( &$gallery, &$response, $check_writeable ) {
 	// add status and repond
 	$response->setProperty( "status", $GR_STAT['SUCCESS'] );
 	$response->setProperty( "status_text", "Fetch albums successful." );
+
 	return 1;
 
 }
@@ -259,8 +261,8 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 	global $GR_STAT, $temp_files;
 
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-		$response->setProperty( 'status', $GR_STAT['NO_ADD_PERMISSION'] );
-		$response->setProperty( 'status_text', 'User cannot add to album.' );
+		$response->setProperty('status', $GR_STAT['NO_ADD_PERMISSION'] );
+		$response->setProperty('status_text', 'User cannot add to album.' );
 		return 0;
 	}
 
@@ -277,6 +279,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 		if(!$gallery->user->isAdmin()) {
 			$response->setProperty( 'status', $GR_STAT['NO_ADD_PERMISSION'] );
 			$response->setProperty( 'status_text', 'Only administrators can fetch remote images.' );
+
 			return 0;
 		}
 
@@ -293,6 +296,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 			if(!$fhandle = fopen($userfile,'wb')) {
 				$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
 				$response->setProperty( 'status_text', 'Could not open tmp file to write remote image.' );
+
 				return 0;
 			}
 
@@ -300,6 +304,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 				$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
 				$response->setProperty( 'status_text', 'Could not write to tmp file.' );
 				fclose($fhandle);
+
 				return 0;
 			}
 			fclose($fhandle);
@@ -307,6 +312,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 		else {
 			$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
 			$response->setProperty( 'status_text', 'Could not fetch image, HTTP wrapper may be disabled or invalid URL' );
+
 			return 0;
 		}
 	}
@@ -314,6 +320,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 	if (!$userfile_name) {
 		$response->setProperty( 'status', $GR_STAT['NO_FILENAME'] );
 		$response->setProperty( 'status_text', 'Filename not specified.' );
+
 		return 0;
 	}
 
@@ -342,12 +349,14 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 	if ($error) {
 		$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
 		$response->setProperty( 'status_text', 'Upload failed: \''.$error.'\'.' );
+
 		return 0;
 	}
 	else {
 		$gallery->album->save(array(i18n('Image added')));
 		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 		$response->setProperty( 'status_text', 'Add photo successful.' );
+
 		return 1;
 	}
 
@@ -375,8 +384,8 @@ function gr_album_properties( &$gallery, &$response ) {
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Album properties retrieved successfully.' );
-	return 1;
 
+	return 1;
 }
 
 function gr_new_album( &$gallery, &$response, $newAlbumName, $newAlbumTitle, $newAlbumDesc ) {
@@ -392,24 +401,27 @@ function gr_new_album( &$gallery, &$response, $newAlbumName, $newAlbumTitle, $ne
 	if(!$canAddAlbum) {
 		$response->setProperty( 'status', $GR_STAT['NO_CREATE_ALBUM_PERMISSION'] );
 		$response->setProperty( 'status_text', 'A new album could not be created because the user does not have permission to do so.' );
+
 		return 0;
 	}
 
 	if ($returnVal = createNewAlbum(
-		  $gallery->session->albumName,
-		  $newAlbumName,
-		  $newAlbumTitle, $newAlbumDesc))
+		$gallery->session->albumName,
+		$newAlbumName,
+		$newAlbumTitle, $newAlbumDesc))
 	{
 		// set status and message
 		$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 		$response->setProperty( 'status_text', 'New album created successfully.' );
 		$response->setProperty( 'album_name', $returnVal );
+
 		return 1;
 	}
 	else {
 		// set status and message
 		$response->setProperty( 'status', $GR_STAT['CREATE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'Create album failed.' );
+
 		return 0;
 	}
 
@@ -506,12 +518,14 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	}
 
 	$response->setProperty( 'image_count', $tmpImageNum );
+
 	if (isset($gallery->album)) {
 		$response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
 	}
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 	$response->setProperty( 'status_text', 'Fetch images successful.' );
+
 	return 1;
 
 }
@@ -526,6 +540,7 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 	if (empty($sourceAlbum)) {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'Source album doesnt exist' );
+
 		return 0;
 	}
 
@@ -535,6 +550,7 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 		if (empty($destAlbum)) {
 			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 			$response->setProperty( 'status_text', 'Destination album doesnt exist' );
+
 			return 0;
 		}
 	}
@@ -542,12 +558,14 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 	if(empty($set_destalbumName) && $set_destalbumName != '0') {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'You must specify a destination album.' );
+
 		return 0;
 	}
 
 	if($set_destalbumName == $gallery->album->fields['name']) {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'Album and destination album cannot be the same.' );
+
 		return 0;
 	}
 
@@ -555,12 +573,14 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 		if($set_destalbumName == '0') {
 			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 			$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
+
 			return 0;
 		}
 
 		if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
 			$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 			$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+
 			return 0;
 		}
 
@@ -571,11 +591,13 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 			$destAlbum->save();
 			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 			$response->setProperty( 'status_text', 'Move album successful.' );
+
 			return 1;
 		}
 		else {
 			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
 			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+
 			return 0;
 		}
 	}
@@ -583,12 +605,14 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 	if(checkIfNestedAlbum($gallery->album,$destAlbum)) {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'Cannot move album into a sub-album of itself.' );
+
 		return 0;
 	}
 
 	if($gallery->album->fields['parentAlbumName'] == $set_destalbumName) {
 		$response->setProperty( 'status', $GR_STAT['MOVE_ALBUM_FAILED'] );
 		$response->setProperty( 'status_text', 'Album is already in specified destination album.' );
+
 		return 0;
 	}
 
@@ -602,11 +626,13 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 			$gallery->album->save();
 			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 			$response->setProperty( 'status_text', 'Move album successful.' );
+
 			return 1;
 		}
 		else {
 			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
 			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+
 			return 0;
 		}
 	}
@@ -622,11 +648,13 @@ function gr_move_album( &$gallery, &$response, &$set_destalbumName ) {
 			$gallery->album->save();
 			$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
 			$response->setProperty( 'status_text', 'Move album successful.' );
+
 			return 1;
 		}
 		else {
 			$response->setProperty( 'status', $GR_STAT['NO_WRITE_PERMISSION'] );
 			$response->setProperty( 'status_text', 'No write permission to album or destination.' );
+
 			return 0;
 		}
 	}
@@ -863,6 +891,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 		}
 
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+
 		$files_to_process	= array();
 		$dir_handle		= fs_opendir($temp_dirname);
 		$invalid_files 		= 0;
@@ -921,6 +950,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 						$setCaption
 			);
 		}
+
 		/* End of archive processing */
 		rmdirRecursive($temp_dirname);
 		fs_unlink($temp_filename);

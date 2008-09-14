@@ -33,12 +33,21 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
+$curCookieParams = session_get_cookie_params();
+
 $cookieName = $gallery->app->sessionVar . '_add_photos_mode';
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-		setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
+		setcookie(
+			$cookieName,
+			$mode,
+			time()+60*60*24*365,
+			'/',
+			$curCookieParams['domain'],
+			isHttpsConnection()
+		);
 	}
 }
 else {
@@ -69,12 +78,12 @@ if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	}
 }
 
-$modes["form"] = gTranslate('core', "Form");
-$modes["url"] = gTranslate('core', "URL");
-$modes["other"] = gTranslate('core', "Other");
+$modes['form']	= gTranslate('core', "Form");
+$modes['url']	= gTranslate('core', "URL");
+$modes['other']	= gTranslate('core', "Other");
 
 if (!isset($mode) || !isset($modes[$mode])) {
-	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";
+	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : 'form';
 }
 ?>
 
@@ -85,7 +94,8 @@ foreach ($modes as $m => $mt) {
 	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
 	if ($m == $mode) {
 		echo "\t\t<li><a href=\"$url\" class=\"active\">$mt</a></li>\n";
-	} else {
+	}
+	else {
 		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
 	}
 }

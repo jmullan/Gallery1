@@ -2730,7 +2730,7 @@ class Album {
 		global $gallery;
 		static $user;
 
-		if(empty($user) {
+		if(empty($user)) {
 			$user = $gallery->userDB->getUserByUid($uid);
 		}
 

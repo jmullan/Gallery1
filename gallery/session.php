@@ -193,6 +193,6 @@ function update_session_var($name, $protected=0) {
 	$setname = "set_$name";
 	if (!emptyFormVar($setname)) {
 		$gallery->session->{$name} = formVar($setname);
-	} 
+	}
 }
 ?>

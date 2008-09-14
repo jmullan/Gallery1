@@ -83,28 +83,28 @@ if (!strcmp($cmd, "fetch-albums")) {
 }
 
 function appendNestedAlbums($level, $albumName, $albumString) {
-    global $gallery;
+	global $gallery;
 
-    $myAlbum = new Album();
-    $myAlbum->load($albumName);
+	$myAlbum = new Album();
+	$myAlbum->load($albumName);
 
-    $numPhotos = $myAlbum->numPhotos(1);
+	$numPhotos = $myAlbum->numPhotos(1);
 
-    for ($i=1; $i <= $numPhotos; $i++) {
-        if ($myAlbum->isAlbum($i)) {
-            $myName = $myAlbum->getAlbumName($i);
-            $nestedAlbum = new Album();
-            $nestedAlbum->load($myName);
-            if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
-                $nextTitle = str_repeat("-- ", $level+1);
-                $nextTitle .= $nestedAlbum->fields[title];
+	for ($i=1; $i <= $numPhotos; $i++) {
+		if ($myAlbum->isAlbum($i)) {
+			$myName = $myAlbum->getAlbumName($i);
+			$nestedAlbum = new Album();
+			$nestedAlbum->load($myName);
+			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
+				$nextTitle = str_repeat("-- ", $level+1);
+				$nextTitle .= $nestedAlbum->fields[title];
 				$nextTitle = urlencode($nextTitle);
-                $nextName = urlencode($nestedAlbum->fields[name]);
+				$nextName = urlencode($nestedAlbum->fields[name]);
 				echo "$nextName\t$nextTitle\n";
-                appendNestedAlbums($level + 1, $myName, $albumString);
-            }
-        }
-    }
+				appendNestedAlbums($level + 1, $myName, $albumString);
+			}
+		}
+	}
 }
 
 //---------------------------------------------------------
@@ -188,6 +188,7 @@ function process($file, $tag, $name, $setCaption="") {
 		}
 
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+
 		$files_to_process	= array();
 		$dir_handle		= fs_opendir($temp_dirname);
 		$invalid_files 		= 0;
@@ -253,8 +254,10 @@ function process($file, $tag, $name, $setCaption="") {
 	else {
 		// remove %20 and the like from name
 		$name = urldecode($name);
+
 		// parse out original filename without extension
 		$originalFilename = eregi_replace(".$tag$", "", $name);
+
 		// replace multiple non-word characters with a single "_"
 		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
 
@@ -297,7 +300,15 @@ function process($file, $tag, $name, $setCaption="") {
 				}
 			}
 
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, array(), $gallery->user->getUid());
+			$err = $gallery->album->addPhoto(
+							$file,
+							$tag,
+							$mangledFilename,
+							$caption,
+							array(),
+							$gallery->user->getUid()
+			);
+
 			if ($err) {
 				$error = "$err";
 			}
