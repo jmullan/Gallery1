@@ -562,9 +562,34 @@ if ($navigator["maxPages"] > 1) {
     includeLayout('navtablebegin.inc');
     includeLayout('navigator.inc');
     includeLayout('navtableend.inc');
-} else {
+}
+else {
     echo '<hr width="100%">';
 }
+
+if (!$gallery->session->offline) { ?>
+
+  <script language="javascript1.2" type="text/JavaScript">
+  <!-- //
+  var statusWin;
+  function showProgress() {
+  	statusWin = <?php echo popup_status("progress_uploading.php"); ?>
+  }
+
+  function hideProgress() {
+  	if (typeof(statusWin) != "undefined") {
+  		statusWin.close();
+  		statusWin = void(0);
+  	}
+  }
+
+  function hideProgressAndReload() {
+  	hideProgress();
+  	location.reload();
+  }
+  //-->
+  </script>
+<?php }
 ?>
 <p>
 <!-- gallery.footer begin -->
