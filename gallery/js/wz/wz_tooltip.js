@@ -1,8 +1,7 @@
 /**
  * Gallery SVN ID:
- * $Id: wz_toolzip.js $
+ * $Id: wz_toolzip.js 17298 2007-12-25 14:01:38Z JensT $
 */
-
 
 /* This notice must be untouched at all times.
 Copyright (c) 2002-2008 Walter Zorn. All rights reserved.
