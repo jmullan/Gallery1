@@ -1,12 +1,12 @@
-
 /* CONVERSIONS
  * Taken from
  * DHTML Color Picker v1.0.3, Programming by Ulyses, ColorJack.com
  * Updated August 24th, 2007
  *
  * Modified by Jens Tkotz to fit with Gallery 1.5.8+
+ * Gallery SVN ID:
+ * $Id: multifile.js.php 17822 2008-08-06 23:00:46Z JensT $
 */
-
 
 function toHex(v) { v=Math.round(Math.min(Math.max(0,v),255)); return("0123456789ABCDEF".charAt((v-v%16)/16)+"0123456789ABCDEF".charAt(v%16)); }
 function hex2rgb(r) { return({0:parseInt(r.substr(0,2),16),1:parseInt(r.substr(2,2),16),2:parseInt(r.substr(4,2),16)}); }
