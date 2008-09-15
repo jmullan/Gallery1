@@ -520,12 +520,12 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 		$temp_dirname	= $temp_filename . '.dir';
 
 		if (fs_is_dir($temp_dirname)) {
-			$error = gTranslate('core', "Error occurred before extracting the archive. Temporary destination exists.");
+			$error = gTranslate('core', "An error occurred before extracting the archive. Temporary destination exists.");
 			return $error;
 		}
 
 		if (! fs_mkdir($temp_dirname)) {
-			$error = gTranslate('core', "Error occurred before extracting the archive. Temporary destination could not be created.");
+			$error = gTranslate('core', "An error occurred before extracting the archive. Temporary destination could not be created.");
 			return $error;
 		}
 
@@ -556,8 +556,8 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			if ($content_file_ext == 'csv') {
 				$image_info = array_merge($image_info, parse_csv($fullpath_content_file, ';'));
 			}
-			elseif (isAcceptableFormat($content_file_ext) ||
-				isAcceptableArchive($content_file_ext))
+			elseif ((isAcceptableFormat($content_file_ext) || isAcceptableArchive($content_file_ext)) &&
+				!fs_is_link($fullpath_content_file))
 			{
 				$files_to_process[] = array(
 					'filename'	=> $fullpath_content_file,
