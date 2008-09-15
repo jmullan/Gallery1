@@ -142,9 +142,18 @@ class mosMainFrame {
 
 		$sessioncookie = mosGetParam( $_COOKIE, 'sessioncookie', null );
 
+		$curCookieParams = session_get_cookie_params();
+
 		if ($session->load( md5( $sessioncookie ) )) {
 			if ($session->username) {
-				setcookie( "usercookie", $session->getCookie(), $lifetime, "/" );
+				setcookie(
+					"usercookie",
+					$session->getCookie(),
+					$lifetime,
+					"/",
+					$curCookieParams['domain'],
+					isHttpsConnection()
+				);
 				//$_COOKIE["usercookie"] = $session->getCookie();
 			}
 			$session->time = time();
@@ -161,7 +170,14 @@ class mosMainFrame {
 				die( $session->getError() );
 			}
 
-			setcookie( "sessioncookie", $session->getCookie(), $lifetime, "/" );
+			setcookie(
+				"sessioncookie",
+				$session->getCookie(),
+				$lifetime,
+				"/",
+				$curCookieParams['domain'],
+				isHttpsConnection()
+			);
 			//$_COOKIE["usercookie"] = $session->getCookie();
 		}
 	}
@@ -179,6 +195,8 @@ class mosMainFrame {
 		$sessioncookie = mosGetParam( $_COOKIE, 'sessioncookie', '' );
 		$username = trim( mosGetParam( $_POST, 'username', '' ) );
 		$passwd = trim( mosGetParam( $_POST, 'passwd', '' ) );
+
+		$curCookieParams = session_get_cookie_params();
 
 		if (!$username || !$passwd) {
 			echo "<script> alert(\""._LOGIN_INCOMPLETE."\"); window.history.go(-1); </script>\n";
@@ -216,7 +234,16 @@ class mosMainFrame {
 				$session->update();
 
 				$lifetime = time() + intval( $this->getCfg( 'lifetime' ) );
-				setcookie( "usercookie", $session->getCookie(), $lifetime, "/" );
+
+				setcookie(
+					"usercookie",
+					$session->getCookie(),
+					$lifetime,
+					"/",
+					$curCookieParams['domain'],
+					isHttpsConnection()
+				);
+
 			} else {
 				echo "<script>alert(\""._LOGIN_INCORRECT."\"); window.history.go(-1); </script>\n";
 				exit();
@@ -345,6 +372,8 @@ class mosMainFrame {
 		$cur_template = $t->cur_template;
 		$col_main = $t->col_main;
 
+		$curCookieParams = session_get_cookie_params();
+
 		// TemplateChooser Start
 		$mos_user_template = mosGetParam( $_COOKIE, 'mos_user_template', '' );
 		$mos_change_template = mosGetParam( $_REQUEST, 'mos_change_template', $mos_user_template );
@@ -353,9 +382,24 @@ class mosMainFrame {
 			if (file_exists( "$mosConfig_absolute_path/templates/$mos_change_template/index.php" )) {
 				$lifetime = 60*10;
 				$cur_template = $mos_change_template;
-				setcookie( "mos_user_template", "$mos_change_template", time()+$lifetime);
+
+				setcookie(
+					"mos_user_template",
+					"$mos_change_template",
+					time()+$lifetime,
+					$curCookieParams['path'],
+					$curCookieParams['domain'],
+					isHttpsConnection()
+				);
 			} else {
-				setcookie( "mos_user_template", "", time()-3600 );
+				setcookie(
+					"mos_user_template",
+					"",
+					time()-3600,
+					$curCookieParams['path'],
+					$curCookieParams['domain'],
+					isHttpsConnection()
+				);
 			}
 		}
 		// TemplateChooser End
@@ -455,7 +499,17 @@ class mosMainFrame {
 		if (mosGetParam( $_COOKIE, 'mosvisitor', 0 )) {
 			return;
 		}
-		setcookie( "mosvisitor", "1" );
+
+		$curCookieParams = session_get_cookie_params();
+
+		setcookie(
+			"mosvisitor",
+			1,
+			$curCookieParams['lifetime'],
+			$curCookieParams['path'],
+			$curCookieParams['domain'],
+			isHttpsConnection()
+		);
 
 		if (phpversion() <= "4.2.1") {
 			$agent = getenv( "HTTP_USER_AGENT" );

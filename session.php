@@ -115,6 +115,14 @@ function createGallerySession($newSession = false) {
 	}
 
 	/* Start a new session, or resume our current one */
+	$curCookieParams = session_get_cookie_params();
+	session_set_cookie_params(
+		$curCookieParams['lifetime'],
+		$curCookieParams['path'],
+		$curCookieParams['domain'],
+		isHttpsConnection()
+	);
+
 	@session_start();
 
 	// If we're requesting a new session, generate a new session id
@@ -194,5 +202,11 @@ function update_session_var($name, $protected=0) {
 	if (!emptyFormVar($setname)) {
 		$gallery->session->{$name} = formVar($setname);
 	}
+}
+
+function isHttpsConnection() {
+	$httpType = isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : null;
+
+	return !empty($httpType);
 }
 ?>

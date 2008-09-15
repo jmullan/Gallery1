@@ -909,8 +909,8 @@ function processFile($file, $tag, $name, $setCaption="") {
 			$content_file_ext	= getExtension($content_filename);
 			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
 
-			if (isAcceptableFormat($content_file_ext) ||
-				isAcceptableArchive($content_file_ext))
+			if ((isAcceptableFormat($content_file_ext) || isAcceptableArchive($content_file_ext)) &&
+			    !fs_is_link($fullpath_content_file))
 			{
 				$files_to_process[] = array(
 					'filename'	=> $fullpath_content_file,

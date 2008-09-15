@@ -28,7 +28,16 @@ $cookieName = $gallery->app->sessionVar . "_slideshow_mode";
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-		setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+		$curCookieParams = session_get_cookie_params();
+
+		setcookie(
+			$cookieName,
+			$mode,
+			time()+60*60*24*365,
+			'/',
+			$curCookieParams['domain'],
+			isHttpsConnection()
+		);
 	}
 }
 else {

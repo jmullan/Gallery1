@@ -1,3 +1,21 @@
+2008-09-16 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b25
+
+ * SECURITY FIX: Arbitrary file disclosure
+
+   A user having permissions to add photos to Gallery can retrieve arbitrary
+   file (accessible to webserver) from the file system.
+   The problem is caused by incorrect treatment of zipped symlinks.
+
+   The Gallery team wants to thank Alex Ustinov for gently reporting this.
+
+
+ * Security Fix: Insecure cookies over HTTPS
+
+   When running gallery on https, it does not set cookies to be secure,
+   making it possible to sniff the session cookie.
+
+   The Gallery team wants to thank Hanno Boeck for reporting this.
+
 2008-09-14 Jens Tkotz <jens@peino.de> 1.6-RC2-svn-b24
 
  * Fix: Add photos from mainpage is new, but was not working ;-)

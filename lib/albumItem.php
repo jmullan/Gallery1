@@ -567,8 +567,8 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			if ($content_file_ext == 'csv') {
 				$image_info = array_merge($image_info, parse_csv($fullpath_content_file, ';'));
 			}
-			elseif (isAcceptableFormat($content_file_ext) ||
-				isAcceptableArchive($content_file_ext))
+			elseif ((isAcceptableFormat($content_file_ext) || isAcceptableArchive($content_file_ext)) &&
+				!fs_is_link($fullpath_content_file))
 			{
 				$files_to_process[] = array(
 					'filename'	=> $fullpath_content_file,
