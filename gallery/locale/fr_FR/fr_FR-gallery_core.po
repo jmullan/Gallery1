@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.9-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-16 01:31+0200\n"
+"POT-Creation-Date: 2008-09-16 10:54+0200\n"
 "PO-Revision-Date: 2005-10-06 06:55+0900\n"
 "Last-Translator: Julien ÉLIE <julien AT trigofacile DOT com>\n"
 "Language-Team: Jens Tkotz <jens AT peino DOT de>\n"
@@ -516,11 +516,11 @@ msgid_plural "This album has been viewed %d times since %s."
 msgstr[0] "Cet album a été consulté %d fois depuis le %s."
 msgstr[1] "Cet album a été consulté %d fois depuis le %s."
 
-#: ../albums.php:510
+#: ../albums.php:513
 msgid "reset counter"
 msgstr "mettre le compteur à zéro"
 
-#: ../albums.php:555 ../view_album.php:847
+#: ../albums.php:559 ../view_album.php:847
 msgid "Comments available for this item."
 msgstr "Commentaires disponibles pour cet élément."
 
@@ -724,8 +724,8 @@ msgid "Invalid filetype: %s. Skipping."
 msgstr "Type de fichier invalide : %s. Ignoré."
 
 #: ../classes/Album.php:1370 ../classes/Album.php:1371
-msgid "Item looks like an image, but has no dimension? Please verify its not a broken image."
-msgstr ""
+msgid "Item looks like an image, but has no dimensions? Please verify it's not a broken image."
+msgstr "L'élément semble être une image mais il ne possède aucune dimension. Merci de vérifier que ce n'est pas une image corrompue."
 
 #: ../classes/Album.php:1386 ../classes/Album.php:1387
 msgid "Item not added."
@@ -2724,12 +2724,10 @@ msgid "Skipping '%s' (%s support not enabled)"
 msgstr "Ignore %s (le support de %s n'est pas activé)"
 
 #: ../lib/albumItem.php:523
-#, fuzzy
 msgid "An error occurred before extracting the archive. Temporary destination exists."
 msgstr "Une erreur est survenue avant l'extraction de l'archive. La destination temporaire existe."
 
 #: ../lib/albumItem.php:528
-#, fuzzy
 msgid "An error occurred before extracting the archive. Temporary destination could not be created."
 msgstr "Une erreur est survenue avant l'extraction de l'archive. La destination temporaire n'a pas pu être créée."
 
@@ -2753,24 +2751,24 @@ msgstr "Aucune métadonnée"
 #, php-format
 msgid "%d file inside the archive was invalid."
 msgid_plural "%d files inside the archive were invalid."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d fichier dans l'archive était invalide."
+msgstr[1] "%d fichiers dans l'archive étaient invalides."
 
 #: ../lib/albumItem.php:594 ../lib/albumItem.php:602
 msgid "The archive contains no valid files!"
-msgstr ""
+msgstr "L'archive ne contient aucun fichier valide !"
 
 #: ../lib/albumItem.php:599
-#, fuzzy, php-format
+#, php-format
 msgid "Processing %d valid file from the archive."
 msgid_plural "Processing %d valid files from the archive."
-msgstr[0] "Traitement des fichiers valides de l'archive"
-msgstr[1] "Traitement des fichiers valides de l'archive"
+msgstr[0] "Traitement de %d fichier valide de l'archive."
+msgstr[1] "Traitement des %d fichiers valides de l'archive."
 
 #: ../lib/albumItem.php:648
 #, php-format
 msgid "Processing file #%d from archive. (Calling processNewImage)"
-msgstr ""
+msgstr "Traitement du fichier n°%d de l'archive. (Appel de processNewImage.)"
 
 #: ../lib/albumItem.php:666
 msgid "Start processing single file (image/movie not archive)."
