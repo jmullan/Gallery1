@@ -86,7 +86,7 @@ $navigator["spread"]		= 6;
 $navigator["fullWidth"]		= 100;
 $navigator["widthUnits"]	= "%";
 $navigator["bordercolor"]	= $borderColor;
-$displayCommentLegend		= 1;  // this determines if we display "* Item contains a comment" at end of page
+$displayCommentLegend		= false;  // this determines if we display "* Item contains a comment" at end of page
 
 $currentUrl = makeGalleryUrl("albums.php", array("page" => $gallery->session->albumListPage));
 
@@ -501,12 +501,15 @@ for ($i = $start; $i <= $end; $i++) {
 					$clickCount,
 					sprintf(gTranslate('core', "This album has never been viewed since %s."), $resetDate)
 					),
-					$clickCount, $resetDate
-				);
+			$clickCount,
+			$resetDate
+		);
 	}
+
 	$albumName = $gallery->album->fields["name"];
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&
-	(!($gallery->album->fields["display_clicks"] == "no"))) {
+	    (!($gallery->album->fields["display_clicks"] == "no")))
+	{
 		echo " ".popup_link(gTranslate('core', "reset counter"), doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 	}
 
@@ -518,9 +521,10 @@ for ($i = $start; $i <= $end; $i++) {
 		switch ($gallery->app->comments_indication) {
 			case "albums":
 			case "both":
-			$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
-			print lastCommentString($lastCommentDate, $displayCommentLegend);
-		} // end switch
+				$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
+				print lastCommentString($lastCommentDate, $displayCommentLegend);
+			break;
+		}
 	}
 
 	echo "\n</span>";

@@ -1367,8 +1367,8 @@ class Album {
 
 		if($resize_status == 10) {
 			$errorMsg = ($plainErrorMessage) ?
-					gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image.") :
-					gallery_error(gTranslate('core', "Item looks like an image, but has no dimension? Please verify its not a broken image."));
+					gTranslate('core', "Item looks like an image, but has no dimensions? Please verify it's not a broken image.") :
+					gallery_error(gTranslate('core', "Item looks like an image, but has no dimensions? Please verify it's not a broken image."));
 
 			return array(false, $errorMsg);
 		}

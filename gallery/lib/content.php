@@ -1097,9 +1097,9 @@ function nestedAlbumOptionList($level, $albumName, $movePhoto, $readOnly) {
 /**
  * Formats a nice string to print below an item with comments
  *
- * @param  int		$lastCommentDate		Timestamp of last comment
- * @param  boolean	$displayCommentLegend	indicator whether a Legend showed be showed later.
- * @return string	$html
+ * @param  integer  $lastCommentDat             Timestamp of last comment
+ * @param  boolean  $displayCommentLegend       Indicator whether a legend should be showed later.
+ * @return string   $html
  */
 function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 	global $gallery;
