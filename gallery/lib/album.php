@@ -553,14 +553,14 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 				'text'	=> gTranslate('common', "Delete this (sub)album"),
 				'html'	=> popup_link2(
 							gTranslate('common', "Delete this (sub)album"),
-							makeGalleryUrl('delete_item.php',
+							makeGalleryUrl('delete_photo.php',
 								array(
 									'set_albumName'	=> $album->fields['parentAlbumName'],
 									'index' => $i,
 									'id' => $id,
 									'gallery_popup' => true))
 								),
-				'value'	=> build_popup_url(makeGalleryUrl('delete_item.php',
+				'value'	=> build_popup_url(makeGalleryUrl('delete_photo.php',
 								array(
 									'set_albumName' => $album->fields['parentAlbumName'],
 									'index' => $i,
