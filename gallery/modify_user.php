@@ -36,8 +36,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $errorCount = 0;
-$msg = '';
-$infoLineType = '';
+$notice_messages = array();
 
 /**
  * User pressed "save" Button
@@ -86,14 +85,18 @@ if (!empty($save)) {
 	if (!strcmp($old_uname, $gallery->session->username)) {
 	    $gallery->session->username = $uname;
 	}
-	$msg = gTranslate('core', "User information succesfully updated.");
-        $infoLineType = 'success';
+	
+	$notice_messages[] = array(
+		'type' => 'success',
+		'text' => gTranslate('core', "User information succesfully updated."));
     }
     else {
-        $msg = gallery_error(gTranslate('core', "User information was not succesfully updated!"));
-        $infoLineType = 'error';
+        $notice_messages[] = array(
+        	'type' => 'error',
+        	'text' => gTranslate('core', "User information was not succesfully updated!"));
     }
-} else if (isset($dismiss)) {
+}
+else if (isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 
@@ -146,7 +149,7 @@ doctype();
 <div class="popuphead"><?php echo gTranslate('core', "Modify User") ?></div>
 <div class="popup" align="center">
 <?php 
-	echo infoLine($msg, $infoLineType);
+	echo infoBox($notice_messages);
 	echo gTranslate('core', "You can change any information about the user using this form.") 
 ?>
 <br>

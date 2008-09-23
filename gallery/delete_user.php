@@ -77,12 +77,12 @@ if (! isset($error)) {
 	}
 ?>
 <br><br>
-<input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deleteuser_form.formaction.value='delete'">
+<input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deleteuser_form.formaction.value='delete'" class="g-button">
 <?php
 }
 ?>
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="deleteuser_form.formaction.value='cancel'">
+<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="deleteuser_form.formaction.value='cancel'" class="g-button">
 </form>
 </div>
 

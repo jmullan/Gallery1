@@ -115,7 +115,7 @@ function fs_opendir($path, $withDebug = true) {
 	}
 	else {
 		if($withDebug) {
-			echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+			echo "\<br>". gallery_error(sprintf(gTranslate('common', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
 		}
 
 		return false;

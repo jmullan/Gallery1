@@ -102,9 +102,10 @@ if (!empty($formaction) && $formaction == 'create') {
 	       	} 
 
 	echo "\n<br><br>";
-	echo makeFormIntro('create_user.php', array(), array('type' => 'popup'));
+	echo makeFormIntro('create_user.php', array('class' => 'center'), array('type' => 'popup'));
 	echo gSubmit('moreuser', gTranslate('core', "Create another user"));
 	echo gSubmit('dismiss', gTranslate('core', "Back to usermanagement"));
+	echo gButton('done', gTranslate('core', "Done"), 'parent.close();');
 	?>
 	</form>
 	</div>
@@ -148,6 +149,7 @@ echo makeFormIntro('create_user.php',
 <input type="hidden" name="formaction" value="">
 	<input type="submit" name="create" value="<?php echo gTranslate('core', "Create user") ?>" onclick="usercreate_form.formaction.value='create'" class="g-button">
 	<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'" class="g-button">
+	<?php echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()'); ?>
   </div>
 </form>
 </div>
