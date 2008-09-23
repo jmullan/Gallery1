@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version     1.5.2+
  * @package	Languagepack
  * @subpackage	Danish
  */

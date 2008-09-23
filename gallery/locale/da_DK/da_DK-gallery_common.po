@@ -18,19 +18,19 @@
 # $Id$
 #
 #
-# @version      1.5.9
+# @version      1.5.10
 # @package	Languagepack
 # @subpackage	Danish
 # @author	Niels Elgaard Larsen <elgaard AT agol DOT dk>, 2003-2004
 # @author	Bjorn Graabek <bjorn AT graabek DOT com>, 2004
 # @author	Allan Beaufour <allan AT beaufour DOT dk>, 2005.4
-# @author	Niels Baggesen <nba AT users DOT sourceforge DOT net>, 2007.6
+# @author	Niels Baggesen <nba AT users DOT sourceforge DOT net>, 2006-2008
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.9\n"
+"Project-Id-Version: Gallery 1.5_LEGACY\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-23 02:04+0200\n"
+"POT-Creation-Date: 2008-09-23 02:54+0200\n"
 "PO-Revision-Date: 2008-08-24 17:02+0200\n"
 "Last-Translator: Niels Baggesen <nba AT users DOT sourceforge DOT net>\n"
 "Language-Team:  <jens AT peino DOT DE>\n"
@@ -355,7 +355,7 @@ msgstr "Ejers rettigheder"
 
 #: ../includes/definitions/albumProperties.php:416
 msgid "For historical reasons permissions for owners are handled as property, not as permission. <br>G1-Style ;-)"
-msgstr ""
+msgstr "Af historiske grunde er tilladelserne for ejeren en egenskab og ikke en tilladelse. <br>G1-style ;-)"
 
 #: ../includes/definitions/albumProperties.php:419
 msgid "Allow users to modify their own items?"
@@ -419,7 +419,7 @@ msgstr "Antal foregående miniaturer?"
 
 #: ../includes/definitions/albumProperties.php:509
 msgid "Number of next thumbs?"
-msgstr "Antal næste miniaturer"
+msgstr "Antal eftefølgende miniaturer?"
 
 #: ../includes/definitions/albumProperties.php:515
 msgid "Position of microthumb navigation bar?"
@@ -472,7 +472,7 @@ msgstr "Ret billedtekst"
 
 #: ../lib/album.php:480 ../lib/album.php:481
 msgid "Change foldername"
-msgstr "Skift foldernavn"
+msgstr "Skift mappenavn"
 
 #: ../lib/album.php:488 ../lib/album.php:489
 msgid "Permissions"
@@ -491,14 +491,12 @@ msgid "Delete album"
 msgstr "Slet album"
 
 #: ../lib/album.php:534 ../lib/album.php:535
-#, fuzzy
 msgid "Move album"
-msgstr "Slet album"
+msgstr "Flyt album"
 
 #: ../lib/album.php:541 ../lib/album.php:542
-#, fuzzy
 msgid "Reorder album"
-msgstr "Slet album"
+msgstr "Omplacer album"
 
 #: ../lib/album.php:553 ../lib/album.php:555
 msgid "Delete this (sub)album"
@@ -530,7 +528,7 @@ msgstr "Afstemningsresultater"
 
 #: ../lib/album.php:629 ../lib/album.php:630
 msgid "Poll reset"
-msgstr "Nulstil fstemningsresultater"
+msgstr "Nulstil afstemningsresultater"
 
 #: ../lib/album.php:642 ../lib/album.php:645
 msgid "View&nbsp;comments"
@@ -565,7 +563,6 @@ msgstr "tilføj kommentar"
 msgid "Add your comment"
 msgstr "Tilføj din kommentar"
 
-# kommer an på sammenhængen, men skal der muligvis stå: midten
 #: ../lib/content.php:131
 msgid "Commenter:"
 msgstr "Dit navn:"
@@ -1190,7 +1187,7 @@ msgstr "jpegtran programfil blev ikke fundet."
 
 #: ../lib/setup.php:746
 msgid "jpegtran binary located."
-msgstr "jpegtran> programfil fundet."
+msgstr "jpegtran programfil fundet."
 
 #: ../lib/setup.php:758
 msgid "PHP has GNU gettext support."
@@ -1206,7 +1203,7 @@ msgstr "Ingen sprog fundet."
 
 #: ../lib/setup.php:778
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "Det ser ikke ud til at du har hentet yderligere sprog. Dette er ikke et problem! Galleriet vil bare bruge engelsk. Bemærk dog: Hvis dette ikke er korrekt, så kontroller at alle filerne i locale biblioteket kan læses af webserverren, eller kontakt Gallery Team."
+msgstr "Det ser ikke ud til at du har hentet yderligere sprog. Dette er ikke et problem! Galleriet vil bare bruge engelsk. Bemærk dog: Hvis dette ikke er korrekt, så kontroller at alle filerne i locale mappen kan læses af webserveren, eller kontakt Gallery Team."
 
 #: ../lib/setup.php:781
 #, php-format
@@ -1458,12 +1455,12 @@ msgstr "Alle %d kontrollerede filer er up to date."
 
 #: ../lib/setup.php:1712
 msgid "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page."
-msgstr ""
+msgstr "Filen manifest mangler eller kan ikke læses. Gallery kan ikke verificere filernes. Installer venligst manifest filen og genindlæs denne side."
 
 #: ../lib/setup.php:1717
 #, php-format
 msgid "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."
-msgstr ""
+msgstr "Du skal sikre dig at %s er den nyeste version. Gallery kan ikke verificere filen. Installer den korrekte version og genindlæs denne side."
 
 #: ../lib/setup.php:1724
 #, php-format
@@ -1537,7 +1534,7 @@ msgstr "De følgende parametre kan bruges:"
 
 #: ../lib/setup.php:1935
 msgid "Current used welcome mail text"
-msgstr ""
+msgstr "Nuværende velkomsttekst"
 
 #: ../lib/setup.php:1998
 #, php-format
@@ -1728,7 +1725,7 @@ msgid "No votes"
 msgstr "Ingen stemmer"
 
 #: ../lib/voting.php:386
-#, fuzzy, php-format
+#, php-format
 msgid "Position %d overall, due to these votes:"
 msgstr "Placering %d totalt, på grund af disse stemmer:"
 

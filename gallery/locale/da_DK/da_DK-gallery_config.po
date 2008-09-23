@@ -18,17 +18,17 @@
 # $Id$
 #
 #
-# @version      1.5.9
+# @version      1.5.10
 # @package	Languagepack
 # @subpackage	Danish
 # @author	Niels Elgaard Larsen <elgaard AT agol DOT dk>, 2003-2004
 # @author	Bjorn Graabek <bjorn AT graabek DOT com>, 2004
 # @author	Allan Beaufour <allan AT beaufour DOT dk>, 2005.4
-# @author	Niels Baggesen <nba AT users DOT sourceforge DOT net>, 2007.6
+# @author	Niels Baggesen <nba AT users DOT sourceforge DOT net>, 2006-2008
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.9\n"
+"Project-Id-Version: Gallery 1.5_LEGACY\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2008-09-13 22:09+0200\n"
 "PO-Revision-Date: 2008-08-24 16:24+0100\n"
@@ -297,7 +297,7 @@ msgstr "Hvis det ikke er korrekt (eller hvis det er tomt), kør konfigurationshjæ
 #: ../setup/check_imagemagick.php:110 ../setup/check_netpbm.php:122
 #, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
-msgstr "<b>Bemærk:</b> Dit %s bibliotek (%s) er ikke i din open_basedir liste %s"
+msgstr "<b>Bemærk:</b> Din %s mappe (%s) er ikke i din open_basedir liste %s"
 
 #: ../setup/check_imagemagick.php:114 ../setup/check_netpbm.php:126
 msgid "The open_basedir list is specified in php.ini."
@@ -900,7 +900,7 @@ msgstr "Placering og URL'er"
 
 #: ../setup/config_data.inc:349
 msgid "Album directory"
-msgstr "Albumkatalog"
+msgstr "Albummappe"
 
 #: ../setup/config_data.inc:350 ../setup/config_data.inc:365
 #: ../setup/config_data.inc:378 ../setup/config_data.inc:389
@@ -910,7 +910,7 @@ msgstr "KRÆVES"
 #: ../setup/config_data.inc:351
 #, fuzzy, php-format
 msgid "The full filesystem path on physical disk to the directory where your photos will be stored.  This directory should start off empty.  Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
-msgstr "Den fulde sti på en fysisk disk til kataloget, hvor dine billeder gemmes. Dette katalog skal være tomt til at starte med&#8212;Gallery fylder billeder i det. Bemærk at katalog skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s)."
+msgstr "Den fulde sti på en fysisk disk til mappen, hvor dine billeder gemmes. Denne mappe skal være tom til at starte med&#8212;Gallery fylder billeder i den. Bemærk at mappen skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s)."
 
 #: ../setup/config_data.inc:353
 msgid "Examples: "
@@ -918,12 +918,12 @@ msgstr ""
 
 #: ../setup/config_data.inc:364
 msgid "Temporary directory"
-msgstr "Midlertidig katalog"
+msgstr "Midlertidig mappe"
 
 #: ../setup/config_data.inc:366
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
-msgstr "Stien til et katalog for midlertidlige filer.  Fx %s eller %s.  Bemærk at hvis du har konfigureret <b>open_basedir</b> på dit system, så skal dette katalog være i <b>open_basedir</b> stien.  I så fald kan det være du selv skal oprette biblioteket og være sikker på at webserveren kan skrive til biblioteket."
+msgstr "Stien til en mappe for midlertidige filer.  Fx %s eller %s.  Bemærk at hvis du har konfigureret <b>open_basedir</b> på dit system, så skal denne mappe være i <b>open_basedir</b> stien.  I så fald kan det være du selv skal oprette mappen og være sikker på at webserveren kan skrive til mappen."
 
 #: ../setup/config_data.inc:379
 #, php-format
@@ -937,7 +937,7 @@ msgstr "Album URL"
 #: ../setup/config_data.inc:390
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr "Den fulde URL til album biblioteket på din webserver. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
+msgstr "Den fulde URL til album mappen på din webserver. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
 
 #: ../setup/config_data.inc:399
 msgid "Thumbnail image"
@@ -979,7 +979,7 @@ msgstr "Sti til ImageMagick"
 
 #: ../setup/config_data.inc:444
 msgid "The path to the directory containing ImageMagick on your system."
-msgstr "Sti til kataloget som indeholder ImageMagick på dit system."
+msgstr "Sti til mappen som indeholder ImageMagick på dit system."
 
 #: ../setup/config_data.inc:445 ../setup/config_data.inc:473
 #, php-format
@@ -1001,7 +1001,7 @@ msgstr "Sti til Netpbm"
 #: ../setup/config_data.inc:469
 #, php-format
 msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
-msgstr "Stien til kataloget, der indeholder Netpbm på dit system. Hvis du har hentet Netpbm fra Gallerys hjemmeside, så husk at gøre filerne eksekverbare. Fx. %s eller %s eller %s"
+msgstr "Stien til mappen, der indeholder Netpbm på dit system. Hvis du har hentet Netpbm fra Gallerys hjemmeside, så husk at gøre filerne eksekverbare. Fx. %s eller %s eller %s"
 
 #: ../setup/config_data.inc:476
 msgid "I can't find Netpbm at the location you provided."
@@ -1021,7 +1021,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:495
 msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-msgstr "Denne værdi har kun betydning hvis du bruger Netpbm. Netpbm bruger et værktøj til at lægge et billede ovenpå et andet. Dette værktøj kaldes enten <i>pnmcomp</i> eller <i>pamcomp</i> afhængigt af hvilken version af Netpbm, du har installeret. Undersøg dit Netpbm bibliotek for at se hvilken et du har installeret og vælg det her. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker."
+msgstr "Denne værdi har kun betydning hvis du bruger Netpbm. Netpbm bruger et værktøj til at lægge et billede ovenpå et andet. Dette værktøj kaldes enten <i>pnmcomp</i> eller <i>pamcomp</i> afhængigt af hvilken version af Netpbm, du har installeret. Undersøg din Netpbm mappe for at se hvilken et du har installeret og vælg det her. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker."
 
 #: ../setup/config_data.inc:503
 msgid "Auto-rotate images"
@@ -1123,11 +1123,11 @@ msgstr "Hvis din internetudbyder eller CMS kræver at register_globals slås til, 
 
 #: ../setup/config_data.inc:559
 msgid "GeekLog Dir"
-msgstr "GeekLog bibliotek"
+msgstr "GeekLog mappe"
 
 #: ../setup/config_data.inc:561
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-msgstr "Hvis du bruger GeekLog, så indtast venligst stien til GeekLog public_html biblioteket. Dvs. '/sti/til/geeklog/public_html'"
+msgstr "Hvis du bruger GeekLog, så indtast venligst stien til GeekLog public_html mappen. Dvs. '/sti/til/geeklog/public_html'"
 
 #: ../setup/config_data.inc:574
 msgid "Main Gallery page"
@@ -1163,11 +1163,11 @@ msgstr "Hele træet"
 
 #: ../setup/config_data.inc:592
 msgid "Replace album tree with microthumbs"
-msgstr ""
+msgstr "Erstat albumtræ med miniaturer"
 
 #: ../setup/config_data.inc:593
 msgid "If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."
-msgstr ""
+msgstr "Hvis du har sat 'Albumtræ' til andet end 'Slået fra' vil dette vise miniature billeder fra underalbummer i stedet for træet."
 
 #: ../setup/config_data.inc:598
 msgid "Highlight size"
@@ -1735,12 +1735,12 @@ msgstr "Vandmærkning kan ikke bruges i denne installation!"
 
 #: ../setup/config_data.inc:1163
 msgid "Watermark directory"
-msgstr "Vandmærkningsbibliotek"
+msgstr "Vandmærkningsmappe"
 
 #: ../setup/config_data.inc:1164
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
-msgstr "Den fulde sti på en fysisk disk til kataloget, hvor dine vandmærker vil blive gemt.  Kataloget kan indeholde .png, .tif og .gif billeder som vil blive brugt til at lave vandmærker i billeder. Disse formater understøttes forde de kan indeholde transparante eller alpha kanaler. <b>Hvis du efterlader det blankt vil vandmærkning blive slået fra.</b> Bemærk at dette katalog skal kunne læses af web-serveren (dvs af brugeren %s)."
+msgstr "Den fulde sti på en fysisk disk til mappen, hvor dine vandmærker vil blive gemt.  Kataloget kan indeholde .png, .tif og .gif billeder som vil blive brugt til at lave vandmærker i billeder. Disse formater understøttes forde de kan indeholde transparante eller alpha kanaler. <b>Hvis du efterlader det blankt vil vandmærkning blive slået fra.</b> Bemærk at denne mappe skal kunne læses af web-serveren (dvs af brugeren %s)."
 
 #: ../setup/config_data.inc:1174
 msgid "Which Imagetype is watermarked"
@@ -2590,7 +2590,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1997
 msgid "Show Microthumb for First/Last"
-msgstr ""
+msgstr "Vis Første/Sidste miniature"
 
 #: ../setup/config_data.inc:1998
 msgid "This allows you to turn on and off the display of the first and last microthumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
@@ -2598,7 +2598,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:2006
 msgid "Number of Previous Microthumbs"
-msgstr "Nummer på foregående ikon"
+msgstr "Antal foregående miniaturer"
 
 #: ../setup/config_data.inc:2007
 msgid "This is the number of previous microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
@@ -2606,7 +2606,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:2016
 msgid "Number of Next Microthumbs"
-msgstr "Nummer på næste ikon"
+msgstr "Antal efterfølgende miniaturer"
 
 #: ../setup/config_data.inc:2017
 msgid "This is the number of next microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
@@ -2614,7 +2614,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:2026
 msgid "Location of Microthumb Navigation"
-msgstr ""
+msgstr "Placering af navigationsminiaturer"
 
 #: ../setup/config_data.inc:2027
 msgid "Displays the microthumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the microthumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
@@ -2622,25 +2622,23 @@ msgstr ""
 
 #: ../setup/config_data.inc:2030
 msgid "Top"
-msgstr "I&nbsp;toppen"
+msgstr "Øverst"
 
 #: ../setup/config_data.inc:2032
 msgid "Bottom"
-msgstr "I&nbsp;bunden"
+msgstr "Nederst"
 
 #: ../setup/config_data.inc:2036
-#, fuzzy
 msgid "Height of Microthumbs"
-msgstr "Nummer på næste ikon"
+msgstr "Højde på miniaturer"
 
 #: ../setup/config_data.inc:2037
 msgid "The size of microthumbs will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
 #: ../setup/config_data.inc:2042
-#, fuzzy
 msgid "Bonus to Current Microthumb's Size"
-msgstr "Nummer på næste ikon"
+msgstr "Ekstrahøjre for 'Nuværende' miniature"
 
 #: ../setup/config_data.inc:2043
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
@@ -2715,7 +2713,7 @@ msgstr "%s: <b>%s</b> skal være en absolut URL!"
 #: ../setup/confirm.inc:227
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
-msgstr "%s: <b>%s</b> skal være en gyldig fil (ikke et katalog)!"
+msgstr "%s: <b>%s</b> skal være en gyldig fil (ikke en mappe)!"
 
 #: ../setup/confirm.inc:238
 #, php-format
@@ -2745,7 +2743,7 @@ msgstr "Kataloget %s eksisterer ikke.  Lav det."
 #: ../setup/confirm.inc:280
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
-msgstr "%s eksisterer men er ikke et katalog. Gør noget ved det."
+msgstr "%s eksisterer men er ikke en mappe. Gør noget ved det."
 
 #: ../setup/confirm.inc:287
 #, php-format
@@ -2765,7 +2763,7 @@ msgstr ""
 #: ../setup/confirm.inc:292
 #, fuzzy, php-format
 msgid "Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-msgstr "%s: %s eksisterer, men er ikke skrivbar for webserverbrugeren. Prøv: %s eller hvis det ikke virker: %s. Endvidere sørg for at hvis du har en %s restriktion så skal dette 'tmp' katalog være under %s stien"
+msgstr "%s: %s eksisterer, men er ikke skrivbar for webserverbrugeren. Prøv: %s eller hvis det ikke virker: %s. Endvidere sørg for at hvis du har en %s restriktion så skal denne 'tmp' mappe være under %s stien"
 
 #: ../setup/confirm.inc:363
 #, php-format
@@ -2775,12 +2773,12 @@ msgstr "%s: <b>%s</b> skal være slået til for at denne funktion kan bruges!"
 #: ../setup/confirm.inc:388
 #, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Kunne ikke finde %s. Undersøg dit Netpbm katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
+msgstr "Kunne ikke finde %s. Undersøg din Netpbm mappe for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
 
 #: ../setup/confirm.inc:396
 #, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Kunne ikke finde %s. Undersøg dit Netpbm katalog for at se hvilke PNM overlay funktion du har, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
+msgstr "Kunne ikke finde %s. Undersøg din Netpbm mappe for at se hvilke PNM overlay funktion du har, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
 
 #: ../setup/confirm.inc:408
 #, php-format
