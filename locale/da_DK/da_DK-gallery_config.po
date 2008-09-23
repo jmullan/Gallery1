@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-23 14:00+0200\n"
+"POT-Creation-Date: 2008-09-22 11:00+0200\n"
 "PO-Revision-Date: 2005-03-20 16:24+0100\n"
 "Last-Translator: Niels Baggesen <nba AT users DOT sourceforge DOT net>\n"
 "Language-Team:  <jens AT peino DOT de>\n"
@@ -45,9 +45,9 @@ msgid "unknown"
 msgstr "ukendt"
 
 #: ../includes/setup/checks.inc:71
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery prefers Netpbm version 10.3 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
-msgstr "Gallery foretrækker NetPBM 10.13 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele NetPBM-pakken fra %sNetPBM hjemmesiden%s."
+msgstr "Gallery foretrækker Netpbm 10.3 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele Netpbm-pakken fra %sNetpbm hjemmesiden%s."
 
 #: ../includes/setup/checks.inc:77 ../includes/setup/checks.inc:85
 #: ../includes/setup/checks.inc:89 ../includes/setup/checks.inc:131
@@ -57,19 +57,17 @@ msgid "Note:"
 msgstr "Obs:"
 
 #: ../includes/setup/checks.inc:78 ../includes/setup/constants.inc:93
-#, fuzzy
 msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead."
-msgstr "Du kan installere filene fra Gallery hjemmesiden selv om du ikke har root-adgang på din maskine!  Hvis du ikke kan få det til at virke, så prøv at lade stien til NetPBM være tom og brug ImageMagick i stedet."
+msgstr "Du kan installere filerne fra Gallery hjemmesiden selv om du ikke har root-adgang på din maskine!  Hvis du ikke kan få det til at virke, så prøv at lade stien til Netpbm være tom og brug ImageMagick i stedet."
 
 #: ../includes/setup/checks.inc:82 ../includes/setup/constants.inc:100
 #, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s."
-msgstr "Gallery foretrekker ImageMagick version 5.4.8 eller højere (men version 6.x anbefales).  Du kan oversætte og installere hele ImageMagick pakken fra %sImageMagick hjemmesiden%s."
+msgstr "Gallery foretrækker ImageMagick version 5.4.8 eller højere (men version 6.x anbefales).  Du kan oversætte og installere hele ImageMagick pakken fra %sImageMagick hjemmesiden%s."
 
 #: ../includes/setup/checks.inc:86 ../includes/setup/constants.inc:103
-#, fuzzy
 msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead."
-msgstr "De har også programfiler for andre operativsystemer.  Hvis du ikke får det til at virke, så prøv at lade stien til ImageMagick være tom  og brug NetPBM i stedet."
+msgstr "De har også programfiler for andre operativsystemer.  Hvis du ikke får det til at virke, så prøv at lade stien til ImageMagick være tom  og brug Netpbm i stedet."
 
 #: ../includes/setup/checks.inc:90
 #, php-format
@@ -109,7 +107,7 @@ msgstr "Du kører PHP version %s som har kendte fejl som gør at Gallery ikke fung
 
 #: ../includes/setup/checks.inc:110
 msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
-msgstr "Det virker som om at din PHO har et problem med __FILE__, opgrader venligst til en nyere version"
+msgstr "Det virker som om at din PHP har et problem med __FILE__, opgrader venligst til en nyere version"
 
 #: ../includes/setup/checks.inc:114
 msgid "Register globals"
@@ -146,9 +144,8 @@ msgid "PHP's exec() function enabled"
 msgstr ""
 
 #: ../includes/setup/checks.inc:141
-#, fuzzy
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-msgstr "<b>exec()</b> kommandoen bruges af Gallery til at udføre programmer såsom NetPBM, ImageMagick og jhead. Hvis <b>exec()</b> er slået fra på din server fungerer Gallery ikke ordentligt."
+msgstr "<b>exec()</b> kommandoen bruges af Gallery til at udføre programmer såsom Netpbm, ImageMagick og jhead. Hvis <b>exec()</b> er slået fra på din server fungerer Gallery ikke ordentligt."
 
 #: ../includes/setup/checks.inc:143
 msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
@@ -176,7 +173,7 @@ msgstr ""
 
 #: ../includes/setup/checks.inc:159
 msgid "PHPs magic quotes off"
-msgstr "magic_quotes er slået fra."
+msgstr "PHP magic_quotes er slået fra."
 
 #: ../includes/setup/checks.inc:160
 #, php-format
@@ -209,48 +206,40 @@ msgid "Gallery could not test if <b>mod_rewrite</b> is working, as the (original
 msgstr ""
 
 #: ../includes/setup/checks.inc:180
-#, fuzzy
 msgid "Netpbm installed"
-msgstr "jpegtran er installeret"
+msgstr "Netpbm er installeret"
 
 #: ../includes/setup/checks.inc:181
-#, fuzzy
 msgid "Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."
-msgstr "Undersøger om NetPBM er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner, osv). Du behøver kun at have enten NetPBM <b>eller</b> ImageMagick installeret."
+msgstr "Undersøger om Netpbm er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner, osv). Du behøver kun at have enten Netpbm <b>eller</b> ImageMagick installeret."
 
 #: ../includes/setup/checks.inc:183
-#, fuzzy
 msgid "Netpbm was not found"
-msgstr "Jeg kan ikke finde NetPBM"
+msgstr "Jeg kan ikke finde Netpbm"
 
 #: ../includes/setup/checks.inc:185
-#, fuzzy
 msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: "
-msgstr "Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK&#8212;Du kan selv angive stien til NetPBM på næste side. Hvis den ikke er installeret, har du to muligheder: "
+msgstr "Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK&#8212;Du kan selv angive stien til Netpbm på næste side. Hvis den ikke er installeret, har du to muligheder: "
 
 #: ../includes/setup/checks.inc:187
-#, fuzzy
 msgid "I've found part of Netpbm, but some components are missing (see below)."
-msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor)."
+msgstr "Jeg har fundet dele af Netpbm, men der mangler nogle kritiske komponenter (se nedenfor)."
 
 #: ../includes/setup/checks.inc:188
-#, fuzzy
 msgid "Perhaps your version of Netpbm is out of date."
-msgstr "Måske er din version af NetPBM forældet."
+msgstr "Måske er din version af Netpbm forældet."
 
 #: ../includes/setup/checks.inc:190
-#, fuzzy
 msgid "If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page."
-msgstr "Hvis NetPBM er installeret og Gallery ikke finder den automatisk er det OK&#8212;det betyder bare at du bliver nødt til at angive stien til NetPBM manuelt på næste side."
+msgstr "Hvis Netpbm er installeret og Gallery ikke finder den automatisk er det OK&#8212;det betyder bare at du bliver nødt til at angive stien til Netpbm manuelt på næste side."
 
 #: ../includes/setup/checks.inc:196
 msgid "ImageMagick installed"
 msgstr "ImageMagick er installeret."
 
 #: ../includes/setup/checks.inc:198
-#, fuzzy
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."
-msgstr "Undersøger om ImageMagick er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner osv). Du behøver kun at have enten ImageMagick <b>eller</b> NetPBM installeret."
+msgstr "Undersøger om ImageMagick er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner osv). Du behøver kun at have enten ImageMagick <b>eller</b> Netpbm installeret."
 
 #: ../includes/setup/checks.inc:200
 msgid "ImageMagick was not found."
@@ -270,7 +259,7 @@ msgstr "Hvis ImageMagick er installeret og Gallery ikke finder den automatisk er
 
 #: ../includes/setup/checks.inc:212
 msgid "Jhead installed"
-msgstr ""
+msgstr "jhead er installeret"
 
 #: ../includes/setup/checks.inc:214
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
@@ -360,14 +349,13 @@ msgid "Nice to have."
 msgstr "God at have"
 
 #: ../includes/setup/constants.inc:87
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery prefers Netpbm version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
-msgstr "Gallery foretrækker NetPBM 10.13 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele NetPBM-pakken fra %sNetPBM hjemmesiden%s."
+msgstr "Gallery foretrækker Netpbm 10.13 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele Netpbm-pakken fra %sNetpbm hjemmesiden%s."
 
 #: ../includes/setup/constants.inc:96
-#, fuzzy
 msgid "I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date."
-msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af NetPBM forældet."
+msgstr "Jeg har fundet dele af Netpbm, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af Netpbm forældet."
 
 #: ../includes/setup/constants.inc:110
 msgid "General settings"
@@ -451,21 +439,21 @@ msgstr "Placering og URL'er"
 
 #: ../includes/setup/constants.inc:169
 msgid "Album directory"
-msgstr "Albumkatalog"
+msgstr "Albummappe"
 
 #: ../includes/setup/constants.inc:170
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
-msgstr "Den fulde sti på en fysisk disk til kataloget, hvor dine billeder gemmes. Dette katalog skal være tomt til at starte med&#8212;Gallery fylder billeder i det. Bemærk at katalog skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s)."
+msgstr "Den fulde sti på en fysisk disk til mappen, hvor dine billeder gemmes. Denne mappe skal være tom til at starte med&#8212;Gallery fylder billeder i den. Bemærk at katalog skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s)."
 
 #: ../includes/setup/constants.inc:181
 msgid "Temporary directory"
-msgstr "Midlertidig katalog"
+msgstr "Midlertidig mappe"
 
 #: ../includes/setup/constants.inc:182
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
-msgstr "Stien til et katalog for midlertidlige filer.  Fx %s eller %s.  Bemærk at hvis du har konfigureret <b>open_basedir</b> på dit system, så skal dette katalog være i <b>open_basedir</b> stien.  I så fald kan det være du selv skal oprette biblioteket og være sikker på at webserveren kan skrive til biblioteket."
+msgstr "Stien til en mappe for midlertidlige filer.  Fx %s eller %s.  Bemærk at hvis du har konfigureret <b>open_basedir</b> på dit system, så skal denne mappe være i <b>open_basedir</b> stien.  I så fald kan det være du selv skal oprette biblioteket og være sikker på at webserveren kan skrive til biblioteket."
 
 #: ../includes/setup/constants.inc:194
 #, php-format
@@ -479,7 +467,7 @@ msgstr "Album URL"
 #: ../includes/setup/constants.inc:204
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr "Den fulde URL til album biblioteket på din webserver. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
+msgstr "Den fulde URL til albummappen på din webserver. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
 
 #: ../includes/setup/constants.inc:213
 msgid "Thumbnail image"
@@ -521,7 +509,7 @@ msgstr "Sti til ImageMagick"
 
 #: ../includes/setup/constants.inc:261
 msgid "The path to the directory containing ImageMagick on your system."
-msgstr "Sti til kataloget som indeholder ImageMagick på dit system."
+msgstr "Sti til mappen som indeholder ImageMagick på dit system."
 
 #: ../includes/setup/constants.inc:262 ../includes/setup/constants.inc:291
 #, php-format
@@ -533,42 +521,37 @@ msgid "I can't find ImageMagick at the location you provided."
 msgstr "Kan ikke finne ImageMagick på stedet du angav."
 
 #: ../includes/setup/constants.inc:280
-#, fuzzy
 msgid "Netpbm Settings"
-msgstr "NetPBM indstillinger"
+msgstr "Netpbm indstillinger"
 
 #: ../includes/setup/constants.inc:286
-#, fuzzy
 msgid "Path to Netpbm"
-msgstr "Sti til NetPBM"
+msgstr "Sti til Netpbm"
 
 #: ../includes/setup/constants.inc:287
-#, fuzzy, php-format
+#, php-format
 msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
-msgstr "Stien til kataloget, der indeholder NetPBM på dit system. Hvis du har hentet NetPBM fra Gallerys hjemmeside, så husk at gøre filerne eksekverbare. Fx. %s eller %s eller %s"
+msgstr "Stien til mappen, der indeholder Netpbm på dit system. Hvis du har hentet Netpbm fra Gallerys hjemmeside, så husk at gøre filerne eksekverbare. Fx. %s eller %s eller %s"
 
 #: ../includes/setup/constants.inc:294
-#, fuzzy
 msgid "I can't find Netpbm at the location you provided."
-msgstr "Jeg kan ikke finne NetPBM på stedet du angav."
+msgstr "Jeg kan ikke finde Netpbm på stedet du angav."
 
 #: ../includes/setup/constants.inc:306
 msgid "PNM to JPEG converter"
 msgstr "PNM til JPEG-konverter"
 
 #: ../includes/setup/constants.inc:307
-#, fuzzy
 msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-msgstr "Denne værdi har kun betydning hvis du bruger NetPBM. NetPBM bruger et værktøj til at indkode fra sit interne format til JPG. Dette værktøj kaldes enten <i>ppmtojpeg</i> eller <i>pnmtojpeg</i> afhængigt af hvilken version af NetPBM, du har installeret. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker"
+msgstr "Denne værdi har kun betydning hvis du bruger Netpbm. Netpbm bruger et værktøj til at indkode fra sit interne format til JPG. Dette værktøj kaldes enten <i>ppmtojpeg</i> eller <i>pnmtojpeg</i> afhængigt af hvilken version af Netpbm, du har installeret. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker"
 
 #: ../includes/setup/constants.inc:312
 msgid "PNM Composite (Overlay)"
 msgstr ""
 
 #: ../includes/setup/constants.inc:313
-#, fuzzy
 msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-msgstr "Denne værdi har kun betydning hvis du bruger NetPBM. NetPBM bruger et værktøj til at lægge et billede ovenpå et andet. Dette værktøj kaldes enten <i>pnmcomp</i> eller <i>pamcomp</i> afhængigt af hvilken version af NetPBM, du har installeret. Undersøg dit NETPBM bibliotek for at se hvilken et du har installeret og vælg det her. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker."
+msgstr "Denne værdi har kun betydning hvis du bruger Netpbm. Netpbm bruger et værktøj til at lægge et billede ovenpå et andet. Dette værktøj kaldes enten <i>pnmcomp</i> eller <i>pamcomp</i> afhængigt af hvilken version af Netpbm, du har installeret. Undersøg dit Netpbm bibliotek for at se hvilken et du har installeret og vælg det her. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker."
 
 #: ../includes/setup/constants.inc:321
 msgid "Auto-rotate images"
@@ -677,7 +660,7 @@ msgstr "GeekLog bibliotek"
 
 #: ../includes/setup/constants.inc:379
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-msgstr "Hvis du bruger GeekLog, så indtast venligst stien til GeekLog public_html biblioteket. Dvs. '/sti/til/geeklog/public_html'"
+msgstr "Hvis du bruger GeekLog, så indtast venligst stien til GeekLog public_html mappen. Dvs. '/sti/til/geeklog/public_html'"
 
 #: ../includes/setup/constants.inc:391
 msgid "Main Gallery page"
@@ -753,7 +736,7 @@ msgstr "Målstørrelsen (i pixels) på ikoner som vises på gallerisiden (forsidebil
 
 #: ../includes/setup/constants.inc:444
 msgid "Highlight Ratio"
-msgstr "Størrelse på forsidebillede"
+msgstr "Facon på forsidebillede"
 
 #: ../includes/setup/constants.inc:445
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
@@ -1304,7 +1287,7 @@ msgstr "Vandmærkning bruges ikke i denne installation !"
 
 #: ../includes/setup/constants.inc:1005
 msgid "Watermark directory"
-msgstr "Vandmærkningsbibliotek"
+msgstr "Vandmærkningsmappen"
 
 #: ../includes/setup/constants.inc:1006
 #, php-format
@@ -1373,14 +1356,15 @@ msgid "For every selected item Gallery will create a link on the mainpage. The s
 msgstr ""
 
 #: ../includes/setup/constants.inc:1051
+#, fuzzy
 msgid "View cache"
-msgstr ""
+msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1053 ../includes/setup/constants.inc:1067
 #: ../includes/setup/constants.inc:1081 ../includes/setup/constants.inc:1095
 #: ../includes/setup/constants.inc:1109 ../includes/setup/constants.inc:1123
 msgid "On"
-msgstr ""
+msgstr "Slået til"
 
 #: ../includes/setup/constants.inc:1059
 msgid "View cache expiration"
@@ -1391,20 +1375,23 @@ msgid "Comment cache"
 msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1073
+#, fuzzy
 msgid "Comment cache expiration"
-msgstr ""
+msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1079
+#, fuzzy
 msgid "Date cache"
-msgstr ""
+msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1087
 msgid "Date cache expiration"
 msgstr ""
 
 #: ../includes/setup/constants.inc:1093
+#, fuzzy
 msgid "Vote cache"
-msgstr ""
+msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1101
 msgid "Vote cache expiration"
@@ -1419,8 +1406,9 @@ msgid "Rating cache expiration"
 msgstr ""
 
 #: ../includes/setup/constants.inc:1121
+#, fuzzy
 msgid "Capturedate cache"
-msgstr ""
+msgstr "Kommentarcache"
 
 #: ../includes/setup/constants.inc:1129
 msgid "Capturedate cache expiration"
@@ -1448,7 +1436,7 @@ msgstr ""
 
 #: ../includes/setup/constants.inc:1156
 msgid "Frame around random photo."
-msgstr "Ramme om filfældigt billede."
+msgstr "Ramme om tilfældigt billede."
 
 #: ../includes/setup/constants.inc:1162
 msgid "Width of solid/dotted frameborder around random photo."
@@ -1642,7 +1630,7 @@ msgstr ""
 
 #: ../includes/setup/constants.inc:1348
 msgid "RSS Content"
-msgstr ""
+msgstr "RSS indhold"
 
 #: ../includes/setup/constants.inc:1349
 msgid "Specifies which information is to be included in your RSS feed."
@@ -1682,7 +1670,7 @@ msgstr ""
 
 #: ../includes/setup/constants.inc:1373
 msgid "Visible Albums Only"
-msgstr ""
+msgstr "Vis kun synlige albummer"
 
 #: ../includes/setup/constants.inc:1374
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
@@ -1766,7 +1754,7 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:39
 msgid "Layout"
-msgstr "Udseende"
+msgstr "Opbygning"
 
 #: ../includes/setup/defaults.inc:43
 msgid "Default Columns"
@@ -1889,7 +1877,7 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:155
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
-msgstr "Hvis du slår dette vil vil du <b>ikkw bevare dit originale billede</b> i dir galleri. Standard målstørrelse (i kilobyte) for JPEG når størrelsen ændres. Hvis du angiver en værdi kan det gøre filoverførsler langsommere, men gøre det hurtigere at se en side for folk med modemopkoblinger. Sæt til 0 for ikke at angive målstørrelse."
+msgstr "Hvis du slår dette vil vil du <b>ikke bevare dit originale billede</b> i dit galleri. Standard målstørrelse (i kilobyte) for JPEG når størrelsen ændres. Hvis du angiver en værdi kan det gøre filoverførsler langsommere, men gøre det hurtigere at se en side for folk med modemopkoblinger. Sæt til 0 for ikke at angive målstørrelse."
 
 #: ../includes/setup/defaults.inc:162
 msgid "Preserve Names"
@@ -2221,7 +2209,7 @@ msgstr ""
 #: ../includes/setup/defaults.inc:490
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
-msgstr ""
+msgstr "Denne indstilling tillader besøgende at lade fremvisningen gentage sig indtil de lukker vinduet eller går til en anden side.  Sæt dette til %s hvis du vil spare båndbredde."
 
 #: ../includes/setup/defaults.inc:511 ../includes/setup/defaults.inc:515
 #: ../includes/setup/defaults.inc:525
@@ -2266,7 +2254,7 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:548
 msgid "Number of Previous Microthumbs"
-msgstr "Nummer på foregående ikon"
+msgstr "Antal foregående ikoner"
 
 #: ../includes/setup/defaults.inc:549
 msgid "This is the number of previous microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
@@ -2274,7 +2262,7 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:558
 msgid "Number of Next Microthumbs"
-msgstr "Nummer på næste ikon"
+msgstr "Antal efterfølgende ikoner"
 
 #: ../includes/setup/defaults.inc:559
 msgid "This is the number of next microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
@@ -2282,7 +2270,7 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:568
 msgid "Location of Microthumb Navigation"
-msgstr ""
+msgstr "Placering af navigationsikoner"
 
 #: ../includes/setup/defaults.inc:569
 msgid "Displays the microthumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the microthumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
@@ -2290,23 +2278,24 @@ msgstr ""
 
 #: ../includes/setup/defaults.inc:572
 msgid "Top"
-msgstr "I&nbsp;toppen"
+msgstr "Øverst"
 
 #: ../includes/setup/defaults.inc:574
 msgid "Bottom"
-msgstr "I&nbsp;bunden"
+msgstr "Nederst"
 
 #: ../includes/setup/defaults.inc:578
 msgid "Height of Microthumbs"
-msgstr ""
+msgstr "Højde af navigationsikoner"
 
 #: ../includes/setup/defaults.inc:579
 msgid "The size of microthumbs will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:584
+#, fuzzy
 msgid "Bonus to Current Microthumb's Size"
-msgstr ""
+msgstr "Nummer på næste ikon"
 
 #: ../includes/setup/defaults.inc:585
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
@@ -2317,9 +2306,9 @@ msgid "Frames"
 msgstr "Rammer"
 
 #: ../includes/setup/defaults.inc:596
-#, php-format
+#, fuzzy, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
-msgstr ""
+msgstr "På hovesiden vil hvert billede der repræsenterer et album have en ramme om sig.  Du kan vælge mellem følgende udseender:"
 
 #: ../includes/setup/defaults.inc:600
 msgid "Subalbum frames"
@@ -2425,9 +2414,8 @@ msgid "Create an albums folder for your pictures and movies. This must be in you
 msgstr ""
 
 #: ../setup/welcome.inc:89
-#, fuzzy
 msgid "Make sure that both files and the folder are read and writeable for your webserver!"
-msgstr "Kontroller at begge filer samt biblioteket kan læses og skrives af din webserver !"
+msgstr "Kontroller at begge filer samt biblioteket kan læses og skrives af din webserver!"
 
 #: ../setup/welcome.inc:100 ../setup/login.inc:119
 msgid "Your Gallery needs a reconfiguration."
@@ -2495,27 +2483,22 @@ msgid "If you experience problems, you can find help on the %sGallery Help Page%
 msgstr "Hvis du får problemer kan du søge hjælp på %sGallery hjælpesiden%s."
 
 #: ../setup/check.inc:27 ../setup/check.inc:28
-#, fuzzy
 msgid "Success!"
 msgstr "Succes"
 
 #: ../setup/check.inc:33 ../setup/check.inc:34
-#, fuzzy
 msgid "Warning, but optional."
 msgstr "Advarsel, men valgfrit"
 
 #: ../setup/check.inc:39 ../setup/check.inc:40
-#, fuzzy
 msgid "Serious warning, but optional."
 msgstr "Alvorlig advarsel, men valgfrit"
 
 #: ../setup/check.inc:45 ../setup/check.inc:46
-#, fuzzy
 msgid "Serious warning, no go!"
-msgstr "Alvorlig advarsel, igen vej frem!"
+msgstr "Alvorlig advarsel, ingen vej frem!"
 
 #: ../setup/check.inc:51 ../setup/check.inc:52
-#, fuzzy
 msgid "Failure!"
 msgstr "Fejl"
 
@@ -2542,7 +2525,7 @@ msgstr "Problemer?  Prøv %s og %s."
 
 #: ../setup/check.inc:224
 msgid "Legend:"
-msgstr ""
+msgstr "Forklaring:"
 
 #: ../setup/check.inc:242
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
@@ -2639,9 +2622,8 @@ msgid "_Send Email"
 msgstr "_Send Email"
 
 #: ../setup/check_netpbm.php:25
-#, fuzzy
 msgid "Gallery Netpbm Check"
-msgstr "Gallery NetPBM check"
+msgstr "Gallery Netpbm check"
 
 #: ../setup/check_versions.php:25
 msgid "Check Versions"
@@ -2719,19 +2701,19 @@ msgid "Show/hide more information"
 msgstr "Vis/skjul yderligere information"
 
 #: ../setup/confirm.inc:47
-#, fuzzy, php-format
+#, php-format
 msgid "You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding."
-msgstr "Du skal lave en tom fil %s og 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
+msgstr "Du skal lave en tom fil %s og 'chmod' den til 777 før du fortsætter."
 
 #: ../setup/confirm.inc:58
-#, fuzzy, php-format
+#, php-format
 msgid "The %s file in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding."
-msgstr "Filen %s i Gallery hovedkataloget er valgfri, men visse %s funktioner vil ikke kunne bruges med mindre du laver en tom fil %s og 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
+msgstr "Filen %s i Gallery hovedkataloget er valgfri, men visse %s funktioner vil ikke kunne bruges med mindre du laver en tom fil %s og 'chmod' den til 777 før du fortsætter."
 
 #: ../setup/confirm.inc:66
-#, fuzzy, php-format
+#, php-format
 msgid "The %s file in your Gallery mainfolder is not writable by the webserver - chmod it 777 before proceeding."
-msgstr "Filen %s i Gallery hovedkataloget kan ikke skrives i af webserveren - 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
+msgstr "Filen %s i Gallery hovedkataloget kan ikke skrives i af webserveren - 'chmod' den til 777 før du fortsætter."
 
 #: ../setup/confirm.inc:88 ../setup/confirm.inc:192 ../setup/confirm.inc:314
 msgid "missing"
@@ -2753,7 +2735,7 @@ msgstr "%s: <b>%s</b> skal være en absolut URL!"
 #: ../setup/confirm.inc:226
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
-msgstr "%s: <b>%s</b> skal være en gyldig fil (ikke et katalog)!"
+msgstr "%s: <b>%s</b> skal være en gyldig fil (ikke en mappe)!"
 
 #: ../setup/confirm.inc:237
 #, php-format
@@ -2783,7 +2765,7 @@ msgstr "Kataloget %s eksisterer ikke.  Lav det."
 #: ../setup/confirm.inc:279
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
-msgstr "%s eksisterer men er ikke et katalog. Gør noget ved det."
+msgstr "%s eksisterer men er ikke en mappe. Gør noget ved det."
 
 #: ../setup/confirm.inc:286
 #, php-format
@@ -2801,24 +2783,24 @@ msgid "Or if that doesn't work: %s"
 msgstr ""
 
 #: ../setup/confirm.inc:291
-#, fuzzy, php-format
+#, php-format
 msgid "Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-msgstr "%s: %s eksisterer, men er ikke skrivbar for webserverbrugeren. Prøv: %s eller hvis det ikke virker: %s. Endvidere sørg for at hvis du har en %s restriktion så skal dette 'tmp' katalog være under %s stien"
+msgstr "Endvidere sørg for at hvis du har en %s restriktion så skal dette 'tmp' katalog være under %s stien"
 
 #: ../setup/confirm.inc:362
-#, fuzzy, php-format
+#, php-format
 msgid "%s: <b>%s</b> must be enabled for this feature to function!"
 msgstr "%s: <b>%s</b> skal være slået til for at denne funktion kan bruges!"
 
 #: ../setup/confirm.inc:387
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Kunne ikke finde %s. Undersøg dit NetPBM katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
+msgstr "Kunne ikke finde %s. Undersøg dit Netpbm katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
 
 #: ../setup/confirm.inc:395
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-msgstr "Kunne ikke finde %s. Undersøg dit NetPBM katalog for at se hvilke PNM overlay funktion du har, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
+msgstr "Kunne ikke finde %s. Undersøg dit Netpbm katalog for at se hvilke PNM overlay funktion du har, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
 
 #: ../setup/confirm.inc:407
 #, php-format
@@ -2980,17 +2962,14 @@ msgid "It's a good place to look to examine all the various PHP configuration se
 msgstr "Dette er et godt sted at kigge for at undersøge alle de forskellige PHP konfigurationsvalg og finde ud af hvad slags system du kører på (Det kan være svært at finde ud af hvis Gallery kører på din ISP's server)"
 
 #: ../setup/diagnostics.php:56
-#, fuzzy
 msgid "Check _Netpbm"
-msgstr "Test _NetPBM"
+msgstr "Test _Netpbm"
 
 #: ../setup/diagnostics.php:59
-#, fuzzy
 msgid "This page provides information about your Netpbm binaries."
-msgstr "Denne side giver information om dine NetPBM programmer"
+msgstr "Denne side giver information om dine Netpbm programmer"
 
 #: ../setup/diagnostics.php:60
-#, fuzzy
 msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm)."
 msgstr "Du kan først bruge denne side når du er færdig med konfigurationshjælperen uden fejl."
 
@@ -3041,9 +3020,9 @@ msgid "This page is for %s upgrades that have problems."
 msgstr ""
 
 #: ../setup/diagnostics.php:99
-#, php-format
+#, fuzzy, php-format
 msgid "This allows you to check you have the correct version of all your %s files."
-msgstr ""
+msgstr "Undersøger om du har de nyeste version af alle Gallery filerne."
 
 #: ../setup/frame_test.php:27 ../setup/index.php:47
 msgid "Gallery Configuration"
@@ -3094,7 +3073,7 @@ msgstr " Luk vindue"
 #: ../setup/ghcc.php:27
 #, fuzzy
 msgid "Gallery Host Compatability Checker"
-msgstr "Gallery NetPBM check"
+msgstr "Gallery Netpbm check"
 
 #: ../setup/index.php:119
 msgid "1- Installation Check"
@@ -3125,12 +3104,10 @@ msgid "Please enter username and password."
 msgstr "Indtast venligst brugernavn og kodeord."
 
 #: ../setup/login.inc:66
-#, fuzzy
 msgid "Invalid username or password, or user is not an admin."
-msgstr "Ugyldigt brugernavn eller kodeord"
+msgstr "Ugyldigt brugernavn eller kodeord, eller også er brugeren ikk administrator."
 
 #: ../setup/login.inc:76
-#, fuzzy
 msgid "User is not an admin - access denied."
 msgstr "Bruger er ikke administrator - adgang nægtet"
 
@@ -3183,9 +3160,8 @@ msgid "_Cancel"
 msgstr "_Fortryd"
 
 #: ../setup/session_test.php:37
-#, fuzzy
 msgid "Check Session"
-msgstr "Check _Sessioner"
+msgstr "Check Sessioner"
 
 #: ../setup/session_test.php:42
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
@@ -3355,7 +3331,7 @@ msgstr "Hvis det ikke er korrekt (eller hvis det er tomt), kør konfigurationshjæ
 #: ../templates/setup/im-netpbm-test.tpl:115
 #, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
-msgstr "<b>Bemærk:</b> Dit %s bibliotek (%s) er ikke i din open_basedir liste %s"
+msgstr "<b>Bemærk:</b> Din %s mappe (%s) er ikke i din open_basedir liste %s"
 
 #: ../templates/setup/im-netpbm-test.tpl:120
 msgid "The open_basedir list is specified in php.ini."
@@ -3389,9 +3365,6 @@ msgstr "Du burde snakke med din systemadministrator om dette, eller se %sGallery
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "For andre fejl, undersøg listen over mulige svar i %s for mere information."
 
-#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
-#~ msgstr "Gallery foretrækker NetPBM 9.9 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele NetPBM-pakken fra %sNetPBM hjemmesiden%s."
-
 #~ msgid "<b>safe_mode</b> is enabled on this server."
 #~ msgstr "<b>safe_mode</b> er slået til på din server."
 
@@ -3409,6 +3382,9 @@ msgstr "For andre fejl, undersøg listen over mulige svar i %s for mere informati
 
 #~ msgid "Session Test"
 #~ msgstr "Session test"
+
+#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#~ msgstr "Gallery foretrækker NetPBM 9.9 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele NetPBM-pakken fra %sNetPBM hjemmesiden%s."
 
 #~ msgid "I've found part of ImageMagick , but some critical components are missing (see below)."
 #~ msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor)."

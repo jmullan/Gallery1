@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-23 14:00+0200\n"
+"POT-Creation-Date: 2008-09-23 14:11+0200\n"
 "PO-Revision-Date: 2007-06-25 20:24+0200\n"
 "Last-Translator: Niels Baggesen <nba AT users DOT sourceforge DOT net>\n"
 "Language-Team:  <jens AT peino DOT de>\n"
@@ -53,7 +53,6 @@ msgid "Configuration _wizard"
 msgstr "_Konfigurer galleriet"
 
 #: ../admin-page.php:42
-#, fuzzy
 msgid "Use the config wizard to reconfigure or tweak your Gallery."
 msgstr "Brug konfigurationssiden til at omkonfigurere eller indstille dit galleri"
 
@@ -192,32 +191,26 @@ msgid "Welcome, %s"
 msgstr "Velkommen, %s"
 
 #: ../albums.php:162 ../view_album.php:198
-#, fuzzy
 msgid "Slidesho_w"
 msgstr "frem_visning"
 
 #: ../albums.php:169
-#, fuzzy
 msgid "New _album"
 msgstr "_nyt album"
 
 #: ../albums.php:179
-#, fuzzy
 msgid "Administer fron_tpage"
 msgstr "Administrer _forside"
 
 #: ../albums.php:185
-#, fuzzy
 msgid "Ad_min page"
 msgstr "_administrationsside"
 
 #: ../albums.php:192
-#, fuzzy
 msgid "Pr_eferences"
 msgstr "mine _indstillinger"
 
 #: ../albums.php:202
-#, fuzzy
 msgid "_Register"
 msgstr "_registrer"
 
@@ -229,14 +222,14 @@ msgstr "Galleriadministrator!"
 #, php-format
 msgid "%s has detected one invalid folders in your albums directory<br>(%s):"
 msgid_plural "%s has detected the following invalid folders in your albums directory<br>(%s):"
-msgstr[0] "%s har fundet det føklgende ugyldige katalog i dit albumkatalog<br>(%s):"
-msgstr[1] "%s har fundet følgende ugyldige katalog(er) i dit albumkatalog<br>(%s):"
+msgstr[0] "%s har fundet den føklgende ugyldige mappe i din albummappe<br>(%s):"
+msgstr[1] "%s har fundet følgende ugyldige mappe(r) i din albummappe<br>(%s):"
 
 #: ../albums.php:258
 msgid "Please move it out of the albums directory."
 msgid_plural "Please move them out of the albums directory."
-msgstr[0] "Fjern det venligst fra albumkataloget."
-msgstr[1] "Fjern dem venligst fra albumkataloget."
+msgstr[0] "Fjern det venligst fra albummappen."
+msgstr[1] "Fjern dem venligst fra albummappen."
 
 #: ../albums.php:271
 #, php-format
@@ -269,7 +262,7 @@ msgid "Login page"
 msgstr "Log ind side"
 
 #: ../albums.php:313
-#, fuzzy, php-format
+#, php-format
 msgid "The requested album with index %s is not valid."
 msgstr "Albummed med index %s er ikke gyldigt"
 
@@ -283,9 +276,8 @@ msgid "Owner: %s"
 msgstr "Ejer: %s"
 
 #: ../albums.php:381
-#, fuzzy
 msgid "URL:"
-msgstr "URL"
+msgstr "URL:"
 
 #: ../albums.php:396
 msgid "Hey!"
@@ -318,8 +310,8 @@ msgstr "Dette album er tomt."
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
-msgstr[0] "Dette album indeholder 1 objekt."
-msgstr[1] "Dette album indeholder %d objekter."
+msgstr[0] "Dette album indeholder 1 element."
+msgstr[1] "Dette album indeholder %d elementer."
 
 #: ../albums.php:447
 #, php-format
@@ -356,9 +348,8 @@ msgid "This featured photo is from album: %s"
 msgstr "Dette udvalgte billede er fra albummet: %s"
 
 #: ../block-feature-item.php:142
-#, fuzzy
 msgid "Currently no item is featured by this Gallery, or invalid parameters were given."
-msgstr "Der er ingen udvalgte elementer i dette galleri."
+msgstr "Der er ingen udvalgte elementer i dette galleri, eller du gav en forkert parameter."
 
 #: ../block-random.php:75 ../imagemap.php:41
 msgid "No photo chosen."
@@ -369,7 +360,6 @@ msgstr "Ingen billeder valgt"
 msgid "From album: %s"
 msgstr "Fra album: %s"
 
-# Hvor hører dette til?
 #: ../captionator.php:56
 msgid "Captioned album does not match current album - aborting changes!"
 msgstr "Det nuværende album og det album der er rettet tekster for er ikke det samme -- fortryder ændringer!"
@@ -387,28 +377,27 @@ msgid "Multiple Caption Editor."
 msgstr "Billedtekst-editor for flere billeder."
 
 #: ../captionator.php:187
-#, fuzzy
 msgid "1 item in this album."
-msgstr "%s elementer i dette album"
+msgstr "Et element i dette album"
 
 #: ../captionator.php:191
-#, fuzzy, php-format
+#, php-format
 msgid "%d items in this album on %s."
-msgstr "%s elementer i dette album på %s"
+msgstr "%d elementer i dette album på %s"
 
 #: ../captionator.php:193
-#, fuzzy, php-format
+#, php-format
 msgid "one page"
 msgid_plural "%d pages"
 msgstr[0] "en side"
 msgstr[1] "%d sider"
 
 #: ../captionator.php:197
-#, fuzzy, php-format
+#, php-format
 msgid "One item in this album."
 msgid_plural "%d items in this album."
-msgstr[0] "%s elementer i dette album"
-msgstr[1] "%s elementer i dette album"
+msgstr[0] "Et element i dette album"
+msgstr[1] "%d elementer i dette album"
 
 #: ../captionator.php:226 ../captionator.php:347
 msgid "Save and Exit"
@@ -506,12 +495,10 @@ msgid "Saved Dimensions: x:%d y: %d"
 msgstr "Gemte dimensioner: x: %d y: %d"
 
 #: ../classes/AlbumItem.php:817
-#, fuzzy
 msgid "Generating normal thumbs."
 msgstr "Opretter normal ikon."
 
 #: ../classes/AlbumItem.php:844
-#, fuzzy
 msgid "Unable to make thumbnail."
 msgstr "Kan ikke lave ikon"
 
@@ -555,7 +542,7 @@ msgid "Renaming album from %s to %s..."
 msgstr "Omdøber album fra %s til %s..."
 
 #: ../classes/Album.php:638
-#, fuzzy, php-format
+#, php-format
 msgid "Upgrading item %d of %d..."
 msgstr "Opgraderer %d af %d . . . "
 
@@ -573,37 +560,34 @@ msgid "Setting highlight"
 msgstr "forsidebillede"
 
 #: ../classes/Album.php:1170
-#, fuzzy
 msgid "Album data was saved successfully."
-msgstr "Brugere opgraderet uden problemer."
+msgstr "Albumdata er blevet gemt."
 
 #: ../classes/Album.php:1175
 msgid "Album data was NOT saved successfully."
-msgstr ""
+msgstr "Album oplysninger blev IKKE gemt."
 
 #: ../classes/Album.php:1182
 msgid "msg should be an array!"
 msgstr "besked skal være en tabel!"
 
 #: ../classes/Album.php:1191
-#, fuzzy, php-format
+#, php-format
 msgid "Changes to album: %s"
 msgstr "Ændringer i album: %s"
 
 #: ../classes/Album.php:1199
-#, fuzzy, php-format
+#, php-format
 msgid "A change has been made to album: %s by %s (IP %s).  The change is: %s"
-msgstr "Albummet %s er andrær at %s (IP %s). Ændring: %s"
+msgstr "Albummet %s er ændret af %s (IP %s). Ændring: %s"
 
 #: ../classes/Album.php:1206
-#, fuzzy
 msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
 msgstr "Hvis du ikke længere ønsker at modtage email om dette billede, skal du følge ovenstående link og sikre dig at 'Send email når ...' ikke er slået til (Du skal logge ind først)"
 
 #: ../classes/Album.php:1216
-#, fuzzy
 msgid "Emailing is on, but no email was sent as no valid email address was found."
-msgstr "Ændringen er gennemført. Email er slået til, men der blev ikke sendt nogen da der ikke var nogen gyldig emailadresse"
+msgstr "Email er slået til, men der blev ikke sendt nogen da der ikke var nogen gyldig emailadresse"
 
 #: ../classes/Album.php:1285 ../classes/Album.php:1367
 msgid "Skipping Movie"
@@ -614,9 +598,9 @@ msgid " -- Skipping"
 msgstr " -- ignorerer"
 
 #: ../classes/Album.php:1312
-#, fuzzy, php-format
+#, php-format
 msgid "Resizing items in album: '<i>%s</i>' (%s)' with %d items"
-msgstr "Skalerer elementer i '%s' (%s)' med %d elementer"
+msgstr "Skalerer elementer i album '%s' (%s)' med %d elementer"
 
 #: ../classes/Album.php:1321 ../classes/Album.php:2535
 #, php-format
@@ -637,9 +621,8 @@ msgid "Doing the naming of the physical file."
 msgstr "Navngiver filen"
 
 #: ../classes/Album.php:1452
-#, fuzzy
 msgid "Image preprocessing"
-msgstr "Præprocesserer billede"
+msgstr "Forbehandler billede"
 
 #: ../classes/Album.php:1457
 msgid "Resizing/compressing original file"
@@ -656,7 +639,7 @@ msgstr "Ulovlig filtyppe: %s. Overspringes."
 
 #: ../classes/Album.php:1471 ../classes/Album.php:1472
 msgid "Item looks like an image, but has no dimension? Please verify its not a broken image."
-msgstr ""
+msgstr "Elementet ser ud til at være et billede, men har ingen størrelse? Kontroller at det ikke er ødelagt."
 
 #: ../classes/Album.php:1487 ../classes/Album.php:1488
 msgid "Item not added."
@@ -685,9 +668,8 @@ msgid "Photo NOT auto-rotated/transformed"
 msgstr "Billede er IKKE autoroteret/tranformeret"
 
 #: ../classes/Album.php:1626
-#, fuzzy
 msgid "Watermarking image"
-msgstr "Sætter vandmærke for billede"
+msgstr "Vandmærker billede"
 
 #: ../classes/Album.php:1633 ../classes/Album.php:1638
 msgid "Item successfully added."
@@ -723,56 +705,56 @@ msgid "Entering album %s, processing %d photos"
 msgstr "Åbner album %s, behandler %d billeder"
 
 #: ../classes/Album.php:2316
-#, fuzzy, php-format
+#, php-format
 msgid "Updating album: '<i>%s</i>'."
-msgstr "Opdaterer album: '<i>%s</i>' (%s) med %d elementer"
+msgstr "Opdaterer album: '<i>%s</i>'."
 
 #: ../classes/Album.php:2320
-#, fuzzy, php-format
+#, php-format
 msgid "Updating subalbum '<i>%s</i>'."
-msgstr "Opdaterer album: '<i>%s</i>' (%s) med %d elementer"
+msgstr "Opdaterer underalbum: '<i>%s</i>'."
 
 #: ../classes/Album.php:2325
 msgid "-- Skipped, because it is empty."
-msgstr ""
+msgstr "-- Oversprunget, fordi det er tomt."
 
 #: ../classes/Album.php:2338
-#, fuzzy, php-format
+#, php-format
 msgid "Processing item %d of %d."
-msgstr "Behandler billede %d..."
+msgstr "Behandler element %d af %d."
 
 #: ../classes/Album.php:2353
-#, fuzzy, php-format
+#, php-format
 msgid "Problem with item #%d (subalbum)."
-msgstr "Problem med email til %s"
+msgstr "Problem med element #%d (underalbum)."
 
 #: ../classes/Album.php:2367
-#, fuzzy, php-format
+#, php-format
 msgid "Problem with item #%d."
-msgstr "Problem med email til %s"
+msgstr "Problem med element #%d."
 
 #: ../classes/Album.php:2510
-#, fuzzy, php-format
+#, php-format
 msgid "Updating album: '<i>%s</i>' (%s) with %d items."
 msgstr "Opdaterer album: '<i>%s</i>' (%s) med %d elementer"
 
 #: ../classes/Album.php:2523
-#, fuzzy, php-format
+#, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items."
 msgstr "Åbner album %s, behandler %d billeder"
 
 #: ../classes/Album.php:2611 ../classes/Album.php:2618
 #, php-format
 msgid "Userid %s is owner of '%s'"
-msgstr ""
+msgstr "Bruger %s ejer '%s'"
 
 #: ../classes/Album.php:2622
 #, php-format
 msgid "Userid %s is NOT owner of '%s'"
-msgstr ""
+msgstr "Bruger %s ejer IKKE '%s'"
 
 #: ../classes/Album.php:2761
-#, fuzzy, php-format
+#, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr "Fejl ved hentning af EXIF data. Forventede status 0, men fik %s."
 
@@ -782,19 +764,19 @@ msgstr "(Gruppe)"
 
 #: ../classes/Album.php:3425
 msgid "Owner can modify his/her own items."
-msgstr ""
+msgstr "Ejeren kan redigere sine egne billeder."
 
 #: ../classes/Album.php:3428
 msgid "Owner can NOT modify his/her own items."
-msgstr ""
+msgstr "Ejeren kan IKKE redigere sine egne billeder."
 
 #: ../classes/Album.php:3452
 msgid "Owner can delete his/her own items."
-msgstr ""
+msgstr "Ejeren kan slette sine egne billeder."
 
 #: ../classes/Album.php:3455
 msgid "Owner can NOT delete his/her own items."
-msgstr ""
+msgstr "Ejeren kan IKKE slette sine egne billeder."
 
 #: ../classes/Album.php:3559
 #, php-format
@@ -822,15 +804,14 @@ msgstr "Anonym bruger"
 #: ../classes/gallery/UserDB.php:75
 #, php-format
 msgid "%s exists, but is not a directory!"
-msgstr "%s eksisterer, men er ikke et katalog!"
+msgstr "%s eksisterer, men er ikke en mappe!"
 
 #: ../classes/gallery/UserDB.php:88
-#, fuzzy, php-format
+#, php-format
 msgid "The folder which contains your user information (%s) is not writable for the webserver."
 msgstr "Biblioteket som indeholder dine brugeroplysninger (%s) kan ikke opdateres af web-serveren"
 
 #: ../classes/gallery/UserDB.php:110
-#, fuzzy
 msgid "Your userfile is not writeable."
 msgstr "Din brugerfil er ikke skrivbar"
 
@@ -869,27 +850,26 @@ msgid "A user with the username of '%s' already exists"
 msgstr "En bruger med brugernavn '%s' eksisterer allerede"
 
 #: ../classes/gallery/UserDB.php:394
-#, fuzzy, php-format
+#, php-format
 msgid "Password must have at least %d characters."
-msgstr "Adgangskoden skal være på mindst 3 tegn"
+msgstr "Adgangskoden skal være på mindst %d tegn"
 
 #: ../classes/gallery/UserDB.php:400
-#, fuzzy
 msgid "Password can not be the username."
-msgstr "Indtast venligst brugernavn."
+msgstr "Adgangskoden kan ikke være det samme som brugernavnet."
 
 #: ../classes/gallery/UserDB.php:407
 msgid "Password is too weak. Use a more complex password."
-msgstr ""
+msgstr "Kodeordet er for simpelt. Brug et mere kompliceret kodeord."
 
 #: ../classes/gallery/UserDB.php:413
 msgid "Your password is good, but not strong."
-msgstr ""
+msgstr "Dit kodeord er godt, men ikke svært."
 
 #: ../classes/gallery/UserDB.php:453
-#, fuzzy, php-format
+#, php-format
 msgid "Checking user %d of %d ... "
-msgstr "Undersøger bruger %d af %d . . . . "
+msgstr "Undersøger bruger %d af %d ..."
 
 #: ../classes/gallery/UserDB.php:459
 #, php-format
@@ -902,29 +882,26 @@ msgid "Problem adding %s:"
 msgstr "Problem med at opdatere %s:"
 
 #: ../classes/gallery/User.php:99
-#, fuzzy
 msgid "up to date"
-msgstr "Album opdateret."
+msgstr "opdateret"
 
 #: ../classes/gallery/User.php:149
-#, fuzzy
 msgid "Upgraded"
-msgstr "opgradér"
+msgstr "Opgraderet"
 
 #: ../classes/gallery/User.php:153
-#, fuzzy
 msgid "Saving failed"
-msgstr "Manglende filer"
+msgstr "Gemning fejlede"
 
 #: ../classes/gallery/User.php:212
-#, fuzzy, php-format
+#, php-format
 msgid "Not a valid action: %s"
-msgstr "Ugyldig handling"
+msgstr "Ugyldig handling: %s"
 
 #: ../classes/hn_captcha/hn_captcha.class.php:356
 #, php-format
 msgid "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."
-msgstr "Folderen '%s' (fuld sti: '%s') eksisterer ikke i album biblioteket, og Gallery kan ikke oprette den."
+msgstr "Folderen '%s' (fuld sti: '%s') eksisterer ikke i albummappen, og Gallery kan ikke oprette den."
 
 #: ../classes/hn_captcha/hn_captcha.class.php:364
 #, php-format
@@ -938,31 +915,31 @@ msgstr "Du skal læse og indtaste de <b>%d tegn</d> mellem <b>0..9</b> og <b>A..F
 
 #: ../classes/Mail/htmlMimeMail.php:760
 msgid "Sending mail via smtp method failed with these errors:"
-msgstr ""
+msgstr "Afsendelse af epost over smtp fejlede med disse fejl:"
 
 #: ../classes/NobodyUser.php:30
 msgid "Nobody"
 msgstr "Ingen"
 
 #: ../classes/User.php:213
-#, fuzzy, php-format
+#, php-format
 msgid "User %s can write to album '%s'"
-msgstr "Bruger kan oprette albummer"
+msgstr "Bruger %s kan skrive i album '%s'"
 
 #: ../classes/User.php:216
-#, fuzzy, php-format
+#, php-format
 msgid "User %s can NOT write to album '%s'"
-msgstr "Bruger kan oprette albummer"
+msgstr "Bruger %s kan IKKE skrive i album '%s'"
 
 #: ../classes/User.php:371
 #, php-format
 msgid "User %s is owner of album '%s'"
-msgstr ""
+msgstr "Bruger %s ejer album '%s'"
 
 #: ../classes/User.php:374
 #, php-format
 msgid "User %s  is NOT owner of album '%s'"
-msgstr ""
+msgstr "Bruger %s ejer IKKE album '%s'"
 
 #: ../crop_photo.php:66 ../imagemap.php:173
 msgid "Original photo"
@@ -1022,9 +999,9 @@ msgstr "Behandler filen '%s' som et arkiv."
 
 #: ../gallery_remote2.php:871 ../gallery_remote.php:168
 #: ../lib/albumItem.php:526
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping '%s' (%s support not enabled)"
-msgstr "Springer %s over (%s-understøttelse ikke slået til)"
+msgstr "Springer '%s' over (%s-understøttelse ikke slået til)"
 
 #: ../gallery_remote2.php:879 ../gallery_remote.php:176
 msgid "Error occured before extracting the archive. Temporary destination exists."
@@ -1041,9 +1018,8 @@ msgstr ""
 
 #: ../gallery_remote2.php:893 ../gallery_remote.php:190
 #: ../lib/albumItem.php:549
-#, fuzzy
 msgid "Processing archive content."
-msgstr "Henter arkiv indhold Filnavne"
+msgstr "Behandler arkiv indhold."
 
 #: ../gallery_remote2.php:935 ../gallery_remote.php:232
 #: ../lib/albumItem.php:605 ../lib/albumItem.php:613
@@ -1051,16 +1027,16 @@ msgid "The archive contains no valid files!"
 msgstr ""
 
 #: ../gallery_remote2.php:932 ../gallery_remote.php:229
-#, fuzzy, php-format
+#, php-format
 msgid "Processing %d valid file from archive."
 msgid_plural "Processing %d valid files from archive."
-msgstr[0] "Behandler filer i arkiv"
-msgstr[1] "Behandler filer i arkiv"
+msgstr[0] "Behandler %d gyldig fil i arkiv"
+msgstr[1] "Behandler %d gyldige filer i arkiv"
 
 #: ../gallery_remote2.php:1039
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping %s (can't handle '%s' format)"
-msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
+msgstr "Springer '%s' over (Kan ikke håndtere '%s' formatet)"
 
 #: ../gallery_remote.php:116 ../publish_xp.php:378
 msgid "User cannot add to album"
@@ -1075,7 +1051,6 @@ msgid "ImageMap Help"
 msgstr "Kortbillede hjælp"
 
 #: ../help/imagemap.php:28
-#, fuzzy
 msgid "This is a help for working with Gallerys so called 'ImageMaps'"
 msgstr "Dette er en hjælp til Gallery såkaldte 'kortbilleder'"
 
@@ -1112,22 +1087,18 @@ msgid "Click again to create another spot. Add spots until your polygon shape su
 msgstr "Klik igen for at tilføje endnu et punkt. Tilføj punkter indtil polygonen indrammer hele det ønskede område."
 
 #: ../help/imagemap.php:49
-#, fuzzy
 msgid "When you are satisifed with your selection (e.g. a person or object), enter the describing text for your ImageMap in the 'Description' field on the left hand side."
-msgstr "Når du er tilfreds med det valgte område, indtater du den beskrivende tekst for dit kortbillede i 'Beskrivelse' feltet i venstre side."
+msgstr "Når du er tilfreds med det valgte område (fx en person eller en ting), indtaster du den beskrivende tekst for dit kortbillede i 'Beskrivelse' feltet i venstre side."
 
 #: ../help/imagemap.php:50
-#, fuzzy
 msgid "The text entered in the description field, will be displayed when your users point their mouse cursor over the ImageMap"
 msgstr "Teksten vil blive vist når brugeren fører musemarkøren ind over kortbilledet."
 
 #: ../help/imagemap.php:54
-#, fuzzy
 msgid "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."
 msgstr "Du kan også indtaste en Link-URL for kortbilledet, som aktiveres når brugeren klikker på det."
 
 #: ../help/imagemap.php:55
-#, fuzzy
 msgid "When you are satisfied, click the 'Save ImageMap' button at the left side."
 msgstr "Når du er tilfreds klikker du på 'Gem kortbillede' knappen i venstre side."
 
@@ -1136,7 +1107,6 @@ msgid "How to update an ImageMap in Gallery?"
 msgstr "Hvordan redigerer man et kortbillede i Gallery?"
 
 #: ../help/imagemap.php:65
-#, fuzzy
 msgid "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."
 msgstr "Indtil videre er det kun muligt at ændre tekst og URL for et kortbillede. Polygonen kan ikke ændres."
 
@@ -1149,7 +1119,6 @@ msgid "Select the ImageMap you want to edit in the box on the left hand side."
 msgstr "Vælg der kortbillede du vil ændre i boksen i venstre side."
 
 #: ../help/imagemap.php:70
-#, fuzzy
 msgid "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
 msgstr "Forhåndsvisningen til højre viser hvilket område der er dækket af polygonen"
 
@@ -1158,7 +1127,6 @@ msgid "You can then modify your 'Description', or edit the 'Link-URL'."
 msgstr "Derefter kan du redigere 'Beskrivelse' eller Link-URL."
 
 #: ../help/imagemap.php:72
-#, fuzzy
 msgid "When finished, click the 'Update ImageMap' button."
 msgstr "Når du er færdig klikker du på 'Opdater kortbillede'. "
 
@@ -1167,7 +1135,6 @@ msgid "How to delete an ImageMap in Gallery?"
 msgstr "Hvordan man sletter et kortbillede i Gallery?"
 
 #: ../help/imagemap.php:82
-#, fuzzy
 msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."
 msgstr "Vælg blot de kortbilleder du vil slette i boksen. Derefter klikkes på 'Slet valgt(e) kortbilleder'"
 
@@ -1185,9 +1152,8 @@ msgid "Metadata on Upload Help"
 msgstr "Hjælp til metadat ved Upload"
 
 #: ../help/metadataOnUpload.php:29
-#, fuzzy
 msgid "What is meant with metadata in this context?"
-msgstr "Hvad menes med Metadat i denne sammenhæng?"
+msgstr "Hvad menes med Metadata i denne sammenhæng?"
 
 #: ../help/metadataOnUpload.php:32
 msgid "Photos in Gallery have descriptive fields, like caption, title and other data fields. You can also define your own custom fields."
@@ -1219,17 +1185,14 @@ msgid "Upload this file at the same time as you upload your files, you cannot up
 msgstr "Upload denne fil samtidig med at du uploader billederne. Du kan ikke gøre det senere og forvente at Gallery bruger dens data."
 
 #: ../help/metadataOnUpload.php:53
-#, fuzzy
 msgid "In which format does the data have to be?"
 msgstr "Hvilket format skal data have?"
 
 #: ../help/metadataOnUpload.php:56
-#, fuzzy
 msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
 msgstr "Den første række skal indeholde feltnavn. Det er et nødvendigt felt, nogle standard felter, og du kan have dine egne felter."
 
 #: ../help/metadataOnUpload.php:57
-#, fuzzy
 msgid "Order does not matter, but you have to use a <b>;</b> (Semicolon) as separator as your texts might have commas."
 msgstr "Rækkefølgen er uden betydning, men du skal bruge <b>;</b> (semikolon) mellem felterne, da dine tekster måske indeholder kommaer."
 
@@ -1244,7 +1207,6 @@ msgid "Predefined: %s, %s, %s"
 msgstr "Standard: %s, %s, %s"
 
 #: ../help/metadataOnUpload.php:62
-#, fuzzy
 msgid "Then follow the lines containing the info itself."
 msgstr "Derefter følger linjerne med data"
 
@@ -1257,20 +1219,18 @@ msgid "_Back to upload"
 msgstr "Vend _tilbage til upload"
 
 #: ../imagemap.php:40
-#, fuzzy
 msgid "Imagemaps"
-msgstr "Image_Map"
+msgstr "Kortbillede"
 
 #: ../imagemap.php:89 ../imagemap.php:93
 msgid "An imagemap should at least have three points."
-msgstr ""
+msgstr "Et kortbillede skal mindst have tre punkter."
 
 #: ../imagemap.php:212
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr "Her kan du oprette, redigere eller slette kortbilleder for det valgte billede."
 
 #: ../imagemap.php:214
-#, fuzzy
 msgid "Click the questionmark icon for helpful instructions."
 msgstr "Klik på Spørgsmåls-ikonet for hjælp."
 
@@ -1291,23 +1251,20 @@ msgid "Clear and reset canvas"
 msgstr "Nulstil tegnefeltet"
 
 #: ../imagemap.php:253
-#, fuzzy
 msgid "Save new Imagemap"
-msgstr "Gem kortbillede"
+msgstr "Gem nyt kortbillede"
 
 #: ../imagemap.php:260
-#, fuzzy
 msgid "Edit existing ImageMaps"
-msgstr "Rediger valgt(e) kortbillede(r)"
+msgstr "Rediger kortbillede(r)"
 
 #: ../imagemap.php:262
 msgid "Select entries to show ImageMap areas in your photo."
 msgstr "Vælg kortbilleder"
 
 #: ../imagemap.php:271
-#, fuzzy
 msgid "Selected ImageMap(s):"
-msgstr "Slet valgt(e) kortbillede(r)"
+msgstr "Valgt(e) kortbillede(r)"
 
 #: ../imagemap.php:273 ../lib/albumItem.php:264 ../lib/albumItem.php:272
 #: ../popups/delete_album.php:66 ../popups/delete_group.php:114
@@ -1317,9 +1274,8 @@ msgid "_Delete"
 msgstr "_Slet"
 
 #: ../imagemap.php:274
-#, fuzzy
 msgid "_Update"
-msgstr "Opdater"
+msgstr "_Opdater"
 
 #: ../imagemap.php:278
 msgid "Be aware, that the text of ALL selected entries will be updated!"
@@ -1352,12 +1308,10 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Tryk på <b>Gennemse</b> knappen for at finde et billede, der skal overføres."
 
 #: ../includes/add_photos/add_form.inc:35
-#, fuzzy
 msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
 msgstr "Efter at du har tilføjet en fil kan du tilføje flere på samme måde. Du kan bruge 'Gennemse' knappen så tit du vil."
 
 #: ../includes/add_photos/add_form.inc:36
-#, fuzzy
 msgid "It's possible to enter a manual caption for each item you upload, or you can let gallery set the captions."
 msgstr "Det er muligt at sætte en manuel billedtekst for hver fil du uploader, eller du kan overlade det til Gallery."
 
@@ -1425,7 +1379,7 @@ msgstr "Tip:"
 
 #: ../includes/add_photos/add_local.inc:46
 msgid "FTP images to a directory on your server then provide that path here!"
-msgstr "Overfør billeder med FTP til et katalog på din server og angiv stien her!"
+msgstr "Overfør billeder med FTP til en mappe på din server og angiv stien her!"
 
 #: ../includes/add_photos/add_local.inc:53
 msgid "Choose one of these legal paths:"
@@ -1446,7 +1400,7 @@ msgstr "Hvad skal standard billedteksten være?"
 
 #: ../includes/add_photos/add_local.inc:96
 msgid "Submit directory"
-msgstr "Indsend katalog"
+msgstr "Overfør mappe"
 
 #: ../includes/add_photos/add_local.inc:127
 msgid "No legal upload pathes defined. Autocomplete is switched off."
@@ -1473,9 +1427,8 @@ msgid "Windows XP Publishing Agent"
 msgstr "Windows XP Publishing Agent"
 
 #: ../includes/add_photos/add_url.inc:39
-#, fuzzy
 msgid "Upload any images found at this location:"
-msgstr "Overfør alle billeder der findes på dette sted."
+msgstr "Overfør alle billeder der findes på dette sted:"
 
 #: ../includes/add_photos/add_url.inc:65
 msgid "_Submit URL"
@@ -1503,20 +1456,20 @@ msgstr "For de dato/tid relaterede muligheder vil Gallery bruge det format du an
 
 #: ../includes/comments/commentHandling.inc.php:63
 msgid "Name and comment are both required to save a new comment!"
-msgstr ""
+msgstr "Du skal udfylde både navn og kommentar felterne"
 
 #: ../includes/comments/commentHandling.inc.php:70
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr ""
+msgstr "Din kommentar er for lang. Den må ikke være på mere end %d tegn"
 
 #: ../includes/comments/commentHandling.inc.php:79
 msgid "Your comment contains forbidden words. It will not be added."
-msgstr ""
+msgstr "Din kommentar indeholder ord vi ikke tillader. Den bliver ikke tilføjet"
 
 #: ../includes/comments/commentHandling.inc.php:86
 msgid "You didn't enter the correct chars/numbers."
-msgstr ""
+msgstr "Du skrev ikke det rigtige antal tegn og cifre"
 
 #: ../includes/definitions/albumPermissions.php:76
 msgid "_View album"
@@ -1531,27 +1484,24 @@ msgid "_Add items"
 msgstr "_Tilføj filer"
 
 #: ../includes/definitions/albumPermissions.php:83
-#, fuzzy
 msgid "Users / Groups that can add items."
-msgstr "Brugere / grupper som kan tilføje billeder."
+msgstr "Brugere / Grupper som kan tilføje billeder."
 
 #: ../includes/definitions/albumPermissions.php:88
 msgid "_Delete items"
 msgstr "_Slet elementer"
 
 #: ../includes/definitions/albumPermissions.php:89
-#, fuzzy
 msgid "Users / Groups that can delete items."
-msgstr "Brugere / grupper som kan slette billeder."
+msgstr "Brugere / Grupper som kan slette billeder."
 
 #: ../includes/definitions/albumPermissions.php:94
 msgid "_Modify items"
 msgstr "_Ændre"
 
 #: ../includes/definitions/albumPermissions.php:95
-#, fuzzy
 msgid "Users / Groups that can modify items."
-msgstr "Brugere / grupper som kan redigere billeder."
+msgstr "Brugere / Grupper som kan redigere billeder."
 
 #: ../includes/definitions/albumPermissions.php:100
 msgid "Create _Subalbums"
@@ -1583,7 +1533,7 @@ msgstr "Tilføj k_ommentar"
 
 #: ../includes/definitions/albumPermissions.php:120
 msgid "Users / Groups that can add comments."
-msgstr "Brugere / grupper som kan filføje kommentarer."
+msgstr "Brugere / grupper som kan tilføje kommentarer."
 
 #: ../includes/definitions/albumPermissions.php:125
 msgid "View _full images"
@@ -1654,12 +1604,12 @@ msgid "Landscape"
 msgstr "Landskab"
 
 #: ../includes/slideshow/applet.inc:40 ../includes/slideshow/high.inc:86
-#, fuzzy, php-format
+#, php-format
 msgid "Slideshow for Gallery :: %s"
 msgstr "Fremvisning for Gallery :: %s"
 
 #: ../includes/slideshow/applet.inc:44 ../includes/slideshow/high.inc:95
-#, fuzzy, php-format
+#, php-format
 msgid "Slideshow for album :: %s"
 msgstr "Fremvisning for album :: %s"
 
@@ -1747,23 +1697,19 @@ msgid "RANDOM!"
 msgstr "TILFÆLDIG!"
 
 #: ../includes/slideshow/high.inc:332 ../includes/slideshow/low.inc:190
-#, fuzzy
 msgid "The slideshow is stopped, click [play] to resume."
 msgstr "Fremvisningen er stoppet, Klik [fremvis] for at fortsætte."
 
 #: ../includes/slideshow/high.inc:340 ../includes/slideshow/high.inc:397
 #: ../includes/slideshow/low.inc:196
-#, fuzzy
 msgid "Slideshow is running..."
 msgstr "Fremvisning er i gang..."
 
 #: ../includes/slideshow/high.inc:347
-#, fuzzy
 msgid "The slide is showing full sized images, click [normal size] to view resized images."
 msgstr "Der fremvises billeder i fuld størrelse, Tryk [normal størrelse] for at få billeder fremvist i mellem-størrelse."
 
 #: ../includes/slideshow/high.inc:354
-#, fuzzy
 msgid "The slide is showing normal sized images, click [full size] to view full sized images."
 msgstr "Der fremvises biller i mellem-størrelse, Tryk [fuld størrelse] for at se billederne i fuld størrelse."
 
@@ -1826,7 +1772,6 @@ msgid "This album has no photos to show in a slide show."
 msgstr "Dette album har ingen billeder til fremvisning."
 
 #: ../includes/slideshow/low.inc:88
-#, fuzzy
 msgid "Slideshow for album"
 msgstr "Fremvisning for album"
 
@@ -1972,7 +1917,7 @@ msgstr "Filtrer på dag"
 
 #: ../init.php:118
 msgid "Security violation. Geeklog Dir is invalid."
-msgstr ""
+msgstr "Sikkerhedsproblem. GeekLog mappe er ugyldigt."
 
 #: ../init.php:436
 msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
@@ -1983,65 +1928,62 @@ msgid "Fatal error: UserDB failed to initialize!"
 msgstr "Alvorlig fejl: UserDB fejlede opstart!"
 
 #: ../js/jscalendar/calendar-translation.js.php:55
-#, fuzzy
 msgid "About the calendar"
-msgstr "Over kommentarerne"
+msgstr "Om kalenderen"
 
 #: ../js/jscalendar/calendar-translation.js.php:73
 msgid "Prev. year (hold for menu)"
-msgstr ""
+msgstr "Foregående år (hold for menu)"
 
 #: ../js/jscalendar/calendar-translation.js.php:74
 msgid "Prev. month (hold for menu)"
-msgstr ""
+msgstr "Foregående måned (hold for menu)"
 
 #: ../js/jscalendar/calendar-translation.js.php:75
 msgid "Go Today"
-msgstr ""
+msgstr "I dag"
 
 #: ../js/jscalendar/calendar-translation.js.php:76
 msgid "Next month (hold for menu)"
-msgstr ""
+msgstr "Næste måned (hold for menu)"
 
 #: ../js/jscalendar/calendar-translation.js.php:77
 msgid "Next year (hold for menu)"
-msgstr ""
+msgstr "Næste år (hold for menu)"
 
 #: ../js/jscalendar/calendar-translation.js.php:78
-#, fuzzy
 msgid "Select date"
-msgstr "Valgt"
+msgstr "Vælg dato"
 
 #: ../js/jscalendar/calendar-translation.js.php:79
 msgid "Drag to move"
-msgstr ""
+msgstr "Træk for at flytte"
 
 #: ../js/jscalendar/calendar-translation.js.php:80
 msgid " (today)"
-msgstr ""
+msgstr " (i dag)"
 
 #: ../js/jscalendar/calendar-translation.js.php:84
 #, php-format
 msgid "Display %s first"
-msgstr ""
+msgstr "Vis %s først"
 
 #: ../js/jscalendar/calendar-translation.js.php:91
 #: ../js/lightbox2/lightbox.js.php:165
-#, fuzzy
 msgid "Close"
-msgstr "_Luk"
+msgstr "Luk"
 
 #: ../js/jscalendar/calendar-translation.js.php:92
 msgid "Today"
-msgstr ""
+msgstr "I dag"
 
 #: ../js/jscalendar/calendar-translation.js.php:93
 msgid "(Shift-)Click or drag to change value"
-msgstr ""
+msgstr "(Skift-)Klik eller træk for at ændre værdien"
 
 #: ../js/jscalendar/calendar-translation.js.php:96
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%d-%m-%Y"
 
 #: ../js/jscalendar/calendar-translation.js.php:97
 msgid "%a, %b %e"
@@ -2049,16 +1991,15 @@ msgstr ""
 
 #: ../js/jscalendar/calendar-translation.js.php:99
 msgid "wk"
-msgstr ""
+msgstr "uge"
 
 #: ../js/jscalendar/calendar-translation.js.php:100
-#, fuzzy
 msgid "Time:"
-msgstr "Titel: "
+msgstr "Klokken: "
 
 #: ../js/lightbox2/lightbox.js.php:180
 msgid "Close <br> (or press ESC)"
-msgstr ""
+msgstr "Luk <br> (eller tryk ESC)"
 
 #: ../js/multifile.js.php:118 ../popups/delete_user.php:73
 #: ../templates/commentbox.tpl.default:75
@@ -2081,7 +2022,6 @@ msgid "From:"
 msgstr "Fra:"
 
 #: ../layout/commentdraw.inc:48
-#, fuzzy
 msgid "delete comment"
 msgstr "slet kommentar"
 
@@ -2158,9 +2098,8 @@ msgid "_Username"
 msgstr "_Brugernavn"
 
 #: ../layout/userData.inc:63
-#, fuzzy
 msgid "_Old Password"
-msgstr "Gammel adgangskode"
+msgstr "_Gammel adgangskode"
 
 #: ../layout/userData.inc:67
 msgid "New _Password"
@@ -2183,9 +2122,8 @@ msgid "Gallery language"
 msgstr "Galleriets sprog"
 
 #: ../layout/userData.inc:96
-#, fuzzy
 msgid "User can change its own password?"
-msgstr "Bruger kan skifte sin adgangskode"
+msgstr "Bruger kan skifte sin adgangskode?"
 
 #: ../layout/userData.inc:104
 msgid "User can create albums"
@@ -2196,7 +2134,6 @@ msgid "User is an admin"
 msgstr "Bruger er administrator"
 
 #: ../layout/userData.inc:117
-#, fuzzy
 msgid "You can't un-admin yourself."
 msgstr "Du kan ikke fjerne administrator rettigheder fra dig selv"
 
@@ -2224,7 +2161,7 @@ msgstr "Der blev ikke fundet nogen filer med fil-endelsen %s i %s"
 #: ../layout/watermarkform.inc:111
 #, php-format
 msgid "Could not open directory %s"
-msgstr "Kunne ikke åbne kataloget %s"
+msgstr "Kunne ikke åbne mappen %s"
 
 #: ../layout/watermarkform.inc:126
 msgid "Alignment:"
@@ -2288,14 +2225,12 @@ msgid "Only full photos"
 msgstr "Kun billeder i fuld størrelse"
 
 #: ../layout/watermarkform.inc:176
-#, fuzzy
 msgid "Watermark subalbums?"
 msgstr "Sæt vandmærke på under-album"
 
 #: ../layout/watermarkform.inc:180
-#, fuzzy
 msgid "Preview ?"
-msgstr "_Forhåndsvisning"
+msgstr "Forhåndsvisning"
 
 #: ../layout/watermarkform.inc:183
 msgid "Resized"
@@ -2306,7 +2241,6 @@ msgid "Full"
 msgstr "Oprindelig"
 
 #: ../layout/watermarkform.inc:186
-#, fuzzy
 msgid "Show _Preview"
 msgstr "_Forhåndsvisning"
 
@@ -2320,12 +2254,10 @@ msgid "Photo"
 msgstr "billede"
 
 #: ../lib/albumItem.php:88
-#, fuzzy
 msgid "Edit _Text"
 msgstr "Ret _tekst"
 
 #: ../lib/albumItem.php:94
-#, fuzzy
 msgid "Edit Th_umbnail"
 msgstr "Ret _ikon"
 
@@ -2346,17 +2278,14 @@ msgid "Image_Map"
 msgstr "Image_Map"
 
 #: ../lib/albumItem.php:127
-#, fuzzy
 msgid "Crop image"
 msgstr "beskær billede"
 
 #: ../lib/albumItem.php:137
-#, fuzzy
 msgid "Edit Title"
 msgstr "Ret titel"
 
 #: ../lib/albumItem.php:143
-#, fuzzy
 msgid "Edit Description"
 msgstr "Ret beskrivelse"
 
@@ -2397,7 +2326,6 @@ msgid "Set as high_light"
 msgstr "Sæt som forsidebillede"
 
 #: ../lib/albumItem.php:226
-#, fuzzy
 msgid "Change Ow_ner"
 msgstr "Skift ejer"
 
@@ -2428,9 +2356,8 @@ msgid "%s actions"
 msgstr "%s handlinger"
 
 #: ../lib/albumItem.php:332
-#, fuzzy
 msgid "Delete comment"
-msgstr "slet kommentar"
+msgstr "Slet kommentar"
 
 #: ../lib/albumItem.php:467
 #, php-format
@@ -2456,9 +2383,8 @@ msgid "An Error occurred before extracting the archive. Temporary destination co
 msgstr ""
 
 #: ../lib/albumItem.php:543
-#, fuzzy
 msgid "Extracting archive"
-msgstr "Udtrækker: %s med %s"
+msgstr "Udtrækker arkiv"
 
 #: ../lib/albumItem.php:590
 msgid "No Metadata"
@@ -2468,28 +2394,26 @@ msgstr "Ingen Metadata"
 #, php-format
 msgid "%d file inside the archive was invalid."
 msgid_plural "%d files inside the archive were invalid."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d fil i arkivet var ugyldig."
+msgstr[1] "%d filer i arkivet var ugyldige."
 
 #: ../lib/albumItem.php:610
-#, fuzzy, php-format
+#, php-format
 msgid "Processing %d valid file from the archive."
 msgid_plural "Processing %d valid files from the archive."
-msgstr[0] "Behandler filer i arkiv"
-msgstr[1] "Behandler filer i arkiv"
+msgstr[0] "Behandler %d gyldig fil i arkiv"
+msgstr[1] "Behandler %d gyldige filer i arkiv"
 
 #: ../lib/albumItem.php:659
 #, php-format
 msgid "Processing file #%d from archive. (Calling processNewImage)"
-msgstr ""
+msgstr "Behandler fil #%d fra arkivet. (Kalder processNewImage)"
 
 #: ../lib/albumItem.php:677
-#, fuzzy
 msgid "Start processing single file (image/movie not archive)."
-msgstr "Behandler behandling af enkelt fil (billede, ikke arkiv)"
+msgstr "Starter behandling af enkelt fil (billede, ikke arkiv)"
 
 #: ../lib/albumItem.php:680
-#, fuzzy
 msgid "Extension is accepted."
 msgstr "filtypen er genkendt."
 
@@ -2511,14 +2435,14 @@ msgid "Adding item failed. Please enable debug mode and redo the procedure to ge
 msgstr ""
 
 #: ../lib/albumItem.php:765
-#, fuzzy, php-format
+#, php-format
 msgid "Need more help?  Look in the  %s%s FAQ%s."
 msgstr "Har du brug for hjælp?  Se i  %s%s FAQ%s"
 
 #: ../lib/albumItem.php:774
-#, fuzzy, php-format
+#, php-format
 msgid "Skipping '%s' (can't handle '%s' format)"
-msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
+msgstr "Springer '%s' over (Kan ikke håndtere '%s' formatet)"
 
 #: ../lib/filesystem.php:109
 #, php-format
@@ -2559,9 +2483,8 @@ msgid "Getting Exif from: %s"
 msgstr "Henter Exif for filen: %s"
 
 #: ../lib/filesystem.php:355
-#, fuzzy
 msgid "You are not allowed to upload from local directories."
-msgstr "Du har ikke rettigheder til at udføre denne handling!"
+msgstr "Du har ikke rettigheder til at tilføje fra lokale mapper."
 
 #: ../lib/filesystem.php:371
 #, php-format
@@ -2610,12 +2533,10 @@ msgid "Owned by: %s"
 msgstr "Ejet af: %s"
 
 #: ../lib/stats.php:397 ../popups/edit_caption.php:216
-#, fuzzy
 msgid "Capture date:"
-msgstr "Dato og tid da billedet blev taget:"
+msgstr "Optagelsestidspunkt:"
 
 #: ../lib/stats.php:413
-#, fuzzy
 msgid "Upload date:"
 msgstr "Dato for overførsel:"
 
@@ -2674,7 +2595,7 @@ msgstr "Diskforbrug"
 
 #: ../login.php:64
 msgid "This account is locked due too much wrong login attempts. Wait for automatic unlock, or contact an administrator."
-msgstr ""
+msgstr "Denne bruger er spærret på grund af for mange fejlede login forsøg. Vent på at den automatisk låses op, eller kontakt en adminstrator."
 
 #: ../login.php:90
 msgid "SUCCEEDED"
@@ -2766,7 +2687,6 @@ msgid "Make New Password"
 msgstr "Lav ny adgangskode"
 
 #: ../new_password.php:49
-#, fuzzy
 msgid "The recovery password is not the expected value, please try again."
 msgstr "Gendannelseskoden har ikke den forventede værdi, prøv venligst igen"
 
@@ -2775,12 +2695,11 @@ msgid "You must provide your new password."
 msgstr "Du skal angive din nye adgangskode."
 
 #: ../new_password.php:63 ../popups/user_preferences.php:74
-#, fuzzy
 msgid "Passwords did not match!"
 msgstr "Adgangskoderne er ikke ens!"
 
 #: ../new_password.php:75 ../popups/user_preferences.php:44
-#, fuzzy, php-format
+#, php-format
 msgid "%s contained invalid data, sanitizing input."
 msgstr "%s indeholder ulovlige data, nulstiller input."
 
@@ -2790,12 +2709,10 @@ msgid "You must specify a valid email address."
 msgstr "Du skal angive en gyldig emailadresse."
 
 #: ../new_password.php:107
-#, fuzzy
 msgid "The password was successfully saved."
-msgstr "Gemt."
+msgstr "Kodeordet er gemt."
 
 #: ../new_password.php:109
-#, fuzzy
 msgid "Go to Gallery"
 msgstr "Vend tilbage til galleriet"
 
@@ -2817,7 +2734,6 @@ msgid "_Save"
 msgstr "_Gem"
 
 #: ../new_password.php:141
-#, fuzzy
 msgid "C_ancel"
 msgstr "Fortryd"
 
@@ -2850,7 +2766,6 @@ msgid "You are not allowed to perform this action!"
 msgstr "Du har ikke rettigheder til at udføre denne handling!"
 
 #: ../poll_results.php:59
-#, fuzzy
 msgid "_Return to album"
 msgstr "gå tilbage til _album"
 
@@ -2866,27 +2781,23 @@ msgid "Results Breakdown"
 msgstr "Opgørelse af resultater"
 
 #: ../poll_results.php:153
-#, fuzzy
 msgid "No votes so far."
-msgstr "Dine stemmer:"
+msgstr "Ingen stemmer (endnu)."
 
 #: ../popups/add_comment.php:32 ../popups/add_comment.php:38
 #: ../popups/add_comment.php:52
-#, fuzzy
 msgid "Add comment"
-msgstr "_Tilføj kommentar"
+msgstr "Tilføj kommentar"
 
 #: ../popups/add_comment.php:54
-#, fuzzy
 msgid "Enter your comment in the text box below."
-msgstr "Skriv din kommentar til dette billede i tekstfeltet nedenfor."
+msgstr "Skriv din kommentar i tekstfeltet nedenfor."
 
 #: ../popups/add_photos_frame.php:33 ../popups/add_photos.php:33
 #: ../popups/add_photos.php:60 ../popups/save_photos.php:41
 #: ../popups/save_photos.php:52
-#, fuzzy
 msgid "Add items"
-msgstr "_Tilføj filer"
+msgstr "Tilføj filer"
 
 #: ../popups/add_photos_frame.php:42
 msgid "Add Photos"
@@ -2913,7 +2824,6 @@ msgid "From Local Server"
 msgstr "Fra denne server"
 
 #: ../popups/administer_startpage.php:29 ../popups/administer_startpage.php:56
-#, fuzzy
 msgid "Administer startpage"
 msgstr "Administrer startside"
 
@@ -2934,17 +2844,14 @@ msgid "Sort the albums on the startpage(s).<br>(Opens an option dialog)"
 msgstr "Sorter albummer på forsiden<br>(Åbner en dialog med muligheder)"
 
 #: ../popups/administer_startpage.php:51
-#, fuzzy
 msgid "By (physical) name."
 msgstr "Efter filnavn"
 
 #: ../popups/administer_startpage.php:52
-#, fuzzy
 msgid "By last reset date."
 msgstr "Efter sidste nulstillingsdato"
 
 #: ../popups/administer_startpage.php:53
-#, fuzzy
 msgid "By creation date (works only with albums created with 1.5.2 or newer)."
 msgstr "Efter oprettelsesdato (virker kun for albummer oprettet med 1.5.2 eller nyere)"
 
@@ -2973,17 +2880,16 @@ msgid "Album Permissions"
 msgstr "Albumrettigheder"
 
 #: ../popups/album_permissions.php:47
-#, fuzzy
 msgid "Invalid Request."
-msgstr "Ugyldig bruger"
+msgstr "Ugyldig forespørgsel."
 
 #: ../popups/album_permissions.php:92
 msgid "Owner has been changed."
-msgstr ""
+msgstr "Ejer er ændret."
 
 #: ../popups/album_permissions.php:97
 msgid "Owner was not changed, due to invalid User ID."
-msgstr ""
+msgstr "Ejer blev ikke ændret, da det ikke var et lovligt brugernavn."
 
 #: ../popups/album_permissions.php:119
 msgid "-- Special user --"
@@ -2998,9 +2904,9 @@ msgid "-- Groups --"
 msgstr "-- Grupper --"
 
 #: ../popups/album_permissions.php:128
-#, fuzzy, php-format
+#, php-format
 msgid "Album Permissions :: '%s'"
-msgstr "Albumrettigheder"
+msgstr "Albumrettigheder :: '%s'"
 
 #: ../popups/album_permissions.php:154
 msgid "Apply permissions to all sub-albums"
@@ -3016,13 +2922,12 @@ msgid "Copy Photo"
 msgstr "Kopier billede"
 
 #: ../popups/copy_photo.php:57
-#, fuzzy
 msgid "Invalid album selected."
-msgstr "Ugyldigt album valgt: %s"
+msgstr "Ugyldigt album valgt."
 
 #: ../popups/copy_photo.php:63
 msgid "Copying of subalbums not supported, sorry."
-msgstr ""
+msgstr "Kopiering af underalbummer er ikke understøttet, beklager."
 
 #: ../popups/copy_photo.php:68
 msgid "Please select the album where you want to copy the photo(s) to."
@@ -3038,11 +2943,11 @@ msgstr "kopieringen er gennemført."
 
 #: ../popups/copy_photo.php:144
 msgid "Skipping subalbum. Copying currently not supported."
-msgstr ""
+msgstr "Ignorerer underalbum. Kopiering understøttes ikke."
 
 #: ../popups/copy_photo.php:150
 msgid "Copy Again?"
-msgstr ""
+msgstr "Kopier igen?"
 
 #: ../popups/copy_photo.php:158
 msgid "Copy a range of photos to a new album:"
@@ -3092,39 +2997,33 @@ msgid "Upgrade now"
 msgstr "Opgrader nu"
 
 #: ../popups/create_group.php:49
-#, fuzzy
 msgid "Create Gallery Group"
-msgstr "Opret _ny bruger"
+msgstr "Opret ny gruppe"
 
 #: ../popups/create_group.php:65
 #, php-format
 msgid "Group '%s' created.<br>You can now create another group if you want."
-msgstr ""
+msgstr "Gruppen '%s' oprettet.<br>Du kan nu oprette endnu en gruppe."
 
 #: ../popups/create_group.php:70
-#, fuzzy
 msgid "Create a new Gallery usergroup here."
-msgstr "Opret ny bruger her."
+msgstr "Opret ny gruppe her."
 
 #: ../popups/create_group.php:81
-#, fuzzy
 msgid "Name of the group"
-msgstr "_Navn på gruppen"
+msgstr "Navn på gruppen"
 
 #: ../popups/create_group.php:85
-#, fuzzy
 msgid "Some descriptive text (optional)"
-msgstr "Forklaring (valgfri)"
+msgstr "Beskrivelse (valgfri)"
 
 #: ../popups/create_group.php:94
-#, fuzzy
 msgid "_Create group"
-msgstr "Opret _ny bruger"
+msgstr "_Opret gruppe"
 
 #: ../popups/create_group.php:95
-#, fuzzy
 msgid "Back to groupmanagement"
-msgstr "Tilbage til _gruppevedligeholdelse"
+msgstr "Tilbage til gruppevedligeholdelse"
 
 #: ../popups/create_group.php:97 ../popups/delete_group.php:124
 msgid "Go to _usermanagement"
@@ -3189,77 +3088,67 @@ msgstr "Vil du virkelig slette dette album?"
 
 #: ../popups/delete_group.php:32 ../popups/delete_group.php:83
 msgid "Delete Gallery usergroup"
-msgstr ""
+msgstr "Slet Gallery brugergruppe"
 
 #: ../popups/delete_group.php:65
-#, fuzzy, php-format
+#, php-format
 msgid "Successfully deleted %d group."
 msgid_plural "Successfully deleted %d groups."
-msgstr[0] "Gemt."
-msgstr[1] "Gemt."
+msgstr[0] "Slettede %d gruppe."
+msgstr[1] "Slettede %d grupper."
 
 #: ../popups/delete_group.php:72
-#, fuzzy, php-format
+#, php-format
 msgid "%d not successfully deleted."
-msgstr "Billedtekster kunne ikke genoprettes"
+msgstr "%d blev ikke slettet."
 
 #: ../popups/delete_group.php:79
-#, fuzzy
 msgid "No groups deleted."
-msgstr "ingen gruppe valgt."
+msgstr "Ingen gruppe valgt."
 
 #: ../popups/delete_group.php:86
-#, fuzzy
 msgid "Groups can have special permissions in each album."
-msgstr "Brugere kan have særlige rettigheder i hvert album."
+msgstr "Grupper kan have særlige rettigheder i hvert album."
 
 #: ../popups/delete_group.php:87
-#, fuzzy
 msgid "If you delete this group, any such permissions go away."
 msgid_plural "If you delete these groups, any permissions will go away."
-msgstr[0] "Hvis du sletter denne bruger, forsvinder dennes rettigheder også."
-msgstr[1] "Hvis du sletter disse brugere, forsvinder disses rettigheder også."
+msgstr[0] "Hvis du sletter denne gruppe, forsvinder dennes rettigheder også."
+msgstr[1] "Hvis du sletter disse grupper, forsvinder disses rettigheder også."
 
 #: ../popups/delete_group.php:88
-#, fuzzy
 msgid "Deleted groups cannot be recovered."
-msgstr "Slettede brugere kan ikke genoprettes."
+msgstr "Slettede grupper kan ikke genoprettes."
 
 #: ../popups/delete_group.php:89
-#, fuzzy
 msgid "Even if this group is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those groups, the permissions are gone."
-msgstr[0] "Selv om brugeren bliver genoprettet, er rettighederne væk."
-msgstr[1] "Selv om brugerene bliver genoprettet, er rettighederne væk."
+msgstr[0] "Selv om gruppen bliver genoprettet, er rettighederne væk."
+msgstr[1] "Selv om grupperne bliver genoprettet, er rettighederne væk."
 
 #: ../popups/delete_group.php:102
-#, fuzzy
 msgid "Do you really want to delete group:"
 msgid_plural "Do you really want to delete these groups:"
-msgstr[0] "Vil du virkelig slette brugeren:"
-msgstr[1] "Vil du virkelig slette disse brugere:"
+msgstr[0] "Vil du virkelig slette gruppen:"
+msgstr[1] "Vil du virkelig slette disse grupper:"
 
 #: ../popups/delete_group.php:117
-#, fuzzy
 msgid "No groups selected for deletion."
-msgstr "ingen gruppe valgt."
+msgstr "Ingen gruppe valgt til at blive slettet."
 
 #: ../popups/delete_group.php:122
-#, fuzzy
 msgid "Back to _group management"
 msgstr "Tilbage til _gruppevedligeholdelse"
 
 #: ../popups/delete_item.php:28
-#, fuzzy
 msgid "Delete album item"
-msgstr "Slet album"
+msgstr "Slet albumelement"
 
 #: ../popups/delete_item.php:78
 msgid "It seems you double clicked the delete button, or refreshed this dialog in an other way. If you really want to delete THIS item, press delete again."
 msgstr ""
 
 #: ../popups/delete_item.php:94
-#, fuzzy
 msgid "Do you really want to delete this item?"
 msgstr "Vil du virkelig slette dette album?"
 
@@ -3306,19 +3195,17 @@ msgid "Attempted security breach."
 msgstr "Sikkerheden forsøgt brudt."
 
 #: ../popups/do_command.php:60
-#, fuzzy
 msgid "Rebuilding thumbnails"
 msgstr "Genopbygger ikoner"
 
 #: ../popups/do_command.php:63
-#, fuzzy
 msgid "Performing operation..."
-msgstr "Udfører kommando.."
+msgstr "Udfører kommando..."
 
 #: ../popups/do_command.php:76
 #, php-format
 msgid "Rebuilding highlight %s"
-msgstr "Genopbygger forsidebilleder %s"
+msgstr "Genopbygger forsidebillede %s"
 
 #: ../popups/do_command.php:203
 msgid "Close window"
@@ -3341,8 +3228,8 @@ msgstr "Zip hentning skulle virke, men er slået fra under fejlfinding."
 #, php-format
 msgid "This album contains just one item in total."
 msgid_plural "This album contains %d items in total."
-msgstr[0] "Dette album indeholder 1 objekt."
-msgstr[1] "Dette album indeholder %d objekter i alt."
+msgstr[0] "Dette album indeholder 1 element."
+msgstr[1] "Dette album indeholder %d elementer i alt."
 
 #: ../popups/download.php:78
 msgid "No subalbums"
@@ -3360,10 +3247,10 @@ msgid "no photo/movie"
 msgstr "intet billede/ingen film"
 
 #: ../popups/download.php:79
-#, fuzzy, php-format
+#, php-format
 msgid "One photo/movie"
 msgid_plural "%d photos/movies"
-msgstr[0] "en/t billede/film"
+msgstr[0] "En/t billede/film"
 msgstr[1] "%d billeder/film"
 
 #: ../popups/download.php:81
@@ -3397,9 +3284,8 @@ msgid "Send this photo as eCard"
 msgstr "Send dette billede som eKort"
 
 #: ../popups/ecard_form.php:41
-#, fuzzy
 msgid "Invalid element chosen."
-msgstr "Ugyldigt billede: %s"
+msgstr "Ugyldigt billede valgt."
 
 #: ../popups/ecard_form.php:43 ../popups/ecard_form.php:51
 msgid "_Close Window."
@@ -3415,37 +3301,34 @@ msgstr "_Send eKort"
 
 #: ../popups/ecard_form.php:66
 msgid "Element index"
-msgstr ""
+msgstr "Element indeks"
 
 #: ../popups/ecard_form.php:67
-#, fuzzy
 msgid "Name of sender"
-msgstr "_Navn på gruppen"
+msgstr "Navn på afsender"
 
 #: ../popups/ecard_form.php:68
 msgid "Email of sender"
-msgstr ""
+msgstr "Email på afsender"
 
 #: ../popups/ecard_form.php:69
 msgid "Name of recipient"
-msgstr ""
+msgstr "Navn på modtager"
 
 #: ../popups/ecard_form.php:70
 msgid "Email of recipient"
-msgstr ""
+msgstr "Email på modtager"
 
 #: ../popups/ecard_form.php:71
-#, fuzzy
 msgid "Message"
-msgstr "Besked:"
+msgstr "Besked"
 
 #: ../popups/ecard_form.php:77
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not valid."
-msgstr "%s i dette album"
+msgstr "%s Er ikke gyldigt."
 
 #: ../popups/ecard_form.php:83
-#, fuzzy
 msgid "The sender or recipient email adress is not valid."
 msgstr "Afsender- eller modtageradresse er ikke lovlig"
 
@@ -3462,7 +3345,6 @@ msgid "Error: to send an eCard you need to fill out all fields."
 msgstr "Fejl: for at sende et eKort skal du udfylde alle felterne"
 
 #: ../popups/ecard_form.php:141
-#, fuzzy
 msgid "Please fill these fields:"
 msgstr "Udfyld venligst disse felter:"
 
@@ -3492,7 +3374,7 @@ msgid "Please fill all fields. Then click '%s' again."
 msgstr "Udfyld venligst alle felter, og klik så på '%s' igen"
 
 #: ../popups/ecard_form.php:186
-#, fuzzy, php-format
+#, php-format
 msgid "You have entered more than %d characters!"
 msgstr "Du har indtastet mere end %d tegn"
 
@@ -3544,9 +3426,8 @@ msgid "Close this window"
 msgstr "Luk dette vindue"
 
 #: ../popups/ecard_preview.php:50
-#, fuzzy
 msgid "Gallery eCard"
-msgstr "Gallery"
+msgstr "Gallery eKort"
 
 #: ../popups/ecard_preview.php:51
 msgid "Gallery could not process your ecard! Please close this window and try again later, thanks!"
@@ -3584,7 +3465,6 @@ msgid "Title"
 msgstr "Titel"
 
 #: ../popups/edit_appearance.php:205
-#, fuzzy
 msgid "Alt text / Tooltip"
 msgstr "Alternativ tekst/onMouseOver"
 
@@ -3612,21 +3492,20 @@ msgid "Edit texts"
 msgstr "Ret tekster"
 
 #: ../popups/edit_caption.php:60
-#, fuzzy
 msgid "Given capture date is not valid."
-msgstr "Det angivne albumnavn: '%s' er ugyldigt !"
+msgstr "Det angivne optagelsestidspunkt er ugyldigt."
 
 #: ../popups/edit_caption.php:70
 msgid "Given caption not valid."
-msgstr ""
+msgstr "Titlen er ikke lovlig."
 
 #: ../popups/edit_caption.php:80
 msgid "Given description is not valid."
-msgstr ""
+msgstr "Beskrivelsen er ikke lovlig."
 
 #: ../popups/edit_caption.php:90
 msgid "Given keyword(s) is/are not valid."
-msgstr ""
+msgstr "Angivne nøgleord er ikke gyldig(e)."
 
 #: ../popups/edit_caption.php:117
 msgid "Successfully saved."
@@ -3667,7 +3546,7 @@ msgid "Edit %s"
 msgstr "Rediger %s"
 
 #: ../popups/edit_field.php:54
-#, fuzzy, php-format
+#, php-format
 msgid "Edit the %s and click %s when you're done."
 msgstr "Ret %s og tryk %s når du er færdig"
 
@@ -3681,7 +3560,6 @@ msgid "Custom Thumbnail"
 msgstr "Selvvalgt ikon"
 
 #: ../popups/edit_thumb.php:62
-#, fuzzy
 msgid "Recreating the Thumbnail..."
 msgstr "Gendanner ikon..."
 
@@ -3710,85 +3588,75 @@ msgstr "_Færdig"
 
 #: ../popups/edit_watermark.php:41
 msgid "Edit Watermark"
-msgstr "Ændr vandmærke"
+msgstr "Ret vandmærke"
 
 #: ../popups/edit_watermark.php:109
-#, fuzzy
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported. It will 'deface' and 'unanimate' your picture."
 msgstr "Dit billede er en gif. Vandmærkning af en animeret gif er ikke understøttet lige nu, og vil ødelægge animeringen."
 
 #: ../popups/featured-item.php:38 ../popups/featured-item.php:73
-#, fuzzy
 msgid "Featured item"
-msgstr "Option %s"
+msgstr "Forsidebillede"
 
 #: ../popups/featured-item.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "Featured %s"
-msgstr "Option %s"
+msgstr "Forside%s"
 
 #: ../popups/featured-item.php:59
 #, php-format
 msgid "New featured %s saved."
-msgstr ""
+msgstr "Nyt forside%s gemt."
 
 #: ../popups/featured-item.php:65
 msgid "Could not write the cache file!"
 msgstr ""
 
 #: ../popups/featured-item.php:67
-#, fuzzy, php-format
+#, php-format
 msgid "Make sure that the file %s in your albums folder is writeable for the webserver."
-msgstr "Biblioteket som indeholder dine brugeroplysninger (%s) kan ikke opdateres af web-serveren"
+msgstr "Kontroller at filen %s i din albummappe kan opdateres af webserveren."
 
 #: ../popups/featured-item.php:77
-#, fuzzy
 msgid "Invalid Parameters."
-msgstr "Ugyldig bruger"
+msgstr "Ugyldige parametre."
 
 #: ../popups/item_owner.php:34 ../popups/item_owner.php:42
 #: ../popups/item_owner.php:72
-#, fuzzy
 msgid "Item Owner"
-msgstr "Skift ejer"
+msgstr "Element ejer"
 
 #: ../popups/item_owner.php:85
 msgid "Owner: "
 msgstr "Ejer: "
 
 #: ../popups/manage_groups.php:29 ../popups/manage_groups.php:71
-#, fuzzy
 msgid "Manage Groups"
 msgstr "Håndter bruger_grupper"
 
 #: ../popups/manage_groups.php:41
-#, fuzzy
 msgid "Please select a group"
-msgstr "Angiv venligst en bruger"
+msgstr "Angiv venligst en gruppe"
 
 #: ../popups/manage_groups.php:76
-#, fuzzy
 msgid "Manage Gallery usergroups"
 msgstr "Håndter bruger_grupper"
 
 #: ../popups/manage_groups.php:83
-#, fuzzy
 msgid "You can create, modify and delete Gallery usergroups here."
-msgstr "Du kan oprette, ændre og slette brugere her."
+msgstr "Du kan oprette, ændre og slette grupper her."
 
 #: ../popups/manage_groups.php:88
 msgid "No groups found."
-msgstr ""
+msgstr "Der er ingen grupper."
 
 #: ../popups/manage_groups.php:98
-#, fuzzy
 msgid "To select multiple groups for deletion, hold down the Control (PC) or Command (Mac) key while clicking."
-msgstr "For at vælge flere brugere (kun ved sletning), hold da Control (PC) eller Command (Mac) nede mens du klikker."
+msgstr "For at vælge flere brugere til sletning, hold da Control (PC) eller Command (Mac) nede mens du klikker."
 
 #: ../popups/manage_groups.php:103
-#, fuzzy
 msgid "Create _new group"
-msgstr "Opret _ny bruger"
+msgstr "Opret _ny gruppe"
 
 #: ../popups/manage_groups.php:106 ../popups/manage_users.php:183
 msgid "_Modify"
@@ -3804,14 +3672,12 @@ msgid "Please select a user"
 msgstr "Angiv venligst en bruger"
 
 #: ../popups/manage_users.php:94
-#, fuzzy
 msgid "&lt;no group&gt;"
-msgstr "<ingen gruppe>"
+msgstr "&lt;ingen gruppe&gt;"
 
 #: ../popups/manage_users.php:100
-#, fuzzy
 msgid "&lt;No email set&gt;"
-msgstr "<Ingen email sat>"
+msgstr "&lt;Ingen email sat&gt;"
 
 #: ../popups/manage_users.php:103
 msgid "yes"
@@ -3839,7 +3705,7 @@ msgstr "Medlem af"
 
 #: ../popups/manage_users.php:118
 msgid "Account is locked!"
-msgstr ""
+msgstr "Bruger er låst"
 
 #: ../popups/manage_users.php:157
 msgid "You can create, modify and delete users here."
@@ -3862,32 +3728,28 @@ msgid "_Bulk Create"
 msgstr "_Masseoprettelse"
 
 #: ../popups/manage_users.php:186
-#, fuzzy
 msgid "_Unlock"
-msgstr "_Fortryd"
+msgstr "_Lås op"
 
 #: ../popups/modify_group.php:34 ../popups/modify_group.php:112
 msgid "Modify Group"
 msgstr "Ændr gruppe"
 
 #: ../popups/modify_group.php:52
-#, fuzzy
 msgid "No valid group selected !"
-msgstr "ingen gruppe valgt."
+msgstr "Ingen gruppe valgt."
 
 #: ../popups/modify_group.php:63
-#, fuzzy
 msgid "Gallery was not able to successfully read the group data."
-msgstr "Gallery kunne ikke gemme data."
+msgstr "Gallery kunne ikke læse gruppeoplysningerne."
 
 #: ../popups/modify_group.php:77
 msgid "Groupname not valid."
-msgstr ""
+msgstr "Gruppenavn er ikke lovligt."
 
 #: ../popups/modify_group.php:85
-#, fuzzy
 msgid "Description not valid."
-msgstr "Beskrivelse for"
+msgstr "Beskrivelsen er ikke gyldig."
 
 #: ../popups/modify_group.php:99
 msgid "Group information succesfully updated."
@@ -3914,28 +3776,24 @@ msgid "Available user"
 msgstr "Tilgængelige bruger"
 
 #: ../popups/modify_group.php:159
-#, fuzzy
 msgid "Current members"
-msgstr "Nuværende bruger"
+msgstr "Nuværende medlemmer"
 
 #: ../popups/modify_group.php:164
 msgid "Add -->"
-msgstr ""
+msgstr "Tilføj -->"
 
 #: ../popups/modify_group.php:166
-#, fuzzy
 msgid "<-- Remove"
-msgstr "Fjern -->"
+msgstr "<-- Fjern"
 
 #: ../popups/modify_group.php:191
-#, fuzzy
 msgid "_Group management"
-msgstr "Tilbage til _gruppevedligeholdelse"
+msgstr "_Gruppevedligeholdelse"
 
 #: ../popups/modify_group.php:193
-#, fuzzy
 msgid "_User management"
-msgstr "Til _brugervedligeholdelse"
+msgstr "_Brugervedligeholdelse"
 
 #: ../popups/modify_user.php:35 ../popups/modify_user.php:146
 msgid "Modify User"
@@ -3959,17 +3817,14 @@ msgstr "Du kan rette alle informationer om brugeren i denne formular."
 
 #: ../popups/move_albumitem.php:30 ../popups/move_albumitem.php:46
 #: ../popups/move_albumitem.php:52 ../popups/move_albumitem.php:64
-#, fuzzy
 msgid "Move item"
-msgstr "_Flyt det!"
+msgstr "Flyt det"
 
 #: ../popups/move_albumitem.php:72
-#, fuzzy
 msgid "Reorder Album"
 msgstr "Omplacer album"
 
 #: ../popups/move_albumitem.php:72
-#, fuzzy
 msgid "Move Album"
 msgstr "Flyt album"
 
@@ -3982,14 +3837,12 @@ msgid "Move Photo"
 msgstr "Flyt billede"
 
 #: ../popups/move_albumitem.php:90
-#, fuzzy
 msgid "You can't move items into the album they already exist in."
-msgstr "Du kan ikke flytte billeder ind i det album de allerede eksisterer i."
+msgstr "Du kan ikke flytte elementer ind i det album de allerede findes i."
 
 #: ../popups/move_albumitem.php:93
-#, fuzzy
 msgid "Invalid destination chosen."
-msgstr "Ugyldigt billede: %s"
+msgstr "Ugyldigt destination valgt."
 
 #: ../popups/move_albumitem.php:96
 #, php-format
@@ -3997,14 +3850,13 @@ msgid "You do not have the required permissions to write to %s!"
 msgstr "Du har ikke de nødvendige rettigheder til at skrive til %s!"
 
 #: ../popups/move_albumitem.php:167 ../popups/move_albumitem.php:287
-#, fuzzy
 msgid "You can't move an album into itself."
-msgstr "Du kan ikke fjerne administrator rettigheder fra dig selv"
+msgstr "Du kan ikke flytte et album ind i sig selv."
 
 #: ../popups/move_albumitem.php:179
-#, fuzzy, php-format
+#, php-format
 msgid "Moving item #%d"
-msgstr "Flytter billede #"
+msgstr "Flytter element #%d"
 
 #: ../popups/move_albumitem.php:241
 msgid "- Creating New Album Highlight"
@@ -4016,9 +3868,8 @@ msgid "Skipping Album #%d"
 msgstr "Springer over album #%d"
 
 #: ../popups/move_albumitem.php:304
-#, fuzzy
 msgid "Reorder this item within the album:"
-msgstr "Omplacer dette album inde i albummet:"
+msgstr "Omplacer dette element inde i albummet:"
 
 #: ../popups/move_albumitem.php:306
 #, php-format
@@ -4060,39 +3911,35 @@ msgstr "Bemærk: elementer som har modtaget stemmer, vil miste disse stemmer når 
 
 #: ../popups/move_rootalbum.php:32 ../popups/move_rootalbum.php:39
 #: ../popups/move_rootalbum.php:45
-#, fuzzy
 msgid "Move Top Album"
-msgstr "Flyt album"
+msgstr "Flyt top album"
 
 #: ../popups/move_rootalbum.php:48
-#, fuzzy
 msgid "Reorder Top Album"
-msgstr "Omplacer album"
+msgstr "Omplacer top album"
 
 #: ../popups/move_rootalbum.php:60
 msgid "You chose an invalid new parent album?"
-msgstr ""
+msgstr "Du har valgt et ugyldigt overalbum?"
 
 #: ../popups/move_rootalbum.php:101
 msgid "Given start and end index are wrong?"
-msgstr ""
+msgstr "Det givne start- og slutindeks er forkerte?"
 
 #: ../popups/move_rootalbum.php:113
-#, fuzzy, php-format
+#, php-format
 msgid "Select the new location of album: '%s%s%s'"
-msgstr "Vælg ny placering for album: %s"
+msgstr "Vælg ny placering for album: '%s%s%s'"
 
 #: ../popups/move_rootalbum.php:121
-#, fuzzy
 msgid "Your album will be moved into the album you choose below."
-msgstr "Dit album bliver flyttet til den placering du vælger nedenfor."
+msgstr "Dit album bliver flyttet til det album vælger nedenfor."
 
 #: ../popups/move_rootalbum.php:133
 msgid "_Move to Album!"
 msgstr "_Flyt til album!"
 
 #: ../popups/move_rootalbum.php:140
-#, fuzzy
 msgid "Your album will be moved to the position you choose below."
 msgstr "Dit album bliver flyttet til den placering du vælger nedenfor."
 
@@ -4200,9 +4047,8 @@ msgid "This page will go away automatically when the upload is complete.  Please
 msgstr "Dette vindue vil lukke af sig selv når overførslen er færdig. Vær tålmodig!"
 
 #: ../popups/rearrange.php:26
-#, fuzzy
 msgid "Rearrange Items"
-msgstr "Ordner album: %s"
+msgstr "Ordner albummer"
 
 #: ../popups/rearrange.php:49
 #, php-format
@@ -4249,9 +4095,8 @@ msgstr "******* Side %s *******"
 
 #: ../popups/rebuild_capture_dates.php:30
 #: ../popups/rebuild_capture_dates.php:37
-#, fuzzy
 msgid "Rebuilding capture dates"
-msgstr "Genopbygger optagelsesdatoer: %s"
+msgstr "Genopbygger optagelsesdatoer"
 
 #: ../popups/rebuild_capture_dates.php:42
 #, php-format
@@ -4276,7 +4121,6 @@ msgid "_Start"
 msgstr "_Start"
 
 #: ../popups/rebuild_thumbs.php:30 ../popups/rebuild_thumbs.php:37
-#, fuzzy
 msgid "Rebuilding Thumbnails"
 msgstr "Genopbygger ikoner"
 
@@ -4298,9 +4142,8 @@ msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Vil du også genopbygge ikonerne i underalbummer?"
 
 #: ../popups/recreate_captions.php:29 ../popups/recreate_captions.php:36
-#, fuzzy
 msgid "Recreate captions"
-msgstr "Genskaber %d billedtekster..."
+msgstr "Genskaber billedtekster"
 
 #: ../popups/recreate_captions.php:41
 #, php-format
@@ -4336,17 +4179,14 @@ msgid "This Gallery does not support self-registration by visitors."
 msgstr "Dette Gallery tillader ikke at brugere registrerer sig selv."
 
 #: ../popups/register.php:64
-#, fuzzy
 msgid "Your username contains invalid data!"
-msgstr "Dit fulde navn indeholder ulovlige tegn!"
+msgstr "Dit brugernavn indeholder ulovlige tegn!"
 
 #: ../popups/register.php:68
-#, fuzzy
 msgid "You must specify a username."
 msgstr "Du skal angive et brugernavn."
 
 #: ../popups/register.php:73
-#, fuzzy
 msgid "Your fullname contains invalid data!"
 msgstr "Dit fulde navn indeholder ulovlige tegn!"
 
@@ -4386,7 +4226,7 @@ msgstr "_Send forespørgsel"
 
 #: ../popups/rename_album.php:59
 msgid "Your new foldername contained unallowed chars. They were removed. Please try again."
-msgstr ""
+msgstr "Dit nye foldernavn indeholdt ulovlige tegn. De er blevet fjernet. Prøv igen."
 
 #: ../popups/rename_album.php:97
 msgid "There is already an album with that name!"
@@ -4409,13 +4249,12 @@ msgid "spaces"
 msgstr "mellemrum"
 
 #: ../popups/rename_album.php:120
-#, fuzzy
 msgid "Those characters are not allowed in your new album name."
-msgstr "Disse tegn vil blive ignoreret i det nye albumnavn."
+msgstr "Disse tegn er ikke tilladt i det nye albumnavn."
 
 #: ../popups/rename_album.php:125
 msgid "New name for album folder:"
-msgstr ""
+msgstr "Nyt navn for albummappen:"
 
 #: ../popups/rename_album.php:132
 msgid "_Rename"
@@ -4423,16 +4262,16 @@ msgstr "_Omdøb"
 
 #: ../popups/rename_album.php:140
 msgid "This it not the title of the album, its the filename of the directory on your webserver. The name is also used in the url."
-msgstr "Dette er ikke albumtitlen, men navnet på kataloget på web-serveren. Navnet bruges også i URL'en."
+msgstr "Dette er ikke albumtitlen, men navnet på mappen på web-serveren. Navnet bruges også i URL'en."
 
 #: ../popups/reset_votes.php:32
 msgid "Reset Voting"
 msgstr "Nulstil afstemning"
 
 #: ../popups/reset_votes.php:60
-#, fuzzy, php-format
+#, php-format
 msgid "Do you really want to remove all votes from album '%s'?"
-msgstr "Ønsker du virkelig at fjerne alle stemmer fra album %s?"
+msgstr "Ønsker du virkelig at fjerne alle stemmer fra album '%s'?"
 
 #: ../popups/reset_votes.php:65
 msgid "_Remove Votes"
@@ -4443,9 +4282,8 @@ msgid "Resize Photo"
 msgstr "Skaler billede"
 
 #: ../popups/resize_photo.php:33
-#, fuzzy
 msgid "Resize all Photos"
-msgstr "Skaler billede"
+msgstr "Skaler alle billeder"
 
 #: ../popups/resize_photo.php:93
 msgid "Resizing 1 photo..."
@@ -4575,28 +4413,27 @@ msgid "Fetching Urls..."
 msgstr "Henter URL..."
 
 #: ../popups/save_photos.php:121
-#, fuzzy, php-format
+#, php-format
 msgid "Processing '%s' as a local directory."
-msgstr "Behandler %s som et lokalt katalog."
+msgstr "Behandler '%s' som en lokal mappe."
 
 #: ../popups/save_photos.php:163
-#, fuzzy, php-format
+#, php-format
 msgid "Processing '%s' as file or URL."
-msgstr "Behandler '%s'."
+msgstr "Behandler '%s' som en fil eller en URL."
 
 #: ../popups/save_photos.php:188
 msgid "local file"
 msgstr "Lokal fil"
 
 #: ../popups/save_photos.php:222
-#, fuzzy
 msgid "Could not open as URL, file or directory."
-msgstr "Kunne ikke åbne kataloget %s"
+msgstr "Kunne ikke åbnes som URL, fil eller mappe."
 
 #: ../popups/save_photos.php:228
-#, fuzzy, php-format
+#, php-format
 msgid "Opened '%s' successfully"
-msgstr "Åbnede %s uden problemer."
+msgstr "Åbnede '%s' uden problemer"
 
 #: ../popups/save_photos.php:255
 msgid "Copy file locally"
@@ -4613,9 +4450,8 @@ msgid "Found %d images"
 msgstr "Fandt %d billeder"
 
 #: ../popups/save_photos.php:332
-#, fuzzy
 msgid "Metainfo found."
-msgstr "Metainfo fundet"
+msgstr "Metainfo fundet."
 
 #: ../popups/save_photos.php:344
 msgid "Metainfo found"
@@ -4637,18 +4473,16 @@ msgid "No images uploaded!"
 msgstr "Ingen billeder overført!"
 
 #: ../popups/save_photos.php:493
-#, fuzzy
 msgid "No images found at that place."
-msgstr "Overfør alle billeder der findes på dette sted."
+msgstr "Der fandtes ingen billeder på det angivne sted."
 
 #: ../popups/save_photos.php:509
-#, fuzzy
 msgid "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)."
 msgstr "Vælg de elementer du vil overføre. For at vælge flere skal du trykke på 'Ctrl' (PC) eller 'Command' (Mac)"
 
 #: ../popups/save_photos.php:536
 msgid "Some files with malicious characters are not listed. "
-msgstr ""
+msgstr "Nogle filer med ondskabsfulde tegn er ikke vist. "
 
 #: ../popups/save_photos.php:543
 #, php-format
@@ -4777,11 +4611,11 @@ msgid "Empty"
 msgstr "Tom"
 
 #: ../popups/upgrade_album.php:165
-#, fuzzy, php-format
+#, php-format
 msgid "One item"
 msgid_plural "%d items"
-msgstr[0] "1 objekt"
-msgstr[1] "%s objekter"
+msgstr[0] "1 element"
+msgstr[1] "%d elementer"
 
 #: ../popups/upgrade_album.php:173
 msgid "upgrade"
@@ -4800,7 +4634,6 @@ msgid "You are not allowed to change your username."
 msgstr "Du har ikke rettigheder til at ændre dit brugernavn."
 
 #: ../popups/user_preferences.php:63
-#, fuzzy
 msgid "Incorrect password."
 msgstr "Forkert adgangskode"
 
@@ -4835,28 +4668,25 @@ msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(hvis data er aktuelle, vil dette ikke have nogen synlig effekt)"
 
 #: ../popups/watermark_album.php:48
-#, fuzzy, php-format
+#, php-format
 msgid "Watermarking album :: %s"
-msgstr "Sætter vandmærke på albummets indhold."
+msgstr "Vandmærker album :: %s"
 
 #: ../popups/watermark_album.php:56
 msgid "No items to watermark."
-msgstr "Ingen objekter at vandmærke."
+msgstr "Ingen elementer at vandmærke."
 
 #: ../popups/watermark_album.php:72
-#, fuzzy
 msgid "Watermarking album ... (this may take a while)"
-msgstr "(dette kan tage et stykke tid)"
+msgstr "Vandmærker album ... (dette kan tage et stykke tid)"
 
 #: ../popups/watermark_album.php:86
-#, fuzzy
 msgid "Watermarking done."
-msgstr "Sætter vandmærke for billede"
+msgstr "Vandmærkning alsluttet."
 
 #: ../popups/watermark_album.php:107
-#, fuzzy
 msgid "Preview"
-msgstr "_Forhåndsvisning"
+msgstr "Forhåndsvisning"
 
 #: ../popups/watermark_album.php:115
 msgid "No preview possible, as this album has no highlight set."
@@ -4869,11 +4699,11 @@ msgstr "Husk at vandmærkning af animerede gif'er ikke understøttes for tiden."
 
 #: ../publish_xp_docs.php:25
 msgid "Publishing with Windows XP"
-msgstr "Publicerer med Windows XP"
+msgstr "Publicer med Windows XP"
 
 #: ../publish_xp_docs.php:28
 msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service."
-msgstr "Windows XP indeholder en funktion som tillader dig at publicere indhold fra dit skrivebord direkte til en net-tjeneste."
+msgstr "Windows XP indeholder en funktion som tillader dig at publicere indhold fra dit skrivebord direkte til en Web-tjeneste."
 
 #: ../publish_xp_docs.php:29
 msgid "It's relatively easy to configure."
@@ -4895,7 +4725,7 @@ msgstr "Gem denne fil på din computer og skift navnet til %s."
 
 #: ../publish_xp_docs.php:43
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
-msgstr "Hvis du bliver bedt om bekræftelse på ændring af filtype, så vælg &quot;ja&quot;."
+msgstr "Hvis du bliver bedt om bekræftelse på ændring af filtype, så vælg &quot;Ja&quot;."
 
 #: ../publish_xp_docs.php:45
 msgid "Right click on this file and you should see a menu appear."
@@ -4904,19 +4734,19 @@ msgstr "Højre-klik på denne fil og du vil se en menu komme frem."
 # beaufour: Sikker på denne tekst? Det er ikke "Flet sammen"?
 #: ../publish_xp_docs.php:47
 msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
-msgstr "Vælg <b>Smelt sammen</b> (skal være i toppen af menuen)."
+msgstr "Vælg <b>Flet</b> (skal være øverst i menuen)."
 
 #: ../publish_xp_docs.php:49
 msgid "It will ask you if you want to import these values into your registry. Click &quot;ok&quot;."
-msgstr "Du vil blive spurgt, om du vil importere disse værdier til registreringsdatabasen. Klik 'OK'"
+msgstr "Du vil blive spurgt, om du vil Føje disse oplysninger til registreringsdatabasen. Klik 'Ja'"
 
 #: ../publish_xp_docs.php:51
 msgid "It will tell you that the files were imported successfully."
-msgstr "Du vil blive fortalt at filerne blev successfuldt importeret ."
+msgstr "Du vil blive fortalt at oplysningerne blev successfuldt tilføjet ."
 
 #: ../publish_xp_docs.php:52
 msgid "Click &quot;ok&quot; again."
-msgstr "Klik &quot;ok&quot; igen."
+msgstr "Klik &quot;OK&quot; igen."
 
 #: ../publish_xp_docs.php:57
 msgid "Step 2"
@@ -4924,11 +4754,11 @@ msgstr "Trin 2"
 
 #: ../publish_xp_docs.php:60
 msgid "Open your Windows explorer and browse to a folder containing supported images."
-msgstr "Åbn din Windows filvælger og vælg et katalog med understøttede filformater."
+msgstr "Åbn din Windows Stifinder og vælg en mappe med understøttede filformater."
 
 #: ../publish_xp_docs.php:62
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Vælg et eller flere billeder, eller et katalog, og så skulle der være en henvisning på venstre side som hedder &quot;Publish this file to the web...&quot;"
+msgstr "Vælg et eller flere billeder, eller en mappe, og så skulle der være en henvisning på venstre side som hedder &quot;Udgiv denne fil på World Wide Web...&quot;"
 
 #: ../publish_xp_docs.php:64
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
@@ -4939,14 +4769,13 @@ msgid "Return to Add Photos"
 msgstr "Tilbage til 'Tilføj Billeder'"
 
 #: ../publish_xp.php:29
-#, fuzzy
 msgid "Windows publishing wizard"
-msgstr "Windows XP Publishing Agent"
+msgstr "Windows guide til Webudgivelse"
 
 #: ../publish_xp.php:51
 #, php-format
 msgid "Publish Your Photos and Movies to %s."
-msgstr "Publicer dine billeder og film på %s."
+msgstr "Udgiv dine billeder og film på %s."
 
 #: ../publish_xp.php:88
 msgid "Username and Password are not correct."
@@ -5036,9 +4865,8 @@ msgid "Upload Photos to"
 msgstr "Overfør billeder til"
 
 #: ../rss.php:122
-#, fuzzy
 msgid "Gallery RSS feed"
-msgstr "Galleriets hovedside"
+msgstr "Galleriets RSS stræm"
 
 #: ../rss.php:273
 msgid "no albums"
@@ -5104,9 +4932,8 @@ msgid "Some albums not searched as they require upgrading to the latest version 
 msgstr "Enkelte album blev ikke søgt i, da de først skal opgraderes til den nyeste version af %s."
 
 #: ../search.php:265
-#, fuzzy
 msgid "Upgrade albums."
-msgstr "Opgradér album"
+msgstr "Opgradér albummer."
 
 #: ../search.php:271
 #, fuzzy
@@ -5114,32 +4941,26 @@ msgid "Search the Gallery's Album and Photo titles, descriptions and comments. E
 msgstr "Søg i Gallerys album- og billedetitler, beskrivelser og kommentarer"
 
 #: ../slideshow.php:94
-#, fuzzy
 msgid "Play"
 msgstr "fremvis"
 
 #: ../slideshow.php:95
-#, fuzzy
 msgid "Stop"
 msgstr "stop"
 
 #: ../slideshow.php:96
-#, fuzzy
 msgid "Normal size"
 msgstr "normal størrelse"
 
 #: ../slideshow.php:97
-#, fuzzy
 msgid "Full size"
 msgstr "fuld størrelse"
 
 #: ../slideshow.php:98
-#, fuzzy
 msgid "Forward direction"
 msgstr "fremad"
 
 #: ../slideshow.php:99
-#, fuzzy
 msgid "Reverse direction"
 msgstr "baglæns"
 
@@ -5296,12 +5117,12 @@ msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Totalt: %s ; Start: %s ; Sidste side: %s"
 
 #: ../stats.php:587
-#, fuzzy, php-format
+#, php-format
 msgid "%d items with comments in album: %s."
 msgstr "%d billeder med kommentarer i album: %s"
 
 #: ../stats.php:590
-#, fuzzy, php-format
+#, php-format
 msgid "%d items in album: %s"
 msgstr "%d billeder i album: %s"
 
@@ -5311,12 +5132,12 @@ msgid "Given albumname: '%s' is invalid !"
 msgstr "Det angivne albumnavn: '%s' er ugyldigt !"
 
 #: ../stats.php:599
-#, fuzzy, php-format
+#, php-format
 msgid "%d items with comments in this Gallery."
 msgstr "%d billeder med kommentarer i dette galleri"
 
 #: ../stats.php:602
-#, fuzzy, php-format
+#, php-format
 msgid "%d items this Gallery."
 msgstr "%d billeder i dette galleri"
 
@@ -5332,7 +5153,7 @@ msgid "Back to stats-_wizard"
 msgstr "Tilbage til _statistiksiden"
 
 #: ../stats.php:657
-#, fuzzy, php-format
+#, php-format
 msgid "Data load time %d seconds."
 msgstr "Indlæsningstiden var %d sekunder"
 
@@ -5359,12 +5180,10 @@ msgid "upgrade all albums"
 msgstr "opgrader alle albummer"
 
 #: ../stats-wizard.php:50
-#, fuzzy
 msgid "Assemble your Gallery statistic"
 msgstr "Gallery statistik"
 
 #: ../stats-wizard.php:60
-#, fuzzy
 msgid "Statistic Wizard"
 msgstr "Gallery statistikker"
 
@@ -5414,7 +5233,6 @@ msgstr "Kommentarer bliver tilføjet"
 
 #: ../templates/classic/album.tpl.default:216
 #: ../templates/classic_sidebar/album.tpl.default:270
-#, fuzzy
 msgid "Other changes are maded"
 msgstr "Der er lavet andre ændringer"
 
@@ -5438,29 +5256,25 @@ msgstr "Ingen Administrator kommandoer tilgængelige"
 #: ../templates/classic_sidebar/gallery.tpl.default:98
 #: ../templates/classic_sidebar/photo.tpl.default:101
 msgid "Open sidebar"
-msgstr ""
+msgstr "Åben sidepanel"
 
 #: ../templates/classic_sidebar/album.tpl.default:112
 #: ../templates/classic_sidebar/gallery.tpl.default:99
 #: ../templates/classic_sidebar/photo.tpl.default:102
-#, fuzzy
 msgid "Close sidebar"
-msgstr "Luk vindue"
+msgstr "Luk sidepanel"
 
 #: ../templates/classic_sidebar/album.tpl.default:116
-#, fuzzy
 msgid "Album Actions"
-msgstr "Albumbeskrivelse: "
+msgstr "Albumhandlinger"
 
 #: ../templates/classic_sidebar/gallery.tpl.default:103
-#, fuzzy
 msgid "Actions"
-msgstr "Handling"
+msgstr "Handlinger"
 
 #: ../templates/classic_sidebar/photo.tpl.default:106
-#, fuzzy
 msgid "Item Actions"
-msgstr "Handling"
+msgstr "Elementhandling"
 
 #: ../templates/commentbox.tpl.default:35
 msgid "view comments for this nested album"
@@ -5540,7 +5354,7 @@ msgstr "Filer uden album vil blive slettet fra disken. Filer uden album burde al
 
 #: ../tools/find_orphans.php:127
 msgid "Album directory"
-msgstr "Albumkatalog"
+msgstr "Albummappe"
 
 #: ../tools/find_orphans.php:129
 msgid "Orphaned file"
@@ -5562,7 +5376,7 @@ msgstr "Albummer repareret"
 # Ikke helt 100 på denne.
 #: ../tools/find_orphans.php:166
 msgid "Orphaned files repaired."
-msgstr "Objekter repareret"
+msgstr "Elementer repareret"
 
 #: ../tools/find_orphans.php:177
 msgid "The Webserver has not enough permission to delete the following files:"
@@ -5570,7 +5384,7 @@ msgstr "Webserveren har ikke rettigheder nok til at slette følgende filer:"
 
 #: ../tools/find_orphans.php:183
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
-msgstr "Kontroller venligst rettighederne for ovenstående filer og kataloget. chmod dem, eller få din administrator til det."
+msgstr "Kontroller venligst rettighederne for ovenstående filer og mappen. chmod dem, eller få din administrator til det."
 
 #: ../tools/find_orphans.php:187
 msgid "Reload"
@@ -5612,7 +5426,6 @@ msgstr "Gennemsøgte %d albummer, %d billeder og %d kommentarer på %2.2f sekunder
 msgid "No spam comments."
 msgstr "Ingen spam kommentarer."
 
-# Hvor er dette henne?
 #: ../tools/lib/lib-despam_comments.php:119
 #: ../tools/lib/lib-despam_comments.php:276
 msgid "Entry"
@@ -5683,7 +5496,7 @@ msgstr "%s lavede et værktøj kaldet %s, som siden er blevet forældet, men blackl
 #: ../tools/lib/lib-despam_comments.php:310
 #, php-format
 msgid "Click this link to see his %sgreat blacklist%s taken from MT-Blacklist 1.6.2"
-msgstr "Klik på dette link for at se hand %sgode blacklist%s fra MT-Blacklist 1.6.2"
+msgstr "Klik på dette link for at se hans %sgode blacklist%s fra MT-Blacklist 1.6.2"
 
 #: ../tools/lib/lib-despam_comments.php:316
 msgid "You can just cut and paste these blacklist entries into the text box, or add new entries of your own."
@@ -5714,18 +5527,16 @@ msgid "Album deleted."
 msgstr "Album slettet."
 
 #: ../tools/validate_albums.php:104
-#, fuzzy
 msgid "Album not deleted!"
-msgstr "Album slettet."
+msgstr "Album ikke slettet!"
 
 #: ../tools/validate_albums.php:107 ../tools/validate_albums.php:139
 msgid "_Validate again"
 msgstr "_Kontroller igen"
 
 #: ../tools/validate_albums.php:113
-#, fuzzy
 msgid "Are you sure you want to delete the folder below and all of its content?"
-msgstr "Er du sikker på at du vil slette kataloget nedenfor og alt hvad det indeholder?"
+msgstr "Er du sikker på at du vil slette mappen nedenfor og alt hvad den indeholder?"
 
 #: ../tools/validate_albums.php:115 ../tools/validate_albums.php:156
 msgid "Yes, _Delete"
@@ -5736,23 +5547,20 @@ msgid "No, _Cancel"
 msgstr "Nej, _Fortryd"
 
 #: ../tools/validate_albums.php:133
-#, fuzzy
 msgid "Item deleted."
-msgstr "Album slettet."
+msgstr "Element slettet."
 
 #: ../tools/validate_albums.php:136
-#, fuzzy
 msgid "Item not deleted!"
-msgstr "Element ikke tilføjet."
+msgstr "Element ikke slettet!"
 
 #: ../tools/validate_albums.php:159
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr "Bemærk: Selvom billedets ikon bliver vist uden problemer ovenfor, så er billedet i fuld størrelse væk."
 
 #: ../tools/validate_albums.php:165
-#, fuzzy
 msgid "Invalid action!"
-msgstr "Ugyldig handling"
+msgstr "Ugyldig handling!"
 
 #: ../tools/validate_albums.php:183
 msgid "Missing files"
@@ -5760,7 +5568,7 @@ msgstr "Manglende filer"
 
 #: ../tools/validate_albums.php:187
 msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."
-msgstr "Følgende filer kan ikke findes i albumbiblioteket. Der er stadig information om billedet i albumdatabasen, men selve filen kan af en eller anden grund ikke findes længere.  Disse filer kan forårsage fejl hvis du vil opgradere til Gallery 2.0."
+msgstr "Følgende filer kan ikke findes i albummappen. Der er stadig information om billedet i albumdatabasen, men selve filen kan af en eller anden grund ikke findes længere.  Disse filer kan forårsage fejl hvis du vil opgradere til Gallery 2.0."
 
 #: ../tools/validate_albums.php:189
 msgid "This can be fixed in one of two ways:"
@@ -5772,26 +5580,24 @@ msgstr "Den første er simpelthen at slette billedet fra albummet."
 
 #: ../tools/validate_albums.php:192
 msgid "The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
-msgstr "Den ander er manuelt at tilføje filen til det albummets katalog, ved hjælp af det filnavn der ses til venstre i tabellen."
+msgstr "Den ander er manuelt at tilføje filen til albummets mappe, ved hjælp af det filnavn der ses til venstre i tabellen."
 
 #: ../tools/validate_albums.php:197
-#, fuzzy, php-format
+#, php-format
 msgid "Missing files: %s"
 msgstr "Manglende filer: %s"
 
 #: ../tools/validate_albums.php:201
-#, fuzzy
 msgid "Missing file"
-msgstr "Manglende filer"
+msgstr "Manglende fil"
 
 #: ../tools/validate_albums.php:203 ../tools/validate_albums.php:249
 msgid "Action"
 msgstr "Handling"
 
 #: ../tools/validate_albums.php:217
-#, fuzzy
 msgid "Delete item"
-msgstr "_Slet elementer"
+msgstr "Slet elementer"
 
 #: ../tools/validate_albums.php:231
 msgid "There are no missing files in this Gallery."
@@ -5802,24 +5608,21 @@ msgid "Invalid albums"
 msgstr "Ugyldige albummer"
 
 #: ../tools/validate_albums.php:239
-#, fuzzy
 msgid "Invalid albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x."
-msgstr "Ugyldige albummer er biblioteker som er blevet oprettet i albumbiblioteket, men som ikke indeholder albumdata.  Sådanne biblioteker kan skabe problemer for galleriets almindelige brug og også for opgraderingen til Gallery 2.0"
+msgstr "Ugyldige albummer er mapper som er blevet oprettet i albummappen, men som ikke indeholder albumdata.  Sådanne mapper kan skabe problemer for galleriets almindelige brug og også for opgraderingen til Gallery 2.0"
 
 #: ../tools/validate_albums.php:243
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid albums: %d"
 msgstr "Ugyldige albummer: %d"
 
 #: ../tools/validate_albums.php:247
-#, fuzzy
 msgid "Invalid album"
-msgstr "Ugyldige albummer"
+msgstr "Ugyldigt album"
 
 #: ../tools/validate_albums.php:259
-#, fuzzy
 msgid "Delete directory"
-msgstr "slet bibliotek"
+msgstr "slet mappe"
 
 #: ../tools/validate_albums.php:272
 msgid "There are no invalid albums in this Gallery."
@@ -5947,7 +5750,6 @@ msgid "Getting Dimension of file: %s"
 msgstr "Henter billedstørrelse for filen: %s"
 
 #: ../util.php:237
-#, fuzzy
 msgid "The file does not exist?!"
 msgstr "Filen eksisterer ikke?!"
 
@@ -5971,7 +5773,7 @@ msgstr "Kan ikke afgøre billedestørrelsen!"
 
 #: ../util.php:370
 msgid "Gallery seems to be configured, but the path to the albums dir is wrong. Maybe you did a host change?"
-msgstr "Gallery ser ud til at være konfigureret, men stien til albums kataloget er forkert. Har du skiftet host?"
+msgstr "Gallery ser ud til at være konfigureret, men stien til albummappen er forkert. Har du skiftet host?"
 
 #: ../util.php:372
 msgid "Check all pathes and URLS in your config.php ; Unfortunately this can't be done via the config wizard."
@@ -5992,28 +5794,27 @@ msgid "Got no capture date. Using file modification time."
 msgstr "Fandt ikke noget optagelsestidspunkt. Bruger filens opdateringstid."
 
 #: ../util.php:621
-#, fuzzy
 msgid "Got no capture date and an error on getting the file modification time."
-msgstr "Fandt ikke noget optagelsestidspunkt. Bruger filens opdateringstid."
+msgstr "Fandt ikke noget optagelsestidspunkt og fik fejl på læsning af filens tidsstempel."
 
 #: ../util.php:626
-#, fuzzy, php-format
+#, php-format
 msgid "Item Capture Date: %s"
-msgstr "Dato og tid da billedet blev taget: %s"
+msgstr "Optagelsestidspunkt %s"
 
 #: ../util.php:740
 msgid "No Support for creating Zips"
 msgstr "Ingen støttet for at oprette zip-filer."
 
 #: ../util.php:743
-#, fuzzy, php-format
+#, php-format
 msgid "Creating Zipfile with %s"
 msgstr "Opretter Zip file med %s"
 
 #: ../util.php:757
-#, fuzzy, php-format
+#, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
-msgstr "Dit temp katalog er ikke skrivbart. Check tilladelserne på dette katalog: %s"
+msgstr "Din temp mappe er ikke skrivbar. Check tilladelserne på denne mappe: %s"
 
 #: ../util.php:914
 #, php-format
@@ -6031,9 +5832,9 @@ msgid "%s sent you an E-C@rd."
 msgstr "%s har sendt dig et eKort."
 
 #: ../util.php:1367
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
-msgstr "Gallery kunne ikke oprette et midlertidigt underkatalog i dit temp katalog. Check tilladelser på dette katalog: %s"
+msgstr "Gallery kunne ikke oprette en midlertidig undermappe i din temp mappe. Check tilladelser på denne mappe: %s"
 
 #: ../util.php:1394
 #, php-format
@@ -6043,12 +5844,11 @@ msgstr "'%s' synes ikke at være en lovlig fil. Hentning afbrudt."
 #: ../util.php:1402
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
-msgstr "Filen '%s' er ikke i Gallerys temp katalog '%s'. Hentning afbrudt."
+msgstr "Filen '%s' er ikke i Gallerys temp mappe '%s'. Hentning afbrudt."
 
 #: ../util.php:1407
-#, fuzzy
 msgid "We are trying to download the tempdir itself?! Download aborted."
-msgstr "Vi er ved at hente hele temp kataloget?! Hentning afbrudt."
+msgstr "Vi er ved at hente hele temp mappen?! Hentning afbrudt."
 
 #: ../view_album.php:147
 #, php-format
@@ -6093,7 +5893,6 @@ msgstr[0] "%s er skjult"
 msgstr[1] "%s er skjult"
 
 #: ../view_album.php:209
-#, fuzzy
 msgid "View&nbsp;_comments"
 msgstr "vis&nbsp;_kommentarer"
 
@@ -6183,9 +5982,8 @@ msgid "Hey! Add some photos."
 msgstr "Hov! Tilføj nogle billeder."
 
 #: ../view_comments.php:59
-#, fuzzy
 msgid "Return to _album"
-msgstr "gå tilbage til _album"
+msgstr "Tilbage til _album"
 
 #: ../view_comments.php:63
 msgid "Comments for this Album"
@@ -6197,9 +5995,8 @@ msgid "Deleting comment %d from item with index: %d"
 msgstr "Sletter kommentar %d fra element nummer: %d"
 
 #: ../view_comments.php:149
-#, fuzzy
 msgid "Sorry.  You are not allowed to see comments of this album."
-msgstr "Du har ikke rettigheder til at udføre denne handling!"
+msgstr "Beklager. Du har ikke lov til at se kommentarer for dette album."
 
 #: ../view_photo.php:300
 msgid "Send photo to..."
@@ -6226,9 +6023,32 @@ msgstr "normal"
 msgid "Email me when comments are added"
 msgstr "Email mig når der bliver tilføjet kommentarer"
 
-#, fuzzy
+#~ msgid "Checking groupname '%s' for validity"
+#~ msgstr "Checker om gruppenavnet '%s' er lovligt"
+
+#~ msgid "Please enter a groupname."
+#~ msgstr "Indtast venligst gruppenavn."
+
+#~ msgid "Groupname '%s' is to short. Must be at least 2 characters."
+#~ msgstr "Gruppenavnet '%s' er for kort. Det skal være mindst to tegn."
+
+#~ msgid "Groupname '%s' too long. Must be at most 25 characters."
+#~ msgstr "Gruppenavnet %s er for langt: det må maksimalt være på 25 tegn"
+
+#~ msgid "Illegal groupname '%s'. Only letters and digits allowed."
+#~ msgstr "Ugyldigt gruppenavn '%s': det må kun bestå af bogstaver og tal"
+
+#~ msgid "A group with the groupname of '%s' already exists"
+#~ msgstr "En gruppe med gruppenavn '%s' eksisterer allerede"
+
+#~ msgid "Gallery was not able to open dir: %s. <br>Please check permissions and existence"
+#~ msgstr "Gallery kunne ikke åbne mappen %s. <br>Kontroller tilladelserne på mappen"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
 #~ msgid "Checking:"
-#~ msgstr "Undersøger album: %s"
+#~ msgstr "Undersøger:"
 
 #~ msgid "RSS"
 #~ msgstr "RSS"
@@ -6239,12 +6059,17 @@ msgstr "Email mig når der bliver tilføjet kommentarer"
 #~ msgid "Update selected ImageMap(s)"
 #~ msgstr "Rediger valgt(e) kortbillede(r)"
 
-#, fuzzy
 #~ msgid "Perform action"
-#~ msgstr "Udfører kommando.."
+#~ msgstr "Udfør kommando"
 
 #~ msgid "<-- Add"
 #~ msgstr "<-- Tilføj"
+
+#~ msgid "return to _gallery"
+#~ msgstr "vend tilbage til _galleriet"
+
+#~ msgid "_Documentation"
+#~ msgstr "_dokumentation"
 
 #~ msgid "Entering subalbum '<i>%s</i>', processing %d items"
 #~ msgstr "Åbner album %s, behandler %d billeder"
@@ -6255,29 +6080,18 @@ msgstr "Email mig når der bliver tilføjet kommentarer"
 #~ msgid "_login"
 #~ msgstr "_log ind"
 
-#~ msgid "return to _gallery"
-#~ msgstr "vend tilbage til _galleriet"
+#~ msgid "Preview Size:"
+#~ msgstr "Størrelse for forhåndsvisning:"
 
-#, fuzzy
-#~ msgid "_Documentation"
-#~ msgstr "_dokumentation"
-
-#~ msgid "Preview Size"
-#~ msgstr "Størrelse for forhåndsvisning"
-
-#, fuzzy
 #~ msgid "Rename album"
 #~ msgstr "Omdøb album"
 
-#, fuzzy
 #~ msgid "Reset counter"
-#~ msgstr "nulstil tæller"
+#~ msgstr "Nulstil tæller"
 
-#, fuzzy
 #~ msgid "View comments"
-#~ msgstr "Vis _kommentarer"
+#~ msgstr "Vis ommentarer"
 
-#, fuzzy
 #~ msgid "Change ow_ner"
 #~ msgstr "Skift _ejer"
 
@@ -6305,9 +6119,8 @@ msgstr "Email mig når der bliver tilføjet kommentarer"
 #~ msgid "_Return to  %s"
 #~ msgstr "Vend til_bage til %s"
 
-#, fuzzy
 #~ msgid "Changing permissions for: %s"
-#~ msgstr "Ændrer rettigheder for %s"
+#~ msgstr "Ændrer rettigheder for: %s"
 
 #~ msgid "Can't copy album #%d"
 #~ msgstr "Kan ikke kopiere album #%d"
@@ -6327,7 +6140,6 @@ msgstr "Email mig når der bliver tilføjet kommentarer"
 #~ msgid "Some input fields are not correctly filled out. Please fill out."
 #~ msgstr "Nogen inputfelter er ikke korrekt udfyldt. Udfyld dem venligst."
 
-#, fuzzy
 #~ msgid "Year must be between 1969 and 2070."
 #~ msgstr "Årstal skal være mellem 1969 og 2070"
 
@@ -6364,11 +6176,17 @@ msgstr "Email mig når der bliver tilføjet kommentarer"
 #~ msgid "Reorder this photo within the album:"
 #~ msgstr "Omplacer dette billede inde i albummet:"
 
+#~ msgid "You are not allowed to perform this action!. Please go back to %s."
+#~ msgstr "Du har ikke rettigheder til at udføre denne handling! Gå tilbage til %s."
+
 #~ msgid "Unable to find %s locally - trying %s."
 #~ msgstr "Kunne ikke finde %s lokalt - prøver %s."
 
 #~ msgid "Could not open url: %s"
 #~ msgstr "Kunne ikke åbne URL: %s"
+
+#~ msgid "Password was incorrect."
+#~ msgstr "Adgangskoden er ikke korrekt."
 
 #~ msgid "Upgrade all albums."
 #~ msgstr "Opgrader alle albummer."
