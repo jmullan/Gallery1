@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-16 10:48+0200\n"
+"POT-Creation-Date: 2008-09-23 02:04+0200\n"
 "PO-Revision-Date: 2004-05-17 00:39+0100\n"
 "Last-Translator: Edwin Mons <intosi at users.sourceforge.net>\n"
 "Language-Team: <gallery-translations@lists.sourceforge.net>\n"
@@ -51,9 +51,10 @@ msgstr "Geef commentaar"
 #: ../extra_fields.php:34 ../manage_users.php:30 ../modify_user.php:34
 #: ../move_album.php:40 ../move_photo.php:53 ../multi_create_user.php:34
 #: ../photo_owner.php:43 ../poll_properties.php:32 ../poll_results.php:36
-#: ../rearrange.php:26 ../rebuild_capture_dates.php:38 ../rename_album.php:29
-#: ../reset_votes.php:40 ../resize_photo.php:53 ../rotate_photo.php:47
-#: ../sort_album.php:37 ../upgrade_album.php:56 ../user_preferences.php:35
+#: ../rearrange.php:26 ../rebuild_capture_dates.php:38
+#: ../rebuild_thumbs.php:38 ../rename_album.php:29 ../reset_votes.php:40
+#: ../resize_photo.php:53 ../rotate_photo.php:47 ../sort_album.php:37
+#: ../upgrade_album.php:56 ../user_preferences.php:35
 #: ../view_photo_properties.php:37 ../watermark_album.php:51
 msgid "You are not allowed to perform this action!"
 msgstr "U bent niet bevoegd om deze actie uit te voeren!"
@@ -63,10 +64,11 @@ msgstr "U bent niet bevoegd om deze actie uit te voeren!"
 msgid "Enter your comment in the text box below."
 msgstr "Geef commentaar op deze foto in het tekstvak hieronder."
 
-#: ../add_comment.php:66 ../delete_album.php:67 ../delete_photo.php:114
-#: ../delete_user.php:85 ../do_command.php:203 ../download.php:97
-#: ../ecard_form.php:290 ../edit_caption.php:201 ../edit_field.php:63
-#: ../edit_watermark.php:132 ../includes/add_photos/add_form.inc:108
+#: ../add_comment.php:66 ../create_user.php:152 ../delete_album.php:67
+#: ../delete_photo.php:114 ../delete_user.php:85 ../do_command.php:203
+#: ../download.php:97 ../ecard_form.php:290 ../edit_caption.php:201
+#: ../edit_field.php:63 ../edit_watermark.php:132
+#: ../includes/add_photos/add_form.inc:108
 #: ../includes/add_photos/add_url.inc:55 ../login.php:218
 #: ../move_album.php:134 ../move_album.php:156 ../move_photo.php:323
 #: ../move_photo.php:387 ../new_password.php:141 ../rearrange.php:148
@@ -74,6 +76,10 @@ msgstr "Geef commentaar op deze foto in het tekstvak hieronder."
 #: ../reset_votes.php:59 ../resize_photo.php:189 ../sort_album.php:113
 msgid "Cancel"
 msgstr "Annuleren"
+
+#: ../add_photos_frame.php:34
+msgid "Add Photos"
+msgstr "Foto's toevoegen"
 
 #: ../add_photos.php:58 ../save_photos.php:41 ../save_photos.php:51
 #, fuzzy
@@ -310,14 +316,14 @@ msgid "Apply permissions to all sub-albums"
 msgstr "Pas rechten toe op alle sub-albums"
 
 #: ../album_permissions.php:190 ../edit_caption.php:200 ../edit_field.php:56
-#: ../edit_field.php:62 ../edit_watermark.php:129 ../modify_user.php:163
+#: ../edit_field.php:62 ../edit_watermark.php:129 ../modify_user.php:166
 #: ../new_password.php:140 ../photo_owner.php:90 ../rearrange.php:147
 #: ../rearrange.php:203 ../user_preferences.php:159 ../watermark_album.php:136
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../album_permissions.php:191 ../manage_users.php:152 ../modify_user.php:165
-#: ../upgrade_users.php:58
+#: ../album_permissions.php:191 ../create_user.php:108 ../manage_users.php:152
+#: ../modify_user.php:168 ../upgrade_users.php:58
 msgid "Done"
 msgstr "Sluiten"
 
@@ -330,7 +336,7 @@ msgstr "%s RSS"
 msgid "No albums"
 msgstr "geen albums"
 
-#: ../albums.php:164
+#: ../albums.php:164 ../rss.php:275
 #, php-format
 msgid "1 album"
 msgid_plural "%d albums"
@@ -554,6 +560,16 @@ msgstr "reset teller"
 #: ../albums.php:559 ../view_album.php:847
 msgid "Comments available for this item."
 msgstr "Iemand heeft commentaar op dit item gegeven."
+
+#: ../block-random.php:75 ../imagemap.php:41
+#, fuzzy
+msgid "No photo chosen."
+msgstr "Geen overeenkomstige foto gevonden"
+
+#: ../block-random.php:99
+#, fuzzy, php-format
+msgid "From album: %s"
+msgstr "Uit album"
 
 #: ../captionator.php:53
 msgid "Captioned album does not match current album - aborting changes!"
@@ -1055,6 +1071,50 @@ msgstr ""
 msgid "Problem adding %s:"
 msgstr "Probleem met toevoegen van %s:"
 
+#: ../classes/gallery/User.php:99
+#, fuzzy
+msgid "up to date"
+msgstr "Album is actueel."
+
+#: ../classes/gallery/User.php:149
+#, fuzzy
+msgid "Upgraded"
+msgstr "opwaarderen"
+
+#: ../classes/gallery/User.php:153
+#, fuzzy
+msgid "Saving failed"
+msgstr "Missende bestanden:"
+
+#: ../classes/gallery/User.php:212
+#, fuzzy, php-format
+msgid "Not a valid action: %s"
+msgstr "Ongeldig bestandsformaat"
+
+#: ../classes/Mail/htmlMimeMail.php:760
+msgid "Sending mail via smtp method failed with these errors:"
+msgstr ""
+
+#: ../classes/User.php:213
+#, fuzzy, php-format
+msgid "User %s can write to album '%s'"
+msgstr "Deze gebruiker mag albums aanmaken"
+
+#: ../classes/User.php:216
+#, fuzzy, php-format
+msgid "User %s can NOT write to album '%s'"
+msgstr "Deze gebruiker mag albums aanmaken"
+
+#: ../classes/User.php:371
+#, php-format
+msgid "User %s is owner of album '%s'"
+msgstr ""
+
+#: ../classes/User.php:374
+#, php-format
+msgid "User %s  is NOT owner of album '%s'"
+msgstr ""
+
 #: ../copy_photo.php:28
 msgid "Copy Photo"
 msgstr "Foto kopieren"
@@ -1120,8 +1180,8 @@ msgstr "Kopieer naar album!"
 #: ../copy_photo.php:188 ../edit_appearance.php:319 ../extra_fields.php:174
 #: ../photo_owner.php:91 ../poll_properties.php:140
 #: ../rebuild_capture_dates.php:50 ../rebuild_capture_dates.php:73
-#: ../rotate_photo.php:137 ../watermark_album.php:57
-#: ../watermark_album.php:138
+#: ../rebuild_thumbs.php:52 ../rebuild_thumbs.php:71 ../rotate_photo.php:137
+#: ../watermark_album.php:57 ../watermark_album.php:138
 msgid "Close"
 msgstr "Sluiten"
 
@@ -1134,11 +1194,11 @@ msgstr "Waarschuwing: Sommige albums moeten opgewaardeerd worden naar de laatste
 msgid "Upgrade now"
 msgstr "Nu opwaarderen"
 
-#: ../create_user.php:45 ../modify_user.php:59
+#: ../create_user.php:45 ../modify_user.php:58
 msgid "Passwords do not match!"
 msgstr "De wachtwoorden komen niet overeen!"
 
-#: ../create_user.php:56 ../create_user.php:119
+#: ../create_user.php:56 ../create_user.php:120
 msgid "Create User"
 msgstr "Gebruiker toevoegen"
 
@@ -1166,16 +1226,16 @@ msgstr "E-mail verzonden aan %s."
 msgid "Create another user"
 msgstr "Hier kunt u een nieuwe gebruiker toevoegen."
 
-#: ../create_user.php:107 ../create_user.php:150 ../modify_user.php:164
+#: ../create_user.php:107 ../create_user.php:151 ../modify_user.php:167
 #: ../multi_create_user.php:148 ../multi_create_user.php:199
 msgid "Back to usermanagement"
 msgstr ""
 
-#: ../create_user.php:135
+#: ../create_user.php:136
 msgid "Create a new user here."
 msgstr "Hier kunt u een nieuwe gebruiker toevoegen."
 
-#: ../create_user.php:149
+#: ../create_user.php:150
 #, fuzzy
 msgid "Create user"
 msgstr "Gebruiker toevoegen"
@@ -1683,6 +1743,63 @@ msgstr "Veld"
 msgid "Apply values to nested albums."
 msgstr "Ook voor sub-albums"
 
+#: ../gallery_remote.php:116 ../publish_xp.php:349
+msgid "User cannot add to album"
+msgstr "De gebruiker mag geen foto's toevoegen"
+
+#: ../gallery_remote.php:119 ../publish_xp.php:353
+msgid "No file specified"
+msgstr "Geen bestand gekozen"
+
+#: ../gallery_remote.php:165 ../gallery_remote2.php:868
+#: ../lib/albumItem.php:512
+#, fuzzy, php-format
+msgid "Processing file '%s' as archive"
+msgstr "Bezig met ophalen van foto's uit de locale map %s."
+
+#: ../gallery_remote.php:168 ../gallery_remote2.php:871
+#: ../lib/albumItem.php:515
+#, fuzzy, php-format
+msgid "Skipping '%s' (%s support not enabled)"
+msgstr "%s word overgeslagen (Ondersteuning voor ZIP bestanden staat uit)"
+
+#: ../gallery_remote.php:176 ../gallery_remote2.php:879
+msgid "Error occured before extracting the archive. Temporary destination exists."
+msgstr ""
+
+#: ../gallery_remote.php:181 ../gallery_remote2.php:884
+msgid "Error occured before extracting the archive. Temporary destination could not be created."
+msgstr ""
+
+#: ../gallery_remote.php:186 ../gallery_remote2.php:889
+#: ../lib/albumItem.php:534
+#, fuzzy
+msgid "Extracting archive failed."
+msgstr "Uitvoeren:"
+
+#: ../gallery_remote.php:190 ../gallery_remote2.php:893
+#: ../lib/albumItem.php:538
+#, fuzzy
+msgid "Processing archive content."
+msgstr "Bezig met aanpassen van %d..."
+
+#: ../gallery_remote.php:232 ../gallery_remote2.php:935
+#: ../lib/albumItem.php:594 ../lib/albumItem.php:602
+msgid "The archive contains no valid files!"
+msgstr ""
+
+#: ../gallery_remote.php:229 ../gallery_remote2.php:932
+#, fuzzy, php-format
+msgid "Processing %d valid file from archive."
+msgid_plural "Processing %d valid files from archive."
+msgstr[0] "Bezig met ophalen van foto's uit de locale map %s."
+msgstr[1] "Bezig met ophalen van foto's uit de locale map %s."
+
+#: ../gallery_remote2.php:1039
+#, fuzzy, php-format
+msgid "Skipping %s (can't handle '%s' format)"
+msgstr "%s word overgeslagen (onbekend bestandsformaat %s)"
+
 #: ../help/imagemap.php:25
 #, fuzzy
 msgid "ImageMap help"
@@ -1851,11 +1968,13 @@ msgstr "Terug naar de Gallery"
 
 #: ../html/userData.inc:14 ../multi_create_user.php:189
 #: ../poll_properties.php:94 ../rebuild_capture_dates.php:66
+#: ../rebuild_thumbs.php:64
 msgid "Yes"
 msgstr "Ja"
 
 #: ../html/userData.inc:14 ../multi_create_user.php:189
 #: ../poll_properties.php:94 ../rebuild_capture_dates.php:67
+#: ../rebuild_thumbs.php:65
 msgid "No"
 msgstr "Nee"
 
@@ -1920,10 +2039,15 @@ msgid "Send email to user when account is created"
 msgstr "Stuur een e-mail naar de gebruiker <br> als de account is aangemaakt"
 
 #: ../html_wrap/album.footer.default:44 ../html_wrap/gallery.footer.default:48
-#: ../html_wrap/photo.footer.default:40
+#: ../html_wrap/photo.footer.default:40 ../html_wrap/popup.footer.default:51
 #: ../html_wrap/slideshow.footer.default:45
 msgid "Donate to Gallery now!!"
 msgstr "Doneer aan Gallery!"
+
+#: ../html_wrap/stats.header.default:28
+#, fuzzy
+msgid "Gallery statistics"
+msgstr "Gallery registratie"
 
 #: ../html_wrap/wrapper.footer.default:65
 #, fuzzy, php-format
@@ -1938,11 +2062,6 @@ msgstr "Beveiligingsinbreuk"
 #, fuzzy
 msgid "Imagemaps"
 msgstr "Afbeeldingsframe"
-
-#: ../imagemap.php:41
-#, fuzzy
-msgid "No photo chosen."
-msgstr "Geen overeenkomstige foto gevonden"
 
 #: ../imagemap.php:89 ../imagemap.php:93
 msgid "An imagemap should at least have three points."
@@ -2149,6 +2268,20 @@ msgstr ""
 #: ../includes/add_photos/captionOptions.inc.php:54
 msgid "For the date/time related options Gallery will use the format you specified in the config for date/time strings."
 msgstr ""
+
+#: ../includes/comments/commentHandling.inc.php:54 ../view_photo.php:202
+msgid "Name and comment are both required to save a new comment!"
+msgstr "Vul uw naam en commentaar in!"
+
+#: ../includes/comments/commentHandling.inc.php:61 ../view_photo.php:205
+#, php-format
+msgid "Your comment is too long, the admin set maximum length to %d chars"
+msgstr "Uw commentaar is te lang, de maximum lengte is %d tekens"
+
+#: ../includes/comments/commentHandling.inc.php:70
+#, fuzzy
+msgid "Your comment contains forbidden words. It will not be added."
+msgstr "Uw commentaar bevat verboden woorden. Het zal niet toegevoegd worden."
 
 #: ../includes/errors/configure_help.php:2
 #, php-format
@@ -2545,6 +2678,18 @@ msgstr "Filter op maand"
 msgid "Filter by day"
 msgstr "Filter op dag"
 
+#: ../init.php:119
+msgid "Security violation. Geeklog Dir is invalid."
+msgstr ""
+
+#: ../init.php:437
+msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
+msgstr ""
+
+#: ../init.php:583
+msgid "Fatal error: UserDB failed to initialize!"
+msgstr ""
+
 #: ../js/multifile.js.php:155
 #, fuzzy
 msgid "Caption:"
@@ -2859,16 +3004,6 @@ msgstr ""
 msgid "Processing file: %s"
 msgstr "Bezig met aanpassen van %d..."
 
-#: ../lib/albumItem.php:512
-#, fuzzy, php-format
-msgid "Processing file '%s' as archive"
-msgstr "Bezig met ophalen van foto's uit de locale map %s."
-
-#: ../lib/albumItem.php:515
-#, fuzzy, php-format
-msgid "Skipping '%s' (%s support not enabled)"
-msgstr "%s word overgeslagen (Ondersteuning voor ZIP bestanden staat uit)"
-
 #: ../lib/albumItem.php:523
 msgid "An error occurred before extracting the archive. Temporary destination exists."
 msgstr ""
@@ -2882,16 +3017,6 @@ msgstr ""
 msgid "Extracting archive"
 msgstr "Uitvoeren:"
 
-#: ../lib/albumItem.php:534
-#, fuzzy
-msgid "Extracting archive failed."
-msgstr "Uitvoeren:"
-
-#: ../lib/albumItem.php:538
-#, fuzzy
-msgid "Processing archive content."
-msgstr "Bezig met aanpassen van %d..."
-
 #: ../lib/albumItem.php:579
 msgid "No Metadata"
 msgstr ""
@@ -2902,10 +3027,6 @@ msgid "%d file inside the archive was invalid."
 msgid_plural "%d files inside the archive were invalid."
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../lib/albumItem.php:594 ../lib/albumItem.php:602
-msgid "The archive contains no valid files!"
-msgstr ""
 
 #: ../lib/albumItem.php:599
 #, fuzzy, php-format
@@ -3116,25 +3237,25 @@ msgstr "Wijzigen"
 msgid "Unlock"
 msgstr "Annuleren"
 
-#: ../modify_user.php:89
+#: ../modify_user.php:91
 #, fuzzy
 msgid "User information succesfully updated."
 msgstr "Het opwaarderen van gebruikers is gelukt."
 
-#: ../modify_user.php:93
+#: ../modify_user.php:96
 #, fuzzy
 msgid "User information was not succesfully updated!"
 msgstr "Het opwaarderen van gebruikers is gelukt."
 
-#: ../modify_user.php:104
+#: ../modify_user.php:107
 msgid "Invalid user"
 msgstr "Ongeldige gebruiker"
 
-#: ../modify_user.php:142 ../modify_user.php:146
+#: ../modify_user.php:145 ../modify_user.php:149
 msgid "Modify User"
 msgstr "Gebruiker wijzigen"
 
-#: ../modify_user.php:150
+#: ../modify_user.php:153
 msgid "You can change any information about the user using this form."
 msgstr "Met dit formulier kunt u alle informatie van een gebruiker wijzigen."
 
@@ -3612,14 +3733,6 @@ msgstr "Selecteer bovenliggende album"
 msgid "NEW TOP LEVEL ALBUM"
 msgstr "NIEUW ALBUM OP HET HOOGSTE NIVEAU"
 
-#: ../publish_xp.php:349
-msgid "User cannot add to album"
-msgstr "De gebruiker mag geen foto's toevoegen"
-
-#: ../publish_xp.php:353
-msgid "No file specified"
-msgstr "Geen bestand gekozen"
-
 #: ../publish_xp.php:369
 msgid "Skipping file, as it contains malicious characters."
 msgstr ""
@@ -3773,9 +3886,31 @@ msgstr ""
 msgid "Do you also want to rebuild the capture dates of items in subalbums?"
 msgstr "Weet u zeker dat u de voorbeelden in de subalbums opnieuw wilt maken?"
 
-#: ../rebuild_capture_dates.php:72
+#: ../rebuild_capture_dates.php:72 ../rebuild_thumbs.php:70
 msgid "Start"
 msgstr "Start"
+
+#: ../rebuild_thumbs.php:30 ../rebuild_thumbs.php:37
+#, fuzzy
+msgid "Rebuilding Thumbnails"
+msgstr "Bezig met het opnieuw aanmaken van de voorbeelden"
+
+#: ../rebuild_thumbs.php:42
+#, fuzzy, php-format
+msgid "Rebuilding Thumbnails: %s"
+msgstr "Bezig met het opnieuw aanmaken van de voorbeelden"
+
+#: ../rebuild_thumbs.php:56
+msgid "Here you can rebuild all thumbnails of your album. This is useful when thumbnails got broken, or you changed the thumnbail size / quality."
+msgstr ""
+
+#: ../rebuild_thumbs.php:58
+msgid "Custom thumbnails will not be reset to default. (Just resized, or rebuild)"
+msgstr ""
+
+#: ../rebuild_thumbs.php:63
+msgid "Do you also want to rebuild the thumbnails in subalbums?"
+msgstr "Weet u zeker dat u de voorbeelden in de subalbums opnieuw wilt maken?"
 
 #: ../register.php:36
 #, fuzzy
@@ -3986,6 +4121,32 @@ msgstr "Draai"
 #: ../rotate_photo.php:127
 msgid "Flip"
 msgstr "Omklappen"
+
+#: ../rss.php:124
+#, fuzzy
+msgid "Gallery RSS feed"
+msgstr "Gallery"
+
+#: ../rss.php:275
+msgid "no albums"
+msgstr "geen albums"
+
+#: ../rss.php:276
+#, fuzzy
+msgid "no photos"
+msgstr "Alle foto's"
+
+#: ../rss.php:276
+#, fuzzy, php-format
+msgid "1 photo"
+msgid_plural "%d photos"
+msgstr[0] "Alle foto's"
+msgstr[1] "Alle foto's"
+
+#: ../rss.php:278
+#, fuzzy, php-format
+msgid "%s in %s"
+msgstr "%s niet gezet."
 
 #: ../save_photos.php:43
 #, php-format
@@ -5270,15 +5431,6 @@ msgstr "Wissen van commentaar %d van item met index: %d"
 msgid "Sorry.  You are not allowed to see comments of this album."
 msgstr "U bent niet bevoegd om deze actie uit te voeren!"
 
-#: ../view_photo.php:202
-msgid "Name and comment are both required to save a new comment!"
-msgstr "Vul uw naam en commentaar in!"
-
-#: ../view_photo.php:205
-#, php-format
-msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr "Uw commentaar is te lang, de maximum lengte is %d tekens"
-
 #: ../view_photo.php:208
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr "Uw commentaar bevat verboden woorden. Het zal niet toegevoegd worden."
@@ -5451,10 +5603,6 @@ msgstr ""
 #~ msgid "Your comment is too long, the admin set maximum length to %d chars."
 #~ msgstr "Uw commentaar is te lang, de maximum lengte is %d tekens"
 
-#, fuzzy
-#~ msgid "Your comment contains forbidden words. It will not be added."
-#~ msgstr "Uw commentaar bevat verboden woorden. Het zal niet toegevoegd worden."
-
 #~ msgid "Add Comment"
 #~ msgstr "Geef commentaar"
 
@@ -5497,9 +5645,6 @@ msgstr ""
 
 #~ msgid "no album specified"
 #~ msgstr "geen album opgegeven"
-
-#~ msgid "Do you also want to rebuild the thumbnails in subalbums?"
-#~ msgstr "Weet u zeker dat u de voorbeelden in de subalbums opnieuw wilt maken?"
 
 #~ msgid "Rebuilding %d thumbnails..."
 #~ msgstr "Bezig met het opnieuw aanmaken van %d voorbeeldafbeeldingen..."
@@ -5613,10 +5758,6 @@ msgstr ""
 
 #~ msgid "add vote"
 #~ msgstr "stem toevoegen"
-
-#, fuzzy
-#~ msgid "From album: %s"
-#~ msgstr "Uit album"
 
 #, fuzzy
 #~ msgid "Owned by: %s"
@@ -5804,15 +5945,9 @@ msgstr ""
 #~ msgid "Invalid Album"
 #~ msgstr "Ongeldige gebruiker"
 
-#~ msgid "Add Photos"
-#~ msgstr "Foto's toevoegen"
-
 #, fuzzy
 #~ msgid "Administer Startpage"
 #~ msgstr "Beheerder"
-
-#~ msgid "no albums"
-#~ msgstr "geen albums"
 
 #~ msgid "url:"
 #~ msgstr "url:"

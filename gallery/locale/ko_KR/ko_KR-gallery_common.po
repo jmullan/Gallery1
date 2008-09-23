@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-13 22:09+0200\n"
+"POT-Creation-Date: 2008-09-23 02:04+0200\n"
 "PO-Revision-Date: 2005-03-18 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -480,26 +480,6 @@ msgstr ""
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr "mPUSH는 적은 요금으로 당신 또는 친구의 셀룰러폰으로 미리보기 이미지를 전송할 수 있는 능력을 가진 사진 서비스입니다."
 
-#: ../lib/form.php:73
-msgid "Check All"
-msgstr "모두 확인"
-
-#: ../lib/form.php:75
-msgid "Clear All"
-msgstr "모두 지우기"
-
-#: ../lib/form.php:77
-msgid "Invert Selection"
-msgstr "선택 반전"
-
-#: ../lib/form.php:320
-msgid "colorpicker"
-msgstr ""
-
-#: ../lib/form.php:540
-msgid "Add field"
-msgstr ""
-
 #: ../lib/album.php:228
 msgid "navigate up"
 msgstr ""
@@ -784,6 +764,84 @@ msgstr "Logged in"
 
 #: ../lib/content.php:1491
 msgid "Show/Hide more information"
+msgstr ""
+
+#: ../lib/filesystem.php:109
+#, php-format
+msgid "extension of file %s is %s"
+msgstr ""
+
+#: ../lib/filesystem.php:152
+msgid "The path you try to use does not exist! Exiting Gallery"
+msgstr ""
+
+#: ../lib/filesystem.php:170
+#, php-format
+msgid "Parsing for csv data in file: %s"
+msgstr ""
+
+#: ../lib/filesystem.php:188
+#, fuzzy
+msgid "csv result:"
+msgstr "설문 결과:"
+
+#: ../lib/filesystem.php:209
+#, php-format
+msgid "Extracting: %s failed. Not able create the folder to extract the archive in."
+msgstr ""
+
+#: ../lib/filesystem.php:217
+#, php-format
+msgid "Extracting: %s with %s"
+msgstr ""
+
+#: ../lib/filesystem.php:234
+#, php-format
+msgid "%s with extension %s is not an supported archive."
+msgstr ""
+
+#: ../lib/filesystem.php:278
+#, php-format
+msgid "Getting Exif from: %s"
+msgstr ""
+
+#: ../lib/filesystem.php:355
+msgid "You are not allowed to upload from local directories."
+msgstr ""
+
+#: ../lib/filesystem.php:371
+#, php-format
+msgid "%s is not in the list of allowed uploadpathes. Skipping."
+msgstr ""
+
+#: ../lib/filesystem.php:387
+#, php-format
+msgid "Could not open lock file (%s) for writing!"
+msgstr ""
+
+#: ../lib/filesystem.php:392
+#, php-format
+msgid "Could not acquire lock (%s)!"
+msgstr ""
+
+#: ../lib/form.php:73
+msgid "Check All"
+msgstr "모두 확인"
+
+#: ../lib/form.php:75
+msgid "Clear All"
+msgstr "모두 지우기"
+
+#: ../lib/form.php:77
+msgid "Invert Selection"
+msgstr "선택 반전"
+
+#: ../lib/form.php:320
+msgid "colorpicker"
+msgstr ""
+
+#: ../lib/form.php:540
+msgid "Add field"
 msgstr ""
 
 #: ../lib/imageManipulation.php:37
@@ -1778,8 +1836,10 @@ msgstr "앨범 선택"
 msgid "Close"
 msgstr "닫기"
 
-#~ msgid "Poll results:"
-#~ msgstr "설문 결과:"
+#: ../platform/fs_unix.php:133 ../platform/fs_win32.php:118
+#, php-format
+msgid "Gallery was not able to open dir: %s. <br>Please check permissions and existence"
+msgstr ""
 
 #~ msgid "Number %d overall."
 #~ msgstr "총 %d 번."

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-13 22:09+0200\n"
+"POT-Creation-Date: 2008-09-23 02:04+0200\n"
 "PO-Revision-Date: 2004-08-30 13:57+0800\n"
 "Last-Translator: Kenneth Cheung\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -479,26 +479,6 @@ msgstr ""
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr ""
 
-#: ../lib/form.php:73
-msgid "Check All"
-msgstr "全選取"
-
-#: ../lib/form.php:75
-msgid "Clear All"
-msgstr "全取消"
-
-#: ../lib/form.php:77
-msgid "Invert Selection"
-msgstr "反向選擇"
-
-#: ../lib/form.php:320
-msgid "colorpicker"
-msgstr ""
-
-#: ../lib/form.php:540
-msgid "Add field"
-msgstr ""
-
 #: ../lib/album.php:228
 msgid "navigate up"
 msgstr ""
@@ -784,6 +764,84 @@ msgstr "已登入"
 
 #: ../lib/content.php:1491
 msgid "Show/Hide more information"
+msgstr ""
+
+#: ../lib/filesystem.php:109
+#, php-format
+msgid "extension of file %s is %s"
+msgstr ""
+
+#: ../lib/filesystem.php:152
+msgid "The path you try to use does not exist! Exiting Gallery"
+msgstr ""
+
+#: ../lib/filesystem.php:170
+#, php-format
+msgid "Parsing for csv data in file: %s"
+msgstr ""
+
+#: ../lib/filesystem.php:188
+#, fuzzy
+msgid "csv result:"
+msgstr "投票結果："
+
+#: ../lib/filesystem.php:209
+#, php-format
+msgid "Extracting: %s failed. Not able create the folder to extract the archive in."
+msgstr ""
+
+#: ../lib/filesystem.php:217
+#, php-format
+msgid "Extracting: %s with %s"
+msgstr ""
+
+#: ../lib/filesystem.php:234
+#, php-format
+msgid "%s with extension %s is not an supported archive."
+msgstr ""
+
+#: ../lib/filesystem.php:278
+#, php-format
+msgid "Getting Exif from: %s"
+msgstr ""
+
+#: ../lib/filesystem.php:355
+msgid "You are not allowed to upload from local directories."
+msgstr ""
+
+#: ../lib/filesystem.php:371
+#, php-format
+msgid "%s is not in the list of allowed uploadpathes. Skipping."
+msgstr ""
+
+#: ../lib/filesystem.php:387
+#, php-format
+msgid "Could not open lock file (%s) for writing!"
+msgstr ""
+
+#: ../lib/filesystem.php:392
+#, php-format
+msgid "Could not acquire lock (%s)!"
+msgstr ""
+
+#: ../lib/form.php:73
+msgid "Check All"
+msgstr "全選取"
+
+#: ../lib/form.php:75
+msgid "Clear All"
+msgstr "全取消"
+
+#: ../lib/form.php:77
+msgid "Invert Selection"
+msgstr "反向選擇"
+
+#: ../lib/form.php:320
+msgid "colorpicker"
+msgstr ""
+
+#: ../lib/form.php:540
+msgid "Add field"
 msgstr ""
 
 #: ../lib/imageManipulation.php:37
@@ -1783,8 +1841,10 @@ msgstr "選擇相簿"
 msgid "Close"
 msgstr "關閉"
 
-#~ msgid "Poll results:"
-#~ msgstr "投票結果："
+#: ../platform/fs_unix.php:133 ../platform/fs_win32.php:118
+#, php-format
+msgid "Gallery was not able to open dir: %s. <br>Please check permissions and existence"
+msgstr ""
 
 #~ msgid "Number %d overall."
 #~ msgstr "第 %d 名。"

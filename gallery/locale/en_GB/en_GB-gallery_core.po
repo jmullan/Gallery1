@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-16 10:48+0200\n"
+"POT-Creation-Date: 2008-09-23 02:04+0200\n"
 "PO-Revision-Date: 2003-07-16 14:18+0100\n"
 "Last-Translator: Joan McGalliard <jefmcg AT users DOT sourceforge DOT net>\n"
 "Language-Team: UK_English <jefmcg AT users DOT sourceforge DOT net>\n"
@@ -49,9 +49,10 @@ msgstr "Border colour"
 #: ../extra_fields.php:34 ../manage_users.php:30 ../modify_user.php:34
 #: ../move_album.php:40 ../move_photo.php:53 ../multi_create_user.php:34
 #: ../photo_owner.php:43 ../poll_properties.php:32 ../poll_results.php:36
-#: ../rearrange.php:26 ../rebuild_capture_dates.php:38 ../rename_album.php:29
-#: ../reset_votes.php:40 ../resize_photo.php:53 ../rotate_photo.php:47
-#: ../sort_album.php:37 ../upgrade_album.php:56 ../user_preferences.php:35
+#: ../rearrange.php:26 ../rebuild_capture_dates.php:38
+#: ../rebuild_thumbs.php:38 ../rename_album.php:29 ../reset_votes.php:40
+#: ../resize_photo.php:53 ../rotate_photo.php:47 ../sort_album.php:37
+#: ../upgrade_album.php:56 ../user_preferences.php:35
 #: ../view_photo_properties.php:37 ../watermark_album.php:51
 msgid "You are not allowed to perform this action!"
 msgstr ""
@@ -60,10 +61,11 @@ msgstr ""
 msgid "Enter your comment in the text box below."
 msgstr ""
 
-#: ../add_comment.php:66 ../delete_album.php:67 ../delete_photo.php:114
-#: ../delete_user.php:85 ../do_command.php:203 ../download.php:97
-#: ../ecard_form.php:290 ../edit_caption.php:201 ../edit_field.php:63
-#: ../edit_watermark.php:132 ../includes/add_photos/add_form.inc:108
+#: ../add_comment.php:66 ../create_user.php:152 ../delete_album.php:67
+#: ../delete_photo.php:114 ../delete_user.php:85 ../do_command.php:203
+#: ../download.php:97 ../ecard_form.php:290 ../edit_caption.php:201
+#: ../edit_field.php:63 ../edit_watermark.php:132
+#: ../includes/add_photos/add_form.inc:108
 #: ../includes/add_photos/add_url.inc:55 ../login.php:218
 #: ../move_album.php:134 ../move_album.php:156 ../move_photo.php:323
 #: ../move_photo.php:387 ../new_password.php:141 ../rearrange.php:148
@@ -71,6 +73,11 @@ msgstr ""
 #: ../reset_votes.php:59 ../resize_photo.php:189 ../sort_album.php:113
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: ../add_photos_frame.php:34
+#, fuzzy
+msgid "Add Photos"
+msgstr "Border colour"
 
 #: ../add_photos.php:58 ../save_photos.php:41 ../save_photos.php:51
 #, fuzzy
@@ -308,14 +315,14 @@ msgid "Apply permissions to all sub-albums"
 msgstr ""
 
 #: ../album_permissions.php:190 ../edit_caption.php:200 ../edit_field.php:56
-#: ../edit_field.php:62 ../edit_watermark.php:129 ../modify_user.php:163
+#: ../edit_field.php:62 ../edit_watermark.php:129 ../modify_user.php:166
 #: ../new_password.php:140 ../photo_owner.php:90 ../rearrange.php:147
 #: ../rearrange.php:203 ../user_preferences.php:159 ../watermark_album.php:136
 msgid "Save"
 msgstr "Speichern"
 
-#: ../album_permissions.php:191 ../manage_users.php:152 ../modify_user.php:165
-#: ../upgrade_users.php:58
+#: ../album_permissions.php:191 ../create_user.php:108 ../manage_users.php:152
+#: ../modify_user.php:168 ../upgrade_users.php:58
 msgid "Done"
 msgstr "Fertig"
 
@@ -329,7 +336,7 @@ msgstr ""
 msgid "No albums"
 msgstr "Border colour"
 
-#: ../albums.php:164
+#: ../albums.php:164 ../rss.php:275
 #, fuzzy, php-format
 msgid "1 album"
 msgid_plural "%d albums"
@@ -555,6 +562,16 @@ msgstr ""
 #: ../albums.php:559 ../view_album.php:847
 #, fuzzy
 msgid "Comments available for this item."
+msgstr "Border colour"
+
+#: ../block-random.php:75 ../imagemap.php:41
+#, fuzzy
+msgid "No photo chosen."
+msgstr "Border colour"
+
+#: ../block-random.php:99
+#, fuzzy, php-format
+msgid "From album: %s"
 msgstr "Border colour"
 
 #: ../captionator.php:53
@@ -1052,6 +1069,49 @@ msgstr ""
 msgid "Problem adding %s:"
 msgstr "Border colour"
 
+#: ../classes/gallery/User.php:99
+#, fuzzy
+msgid "up to date"
+msgstr "Border colour"
+
+#: ../classes/gallery/User.php:149
+#, fuzzy
+msgid "Upgraded"
+msgstr "Border colour"
+
+#: ../classes/gallery/User.php:153
+msgid "Saving failed"
+msgstr ""
+
+#: ../classes/gallery/User.php:212
+#, fuzzy, php-format
+msgid "Not a valid action: %s"
+msgstr "Border colour"
+
+#: ../classes/Mail/htmlMimeMail.php:760
+msgid "Sending mail via smtp method failed with these errors:"
+msgstr ""
+
+#: ../classes/User.php:213
+#, fuzzy, php-format
+msgid "User %s can write to album '%s'"
+msgstr "Border colour"
+
+#: ../classes/User.php:216
+#, fuzzy, php-format
+msgid "User %s can NOT write to album '%s'"
+msgstr "Border colour"
+
+#: ../classes/User.php:371
+#, php-format
+msgid "User %s is owner of album '%s'"
+msgstr ""
+
+#: ../classes/User.php:374
+#, php-format
+msgid "User %s  is NOT owner of album '%s'"
+msgstr ""
+
 #: ../copy_photo.php:28
 #, fuzzy
 msgid "Copy Photo"
@@ -1121,8 +1181,8 @@ msgstr "Border colour"
 #: ../copy_photo.php:188 ../edit_appearance.php:319 ../extra_fields.php:174
 #: ../photo_owner.php:91 ../poll_properties.php:140
 #: ../rebuild_capture_dates.php:50 ../rebuild_capture_dates.php:73
-#: ../rotate_photo.php:137 ../watermark_album.php:57
-#: ../watermark_album.php:138
+#: ../rebuild_thumbs.php:52 ../rebuild_thumbs.php:71 ../rotate_photo.php:137
+#: ../watermark_album.php:57 ../watermark_album.php:138
 #, fuzzy
 msgid "Close"
 msgstr "Text Colour"
@@ -1137,11 +1197,11 @@ msgstr ""
 msgid "Upgrade now"
 msgstr "Border colour"
 
-#: ../create_user.php:45 ../modify_user.php:59
+#: ../create_user.php:45 ../modify_user.php:58
 msgid "Passwords do not match!"
 msgstr ""
 
-#: ../create_user.php:56 ../create_user.php:119
+#: ../create_user.php:56 ../create_user.php:120
 #, fuzzy
 msgid "Create User"
 msgstr "Border colour"
@@ -1171,17 +1231,17 @@ msgstr "Border colour"
 msgid "Create another user"
 msgstr "Border colour"
 
-#: ../create_user.php:107 ../create_user.php:150 ../modify_user.php:164
+#: ../create_user.php:107 ../create_user.php:151 ../modify_user.php:167
 #: ../multi_create_user.php:148 ../multi_create_user.php:199
 msgid "Back to usermanagement"
 msgstr ""
 
-#: ../create_user.php:135
+#: ../create_user.php:136
 #, fuzzy
 msgid "Create a new user here."
 msgstr "Border colour"
 
-#: ../create_user.php:149
+#: ../create_user.php:150
 #, fuzzy
 msgid "Create user"
 msgstr "Border colour"
@@ -1694,6 +1754,64 @@ msgstr "Border colour"
 msgid "Apply values to nested albums."
 msgstr "Border colour"
 
+#: ../gallery_remote.php:116 ../publish_xp.php:349
+#, fuzzy
+msgid "User cannot add to album"
+msgstr "Border colour"
+
+#: ../gallery_remote.php:119 ../publish_xp.php:353
+#, fuzzy
+msgid "No file specified"
+msgstr "Border colour"
+
+#: ../gallery_remote.php:165 ../gallery_remote2.php:868
+#: ../lib/albumItem.php:512
+#, php-format
+msgid "Processing file '%s' as archive"
+msgstr ""
+
+#: ../gallery_remote.php:168 ../gallery_remote2.php:871
+#: ../lib/albumItem.php:515
+#, php-format
+msgid "Skipping '%s' (%s support not enabled)"
+msgstr ""
+
+#: ../gallery_remote.php:176 ../gallery_remote2.php:879
+msgid "Error occured before extracting the archive. Temporary destination exists."
+msgstr ""
+
+#: ../gallery_remote.php:181 ../gallery_remote2.php:884
+msgid "Error occured before extracting the archive. Temporary destination could not be created."
+msgstr ""
+
+#: ../gallery_remote.php:186 ../gallery_remote2.php:889
+#: ../lib/albumItem.php:534
+#, fuzzy
+msgid "Extracting archive failed."
+msgstr "Border colour"
+
+#: ../gallery_remote.php:190 ../gallery_remote2.php:893
+#: ../lib/albumItem.php:538
+msgid "Processing archive content."
+msgstr ""
+
+#: ../gallery_remote.php:232 ../gallery_remote2.php:935
+#: ../lib/albumItem.php:594 ../lib/albumItem.php:602
+msgid "The archive contains no valid files!"
+msgstr ""
+
+#: ../gallery_remote.php:229 ../gallery_remote2.php:932
+#, php-format
+msgid "Processing %d valid file from archive."
+msgid_plural "Processing %d valid files from archive."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gallery_remote2.php:1039
+#, php-format
+msgid "Skipping %s (can't handle '%s' format)"
+msgstr ""
+
 #: ../help/imagemap.php:25
 #, fuzzy
 msgid "ImageMap help"
@@ -1861,11 +1979,13 @@ msgstr "Border colour"
 
 #: ../html/userData.inc:14 ../multi_create_user.php:189
 #: ../poll_properties.php:94 ../rebuild_capture_dates.php:66
+#: ../rebuild_thumbs.php:64
 msgid "Yes"
 msgstr "Ja"
 
 #: ../html/userData.inc:14 ../multi_create_user.php:189
 #: ../poll_properties.php:94 ../rebuild_capture_dates.php:67
+#: ../rebuild_thumbs.php:65
 msgid "No"
 msgstr "Nein"
 
@@ -1931,10 +2051,15 @@ msgid "Send email to user when account is created"
 msgstr ""
 
 #: ../html_wrap/album.footer.default:44 ../html_wrap/gallery.footer.default:48
-#: ../html_wrap/photo.footer.default:40
+#: ../html_wrap/photo.footer.default:40 ../html_wrap/popup.footer.default:51
 #: ../html_wrap/slideshow.footer.default:45
 #, fuzzy
 msgid "Donate to Gallery now!!"
+msgstr "Border colour"
+
+#: ../html_wrap/stats.header.default:28
+#, fuzzy
+msgid "Gallery statistics"
 msgstr "Border colour"
 
 #: ../html_wrap/wrapper.footer.default:65
@@ -1949,11 +2074,6 @@ msgstr ""
 #: ../imagemap.php:40
 #, fuzzy
 msgid "Imagemaps"
-msgstr "Border colour"
-
-#: ../imagemap.php:41
-#, fuzzy
-msgid "No photo chosen."
 msgstr "Border colour"
 
 #: ../imagemap.php:89 ../imagemap.php:93
@@ -2160,6 +2280,19 @@ msgstr ""
 
 #: ../includes/add_photos/captionOptions.inc.php:54
 msgid "For the date/time related options Gallery will use the format you specified in the config for date/time strings."
+msgstr ""
+
+#: ../includes/comments/commentHandling.inc.php:54 ../view_photo.php:202
+msgid "Name and comment are both required to save a new comment!"
+msgstr ""
+
+#: ../includes/comments/commentHandling.inc.php:61 ../view_photo.php:205
+#, php-format
+msgid "Your comment is too long, the admin set maximum length to %d chars"
+msgstr ""
+
+#: ../includes/comments/commentHandling.inc.php:70
+msgid "Your comment contains forbidden words. It will not be added."
 msgstr ""
 
 #: ../includes/errors/configure_help.php:2
@@ -2574,6 +2707,18 @@ msgstr ""
 msgid "Filter by day"
 msgstr ""
 
+#: ../init.php:119
+msgid "Security violation. Geeklog Dir is invalid."
+msgstr ""
+
+#: ../init.php:437
+msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
+msgstr ""
+
+#: ../init.php:583
+msgid "Fatal error: UserDB failed to initialize!"
+msgstr ""
+
 #: ../js/multifile.js.php:155
 #, fuzzy
 msgid "Caption:"
@@ -2909,16 +3054,6 @@ msgstr ""
 msgid "Processing file: %s"
 msgstr ""
 
-#: ../lib/albumItem.php:512
-#, php-format
-msgid "Processing file '%s' as archive"
-msgstr ""
-
-#: ../lib/albumItem.php:515
-#, php-format
-msgid "Skipping '%s' (%s support not enabled)"
-msgstr ""
-
 #: ../lib/albumItem.php:523
 msgid "An error occurred before extracting the archive. Temporary destination exists."
 msgstr ""
@@ -2932,15 +3067,6 @@ msgstr ""
 msgid "Extracting archive"
 msgstr "Border colour"
 
-#: ../lib/albumItem.php:534
-#, fuzzy
-msgid "Extracting archive failed."
-msgstr "Border colour"
-
-#: ../lib/albumItem.php:538
-msgid "Processing archive content."
-msgstr ""
-
 #: ../lib/albumItem.php:579
 msgid "No Metadata"
 msgstr ""
@@ -2951,10 +3077,6 @@ msgid "%d file inside the archive was invalid."
 msgid_plural "%d files inside the archive were invalid."
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../lib/albumItem.php:594 ../lib/albumItem.php:602
-msgid "The archive contains no valid files!"
-msgstr ""
 
 #: ../lib/albumItem.php:599
 #, php-format
@@ -3163,24 +3285,24 @@ msgstr ""
 msgid "Unlock"
 msgstr ""
 
-#: ../modify_user.php:89
+#: ../modify_user.php:91
 msgid "User information succesfully updated."
 msgstr ""
 
-#: ../modify_user.php:93
+#: ../modify_user.php:96
 msgid "User information was not succesfully updated!"
 msgstr ""
 
-#: ../modify_user.php:104
+#: ../modify_user.php:107
 #, fuzzy
 msgid "Invalid user"
 msgstr "Border colour"
 
-#: ../modify_user.php:142 ../modify_user.php:146
+#: ../modify_user.php:145 ../modify_user.php:149
 msgid "Modify User"
 msgstr ""
 
-#: ../modify_user.php:150
+#: ../modify_user.php:153
 msgid "You can change any information about the user using this form."
 msgstr ""
 
@@ -3674,16 +3796,6 @@ msgstr "Border colour"
 msgid "NEW TOP LEVEL ALBUM"
 msgstr ""
 
-#: ../publish_xp.php:349
-#, fuzzy
-msgid "User cannot add to album"
-msgstr "Border colour"
-
-#: ../publish_xp.php:353
-#, fuzzy
-msgid "No file specified"
-msgstr "Border colour"
-
 #: ../publish_xp.php:369
 msgid "Skipping file, as it contains malicious characters."
 msgstr ""
@@ -3836,8 +3948,30 @@ msgstr ""
 msgid "Do you also want to rebuild the capture dates of items in subalbums?"
 msgstr ""
 
-#: ../rebuild_capture_dates.php:72
+#: ../rebuild_capture_dates.php:72 ../rebuild_thumbs.php:70
 msgid "Start"
+msgstr ""
+
+#: ../rebuild_thumbs.php:30 ../rebuild_thumbs.php:37
+#, fuzzy
+msgid "Rebuilding Thumbnails"
+msgstr "Text Colour"
+
+#: ../rebuild_thumbs.php:42
+#, fuzzy, php-format
+msgid "Rebuilding Thumbnails: %s"
+msgstr "Text Colour"
+
+#: ../rebuild_thumbs.php:56
+msgid "Here you can rebuild all thumbnails of your album. This is useful when thumbnails got broken, or you changed the thumnbail size / quality."
+msgstr ""
+
+#: ../rebuild_thumbs.php:58
+msgid "Custom thumbnails will not be reset to default. (Just resized, or rebuild)"
+msgstr ""
+
+#: ../rebuild_thumbs.php:63
+msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr ""
 
 #: ../register.php:36
@@ -4057,6 +4191,33 @@ msgstr "Border colour"
 #: ../rotate_photo.php:127
 msgid "Flip"
 msgstr ""
+
+#: ../rss.php:124
+#, fuzzy
+msgid "Gallery RSS feed"
+msgstr "Border colour"
+
+#: ../rss.php:275
+#, fuzzy
+msgid "no albums"
+msgstr "Border colour"
+
+#: ../rss.php:276
+#, fuzzy
+msgid "no photos"
+msgstr "Border colour"
+
+#: ../rss.php:276
+#, fuzzy, php-format
+msgid "1 photo"
+msgid_plural "%d photos"
+msgstr[0] "Border colour"
+msgstr[1] "Border colour"
+
+#: ../rss.php:278
+#, fuzzy, php-format
+msgid "%s in %s"
+msgstr "Border colour"
 
 #: ../save_photos.php:43
 #, php-format
@@ -5377,15 +5538,6 @@ msgstr ""
 msgid "Sorry.  You are not allowed to see comments of this album."
 msgstr ""
 
-#: ../view_photo.php:202
-msgid "Name and comment are both required to save a new comment!"
-msgstr ""
-
-#: ../view_photo.php:205
-#, php-format
-msgid "Your comment is too long, the admin set maximum length to %d chars"
-msgstr ""
-
 #: ../view_photo.php:208
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr ""
@@ -5558,10 +5710,6 @@ msgstr ""
 #~ msgstr "Border colour"
 
 #, fuzzy
-#~ msgid "From album: %s"
-#~ msgstr "Border colour"
-
-#, fuzzy
 #~ msgid "Viewed:"
 #~ msgstr "Border colour"
 
@@ -5659,14 +5807,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Invalid Album"
-#~ msgstr "Border colour"
-
-#, fuzzy
-#~ msgid "Add Photos"
-#~ msgstr "Border colour"
-
-#, fuzzy
-#~ msgid "no albums"
 #~ msgstr "Border colour"
 
 #, fuzzy
