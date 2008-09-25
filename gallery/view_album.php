@@ -285,7 +285,7 @@ if (!empty($adminCommands)) {
 
 if ($gallery->album->fields["slideshow_type"] != "off" &&
    ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
-	$iconText = getIconText('display.gif', gTranslate('core', "Slideshow"));
+	$iconText = getIconText('monitor.png', gTranslate('core', "Slideshow"));
 	$iconElements[] = '<a href="'
 	. makeGalleryUrl("slideshow.php",
 	array("set_albumName" => $albumName)) .'">'. $iconText .'</a>';
@@ -297,7 +297,7 @@ if (checkRequirements('comments_enabled', 'hasComments', 'comments_overview_for_
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;comments"),
 		array(),
-		'view_comment.gif',
+		'comments.png',
 		true
 	);
 }

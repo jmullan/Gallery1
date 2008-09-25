@@ -118,7 +118,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 			$options[] = array(
 				'text'	=> gTranslate('core', "Edit Thumbnail"),
 				'value'	=> showChoice2('edit_thumb.php', array('index' => $i)),
-				'icon'	=> ($withIcons) ? 'thumbnail.gif' : ''
+				'icon'	=> ($withIcons) ? 'picture_edit.png' : ''
 			);
 
 			$options[] = array(
@@ -145,7 +145,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				$options[] = array(
 					'text'	=> gTranslate('core', "ImageMap"),
 					'value'	=> showChoice2('imagemap.php', array('index' => $i), false),
-					'icon'	=> ($withIcons) ? 'behavior-capplet.gif' : ''
+					'icon'	=> ($withIcons) ? 'map.png' : ''
 				);
 			}
 		}
