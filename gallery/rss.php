@@ -53,7 +53,7 @@ function albumSort($a, $b) {
 
 function bestDate($album) {
 	if (isset($album->fields['clicks_date']) &&
-		strtotime($album->fields["clicks_date"]) > strtotime($album->fields["last_mod_time"]))
+	    strtotime($album->fields["clicks_date"]) > strtotime($album->fields["last_mod_time"]))
 	{
 		return $album->fields['clicks_date'];
 	}
@@ -69,7 +69,7 @@ function getThumbs($album) {
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
-			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$imgtag = $album->getThumbnailTag($i);
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
 		}
 	}
@@ -84,10 +84,10 @@ function getThumbsAndCaptions($album) {
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
-			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$imgtag = $album->getThumbnailTag($i);
 			$caption = $photo->getCaption();
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>";
-			$photos .= $caption . "<br>\n";
+			$photos .= nl2br($caption) . "<br>\n";
 		}
 	}
 
@@ -143,7 +143,7 @@ foreach ($rssAlbumList as $album) {
 		"link" => makeAlbumUrl($album->fields["name"]),
 		"guid" => array($album->fields['guid'], array("isPermaLink" => "false")),
 		"!date" => bestDate($album),
-		"title" => htmlspecialchars($album->fields["title"])
+		"title" => nl2br(htmlspecialchars($album->fields["title"]))
 	);
 
 	// DATE TAGS
@@ -238,10 +238,10 @@ foreach ($rssAlbumList as $album) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
 		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a><br>";
-		$albumInfo["description"] .= $album->fields["description"];
+		$albumInfo["description"] .= nl2br($album->fields["description"]);
 	}
 	else { # mode = "basic"
-		$albumInfo["description"] = $album->fields["description"];
+		$albumInfo["description"] = nl2br($album->fields["description"]);
 	}
 
 	$albumInfo["description"] = htmlspecialchars($albumInfo["description"]);
