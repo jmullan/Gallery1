@@ -45,7 +45,7 @@ echo '<p align="center">' . $gallery->album->getHighlightAsThumbnailTag() . '</p
 
 if(!empty($recreate)) {
 	$gallery->album->makeThumbnails($recursive);
-	$gallery->album->save('Thumbnails recreated');
+	$gallery->album->save(array('Thumbnails recreated'));
 	echo '<script type="text/javascript">opener.location.reload();</script>';
 
 	echo "\n<p align=\"center\">";
