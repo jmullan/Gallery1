@@ -22,7 +22,7 @@
  
 /**
  * @version     1.5.7+
- * @package		Languagepack
+ * @package	Languagepack
  * @subpackage	German
  */
 
