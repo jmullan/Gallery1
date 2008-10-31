@@ -7,6 +7,34 @@
 
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
+if (isDebugging()) {
+	$infoText = sprintf(gTranslate('core', "Debug ON! Level %s"), $gallery->app->debuglevel) . '<br>';
+	if (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+		$infoText .= 'Standalone';
+	}
+	else {
+		$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+		switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
+			case 'phpnuke':
+			case 'cpgnuke':
+			case 'phpBB2':
+			case 'GeekLog':
+			break;
+
+			case 'postnuke':
+				$infoText .= ' ' . $GALLERY_POSTNUKE_VERSION;
+			break;
+
+			case 'zikula':
+				$infoText .= ' ' . PN_VERSION_NUM;
+			break;
+		}
+	}
+
+    echo gallery_info($infoText);
+}
+
 switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 	case 'phpnuke':
 	case 'postnuke':
@@ -61,31 +89,4 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 }
 includeTemplate('footer.tpl');
 
-if (isDebugging()) {
-	$infoText = sprintf(gTranslate('core', "Debug ON! Level %s"), $gallery->app->debuglevel) . '<br>';
-	if (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
-		$infoText .= 'Standalone';
-	}
-	else {
-		$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
-
-		switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
-			case 'phpnuke':
-			case 'cpgnuke':
-			case 'phpBB2':
-			case 'GeekLog':
-			break;
-
-			case 'postnuke':
-				$infoText .= ' ' . $GALLERY_POSTNUKE_VERSION;
-			break;
-
-			case 'zikula':
-				$infoText .= ' ' . PN_VERSION_NUM;
-			break;
-		}
-	}
-
-    echo gallery_error($infoText);
-}
 ?>

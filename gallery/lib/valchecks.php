@@ -155,7 +155,7 @@ function isValidGalleryInteger($value, $includingZero = false, $emptyAllowed = f
 	if($value === '' || !isset($value)) {
 		$result = (boolean) $emptyAllowed;
 	}
-	elseif($value < $minimum || !ctype_digit(trim($value)) || intval($value) != $value) {
+	elseif($value < $minimum || intval($value) != $value) {
 		$result = false;
 	}
 	else {
