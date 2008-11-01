@@ -41,12 +41,11 @@ $help_page='<a href="http://gallery.sourceforge.net/help.php">'. gTranslate('con
 $docs_page = galleryDocs();
 
 if ($docs_page) {
-	echo sprintf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
+	printf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
 	'<a href="'. $docs_page .'">'. gTranslate('config', "documentation") .'</a>', $diagnostics_page, $help_page);
 }
 else {
-	echo sprintf(gTranslate('config', "Having problems?  Try the %s and %s."),
-	$diagnostics_page, $help_page);
+	printf(gTranslate('config', "Having problems?  Try the %s and %s."), $diagnostics_page, $help_page);
 }
 
 echo "</div>";
@@ -55,9 +54,15 @@ echo "<br>";
 $configTestStatus = array(
 	0 => array(
 		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success!")),
-		'text' => gTranslate('config', "Success!"),
+		'text' => gTranslate('config', "Success."),
         	'border' => 'border: 1px solid #b2ffb2',
         	'type' => 'success'
+	),
+	3 => array(
+		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Information!")),
+		'text' => gTranslate('config', "Information."),
+        	'border' => 'border: 1px solid #b2ffb2',
+        	'type' => 'information'
 	),
 	5 => array(
 		'image' => gImage('yellow_trafficlight.gif', gTranslate('config', "Warning, but optional.")),
@@ -86,13 +91,13 @@ $configTestStatus = array(
 );
 
 $diagnostics_page = galleryLink(
-    makeGalleryUrl('setup/diagnostics.php'),
-    gTranslate('config', "Gallery Diagnostics Page"));
+	makeGalleryUrl('setup/diagnostics.php'),
+	gTranslate('config', "Gallery Diagnostics Page"));
 
 $help_page = galleryLink(
-    'http://gallery.sourceforge.net/help.php',
-    gTranslate('config', "Gallery Help Page"),
-    array('target' => '_blank'));
+	'http://gallery.sourceforge.net/help.php',
+	gTranslate('config', "Gallery Help Page"),
+	array('target' => '_blank'));
 
 $openBasedir = ini_get('open_basedir');
 
@@ -107,132 +112,135 @@ $warning = 0;
 
 <?php
 
-        foreach ($checkPriority as $key => $checklistGroup) {
-            echo "\n\t<h1>". $checklistGroup['shortdesc'] . '</h1>';
+foreach ($checkPriority as $key => $checklistGroup) {
+	echo "\n\t<h1>". $checklistGroup['shortdesc'] . '</h1>';
 
-            echo "\n\t" . $checklistGroup['longdesc'];
+	echo "\n\t" . $checklistGroup['longdesc'];
 
-            $table = new galleryTable();
-            $table->setColumnCount(4);
-            $table->setAttrs(array(
-                'cellspacing' => 0,
-                'id' => "setupchecks_$key",
-                'class' => 'inner',
+	$table = new galleryTable();
+	$table->setColumnCount(4);
+	$table->setAttrs(array(
+		'cellspacing' => 0,
+		'id' => "setupchecks_$key",
+		'class' => 'inner',
 		'style' => 'width: 100%'
-	    ));
+	));
 
-            /* $checklist contains actually the complete list of checks */
-            foreach ($checklistGroup['checkslist'] as $short) {
-                $check = $checklist[$short];
-	if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
+	/* $checklist contains actually the complete list of checks */
+	foreach ($checklistGroup['checkslist'] as $short) {
+		$check = $checklist[$short];
+		if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 
-                $func = $check['func'];
-	$result = $func();
+		$func = $check['func'];
+		$result = $func();
 
-	list($success, $fail, $warn) = $result;
-	$status = getCheckStatus($result, $check);
-	$usedStatus[$status] = $status;
+		list($success, $fail, $warn) = $result;
+		$status = getCheckStatus($result, $check);
+		$usedStatus[$status] = $status;
 
-	// shortdesc
-                $table->addElement(array(
-                    'content' => $check['prompt'] . '<br>' . toggleBox($short, $check["desc"], 'none'),
-                    'cellArgs' => array(
+		// shortdesc
+		$table->addElement(array(
+			'content' => $check['prompt'] . '<br>' . toggleBox($short, $check["desc"], 'none'),
+			'cellArgs' => array(
 				'class' => 'desc emphasis',
 				'style' => 'width: 40%; vertical-align: top; border-bottom: 2px solid #ececec;'
-		    )
+			)
 		));
 
-                // toggle button for the long description
-                $table->addElement(array(
-                    'content' => toggleButton($short),
-                    'cellArgs' => array(
+		// toggle button for the long description
+		$table->addElement(array(
+			'content' => toggleButton($short),
+			'cellArgs' => array(
 				'class' => 'desc',
 				'style' => 'vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;'
-		    )
+			)
 		));
 
-	// traffic light
-                $table->addElement(array(
-                    'content' => $configTestStatus[$status]['image'],
-                    'cellArgs' => array(
+		// traffic light
+		$table->addElement(array(
+			'content' => $configTestStatus[$status]['image'],
+			'cellArgs' => array(
 				'class' => 'desc',
 				'style' => 'border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;'
-		    )
+			)
 		));
 
-	// result
-                $message = '';
+		// result
+		$message = '';
 
-               foreach ($success as $successMsg) {
-                    if ($successMsg != '') {
-                        $message .= $successMsg;
-		}
-	}
-
-	foreach ($fail as $key => $val) {
-		if (isset($check['optional']) && $check['optional']) {
-                        if (isset($check['serious']) && $check['serious']) {
-				$serious_warning = true;
+		foreach ($success as $successMsg) {
+			if ($successMsg != '') {
+				$message .= $successMsg;
 			}
-			if (isset($check) && isset($check[$key])) {
-                            $message .= $check[$key];
-			}
-			$warning++;
-		}
-		else {
-                        if (isset($check['serious']) && $check['serious']) {
-				$serious_warning = true;
-			}
-
-			if (isset($check) && isset($check[$key])) {
-                            $message .= $check[$key];
-			}
-                        $error++;
 		}
 
-                    if (isset($check['open-basedir-note']) && !empty($openBasedir)) {
-                        $message .= '<p>'. $check['open-basedir-note'] . '</p>';
+		foreach ($fail as $key => $val) {
+			if (isset($check['optional']) && $check['optional']) {
+				if (isset($check['serious']) && $check['serious']) {
+					$serious_warning = true;
+				}
+				if (isset($check) && isset($check[$key])) {
+					$message .= $check[$key];
+				}
+				$warning++;
+			}
+			else {
+				if (isset($check['serious']) && $check['serious']) {
+					$serious_warning = true;
+				}
+
+				if (isset($check) && isset($check[$key])) {
+					$message .= $check[$key];
+				}
+				$error++;
+			}
+
+			if (isset($check['open-basedir-note']) && !empty($openBasedir)) {
+				$message .= '<p>'. $check['open-basedir-note'] . '</p>';
+			}
+
+			if (is_array($val)) {
+				foreach ($val as $msg) {
+					if ($val) {
+						$message .= $msg;
+					}
+				}
+			}
+			else if (is_string($val)) {
+				$message .= $val;
+			}
 		}
 
-		if (is_array($val)) {
-			foreach ($val as $msg) {
-				if ($val) {
-                                $message .= $msg;
+		// Nothing failed, just warnings
+		if (isset($warn) && !empty($warn)) {
+			foreach ($warn as $key => $val) {
+				if (isset($check[$key])) {
+					$message .= $check[$key];
+				}
+				else {
+					$message .= $val;
+				}
+				
+				if (! isset($check['information'])) {
+					$warning++;
 				}
 			}
 		}
-		else if (is_string($val)) {
-                        $message .= $val;
-		}
-	}
 
-	// Nothing failed, just warnings
-	if (isset($warn) && !empty($warn)) {
-		foreach ($warn as $key => $val) {
-			if (isset($check[$key])) {
-                            $message .= $check[$key];
-                        }
-                        else {
-                            $message .= $val;
-			}
-			$warning++;
-		}
-	}
-
-                $table->addElement(array(
-                    'content' => infoBox(array(array(
-                        'type' => $configTestStatus[$status]['type'],
-                        'text' => $message)
-                        ), '', false
-                    ),
-                    'cellArgs' => array(
+		$table->addElement(array(
+			'content' => infoBox(array(array(
+				'type' => $configTestStatus[$status]['type'],
+				'text' => $message)
+				), '', false
+			),
+			'cellArgs' => array(
 				'class' => 'desc',
 				'style' => 'vertical-align: top;border-bottom: 2px solid #ececec;'
-		    )
+			)
 		));
-            }
+	}
 
-            // Now show the checklist.
+	// Now show the checklist.
             ?>
             <div class="g-config-main">
             <?php echo $table->render(); ?>
@@ -249,12 +257,12 @@ $warning = 0;
           <td colspan="2" class="left"><?php echo gTranslate ('config', "Legend:"); ?></td>
         </tr><?php
         sort($usedStatus);
-foreach ($usedStatus as $status) {
-            echo "\n    <tr>";
-            echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
-            echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
-            echo "\n    </tr>";
-}
+        foreach ($usedStatus as $status) {
+        	echo "\n    <tr>";
+        	echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
+        	echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
+        	echo "\n    </tr>";
+        }
 ?>
       </table>
     </div>

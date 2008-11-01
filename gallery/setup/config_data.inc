@@ -246,7 +246,7 @@ $checklist = array(
 	),
 	'gallery-locale' => array (
 		'prompt' => gTranslate('config',"Locales needed for Gallery"),
-		'optional' => 1,
+		'information' => 1,
 		'desc' => gTranslate('config',"Check to see what languages are available."),
 		'func' => 'check_gallery_languages'
 	),

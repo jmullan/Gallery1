@@ -1943,6 +1943,7 @@ function placeholderDescription() {
  * Returns a status code base on the given resultset
  *
  * 0 - success
+ * 3 - information
  * 5 - warning, optional
  * 10 - serious warning, but optional
  * 51 - serious warning
@@ -1960,6 +1961,10 @@ function getCheckStatus($result, $check) {
 		return 0;
 	}
 
+	if (isset($check['information'])) {
+		return 3;
+	}
+		
 	if (isset($check['optional']) && $check['optional']) {
 		if (isset($check["serious"]) && $check["serious"]) {
 			if(empty($fail)) {

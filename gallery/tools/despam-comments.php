@@ -242,7 +242,7 @@ function findBlacklistedComments() {
         }
         print("<input type=\"hidden\" name=\"g1_mode\" value=\"deleteComments\"/>");
         print "</table>";
-        printf("<input type=\"submit\" value=\"%s\"/>", gTranslate('core', "Delete Checked Comments"));
+        print gSubmit('submit', gTranslate('core', "Delete Checked Comments"));
         print "</form>";
     }
 }

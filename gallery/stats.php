@@ -710,11 +710,12 @@ for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosP
 					$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
 
 					// Image Cell
+					$cellWidth = $thumbSize + 25;
 					$statsTable->addElement(array(
 						'content' => '<div class="g-vathumb">'.
 									 "<a href=\"$statsUrl\">". $statsAlbum->getThumbnailTag($photoIndex, $thumbSize) . "</a>" .
 									 '</div>',
-						'cellArgs' => array('class' => 'g-vathumb-cell', 'style' => 'vertical-align: top')));
+						'cellArgs' => array('class' => 'g-vathumb-cell', 'style' => "width: ${cellWidth}px; vertical-align: top")));
 
 					//  Text Cell -->
 					$statsTable->addElement(array(
