@@ -446,6 +446,50 @@ function createTreeArray($albumName,$depth = 0) {
 	return $tree;
 }
 
+function getYUIHtmlTree($tree, $depth = 0, $parentNode = 'main') {
+	$html = '';
+
+	// Initiate tree
+	if ($depth == 0 && !empty($tree)) {
+		$treeName = strtr($tree[0]['albumName'], '-', '_');
+
+		$html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+
+		$html = "<div id=\"tree_$treeName\"></div>";
+
+		$html .= "
+		<script type=\"text/javascript\">
+			var tree_$treeName = new YAHOO.widget.TreeView(\"tree_$treeName\");
+			var root_$treeName = tree_${treeName}.getRoot();
+
+			var main_$treeName = new YAHOO.widget.TextNode(\"". gTranslate('common', "Sub-albums:") ."\", root_$treeName, false);
+		";
+
+		if($parentNode == 'main') {
+			$parentNode = "main_${treeName}";
+		}
+	}
+
+	foreach($tree as $content) {
+		$nodename = 'node_' . strtr($content['albumName'], '-', '_');
+
+		$label = addslashes($content['title'] . ' '. $content['clicksText']);
+		$html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";
+		$html .= "\n\t var $nodename = new YAHOO.widget.TextNode(${nodename}_obj, $parentNode, false);";
+
+		if(!empty($content['subTree'])) {
+			$html .= getYUIHtmlTree($content['subTree'], $depth + 1, $nodename);
+		}
+	}
+
+	if ($depth == 0 && !empty($tree)) {
+//		$html .= "\n\n\t tree_{$treeName}.expandAll();";
+		$html .= "\n\n\t tree_{$treeName}.render();";
+		$html .= "\n\n\t </script>\n";
+	}
+
+	return $html;
+}
 
 /**
  * Test Suite for albums
@@ -719,7 +763,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=0",
 							false, true, 550, 600, '', '', 'move.png'
 					    ),
-				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=0")
+				'value'	=> build_popup_url("move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=0")
 			);
 
 			$albumCommands[] = array(
@@ -728,7 +772,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 							"move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=1",
 							false, true, 550, 600, '', '', 'move.png'
 					   ),
-				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=1")
+				'value'	=> build_popup_url("move_rootalbum.php?set_albumName={$albumName}&index=$i&reorder=1")
 			);
 		}
 	}
@@ -756,6 +800,27 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 								true)
 			);
 		}
+		
+		/* User is allowed to change the album */
+		if (checkRequirements('canWriteToAlbum')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Move album"),
+				'html'	=> popup_link(gTranslate('common',"Move album"),
+							"move_albumitem.php?set_albumName={$albumName}&index=$i&reorder=0",
+							false, true, 550, 600, '', '', 'move.png'
+					    ),
+				'value'	=> build_popup_url("move_albumitem.php?set_albumName={$albumName}&index=$i&reorder=0")
+			);
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Reorder album"),
+				'html'	=> popup_link(gTranslate('common',"Reorder album"),
+							"move_albumitem.php?set_albumName={$albumName}&index=$i&reorder=1",
+							false, true, 550, 600, '', '', 'move.png'
+					   ),
+				'value'	=> build_popup_url("move_albumitem.php?set_albumName={$albumName}&index=$i&reorder=1")
+			);
+		}		
 	}
 
 	/* Options shown only in thumbsview */

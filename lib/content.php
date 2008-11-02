@@ -324,64 +324,6 @@ foreach ($overrides as $key => $value) {
 }
 
 /**
- * Returns the HTML code for a dynamic subalbum tree of an album.
- * This function is recursive.
- *
- * @param array     $tree
- * @param int       $depth
- * @param string    $parentNode
- * @return string   $html
- */
-function printChildren($tree, $depth = 0, $parentNode = 'main') {
-	$html = '';
-
-	if ($depth == 0 && !empty($tree)) {
-		$treeName = strtr($tree[0]['albumName'], '-', '_');
-
-		$html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
-
-		$html = "<div id=\"tree_$treeName\"></div>
-		<script type=\"text/javascript\">
-			var tree_$treeName;
-			var root_$treeName;
-			var main_$treeName;
-
-			tree_$treeName = new YAHOO.widget.TreeView(\"tree_$treeName\");
-		//	tree_${treeName}.setExpandAnim(YAHOO.widget.TVAnim.FADE_IN);
-		//	tree_${treeName}.setCollapseAnim(YAHOO.widget.TVAnim.FADE_OUT);
-
-			root_$treeName = tree_${treeName}.getRoot();
-
-			main_$treeName = new YAHOO.widget.TextNode(\"". gTranslate('common', "Sub-albums:") ."\", root_$treeName, false);
-		";
-
-		if($parentNode == 'main') {
-			$parentNode = "main_${treeName}";
-		}
-	}
-
-	foreach($tree as $content) {
-		$nodename = 'node_' . strtr($content['albumName'], '-', '_');
-
-		$label = addslashes($content['title'] . ' '. $content['clicksText']);
-		$html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";
-		$html .= "\n\t var $nodename = new YAHOO.widget.TextNode(${nodename}_obj, $parentNode, false);";
-
-		if(!empty($content['subTree'])) {
-			$html .= printChildren($content['subTree'], $depth+1, $nodename);
-		}
-	}
-
-	if ($depth == 0 && !empty($tree)) {
-//		$html .= "\n\n\t tree_{$treeName}.expandAll();";
-		$html .= "\n\n\t tree_{$treeName}.draw();";
-		$html .= "\n\n\t </script>\n";
-	}
-
-	return $html;
-}
-
-/**
  * Returns the HTML code for a the microthumb view off all subalbums of an album.
  * This function is recursive.
  *
@@ -1375,15 +1317,14 @@ function showImageMap($index, $noUrlUrl = '#') {
 
 	return $html;
 }
-
 /**
  * Generates a complete <img ...> html
  *
- * @param $relativPath  string  path to the images relativ to gallery root
- * @param $altText		string  alt Text
- * @param $attrs		array   optional additional attributs (id, name..)
- * @param $skin			string	optional input of skin, because the image could be in skindir.
- * @author Jens Tkotz
+ * @param  string $relativePath  path to the images relativ to gallery images folder
+ * @param  string $altText
+ * @param  array  $attrList
+ * @param  string $skin
+ * @return string $html
  */
 function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 	global $gallery;
@@ -1534,25 +1475,20 @@ function removeAccessKey($text) {
  * @author  Jens Tkotz
 */
 function autoCompleteJS() {
-	global $gallery;
 
-	$baseUrl = getGalleryBaseUrl();
+	// Dependencies
+	$html = jsHTML('yui/yahoo-dom-event.js');
+	$html .= jsHTML('yui/datasource-min.js');
+	
+	// Optoional Animation
+	$html .= jsHTML('yui/animation-min.js');
 
-	$html = '
-	<!-- Dependencies -->
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/yahoo-min.js"></script>
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/dom-min.js"></script>
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/event-min.js"></script>
 
-	<!-- OPTIONAL: Connection (required only if using XHR DataSource) -->
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/connection-min.js"></script>
+	// Optional Connection (required only if using XHRDataSource)
+	$html .= jsHTML('yui/connection-min.js');
 
-	<!-- OPTIONAL: Animation (required only if enabling animation) -->
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/animation-min.js"></script>
-
-	<!-- Source file -->
-	<script type="text/javascript" src="' . $baseUrl . '/js/yui/autocomplete-min.js"></script>
-';
+	// Source 
+	$html .= jsHTML('yui/autocomplete-min.js');
 
 	return $html;
 }
@@ -1560,11 +1496,19 @@ function autoCompleteJS() {
 /**
  * Returns the HTML code to a js file inside the Galley js folder.
  *
- * @param  string	$path	e.g. /js/yui/autocomplete-min.js
+ * @param  string	$path	e.g. yui/autocomplete-min.js
  * @return string	The HTML code
  * @author Jens Tkotz
  */
 function jsHTML($path) {
+	static $usedJS = array();
+
+	if(in_array($path, $usedJS)) {
+		return '';
+	}
+
+	$usedJS[] = $path;
+
 	$baseUrl = getGalleryBaseUrl();
 
 	if(isXSSclean($path, 0)) {
@@ -1576,10 +1520,10 @@ function jsHTML($path) {
  * Returns the HTML/Javascript code that initializes an autocomplete field
  * if 4th param is false, then just an input field is returned.
  *
- * @param   string  $label	  descriptive Text
+ * @param   string  $label      descriptive Text
  * @param   string  $inputName  name of the input field
- * @param   string  $id		 id of the input field
- * @return  string  $html	   Output
+ * @param   string  $id         id of the input field
+ * @return  string  $html
  * @author  Jens Tkotz
  */
 function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = false, $disabled = false) {
@@ -1596,21 +1540,36 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
 
 	if($enableAutocomplete) {
 		$html .= '
-<script type="text/javascript">
-	oACDS = new YAHOO.widget.DS_XHR("' . $gallery->app->photoAlbumURL .'/lib/autocomplete/YUIsearch_files.php", ["\n", "\t"]);
-	oACDS.responseType = YAHOO.widget.DS_XHR.prototype.TYPE_FLAT;
-	oACDS.maxCacheEntries = 50;
-	oACDS.queryMatchSubset = true;
+	<script type="text/javascript">
+		YAHOO.example.BasicRemote = function() {
+			// Use an XHRDataSource
+			var oDS = new YAHOO.util.XHRDataSource("'. $gallery->app->photoAlbumURL .'/lib/autocomplete/YUIsearch_files.php");
+			// Set the responseType
+			oDS.responseType = YAHOO.util.XHRDataSource.TYPE_TEXT;
+			// Define the schema of the delimited results
+    			oDS.responseSchema = {
+        			recordDelim: "\n",
+        			fieldDelim: "\t"
+    			};
+    			// Enable caching
+    			oDS.maxCacheEntries = 5;
 
-	// Instantiate auto complete
-	oAutoComp = new YAHOO.widget.AutoComplete(\''. $id .'\',\''. $id .'_container\', oACDS);
-	oAutoComp.queryDelay = 0;
-	oAutoComp.typeAhead = true;
-	oAutoComp.useShadow = true;
-	oAutoComp.allowBrowserAutocomplete = false;
-	oAutoComp.autoHighlight = false;
-	oAutoComp.useIFrame = true;
-</script>';
+			// Instantiate the AutoComplete
+			var oAC = new YAHOO.widget.AutoComplete("'. $id .'", "'. $id .'_container", oDS);
+			oAC.animVert = true; 
+			oAC.animSpeed = .3;
+			oAC.typeAhead = true;
+			oAC.allowBrowserAutocomplete = false;
+			oAC.autoHighlight = false;
+			oAC.useIFrame = true;
+
+    
+			return {
+				oDS: oDS,
+				oAC: oAC
+			};
+		}();
+	</script>';
 	}
 
 	return $html;

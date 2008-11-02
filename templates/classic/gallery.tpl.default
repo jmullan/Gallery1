@@ -50,7 +50,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 	rootRSSLink();
 	if (isset($dynsubalbumTree)) {
-		echo _getStyleSheetLink('yui/folders/tree');
+		echo _getStyleSheetLink('yui-tree');
 	}
 ?>
 </head>
@@ -64,43 +64,39 @@ includeTemplate("gallery.header", '', 'classic');
 
 if (isset($dynsubalbumTree)) {
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		echo _getStyleSheetLink('yui/folders/tree');
+		echo _getStyleSheetLink('yui-tree');
 	}
 
-	echo jsHTML('yui/yahoo-min.js');
+	echo jsHTML('yui/yahoo-dom-event.js');
 	echo jsHTML('yui/treeview-min.js');
-	echo jsHTML('yui/dom-min.js');
-	echo jsHTML('yui/event-min.js');
-	echo jsHTML('yui/animation-min.js');
 }
 
 echo $searchBar;
 
 // We do not longer use adminbox.inc here
 ?>
-<div class="g-adminbar">
-  <table width="100%">
-  <tr>
-      <td colspan="2" class="g-adminbarheader right"><?php echo $gallery_welcome ?></td>
-    </tr>
-    <tr>
-      <td class="g-adminbartext left"><?php echo $adminText ?></td>
-      <td class="g-adminbarcommands right">
-      		<?php echo makeIconMenu($iconElements, 'right'); ?>
-      </td>
-    </tr>
-  </table>
-</div>
-
+    <div class="g-adminbar">
+      <table width="100%">
+        <tr>
+	  <td colspan="2" class="g-adminbarheader right"><?php echo $gallery_welcome ?></td>
+	</tr>
+	<tr>
+	  <td class="g-adminbartext left"><?php echo $adminText ?></td>
+	  <td class="g-adminbarcommands right">
+	    <?php echo makeIconMenu($iconElements, 'right'); ?>
+	  </td>
+	</tr>
+      </table>
+    </div>
 <?php
+
+includeTemplate('headerbox.footer');
 
 if ($navigator["maxPages"] > 1) {
 	echo '<div class="g-navbar-top">';
 	includeLayout('navigator.inc');
 	echo '</div>';
 }
-
-echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
 

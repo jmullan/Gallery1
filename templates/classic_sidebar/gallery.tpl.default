@@ -58,7 +58,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 	rootRSSLink();
 	if (isset($dynsubalbumTree)) {
-		echo _getStyleSheetLink('yui/folders/tree');
+		echo _getStyleSheetLink('yui-tree');
 	}
 
 	echo _getStyleSheetLink('sidebar');
@@ -80,14 +80,11 @@ if ($GALLERY_EMBEDDED_INSIDE) {
 
 if (isset($dynsubalbumTree)) {
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		echo _getStyleSheetLink('yui/folders/tree');
+		echo _getStyleSheetLink('yui-tree');
 	}
 
-	echo jsHTML('yui/yahoo-min.js');
+	echo jsHTML('yui/yahoo-dom-event.js');
 	echo jsHTML('yui/treeview-min.js');
-	echo jsHTML('yui/dom-min.js');
-	echo jsHTML('yui/event-min.js');
-	echo jsHTML('yui/animation-min.js');
 }
 ?>
 
