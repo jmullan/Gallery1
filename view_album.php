@@ -197,7 +197,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
 		gTranslate('core', "Slidesho_w"),
 		array(),
-		'presentation.gif',
+		'monitor.png',
 		true
 	);
 }
@@ -208,11 +208,12 @@ if (checkRequirements('comments_enabled', 'hasComments', 'comments_overview_for_
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "View&nbsp;_comments"),
 		array(),
-		'view_comment.gif',
+		'comments.png',
 		true
 	);
 }
 
+$iconElements[] = languageSelector('');
 $iconElements[] = LoginLogoutButton($currentUrl);
 
 $specialIconMode = '';

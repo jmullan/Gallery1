@@ -28,7 +28,7 @@ function getmicrotime() {
 function recurseAlbums( $parentAlbum) {
 	global $list, $gallery;
 	if ($parentAlbum) {
-		debugMessage(sprintf(gTranslate('common', "Recursing album: %s"),  $parentAlbum->fields['name']),__FILE__, __LINE__, 2);
+		debugMessage(sprintf(gTranslate('core', "Recursing album: %s"),  $parentAlbum->fields['name']),__FILE__, __LINE__, 2);
 
 		$numPhotos = $parentAlbum->numPhotos(1);
 		for ($j = 1; $j <= $numPhotos; $j++) {
@@ -64,7 +64,7 @@ function readCacheNumPhotos( $cacheFilename ) {
 			myFlock($fd, LOCK_UN);
 		}
 		else {
-			debugMessage(gTranslate('common', "Read cache num photos lock failed."), __FILE__, __LINE__, 2);
+			debugMessage(gTranslate('core', "Read cache num photos lock failed."), __FILE__, __LINE__, 2);
 		}
 		fclose($fd);
 	}
@@ -88,7 +88,7 @@ function readGalleryStatsCache( $cacheFilename, $start, $numPhotos ) {
 			for ( $i = 0; $i < $numPhotos; ++$i ) {
 				$data = fgetcsv($fd,$size,'|');
 				if ($data ) {
-					debugMessage(sprintf(gTranslate('common', "Album name : %s ; index: %s"), $data[0], $data[1]), __FILE__, __LINE__, 1);
+					debugMessage(sprintf(gTranslate('core', "Album name : %s ; index: %s"), $data[0], $data[1]), __FILE__, __LINE__, 1);
 
 					$arrPhotos[$start+$i] = array("albumName" => $data[0],
 						'photoId' => $data[1],
@@ -100,7 +100,7 @@ function readGalleryStatsCache( $cacheFilename, $start, $numPhotos ) {
 			myFlock($fd, LOCK_UN);
 		}
 		else {
-			debugMessage(gTranslate('common', "Read cache lock failed."), __FILE__, __LINE__, 2);
+			debugMessage(gTranslate('core', "Read cache lock failed."), __FILE__, __LINE__, 2);
 		}
 		fclose($fd);
 	}
@@ -139,7 +139,7 @@ function writeGalleryStatsCache( $cacheFilename ) {
 			myFlock($fd, LOCK_UN);
 		}
 		else {
-			debugMessage(gTranslate('common', "Read cache lock failed."), __FILE__, __LINE__, 2);
+			debugMessage(gTranslate('core', "Read cache lock failed."), __FILE__, __LINE__, 2);
 		}
 		fclose($fd);
 	}
@@ -246,7 +246,7 @@ function showAddCommentLink($photoId) {
 	global $statsAlbum;
 
 	$url = "add_comment.php?set_albumName={$statsAlbum->fields['name']}&id=$photoId";
-	return popup_link(gTranslate('common',"add comment"), $url, 0, false, 500, 500, 'g-small', '', '', false);
+	return popup_link(gTranslate('core',"add comment"), $url, 0, false, 500, 500, 'g-small', '', '', false);
 }
 
 // Show the add vote link
@@ -258,7 +258,7 @@ function showAddVoteLink( $photoId, $page ) {
 	$urlargs['url'] = urlencode(makeStatsUrl( $page ));
 	$url = makeGalleryUrl("vote.php", $urlargs);
 
-	return galleryLink($url, gTranslate('common', "add vote"), array('class' => 'g-small'));
+	return galleryLink($url, gTranslate('core', "add vote"), array('class' => 'g-small'));
 }
 
 
@@ -357,12 +357,12 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 	// End Caption
 
 	if ($showAlbumLink ) {
-		$albumLink = sprintf(gTranslate('common', "From album: %s"),
+		$albumLink = sprintf(gTranslate('core', "From album: %s"),
 		'<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] . '</a>');
 
 		$owner_var = '';
 		if ($showAlbumOwner == 1 ) {
-			$owner_var = '<br>' . sprintf(gTranslate('common', "Owned by: %s"), showOwner($statsAlbum->getOwner()));
+			$owner_var = '<br>' . sprintf(gTranslate('core', "Owned by: %s"), showOwner($statsAlbum->getOwner()));
 		}
 
 		$html .= "\n	" . '<div class="g-small">'. $albumLink . $owner_var . '</div>';
@@ -394,7 +394,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		$captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
 
 		$innerStatsTable->addElement(array(
-			'content' => gTranslate('common', "Capture date:"),
+			'content' => gTranslate('core', "Capture date:"),
 			'cellArgs' => array('width' => 100))
 		);
 
@@ -410,7 +410,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		if ($time) {
 			$time = strftime($gallery->app->dateString,$time);
 			$innerStatsTable->addElement(array(
-				'content' => gTranslate('common', "Upload date:"),
+				'content' => gTranslate('core', "Upload date:"),
 				'cellArgs' => array('width' => 100))
 			);
 
@@ -427,17 +427,17 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 	{
 
 		$innerStatsTable->addElement(array(
-			'content' => gTranslate('common', "Viewed:"),
+			'content' => gTranslate('core', "Viewed:"),
 			'cellArgs' => array('width' => 100))
 		);
 
 		$innerStatsTable->addElement(array(
 			'content' => gTranslate(
-				'common',
+				'core',
 				"Once",
 				"%d times",
 				$statsAlbum->getItemClicks($photoIndex),
-				gTranslate('common', "Never viewed"),
+				gTranslate('core', "Never viewed"),
 		true),
 			'cellArgs' => array('class' => 'g-small'))
 		);
@@ -445,7 +445,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
 	if (!empty($showVotes )) {
 		$innerStatsTable->addElement(array(
-			'content' => gTranslate('common', "Votes:"),
+			'content' => gTranslate('core', "Votes:"),
 			'cellArgs' => array('width' => 100))
 		);
 
@@ -459,7 +459,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		switch ($rating) {
 			case -2:
 				$photoRateCounts = '';
-				$photoRate = gTranslate('common', "not rated");
+				$photoRate = gTranslate('core', "not rated");
 				break;
 			case -1:
 				$photoRateCounts = '';
@@ -473,7 +473,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		}
 
 		$innerStatsTable->addElement(array(
-			'content' => gTranslate('common', "Rating:"),
+			'content' => gTranslate('core', "Rating:"),
 			'cellArgs' => array('width' => 100))
 		);
 

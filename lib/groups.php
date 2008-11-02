@@ -67,27 +67,27 @@ function deleteGroup($gid) {
 function validNewGroupName($groupname) {
 	$saveToDisplayGroupName = '<i>'. htmlentities($groupname) .'</i>';
 
-	echo debugMessage(sprintf(gTranslate('core',
+	echo debugMessage(sprintf(gTranslate('common',
 		"Checking groupname '%s' for validity"), $saveToDisplayGroupName),
 		__FILE__, __LINE__, 4);
 
 	if (strlen($groupname) == 0) {
-		return gTranslate('core', "Please enter a groupname.");
+		return gTranslate('common', "Please enter a groupname.");
 	}
 
 	if (strlen($groupname) < 2) {
-		return sprintf(gTranslate('core', "Groupname '%s' is to short. Must be at least 2 characters."),
+		return sprintf(gTranslate('common', "Groupname '%s' is to short. Must be at least 2 characters."),
 		$saveToDisplayGroupName);
 	}
 
 	if (strlen($groupname) > 25) {
-		return sprintf(gTranslate('core', "Groupname '%s' too long. Must be at most 25 characters."),
+		return sprintf(gTranslate('common', "Groupname '%s' too long. Must be at most 25 characters."),
 		$saveToDisplayGroupName);
 	}
 
 	if (ereg("[^[:alnum:]]", $groupname)) {
 
-		return sprintf(gTranslate('core', "Illegal groupname '%s'. Only letters and digits allowed."),
+		return sprintf(gTranslate('common', "Illegal groupname '%s'. Only letters and digits allowed."),
 		$saveToDisplayGroupName);
 	}
 
@@ -95,7 +95,7 @@ function validNewGroupName($groupname) {
 	$group = Gallery_Group::loadByName($groupname);
 
 	if ($group) {
-		return sprintf(gTranslate('core', "A group with the groupname of '%s' already exists"),
+		return sprintf(gTranslate('common', "A group with the groupname of '%s' already exists"),
 		$saveToDisplayGroupName);
 	}
 
@@ -123,6 +123,6 @@ function buildGroupsList() {
 	}
 
 	array_sort_by_fields($groups, 'text', 'asc', true, true);
-	
+
 	return $groupList;
 }

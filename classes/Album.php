@@ -1180,7 +1180,6 @@ class Album {
 		if ($gallery->app->emailOn == 'yes' && $success && $msg) {
 			if (!is_array($msg)) {
 				echo gallery_error(gTranslate('core', "msg should be an array!"));
-				vd($msg);
 				return $success;
 			}
 
@@ -3630,16 +3629,13 @@ class Album {
 	}
 
 	function getVotingIdByIndex($index) {
-		$albumName = $this->getAlbumName($index);
+		$photo = $this->getPhoto($index);
 
-		if($albumName === null) {
-			$vote_id = null;
-		}
-		elseif (!empty($albumName)) {
-			$vote_id = "album.$albumName";
+		if ($photo->isAlbum()) {
+			$vote_id = 'album.' . $photo->getAlbumName();
 		}
 		else {
-			$vote_id = "item.".$this->getPhotoId($index);
+			$vote_id = 'item.' . $photo->getPhotoId();
 		}
 
 		return $vote_id;
