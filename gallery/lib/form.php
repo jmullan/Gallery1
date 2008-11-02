@@ -286,20 +286,12 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 }
 
 function formVar($name) {
-	$_REQUEST = array_merge($_GET, $_POST);
-
-	if (!strncmp($_REQUEST[$name], 'false', 5)) {
+	if (!strncmp(getRequestVar($name), 'false', 5)) {
 		return false;
 	}
 	else {
 		return getRequestVar($name);
 	}
-}
-
-function emptyFormVar($name) {
-	$_REQUEST = array_merge($_GET, $_POST);
-
-	return !isset($_REQUEST[$name]);
 }
 
 /**

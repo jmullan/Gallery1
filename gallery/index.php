@@ -25,19 +25,28 @@ global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
 global $MOS_GALLERY_PARAMS;
 
-$_REQUEST = array_merge($_GET, $_POST);
-
 // Mambo / Joomla calls index.php directly for popups - we need to make
 // sure that the option var has been extracted into the environment
 // otherwise it just won't work.
-$option		= isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
-$op		= isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
-$mop		= isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
-$name		= isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
-$include	= isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
+foreach (array('option', 'op', 'mop', 'name', 'include') as $varname) {
+	if (isset($_GET[$varname])) {
+		$$varname = $_GET[$varname];
+	}
+	elseif (isset($_POST[$varname])) {
+		$$varname = $_POST[$varname];
+	}
+}
+
 $postnuke	= ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') && PN_VERSION_ID != 'Zikula') ? true : false;
 $zikula		= ( defined('PN_VERSION_ID') && PN_VERSION_ID == 'Zikula') ? true : false;
-$phpnuke	= isset($GLOBALS['nukeurl']) ? true : false;
+
+if (isset($_REQUEST['nukeurl'])) {
+	echo "Security violation! Override attempt.\n";
+	exit;
+}
+else {
+	$phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
+}
 
 /*
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.

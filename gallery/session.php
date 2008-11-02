@@ -199,7 +199,7 @@ function update_session_var($name, $protected=0) {
 	}
 
 	$setname = "set_$name";
-	if (!emptyFormVar($setname)) {
+	if (getRequestVar($setname) != null) {
 		$gallery->session->{$name} = formVar($setname);
 	}
 }

@@ -22,7 +22,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-if (isset($_REQUEST['destroy'])) {
+if (isset($_GET['destroy'])) {
 	session_destroy();
 	header("Location: session_test.php");
 	exit;
