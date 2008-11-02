@@ -32,8 +32,6 @@ if (!$gallery->user->isAdmin()) {
 // Ensure that the results we get aren't due to caching
 clearstatcache();
 
-
-
 $results = array(
 	'file_missing' => array(),
 	'invalid_album' => array(),
@@ -64,13 +62,12 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['text']	 = '<span class="g-title">'. $title .'</span>';
 $adminbox['commands']	 = makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-
-$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -80,7 +77,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo $title; ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 }
 
@@ -88,6 +85,8 @@ includeTemplate("gallery.header", '', 'classic');
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
+
+includeTemplate("headerbox.footer");
 
 if (!empty($action)) {
 	switch ($action) {
@@ -165,9 +164,7 @@ if (!empty($action)) {
 			echo gallery_error(gTranslate('core', "Invalid action!"));
 			break;
 	}
-?>
-</div>
-<?php
+
 	includeTemplate("overall.footer");
 
 	if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -276,9 +273,7 @@ else {
 		}
 		echo "\n</fieldset><br>";
 	}
-?>
-</div>
-<?php
+
 	includeTemplate("overall.footer");
 
 	if (!$GALLERY_EMBEDDED_INSIDE) {

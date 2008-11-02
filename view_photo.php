@@ -406,6 +406,7 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons && $gallery->app->theme != 'class
 	;
 }
 
+$iconElements[] = languageSelector('');
 $iconElements[] = LoginLogoutButton($currentUrlResized);
 
 $breadcrumb['bordercolor'] = $bordercolor;

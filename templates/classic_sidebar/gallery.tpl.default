@@ -69,6 +69,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 includeTemplate("gallery.header", '', 'classic');
 
+includeTemplate('headerbox.footer');
+
 if ($GALLERY_EMBEDDED_INSIDE) {
 	echo _getStyleSheetLink('sidebar');
 }
@@ -108,7 +110,9 @@ if (isset($dynsubalbumTree)) {
 	</div>
 	</td>
 	<td id="g-content" class="1g-content 1floatleft g-borderleftsolid">
-		<?php echo $searchBar; ?>
+	        <div class="g-headerbox">
+		    <?php echo $searchBar; ?>
+	        </div>
 		<div class="g-adminbar">
 		  <table width="100%">
 		  <tr>

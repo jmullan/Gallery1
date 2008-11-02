@@ -49,13 +49,12 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['text']	 = '<span class="g-title">'. gTranslate('core', "Find and remove comment spam") .'</span>';
 $adminbox['commands']	 = makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-
-$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -65,7 +64,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo clearGalleryTitle(gTranslate('core', "Comment Spam")) ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 }
 
@@ -73,6 +72,8 @@ includeTemplate("gallery.header", '', 'classic');
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
+
+includeTemplate("headerbox.footer");
 ?>
 
 <table width="100%">
@@ -115,7 +116,7 @@ switch($g1_mode) {
 	</td>
 </tr>
 </table>
-</div>
+
 <?php
 includeTemplate("overall.footer");
 

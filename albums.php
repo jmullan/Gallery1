@@ -159,7 +159,7 @@ else {
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-		gTranslate('core', "Slidesho_w"), array(), 'presentation.gif', true
+		gTranslate('core', "Slidesho_w"), array(), 'monitor.png', true
 	);
 }
 
@@ -177,12 +177,12 @@ if ($loggedIn) {
 		$linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
 		$iconElements[] = popup_link(
 			gTranslate('core', "Administer fron_tpage"),
-			$linkurl, true, true, 550, 600, '', '', 'unsortedList.gif'
+			$linkurl, true, true, 550, 600, '', '', 'text_list_numbers.png'
 		);
 
 		$iconElements[] = galleryLink(
 			makeGalleryUrl('admin-page.php'),
-			gTranslate('core', "Ad_min page"), array(), 'admin.gif', true
+			gTranslate('core', "Ad_min page"), array(), 'cog.png', true
 		);
 
 	}
@@ -195,6 +195,7 @@ if ($loggedIn) {
 	}
 }
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton($currentUrl, $numPhotos, $currentUrl);
 
 if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
@@ -486,7 +487,7 @@ for ($i = $start; $i <= $end; $i++) {
 				else {
 					$dynsubalbumTree = true;
 					$rootAlbum[$tmpAlbumName]['subalbumTree'] = true;
-					$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = printChildren($subalbumTree);
+					$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = getYUIHtmlTree($subalbumTree);
 				}
 			}
 		}

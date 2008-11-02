@@ -89,12 +89,11 @@ $iconElements[] = galleryIconLink(
 			'navigation/return_to.gif',
 			gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton();
 
 $adminbox['text']	= '<span class="g-title">'.  gTranslate('core', "Admin options") .'</span>';
 $adminbox['commands']	= makeIconMenu($iconElements, 'right');
-
-$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -114,6 +113,8 @@ includeTemplate("gallery.header", '', 'classic');
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
+
+includeTemplate("headerbox.footer");
 
 if(!empty($adminOptions)) {
 	echo "\n" .'<table style="width:100%; margin:10px; margin-bottom:50px">';

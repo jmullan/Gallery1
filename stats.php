@@ -620,6 +620,7 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
@@ -645,8 +646,6 @@ if ($navigator["maxPages"] > 1) {
 	includeLayout('navigator.inc');
 	echo '</div>';
 }
-
-echo languageSelector();
 
 if ($useCache ) {
 	readGalleryStatsCache($cacheFilename, $startPhoto, $photosPerPage );

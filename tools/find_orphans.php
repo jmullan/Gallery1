@@ -54,13 +54,12 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['text']	 = '<span class="g-title">'. gTranslate('core', "Find Orphans") .'</span>';
 $adminbox['commands']	 = makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-
-$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -70,7 +69,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo clearGalleryTitle(gTranslate('core', "Find Orphans")) ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 }
 
@@ -79,12 +78,11 @@ includeTemplate("gallery.header", '', 'classic');
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
 
+includeTemplate("headerbox.footer");
+
 if (empty($action)) {
 	if (!empty($orphanAlbums)) {
-		printInfoBox(array(array(
-			'type' => 'error',
-			'text' => sprintf(gTranslate('core', "Orphaned Albums: %d"), sizeof($orphanAlbums))
-		)));
+		echo gallery_error(sprintf(gTranslate('core', "Orphaned Albums: %d"), sizeof($orphanAlbums)));
 ?>
 		<p><?php echo gTranslate('core', "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
 		<center>
@@ -119,10 +117,7 @@ if (empty($action)) {
 <?php
 	}
 	elseif (!empty($orphanImages)) {
-		printInfoBox(array(array(
-			'type' => 'error',
-			'text' => sprintf(gTranslate('core', "Orphaned Files: %d"), recursiveCount($orphanImages))
-		)));
+		echo gallery_error(sprintf(gTranslate('core', "Orphaned Files: %d"), recursiveCount($orphanImages)));
 ?>
 		<p><?php echo gTranslate('core', "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information.") ?></p>
 		<center>
@@ -140,7 +135,8 @@ if (empty($action)) {
 				if($current != $albumName) {
 					echo "\n\t\t\t<td><a href='" . makeAlbumUrl($albumName) . "'>" . $albumName . "</a></td>";
 					$current = $albumName;
-				} else {
+				}
+				else {
 					echo "\n\t\t\t<td>\------</td>";
 				}
 				echo "\n\t\t\t<td>=&gt;</td>";
@@ -191,9 +187,7 @@ else {
 		}
 	}
 }
-?>
-</div>
-<?php
+
 echo infoBox($messages) . $addon;
 
 includeTemplate("overall.footer");

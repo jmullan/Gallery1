@@ -33,6 +33,19 @@ if ($gallery->app->showSearchEngine == 'no' && !$gallery->user->isAdmin()) {
 	return;
 }
 
+$iconElements	= array();
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = languageSelector();
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['text']	 = addSearchForm($searchstring);
+$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -46,21 +59,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeTemplate('gallery.header', '', 'classic');
 
-$iconElements = array();
-$iconElements[] = galleryIconLink(
-				makeAlbumUrl(),
-				'navigation/return_to.gif',
-				gTranslate('core', "Return to _gallery"));
-
-$iconElements[] = LoginLogoutButton(makeGalleryUrl());
-
-$adminbox['text']	 = addSearchForm($searchstring);
-$adminbox['commands']	 = makeIconMenu($iconElements, 'right');
-$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
-echo languageSelector();
+
+includeTemplate("headerbox.footer");
 
 $albumDB = new AlbumDB();
 $list = $albumDB->albumList;
@@ -265,10 +267,7 @@ if (!empty($searchstring)) {
 }
 else {
 	/* No searchstring was given */
-	echo "\n<p align=\"center\">";
-	echo gTranslate('core', "Search the Gallery's Album and Photo titles, descriptions and comments.");
-	echo "\n</p>\n";
-	echo '<div class="right">'. addSearchForm($searchstring) . "\n</div>";
+	echo gallery_info(gTranslate('core', "Search the Gallery's Album and Photo titles, descriptions and comments. Enter your search string in the text field above."));
 }
 
 echo '<hr width="100%">';

@@ -89,6 +89,8 @@ if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
    includeLayout('breadcrumb.inc');
 }
 
+includeTemplate('headerbox.footer');
+
 if ($navigator["maxPages"] > 1) {
     echo '<div class="g-navbar-top">';
     includeLayout('navigator.inc');
@@ -249,8 +251,6 @@ if($numVisibleItems != 0) {
     }
     includeLayout('breadcrumb.inc');
 }
-
-echo languageSelector();
 
 // Its better not to touch anything below this.
 includeTemplate('info_donation-block');

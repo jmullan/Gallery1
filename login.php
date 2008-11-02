@@ -161,8 +161,6 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 	}
 }
 
-$title = sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle);
-
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -178,10 +176,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 includeTemplate("gallery.header", '', 'classic');
 
-$adminbox['text']	= gTranslate('common', "Login");
+$adminbox['text']	= '<span class="g-title">'. gTranslate('common', "Login") .'</span>';
 $adminbox['commands']	= languageSelector();
 
 includeLayout('adminbox.inc');
+
+includeTemplate("headerbox.footer");
 
 ?>
 
@@ -206,7 +206,7 @@ echo makeFormIntro('login.php', array('name' => 'loginForm'));
 	</table>
 
  	<p align="center">
-	<?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
+	<?php echo gSubmit('login', gTranslate('core', "Log_in")); ?>
 	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='$g1_return'"); ?>
 	</p>
 

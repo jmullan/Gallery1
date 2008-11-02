@@ -95,6 +95,8 @@ if ($fitToWindow) {
 
 includeLayout('breadcrumb.inc');
 
+includeTemplate('headerbox.footer');
+
 ?>
 <a id="photo_url" href="<?php echo $photoURL ?>"></a>
 <a id="page_url" href="<?php echo $page_url ?>"></a>
@@ -235,8 +237,6 @@ if(sizeof($navigator['allIds']) > 0) {
 }
 
 includeLayout('breadcrumb.inc');
-
-echo languageSelector();
 
 includeTemplate('info_donation-block');
 

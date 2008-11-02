@@ -57,6 +57,7 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl("usage.php"));
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
@@ -94,9 +95,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeTemplate("gallery.header", '', 'classic');
 
-
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
+
+includeTemplate("headerbox.footer");
 
 printInfoBox($messages);
 

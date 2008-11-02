@@ -45,12 +45,11 @@ $iconElements[] = galleryIconLink(
 				'navigation/return_to.gif',
 				gTranslate('core', "Return to _gallery"));
 
+$iconElements[] = languageSelector();
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['text']	= '<span class="g-title">'.  gTranslate('core', "Assemble your Gallery statistic") .'</span>';
 $adminbox['commands']	= makeIconMenu($iconElements, 'right');
-
-$breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -64,9 +63,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeTemplate("gallery.header");
+includeTemplate('gallery.header', '', 'classic');
+
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');
+
+includeTemplate("headerbox.footer");
 
 $url = makeGalleryHeaderUrl('stats.php');
 $url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
