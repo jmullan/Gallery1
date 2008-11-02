@@ -30,7 +30,7 @@ if ($gallery->user->isAdmin() ) { ?>
           </td>
           <td width="90" class="right">
             <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>">
-		<?php echo gImage('donate.png', _("Donate to Gallery now!!")); ?>
+		<?php echo gImage('donate.png', gTranslate('common', "Donate to Gallery now!!")); ?>
 	    </a>
 	    </td>
 <?php } ?>

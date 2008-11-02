@@ -19,7 +19,7 @@ else {
 	<a href="<?php echo $searchdraw["photoURL"] ?>"><?php echo $searchdraw["photolink"] ?></a>
     </td>
     <td width="10">&nbsp;</td>
-    <td class="g-albumdesc-cell"><?php
+    <td class="g-albumdesc-cell" style="vertical-align: top;"><?php
 	if (!empty($searchdraw['Text'])) {
 	    foreach ($searchdraw['Text'] as $text) {
 		echo $text;
