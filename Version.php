@@ -24,7 +24,7 @@
  * @package Gallery
  */
 
-$gallery->version = '1.6-RC3-svn-b3';
+$gallery->version = '1.6-RC3-svn-b4';
 $gallery->config_version = 102;
 $gallery->album_version = 41;
 $gallery->user_version = 6;
