@@ -29,6 +29,12 @@ $configTestStatus = array(
         'border' => 'border: 1px solid #b2ffb2',
         'type' => 'success'
     ),
+	3 => array(
+		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Information!")),
+		'text' => gTranslate('config', "Information."),
+        	'border' => 'border: 1px solid #b2ffb2',
+        	'type' => 'information'
+	),
     5 => array(
 		'image' => gImage('yellow_trafficlight.gif', gTranslate('config', "Warning, but optional.")),
         'text' => gTranslate('config', "Warning, but optional."),
@@ -193,8 +199,11 @@ $warning = 0;
                         else {
                             $message .= $val;
                         }
-                        $warning++;
-                    }
+				
+			if (! isset($check['information'])) {
+				$warning++;
+			}
+		    }
                 }
 
                 $table->addElement(array(

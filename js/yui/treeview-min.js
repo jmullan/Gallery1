@@ -1,3 +1,8 @@
+/**
+ * Gallery SVN ID:
+ * $Id: multiInput.js.php 13850 2006-06-19 12:37:37Z jenst $
+*/
+
 /*
 Copyright (c) 2008, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:

@@ -531,12 +531,12 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 		$temp_dirname	= $temp_filename . '.dir';
 
 		if (fs_is_dir($temp_dirname)) {
-			$error = gTranslate('core', "An Error occurred before extracting the archive. Temporary destination exists.");
+			$error = gTranslate('core', "An error occurred before extracting the archive. Temporary destination exists.");
 			return $error;
 		}
 
 		if (! fs_mkdir($temp_dirname)) {
-			$error = gTranslate('core', "An Error occurred before extracting the archive. Temporary destination could not be created.");
+			$error = gTranslate('core', "An error occurred before extracting the archive. Temporary destination could not be created.");
 			return $error;
 		}
 
