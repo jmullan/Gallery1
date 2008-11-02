@@ -38,10 +38,11 @@ require_once(dirname(__FILE__) . '/lib/valchecks.php');
 require_once(dirname(__FILE__) . '/lib/messages.php');
 require_once(dirname(__FILE__) . '/lib/filetypes.php');
 
+/**
+ * @Note: this function should only be called if init.php was loaded before!
+ */
 function getRequestVar($str) {
 	global $global_notice_messages;
-
-	$_REQUEST = array_merge($_GET, $_POST);
 
 	if (!is_array($str)) {
 		if (!isset($_REQUEST[$str])) {

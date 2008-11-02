@@ -24,8 +24,6 @@
 
 $sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS', '_SERVER');
 
-$_REQUEST = array_merge($_GET, $_POST);
-
 foreach ($sensitiveList as $sensitive) {
     if (!empty($_REQUEST[$sensitive])) {
         echo "Security violation! Override attempt.\n";
@@ -95,6 +93,9 @@ if (empty($gallery->app->skipRegisterGlobals) || $gallery->app->skipRegisterGlob
 	}
 }
 
+// http://www.phpmyadmin.net/home_page/security.php?issue=PMASA-2008-1
+$_REQUEST = array_merge($_GET, $_POST);
+	
 // Optional developer hook - location to add useful
 // functions such as code profiling modules
 if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {

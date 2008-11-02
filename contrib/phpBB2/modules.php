@@ -33,6 +33,15 @@ if (isset($_REQUEST['phpEx'])) {
 
 define('MODULES_PATH', './modules/');
 
+foreach (array('op', 'name', 'file') as $varname) {
+	if (isset($_GET[$varname])) {
+		$$varname = $_GET[$varname];
+	}
+	elseif (isset($_POST[$varname])) {
+		$$varname = $_POST[$varname];
+	}
+}
+
 switch ($_REQUEST['op']) {
 	case 'modload':
 		// Added with changes in Security for PhpBB2.
@@ -51,11 +60,6 @@ switch ($_REQUEST['op']) {
 		init_userprefs($userdata);
 		//
 		// End session management
-
-		// phpBB may unset() these if we set them before loading
-		// their include files.
-		$name = $_REQUEST['name'];
-		$file = $_REQUEST['file'];
 
 		// Security fix
 		if (ereg("\.\.",$name) || ereg("\.\.",$file)) {
