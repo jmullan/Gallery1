@@ -271,6 +271,11 @@ table.g-breadcrumb {
     padding: 0 2px;
 }
 
+.g-albums-table-matrix {
+	width: 80%;
+	margin: 0 auto;
+}
+
 /* Vertical space between the albums. */
 .g-album-vertical-spacer {
     height: 10px;
@@ -556,7 +561,6 @@ table.g-albums-table .g-albumdesc-cell {
 }
 
 .g-adminbar {
-    margin-top: 1px;
 }
 
 .g-random-block, .g-feature-block {
@@ -671,17 +675,6 @@ input:hover.g-button, input:focus.g-button {
 	display: none;
 }
 
-.langselector {
-	margin: 0;
-	padding: 0;
-}
-
-
-.langselector table {
-	margin: 0;
-	padding: 0;
-}
-
 .justify {
 	text-align: justify;
 }
@@ -689,4 +682,32 @@ input:hover.g-button, input:focus.g-button {
 #bottomNavCloseLink {
 	color: red;
 	white-space: nowrap;
+}
+
+.g-languageSelector {
+	display: none;
+	white-space: nowrap;
+	font-size: 9pt;
+	width: 100%;
+}
+
+.g-languageSelector a {
+	text-decoration: none;
+	text-align: left !important;
+	color: #000 !important;
+	font-size: 9pt !important;
+	font-weight: normal !important;
+
+}
+
+.g-languageSelector a:hover {
+	text-decoration: none;
+}
+
+.g-languageSelector a:hover span {
+	text-decoration: underline;
+}
+
+.g-languageSelector div {
+	margin-bottom: 2px;
 }

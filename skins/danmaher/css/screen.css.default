@@ -1,6 +1,6 @@
 /*
    This is the style sheet used when Gallery running standalone and
-   'no skin' is selected.
+   'danmaher' is selected.
 
    If you would like to customize the styles please create
    copy of this file called "screen.css" (same name without ".default")
@@ -11,25 +11,25 @@
    Some of the styles below are overridden by specific
    album properties. These are noted
 
-   $Id$
+   $Id: screen.css.default 17919 2008-08-24 14:03:56Z JensT $
 */
 
 /*
-   default text styles - background and colors overridden by
-   album 'bgcolor', 'background', and 'textcolor' properties.
+ * A skin in Gallery has some basic (font-)colors and background colors or images.
 */
+
 
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    background: #fff;
-    color: #000;
+    background-image: url(../images/body_bg.gif);
+    color: #fff;
 }
 
 /*
    link colors - overridden by the album 'linkcolor' property.
 */
 a {
-	color: #4E2192;
+	color: #000;
 }
 
 a:link, a:visited {
@@ -45,7 +45,10 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
  * Use this classes to define "superglobal" styles
 */
 .g-main {
-	padding: 3px;
+	width: 82%;
+	margin: 35px auto;
+	border:7px solid #FFF;
+	min-height: 300px;
 }
 
 .g-main a {
@@ -71,9 +74,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 .g-header, .g-header-popup {
     color: #fff;
-    background-image:url(../images/backgrounds/header.png);
-    border-bottom: 1px solid #000;
-    margin-bottom: 2px;
+    border-bottom: 2px solid #fff;
 }
 
 .g-header {
@@ -91,7 +92,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     background: #66a;
 }
 
-.g-pagetitle, .g-pagetitle-popup {
+.g-pagetitle-popup {
     padding: 2px;
     padding-left: 5px; padding-right: 5px;
     border: 1px solid #ccf;
@@ -127,12 +128,20 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-pagetitle-popup-right {
 }
 
+.g-headerbox {
+	background-image: url(../images/headerbox_bg.gif);
+/*	background-repeat: */
+}
+
 /******************** End Headers and Pagetitle ********************/
 
 /******************** Begin Mainpage Styles ********************/
 
 /* The table containing the thumbs and text etc. for the albums */
-.g-albums-table {
+.g-albums-table-matrix {
+	background-color: #fff;
+	border: 5px solid #fff;
+	width: 100%;
 }
 
 /* Vertical space between the albums. */
@@ -146,11 +155,16 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 /* Cell for the albumdescription on mainpage */
 .g-albumdesc-cell {
-	vertical-align: top;
-	background-color: #f8f8f8;
 	padding-top: 2px;
 	border-top: 1px solid #000;
-	-moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
+	color: #000;
+	background-color: #f8f8f8;
+}
+
+/* cell for thumbnail AND description on mainpage, e.g. in matrix theme */
+.g-albumthumb-cell {
+	background-color: #eee;
+	vertical-align: top;
 }
 
 /* Box where the microthumb "tree" is showed in on mainpag */
@@ -164,7 +178,6 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     font-size: 7pt;
     background-color: #f8f8f8;
     border-top: 1px solid #000;
-    -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
     width: 200px;
 }
 
@@ -185,8 +198,8 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
  * Last change
  * etc. on mainpage */
 .g-album-infos {
-    margin-top: 5px;
-    font-size: 7pt;
+	margin-top: 5px;
+	font-size: 7pt;
 }
 
 /******************** End Mainpage Styles ********************/
@@ -194,6 +207,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 /******************** Beginn Common Styles ********************/
 
 .g-searchbar {
+	border-bottom: 2px solid #fff;
 }
 
 .g-search-form {
@@ -277,10 +291,18 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 .g-adminbar {
 	font-size: 7.2pt;
-	border: 1px solid #006;
 	font-weight: bold;
-	background-image:url(../images/backgrounds/adminbar.png);
-	margin: 1px;
+	background-image:url(../images/adminbox_bg.gif);
+	border-bottom: 2px solid #fff;
+	color: #dcdcdc;
+}
+
+.g-adminbar a {
+	color: #dcdcdc;
+}
+
+.g-adminbar a:hover {
+	color: #fff;
 }
 
 .g-adminbar .g-title {
@@ -320,10 +342,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 .g-iconmenu a:hover {
    white-space: nowrap;
-   border-bottom: 1px solid #66a;
-   border-right: 1px solid #66a;
-   border-top: 1px solid #224;
-   border-left: 1px solid #224;
+   border: 1px outset #fff;
    padding: 1px;
    text-decoration: none;
    font-weight: bold;
@@ -377,15 +396,21 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 /******************** Begin Navigation Styles ********************/
 
 .g-navbar-top, .g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
-    font-size: 9pt;
+	background-image: url(../images/nav_bg.gif);
+	background-repeat: repeat-x;
+	background-color: #fff;
+	font-size: 9pt;
+	color: #000;
 }
 
 /* Style for top navigation bar */
 .g-navbar-top {
+	border: none;
 }
 
 /* Style for bottom navigation bar */
 .g-navbar-bottom {
+	border: none;
 }
 
 .g-microthumbnavbar-top {
@@ -411,8 +436,14 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-breadcrumb {
     width: 100%;
     font-size: 9pt;
-    margin-bottom: 3px;
-    border-bottom: 1px dashed gray;
+}
+
+.g-breadcrumb a {
+    color: #bbb;
+}
+
+.g-breadcrumb a:hover{
+    color: #fff;
 }
 
 .g-breadcrumb td {
@@ -548,15 +579,17 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-sitedesc {
-    border: 1px solid #006;
-    background: #e9e9ff;
-    margin: 3px 10px 0 10px;
-    padding: 5px;
-    font-size: 10pt;
+	color: #000;
+	border: 1px solid #006;
+	background: #e9e9ff;
+	margin: 3px 10px 0 10px;
+	padding: 5px;
+	font-size: 10pt;
 }
 
 .g-desc-cell {
     background-color: #F7F7F7;
+    color: #000;
     padding: 3px;
     font-size: 8pt;
 }
@@ -711,18 +744,20 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 /****** End general Form Styles *****/
 
 .g-emailMe-box {
-    background: #fdc;
+    background-image: url(../images/box_bg.gif);
+    color: #000;
+    font-size: 9pt;
 }
 
 .g-emailMe-box input {
 }
 
 .g-emailMe-box legend {
-	background-color: #fff2eb;
+	background-color: #f7cdc1;
 	border-left: 1px solid #fdc;
 	border-right: 1px solid #fdc;
 	font-weight: bold;
-/*  font-size: 9pt already set in base.css */
+	font-size: 8pt;
 }
 
 .g-columnheader, caption {
@@ -782,10 +817,11 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 }
 
 .g-config {
-    margin: 10px auto;
+	margin: 10px auto;
 	padding: 10px;
 	border: 1px solid #ccc;
 	width: 805px;
+	color: #000;
 	background: #F7F7F7;
 	font-size: 9pt;
 }
@@ -811,7 +847,8 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 }
 
 .g-config-content {
-/* defined in ltr/rtl */
+	/* defined in ltr/rtl */
+	color: #000;
 }
 
 .g-config-step {
@@ -837,8 +874,9 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 }
 
 .g-config-main {
-    margin-top: 5px;
+	margin-top: 5px;
 	border: 1px solid #ccc;
+	color: #000;
 	background: #E9ECEF;
 	padding: 5px;
 }
@@ -872,6 +910,7 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 
 .g-loginpage {
 	border-top: 1px solid #000;
+	color: #000;
 	background-color: #F4F4F4;
 	padding: 5px 10px;
 	-moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
@@ -924,15 +963,18 @@ legend {
 .g-balloon-tooltip {
 }
 
-.g-tooltipTitle {
-	background-color: #66a;
-	border: 1px solid red;
+#WzTtDiV {
+	-moz-border-radius: 5px;
 }
 
+
 #WzTiTl, #WzTiTl table, table.g-tooltip {
-	background-color: #66a;
-	color: #FFF;
 	font-size: 9pt;
+	-moz-border-radius: 5px;
+}
+
+#WzTiTl {
+	background-color: #54170c;
 }
 
 #WzTiTl, #WzTiTl table {
@@ -940,7 +982,7 @@ legend {
 }
 
 #WzClOsE {
-	background-color: #66a;
+	1background-color: #66a;
 }
 
 .g-tooltipClickable #WzBoDy {
