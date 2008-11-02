@@ -64,6 +64,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 .g-popup {
     font-size: 9pt;
+    padding: 5px;
 }
 
 .g-popup a {
@@ -83,20 +84,12 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-header-popup {
-    height: 25px;
-    padding: 5px;
+	height: 25px;
 }
 
 .g-columnheader {
     color: #fff;
     background: #66a;
-}
-
-.g-pagetitle-popup {
-    padding: 2px;
-    padding-left: 5px; padding-right: 5px;
-    border: 1px solid #ccf;
-    -Moz-Border-Radius: 20px;
 }
 
 .g-pagetitle-left {
@@ -118,11 +111,16 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-pagetitle-popup {
-    font-size: 12pt;
-    font-weight: bold;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 2px;
+	padding-left: 5px; padding-right: 5px;
+	height: 20px;
 }
 
 .g-pagetitle-popup-background {
+	background-image:url(../images/headerbox_bg.gif);
+	
 }
 
 .g-pagetitle-popup-right {
@@ -460,21 +458,6 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     white-space:nowrap;
 }
 
-.g-tabset {
-}
-
-.g-tabset a {
-    background-color: #fff;
-}
-
-.g-tabset a:hover {
-    background-color: #e9e9ff;
-}
-
-.g-tabset a.g-activeTab {
-	border-bottom: 1px solid #66a;
-}
-
 /******************** Begin infoBox ********************/
 .g-notice {
 }
@@ -601,7 +584,8 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-longdesc {
-    background-color: #ccf;
+    background-color: #404040;
+    color: #fff;
     padding:5px;
     vertical-align: top;
 }
@@ -669,9 +653,20 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 .g-form-text:focus {
 }
 
+.g-tabset {
+}
+
+.g-tabset a {
+    background-color: #fff;
+}
+
+.g-tabset a:hover {
+	background-color: #dcdcdc;
+}
+
 .g-tabset a.g-activeTab {
-    color: #FFF;
-    background-color: #53a;
+	color: #FFF;
+	background-color: #404040;
 }
 
 .g-button {
@@ -776,7 +771,7 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 	border: 1px solid #FFF;
 	background-color: #F0F0F0;
 	margin-bottom: 10px;
-	margin: 5px;
+	margin-top: 5px;
 }
 
 .g-content-popup a {
@@ -867,10 +862,11 @@ input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordIn
 .g-config h1, .g-content-popup h1 {
 	font-size: 15px;
 	font-weight: bold;
- 	color: #c64934;
+ 	color: #731515;
 	padding: 0 10px 4px 0;
-	border-bottom: 1px solid #c64934;
+	border-bottom: 1px solid #731515;
 	margin-bottom: 5px;
+	
 }
 
 .g-config-main {

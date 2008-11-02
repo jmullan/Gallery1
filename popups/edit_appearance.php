@@ -257,9 +257,14 @@ doctype();
 
 <body class="g-popup">
 <?php if ($reloadOpener) reload(); ?>
-<div class="g-header-popup">
-  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Album Properties"); ?></div>
-</div>
+<table class="g-header-popup" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="g-pagetitle-popup-left"></td>
+		<td class="g-pagetitle-popup g-pagetitle-popup-background"><?php echo gTranslate('core', "Album Properties"); ?></td>
+		<td class="g-pagetitle-popup-right"></td>
+	</tr>
+</table>
+
 <?php echo infoBox($notice_messages); ?>
 <div class="g-content-popup">
 <?php
