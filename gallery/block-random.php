@@ -96,7 +96,7 @@ function doPhoto() {
     <?php echo $caption; ?>
     
     </div>
-    <?php printf (_("From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>"); ?>
+    <?php printf (gTranslate('core',"From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>"); ?>
   </div>
 <?php
 		return 1;

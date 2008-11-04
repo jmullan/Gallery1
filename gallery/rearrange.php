@@ -23,7 +23,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-        echo _("You are not allowed to perform this action!");
+        echo gTranslate('core', "You are not allowed to perform this action!");
         exit;
 }
 
@@ -108,7 +108,7 @@ doctype();
 </head>
 
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
+<div class="popuphead"><?php printf (gTranslate('core', "Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
 <div class="admin" align="center">
 <?php
 echo gTranslate('core', "Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");

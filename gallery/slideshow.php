@@ -214,7 +214,7 @@ if (!$gallery->session->offline) {
 	}
 }
 
-$adminbox["text"] = _("Slide Show");
+$adminbox["text"] = gTranslate('core', "Slide Show");
 $adminbox["bordercolor"] = $borderColor;
 
 $navigator["fullWidth"] = '100';

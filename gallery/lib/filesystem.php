@@ -106,7 +106,7 @@ function getExtension($filename, $withDebug = true) {
 	$ext = strtolower($ext);
 
 	if($withDebug) {
-		echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
+		echo debugMessage(sprintf(gTranslate('common', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
 	}
 
 	return $ext;
@@ -167,7 +167,7 @@ function findInPath($program) {
 }
 
 function parse_csv ($filename, $delimiter = ';') {
-	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
+	echo debugMessage(sprintf(gTranslate('common', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;
 	$return_array = array();
 
@@ -185,7 +185,7 @@ function parse_csv ($filename, $delimiter = ';') {
 	}
 
 	if(isDebugging()){
-		echo gTranslate('core', "csv result:");
+		echo gTranslate('common', "csv result:");
 		print_r($return_array);
 	}
 
@@ -206,7 +206,7 @@ function extractArchive($archive, $ext, $destination) {
 	global $gallery;
 
 	if(! fs_is_dir($destination) && !fs_mkdir($destination)) {
-		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s failed. Not able create the folder to extract the archive in."), $archive),__FILE__, __LINE__);
+		echo debugMessage(sprintf(gTranslate('common', "Extracting: %s failed. Not able create the folder to extract the archive in."), $archive),__FILE__, __LINE__);
 		return  false;
 	}
 
@@ -214,7 +214,7 @@ function extractArchive($archive, $ext, $destination) {
 	$destination = fs_import_filename($destination);
 
 	if($tool = canDecompressArchive($ext)) {
-		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
+		echo debugMessage(sprintf(gTranslate('common', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
 
 		switch($tool) {
 			case 'zip':
@@ -231,7 +231,7 @@ function extractArchive($archive, $ext, $destination) {
 		return exec_wrapper($cmd);
 	}
 	else {
-		echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive."), $archive, $ext),__FILE__, __LINE__);
+		echo debugMessage(sprintf(gTranslate('common', "%s with extension %s is not an supported archive."), $archive, $ext),__FILE__, __LINE__);
 		return false;
 	}
 }
@@ -275,7 +275,7 @@ function getExif($file) {
 	$myExif = array();
 	$unwantedFields = array();
 
-	echo debugMessage(sprintf(gTranslate('core', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
+	echo debugMessage(sprintf(gTranslate('common', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
 
 	switch(getExifDisplayTool()) {
 		case 'exiftags':
@@ -352,7 +352,7 @@ function isInAllowedUploadPath($url) {
 		$ret = false;
 		$msg = infobox(array(array(
 				'type' => 'error',
-				'text' => gTranslate('core', "You are not allowed to upload from local directories.")
+				'text' => gTranslate('common', "You are not allowed to upload from local directories.")
 		)));
 
 		return array($ret, $msg);
@@ -368,7 +368,7 @@ function isInAllowedUploadPath($url) {
 		$ret = false;
 		$msg = infobox(array(array(
 			'type' => 'error',
-			'text' => sprintf(gTranslate('core', "%s is not in the list of allowed uploadpathes. Skipping."),
+			'text' => sprintf(gTranslate('common', "%s is not in the list of allowed uploadpathes. Skipping."),
 						'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
 		)));
 		return array($ret, $msg);
@@ -384,12 +384,12 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			echo gallery_error(sprintf(gTranslate('core', "Could not open lock file (%s) for writing!"),
+			echo gallery_error(sprintf(gTranslate('common', "Could not open lock file (%s) for writing!"),
 						"$file.lock"));
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
-			echo gallery_error(sprintf(gTranslate('core', "Could not acquire lock (%s)!"),
+			echo gallery_error(sprintf(gTranslate('common', "Could not acquire lock (%s)!"),
 						"$file.lock"));
 			return 0;
 		}

@@ -54,12 +54,12 @@ echo "<br>";
 $configTestStatus = array(
 	0 => array(
 		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success!")),
-		'text' => gTranslate('config', "Success."),
+		'text' => gTranslate('config', "Success!"),
         	'border' => 'border: 1px solid #b2ffb2',
         	'type' => 'success'
 	),
 	3 => array(
-		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Information!")),
+		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Information.")),
 		'text' => gTranslate('config', "Information."),
         	'border' => 'border: 1px solid #b2ffb2',
         	'type' => 'information'

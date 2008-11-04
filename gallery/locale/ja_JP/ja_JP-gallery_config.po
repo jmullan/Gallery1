@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-09-13 22:09+0200\n"
+"POT-Creation-Date: 2008-11-04 17:41+0100\n"
 "PO-Revision-Date: 2005-08-05 23:39+0900\n"
 "Last-Translator: Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>\n"
 "Language-Team: Japanese <ken_w3m+nospam AT gmail DOT com>\n"
@@ -155,11 +155,11 @@ msgstr "ここは Galleryシステムチェックページです。"
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "このページは、あなたがこのシステム上に必要なコンポーネント及びパーミッションを持っているか、そして全てが正しく設定されているか確認するために、インストレーションを検証します。"
 
-#: ../setup/check.inc:39 ../setup/check.inc:90 ../setup/diagnostics.php:29
+#: ../setup/check.inc:39 ../setup/check.inc:95 ../setup/diagnostics.php:29
 msgid "Gallery Diagnostics Page"
 msgstr "Gallery 診断ページ"
 
-#: ../setup/check.inc:40 ../setup/check.inc:94
+#: ../setup/check.inc:40 ../setup/check.inc:99
 msgid "Gallery Help Page"
 msgstr "Gallery ヘルプ ページ"
 
@@ -177,55 +177,59 @@ msgstr "ドキュメント"
 msgid "Having problems?  Try the %s and %s."
 msgstr "問題が起きましたか? %s や %s を試してください。"
 
-#: ../setup/check.inc:57 ../setup/check.inc:58 ../setup/write.inc:199
+#: ../setup/check.inc:56 ../setup/check.inc:57 ../setup/write.inc:199
 msgid "Success!"
 msgstr "成功"
 
-#: ../setup/check.inc:63 ../setup/check.inc:64
+#: ../setup/check.inc:62 ../setup/check.inc:63
+msgid "Information."
+msgstr ""
+
+#: ../setup/check.inc:68 ../setup/check.inc:69
 #, fuzzy
 msgid "Warning, but optional."
 msgstr "これはオプションです"
 
-#: ../setup/check.inc:69 ../setup/check.inc:70
+#: ../setup/check.inc:74 ../setup/check.inc:75
 #, fuzzy
 msgid "Serious warning, but optional."
 msgstr "深刻な警告"
 
-#: ../setup/check.inc:75 ../setup/check.inc:76
+#: ../setup/check.inc:80 ../setup/check.inc:81
 #, fuzzy
 msgid "Serious warning, no go!"
 msgstr "深刻な警告"
 
-#: ../setup/check.inc:81 ../setup/check.inc:82 ../setup/write.inc:260
+#: ../setup/check.inc:86 ../setup/check.inc:87 ../setup/write.inc:260
 #, fuzzy
 msgid "Failure!"
 msgstr "失敗"
 
-#: ../setup/check.inc:249
+#: ../setup/check.inc:257
 msgid "Legend:"
 msgstr ""
 
-#: ../setup/check.inc:267
+#: ../setup/check.inc:275
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Galleryが適切に機能しないコンフィグレーションエラーがあります。"
 
-#: ../setup/check.inc:269
+#: ../setup/check.inc:277
 msgid "You must fix them before you can continue."
 msgstr "続ける前に修正してください。"
 
-#: ../setup/check.inc:276
+#: ../setup/check.inc:284
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "あなたのインストレーションには<b>深刻な警告</b>が存在します。<br>自己責任で続けてください..."
 
-#: ../setup/check.inc:281
+#: ../setup/check.inc:289
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "あなたの設定には警告がありますが、大抵は大丈夫です。 そのまま続けましょう。"
 
-#: ../setup/check.inc:287
+#: ../setup/check.inc:295
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "インストレーションはテストを堂々とパスしました。さあ次へ進めましょう!"
 
-#: ../setup/check.inc:296
+#: ../setup/check.inc:304
 #, fuzzy
 msgid "Next Step &gt;&gt;"
 msgstr "次のステップ"
@@ -3234,6 +3238,10 @@ msgstr "%s か %s のどちらかが欠落しています．"
 msgid "Review Settings"
 msgstr "設定を見直す"
 
+#, fuzzy
+#~ msgid "Success."
+#~ msgstr "成功"
+
 #~ msgid "Check %s"
 #~ msgstr "%sのチェック"
 
@@ -3567,9 +3575,6 @@ msgstr "設定を見直す"
 #, fuzzy
 #~ msgid "can't detect version on Windows."
 #~ msgstr "Windows上ではバージョン検出できません"
-
-#~ msgid "Success"
-#~ msgstr "成功"
 
 #~ msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
 #~ msgstr "他のコンピュータで動いているSMTPサーバ(プロバイダのメールサーバなど)を使います。"
