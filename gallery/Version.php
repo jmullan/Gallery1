@@ -20,7 +20,7 @@
  * $Id$
  */
 
-$gallery->version = '1.5.10-svn-b10';
+$gallery->version = '1.5.10';
 $gallery->config_version = 97;
 $gallery->album_version = 38;
 $gallery->user_version = 6;
