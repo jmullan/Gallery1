@@ -3687,6 +3687,25 @@ class Album {
 	}
 
 	/**
+	 * Delete all imageareas from a photo.
+	 *
+	 * @param  integer $photo_index 	integer	albumitem index
+	 * @return boolean			True if all imageareas are deleted.
+	 *                                      False if not imageareas existed.
+	 */
+	function deleteAllImageAreas($photo_index) {
+		$photo = &$this->getPhoto($photo_index);
+
+		if(!isset($photo->imageAreas)) {
+			return false;
+		}
+		else {
+			unset($photo->imageAreas);
+			return true;
+		}
+	}
+
+	/**
 	 * Updates an imagearea of an album item
 	 * @param   $photo_index  integer    albumitem index
 	 * @param   $area_index   integer    area index

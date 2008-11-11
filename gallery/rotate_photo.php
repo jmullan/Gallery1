@@ -55,13 +55,18 @@ doctype();
 <head>
   <title><?php echo gTranslate('core', "Rotate/Flip Photo") ?></title>
   <?php common_header(); ?>
-  <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
-  <META HTTP-EQUIV="expires" CONTENT="0"> 
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+  <META HTTP-EQUIV="expires" CONTENT="0">
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="g-popup">
   <div class="popuphead"><?php echo gTranslate('core', "Rotate/Flip Photo") ?></div>
 <div class="popup" align="center">
 <?php
+
+if($gallery->album->getAllImageAreas($index)) {
+	echo gallery_warning(gTranslate('core', "This image has at least one imagearea. All imageareas will be deleted when you modify the resized picture."));
+}
+
 if ($gallery->session->albumName && isset($index)) {
     if (isset($rotate) && !empty($rotate)) {
         echo gTranslate('core', "Rotating/Flipping photo.");
@@ -70,10 +75,16 @@ if ($gallery->session->albumName && isset($index)) {
 
         my_flush();
         set_time_limit($gallery->app->timeLimit);
+
+        $gallery->album->deleteAllImageAreas($index);
         $gallery->album->rotatePhoto($index, $rotate);
-        $gallery->album->save(array(i18n("Image %s rotated"),
-          makeAlbumURL($gallery->album->fields["name"],
-            $gallery->album->getPhotoId($index))));
+
+        $gallery->album->save(
+        	array(
+        		i18n("Image %s rotated, Imageareas deleted."),
+			makeAlbumURL($gallery->album->fields["name"],
+            		$gallery->album->getPhotoId($index)))
+	);
         reload();
         print "<p>" . gTranslate('core', "Manipulate again?");
     } else {
@@ -120,7 +131,7 @@ if ($gallery->session->albumName && isset($index)) {
     $actionTable->setAttrs(array('class' => 'g-iconmenu'));
 
     $actionTable->addElement(array(
-        'content' => "<b>". gTranslate('core', "Rotate") ."</b>", 
+        'content' => "<b>". gTranslate('core', "Rotate") ."</b>",
         'cellArgs' => array('colspan' => 3,'align' => 'center'))
     );
     $actionTable->addElement(array(
@@ -137,7 +148,7 @@ if ($gallery->session->albumName && isset($index)) {
 <input type="button" onClick="javascript:void(parent.close())" value="<?php echo gTranslate('core', "Close") ?>" class="g-button">
 
 <p>
-<?php 
+<?php
     echo $gallery->album->getThumbnailTag($index);
 } else {
     echo gallery_error(gTranslate('core', "no album / index specified"));

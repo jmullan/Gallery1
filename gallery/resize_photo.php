@@ -84,6 +84,13 @@ if (!empty($remove_resized)) {
 	$newsize = 'orig';
 }
 
+if($gallery->album->getAllImageAreas($index)) {
+	$notice_messages[] = array(
+		'type' => 'warning',
+		'text' => gTranslate('core', "This image has at least one imagearea. All imageareas will be deleted when you modify the picture.")
+	);
+}
+
 if (!empty($newsize) && ! isset($error)) {
 	if ($index == 0) {
 		$gallery->album->resizeAllPhotos($newsize, $resize_file_size, $resize_recursive);
@@ -92,10 +99,12 @@ if (!empty($newsize) && ! isset($error)) {
 		echo("<br> ". gTranslate('core', "Resizing 1 photo..."));
 		my_flush();
 		set_time_limit($gallery->app->timeLimit);
+
+		$gallery->album->deleteAllImageAreas($index);
 		$gallery->album->resizePhoto($index, $newsize, $resize_file_size);
 	}
 
-	$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes"),
+	$gallery->album->save(array(i18n("Images resized to %s pixels, %s kbytes. Imageareas deleted."),
 				$newsize, $resize_file_size));
 
 	dismissAndReload();
@@ -103,7 +112,6 @@ if (!empty($newsize) && ! isset($error)) {
 }
 else {
 	printInfobox($notice_messages);
-	echo jsHTML('toggle.js.php');
 ?>
 
 <p><?php echo gTranslate('core', "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
