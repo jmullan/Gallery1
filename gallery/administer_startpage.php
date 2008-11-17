@@ -27,6 +27,7 @@ if (!isset($gallery->version)) {
 
 if (!$gallery->user->isAdmin()) {
         echo gTranslate('core', "You are not allowed to perform this action!");
+        includeHtmlWrap("popup.footer");
         exit;
 }
 
@@ -105,7 +106,10 @@ else {
 
     echo gButton('cancel', gTranslate('core', "Close Window"),'parent.close()');
 }
+
+includeHtmlWrap("popup.footer");
+
 ?>
-</div>
+
 </body>
 </html>

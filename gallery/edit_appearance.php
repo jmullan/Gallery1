@@ -32,6 +32,7 @@ if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
 if(! $gallery->user->canWriteToAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Album Properties"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -172,7 +173,6 @@ if (getRequestVar('save')) {
 
 	$reloadOpener = true;
 }
-
 
 /* Custom / Extra Fields */
 function num_special_fields($extra_fields) {
@@ -320,7 +320,7 @@ foreach ($properties as $key => $val) {
 
 </form>
 
-</div>
+<?php includeHtmlWrap("popup.footer"); ?>
 
 </body>
 </html>

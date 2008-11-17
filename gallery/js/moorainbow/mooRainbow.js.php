@@ -5,7 +5,15 @@
  * $Id: arrowkey_nav.js 16779 2007-07-18 22:47:38Z jenst $
 */
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/init.php');
+if (substr(PHP_OS, 0, 3) == 'WIN') {
+	require_once(dirname(dirname(dirname(__FILE__))) . '/platform/fs_win32.php');
+}
+else {
+	require_once(dirname(dirname(dirname(__FILE__))) . '/platform/fs_unix.php');
+}
+require_once(dirname(dirname(dirname(__FILE__))) . '/util.php');
+$GALLERY_EMBEDDED_INSIDE_TYPE = true;
+initLanguage(false);
 
 ?>
 

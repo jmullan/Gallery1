@@ -209,7 +209,5 @@ function showInvalidReqMesg($text = '') {
 		sprintf(gTranslate('core', "Please go back to %s."),
 			$gallery->app->galleryTitle)
 	);
-
-	echo "\n</div>\n";
 }
 ?>

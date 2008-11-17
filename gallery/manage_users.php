@@ -28,6 +28,7 @@ list($create, $bulk_create, $modify, $delete, $unlock, $unames) =
 if (!$gallery->user->isAdmin()) {
 	printPopupStart(gTranslate('core', "Manage Users"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -153,8 +154,6 @@ echo gButton('done', gTranslate('core', "Done"), 'parent.close()');
 ?>
 </form>
 
-</div>
-
 <script type="text/javascript">
 	var userNameBox = document.getElementById('userNameBox');
 	var userCount = userNameBox.length;
@@ -202,5 +201,8 @@ echo gButton('done', gTranslate('core', "Done"), 'parent.close()');
 
 	}
 </script>
+
+<?php includeHtmlWrap("popup.footer"); ?>
+
 </body>
 </html>

@@ -26,12 +26,14 @@ require_once(dirname(__FILE__) . '/init.php');
 if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
 	printPopupStart(gTranslate('core', "Download album as archive"));
 	showInvalidReqMesg();
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
 if(! $gallery->user->canDownloadAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Download album as archive"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 list($doit, $full) = getRequestVar(array('doit', 'full'));
@@ -103,7 +105,10 @@ else {
 	echo "<br><br>";
 	echo gButton('close', gTranslate('core', "Close Window"),'parent.close()');
 }
+
+includeHtmlWrap("popup.footer");
+
 ?>
-</div>
+
 </body>
 </html>

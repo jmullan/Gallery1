@@ -32,7 +32,8 @@ if (isDebugging()) {
 		}
 	}
 
-    echo gallery_info($infoText);
+	$infoText .= " ; Username: " . $gallery->user->getUsername();
+	echo gallery_info($infoText);
 }
 
 switch($GALLERY_EMBEDDED_INSIDE_TYPE) {

@@ -103,6 +103,8 @@ echo "\n\t</ul>";
 
 include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");?>
 	</div>
-</div>
+
+<?php includeHtmlWrap("popup.footer"); ?>
+
 </body>
 </html>

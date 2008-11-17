@@ -31,6 +31,7 @@ if (! isset($gallery->album) || ! isset($gallery->session->albumName)
 {
 	printPopupStart(gTranslate('core', "Move Top Album"));
 	showInvalidReqMesg();
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -38,6 +39,7 @@ if (! isset($gallery->album) || ! isset($gallery->session->albumName)
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Move Top Album"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -159,10 +161,10 @@ echo "</form>";
 
 } // End Reorder
 
+
+includeHtmlWrap("popup.footer");
+
 ?>
 
-</div>
-
-<?php print gallery_validation_link("move_album.php", true, array('index' => $index)); ?>
 </body>
 </html>

@@ -171,6 +171,7 @@ if ($zikula ||
 		       "publish_xp_docs.php",
 		       "rearrange.php",
 		       "rebuild_capture_dates.php",
+		       "rebuild_thumbs.php",
 		       "register.php",
 		       "rename_album.php",
 		       "reset_votes.php",

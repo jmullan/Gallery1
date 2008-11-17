@@ -306,6 +306,7 @@ function formVar($name) {
  * @author Jens Tkotz
  */
 function showColorpicker($attrs = array(), $addCallBack = false, $updatePreview = false, $label = '') {
+	global $gallery;
 	static $initDone = false;
 
 	$id = $name = $attrs['name'];
@@ -321,7 +322,7 @@ function showColorpicker($attrs = array(), $addCallBack = false, $updatePreview 
 		$html .= "\n";
 		$html .= jsHTML('rgbcolor.js');
 		$html .= jsHTML('moorainbow/mootools.v1.11.js');
-		$html .= jsHTML('moorainbow/mooRainbow.js.php');
+		$html .= jsHTML('moorainbow/mooRainbow.js.php?newlang='. $gallery->language);
 
 		$initDone = true;
 	}

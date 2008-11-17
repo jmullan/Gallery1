@@ -133,7 +133,10 @@ echo gTranslate('core', "Here you can rearrange your pictures easily. Just click
 
 <div class="popup" align="center">
 <?php
-  echo makeFormIntro('rearrange.php',array('name' => 'rearr_form'));
+  echo makeFormIntro(
+  		'rearrange.php',
+  		array('name' => 'rearr_form'),
+  		array('type' => 'popup'));
 ?>
 <input type="hidden" name="rearrList" value="">
 
@@ -207,8 +210,8 @@ $pictureTable->addElement(array(
 echo $pictureTable->render();
 ?>
 </form>
-</div>
-<?php print gallery_validation_link("rearrange.php", true); ?>
+
+<?php includeHtmlWrap("popup.footer"); ?>
 
 <script language="javascript" type="text/javascript">
 <?php

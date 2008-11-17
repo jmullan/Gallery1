@@ -36,6 +36,7 @@ list($save, $ownerUid, $submit, $actionUid, $initialtab, $setNested) =
 if (! isset($gallery->album)) {
 	printPopupStart(gTranslate('core', "Album Permissions"));
 	showInvalidReqMesg(gTranslate('core', "Invalid Request."));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -44,6 +45,7 @@ if (!$gallery->user->isAdmin() &&
 {
 	printPopupStart(gTranslate('core', "Album Permissions"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -190,7 +192,8 @@ echo $permsTable->render();
 <?php echo gSubmit('save', gTranslate('core', "Save")); ?>
 <?php echo gButton('done', gTranslate('core', "Done"), 'parent.close()'); ?>
 </form>
-</div>
-<?php print gallery_validation_link("album_permissions.php"); ?>
+
+<?php includeHtmlWrap("popup.footer"); ?>
+
 </body>
 </html>

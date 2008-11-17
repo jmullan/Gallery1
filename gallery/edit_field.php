@@ -38,6 +38,7 @@ if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Edit texts"));
 	echo showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -63,7 +64,7 @@ echo gSubmit('save', gTranslate('core', "Save"));
 echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
 ?>
 	</form>
-</div>
-<?php print gallery_validation_link("edit_field.php",true,array('field' => $field)); ?>
+
+<?php includeHtmlWrap("popup.footer"); ?>
 </body>
 </html>

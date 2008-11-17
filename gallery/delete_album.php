@@ -29,11 +29,13 @@ if(! isset($gallery->album) ||
    (!empty($formaction) && $formaction != 'delete'))
 {
    	showInvalidReqMesg(gTranslate('core', "Wrong call! Please try again, and/or contact your admin."));
+   	includeHtmlWrap("popup.footer");
 	exit;
 }
 
 if (!$gallery->user->canDeleteAlbum($gallery->album)) {
    	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+   	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -68,8 +70,7 @@ echo gTranslate('core', "Do you really want to delete this album?"); ?>
 ?>
 </form>
 
-</div>
+<?php includeHtmlWrap("popup.footer"); ?>
 
-<?php print gallery_validation_link("delete_album.php"); ?>
 </body>
 </html>

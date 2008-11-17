@@ -493,7 +493,6 @@ for ($i = $start; $i <= $end; $i++) {
 		$clickCount = $gallery->album->getClicks();
 		$resetDate = $gallery->album->getClicksDate();
 
-
 		echo "\n<br>";
 		printf(gTranslate('core',
 					"This album has been viewed %d time since %s.",
@@ -510,7 +509,7 @@ for ($i = $start; $i <= $end; $i++) {
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&
 	    (!($gallery->album->fields["display_clicks"] == "no")))
 	{
-		echo " ".popup_link(gTranslate('core', "reset counter"), doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
+		echo " ".popup_link(gTranslate('core', "reset counter"), doCommand("reset-album-clicks", array("set_albumName" => $albumName, "type" => "popup"), "albums.php"), 1);
 	}
 
 	/*

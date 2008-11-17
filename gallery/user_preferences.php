@@ -33,6 +33,7 @@ list($saveOK) = getRequestVar('saveOK');
 if (!$gallery->user->isLoggedIn()) {
 	printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
 
@@ -161,7 +162,6 @@ include(dirname(__FILE__) . '/html/userData.inc');
 </div>
 </form>
 
-</div>
 <script type="text/javascript">
 <!--
 // position cursor in top form field
@@ -169,7 +169,7 @@ document.usermodify_form.uname.focus();
 //-->
 </script>
 
-<?php print gallery_validation_link("user_preferences.php"); ?>
+<?php includeHtmlWrap("popup.footer"); ?>
 
 </body>
 </html>

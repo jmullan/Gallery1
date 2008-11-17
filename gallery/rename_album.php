@@ -24,13 +24,14 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($oldName, $newName, $useLoad) = getRequestVar(array('oldName', 'newName', 'useLoad'));
 
+printPopupStart(gTranslate('core', "Rename Album"));
+
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	includeHtmlWrap("popup.footer");
 	exit;
 }
-
-printPopupStart(gTranslate('core', "Rename Album"));
 
 if (!isset($useLoad)) {
 	$useLoad = '';
@@ -145,8 +146,8 @@ echo infoBox(array(array(
 document.g1_form.newName.focus();
 //-->
 </script>
-</div>
 
-<?php print gallery_validation_link("rename_album.php",true); ?>
+<?php includeHtmlWrap("popup.footer"); ?>
+
 </body>
 </html>
