@@ -35,6 +35,9 @@ foreach (array('option', 'op', 'mop', 'name', 'include') as $varname) {
 	elseif (isset($_POST[$varname])) {
 		$$varname = $_POST[$varname];
 	}
+  else {
+    $$varname=null;
+  }
 }
 
 $postnuke	= ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') && PN_VERSION_ID != 'Zikula') ? true : false;
