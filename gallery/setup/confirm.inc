@@ -41,7 +41,7 @@ $outfile_list = array('config.php' => false, '.htaccess' => true);
 foreach ($outfile_list as $outfile => $optional) {
 	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
 		$error++;
-		$viewheader .= '<p>'. gallery_error(sprintf(gTranslate('config', "You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs) ."</p>\n");
+		$viewheader .= '<p>'. gallery_error(sprintf(gTranslate('config', "You must create an empty file named %s in your Gallery mainfolder and chmod it 666 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs) ."</p>\n");
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	}
 	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", 'a')) {
@@ -49,11 +49,11 @@ foreach ($outfile_list as $outfile => $optional) {
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
 	elseif (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && $optional) {
-		$viewheader .= gallery_error(sprintf(gTranslate('config', "File %s in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs));
+		$viewheader .= gallery_error(sprintf(gTranslate('config', "File %s in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 666 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs));
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	} else {
 		$error++;
-		$viewheader .= '<br>'. gallery_error(sprintf(gTranslate('config', "File %s in your Gallery mainfolder is not writable by the webserver. - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= '<br>'. gallery_error(sprintf(gTranslate('config', "File %s in your Gallery mainfolder is not writable by the webserver. - chmod it 666 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
 }

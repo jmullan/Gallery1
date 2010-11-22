@@ -132,7 +132,7 @@ foreach ($constants as $key => $val) {
 			$val["value"] = $val["value"][0];
 		}
 
-		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+		if (preg_match('/^(..*)\[.*\]$/', $key, $matches)) {
 			unset($preserve[$key]);
 			$preserve[$matches[1]] = 1;
 			unset($onThisPage[$key]);
@@ -154,7 +154,7 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (!isset($go_defaults)) {
-			if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+			if (preg_match('/^(..*)\[.*\]$/', $key, $matches)) {
 				if (isset ($gallery->session->configForm->$key)) {
 					$val['value'] = $gallery->session->configForm->$key;
 				}

@@ -1253,7 +1253,7 @@ function check_poll_nv_pairs($var) {
 					$rownum-1);
 				break;
 			}
-			else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
+			else if (! preg_match('/^[1-9][0-9]*$/', $element["value"])) {
 				$fail[] = sprintf(gTranslate('common', "In %s, for name %s (row %d) value %s should be a positive whole number"),
 					gTranslate('common', "Vote words and values"),
 					$element["name"],
