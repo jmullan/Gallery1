@@ -72,7 +72,7 @@ else {
  * Turn off magic quotes runtime as they interfere with saving and
  * restoring data from our file-based database files
  */
-set_magic_quotes_runtime(0);
+ini_set('magic_quotes_runtime', 0);
 
 /*
  * Init prepend file for setup directory.
@@ -89,9 +89,9 @@ if (!$tmp) {
 
 $GALLERY_URL = dirname(dirname($tmp));
 // Make sure GALLERY_URL doesn't end in a slash
-$GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
+$GALLERY_URL = preg_replace('/\/$/', '', $GALLERY_URL);
 
-$MIN_PHP_MAJOR_VERSION = '4.1.0';
+$MIN_PHP_MAJOR_VERSION = '5.3.0';
 
 if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
 	$GALLERY_REWRITE_OK = true;

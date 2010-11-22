@@ -1,3 +1,16 @@
+2010-11-22 Jens Tkotz <jens@peino.de> 1.5.11-svn-b3
+
+CHANGE:
+	Set PHP Minimum to 5.3.0 !!!
+
+Make First page of Config-Wizard work again.
+	
+Change:
+  $foo = & new() to $foo = new()
+  ereg() -> preg_match
+  ereg_replace()	->  preg_replace
+  set_magic_quotes_runtime(0) -> ini_set('magic_quotes_runtime', 0)
+
 2010-11-22 Jens Tkotz <jens@peino.de> 1.5.11-svn-b2
 
  * Fix: $op and $mop were not initialized in a fresh install.

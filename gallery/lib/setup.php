@@ -801,7 +801,7 @@ function check_gallery_version() {
 	$age = (time() - $gallery->last_change)/86400;
 
 	/* is this a beta or RC version? */
-	$beta = ereg('-(b|RC)[0-9]*$', $gallery->version);
+	$beta = preg_match('/-(b|RC)[0-9]*$/', $gallery->version);
 
 	$link = galleryLink($gallery->url, $gallery->url, array('target' => '_blank'));
 
@@ -945,12 +945,12 @@ function check_locale() {
 			$keylist = array_keys($nls['alias'],$locale);
 			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
-				$sub='^(' . implode('|', $keylist) . '|' . substr($locale,0,5) . ')';
+				$sub='/^(' . implode('|', $keylist) . '|' . substr($locale,0,5) . ')/';
 				foreach ($system_locales as $key => $value) {
-					if (ereg($sub, $value)) {
+					if (preg_match($sub, $value)) {
 						$aliases[] = $value;
 					}
-					elseif (ereg('^' . substr($locale,0,2),$value)) {
+					elseif (preg_match('/^' . substr($locale,0,2) . '/', $value)){
 						$aliases[] = $value;
 					}
 				}
@@ -958,7 +958,7 @@ function check_locale() {
 		}
 		else {
 			foreach ($system_locales as $key => $value) {
-				if (ereg('^' . substr($locale,0,2), $value)) {
+				if (preg_match('/^' . substr($locale,0,2) . '/', $value)) {
 					$aliases[] = $value;
 				}
 			}
