@@ -269,7 +269,9 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 		if (strlen($arg) == 0) {
 			continue;
 		}
-		list($key, $val) = split("=", $arg);
+		
+    list($key, $val) = preg_split('/=/', $arg);
+    
 		if(in_array($key, $usedIDs)) {
 			$id = "${key}_${idCounter}";
 			$idCounter++;

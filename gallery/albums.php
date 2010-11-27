@@ -446,7 +446,7 @@ for ($i = $start; $i <= $end; $i++) {
 		}
 		echo '</a>';
 
-		if (ereg("album[[:digit:]]+$", $albumURL)) {
+		if (preg_match('/album[[:digit:]]+$/', $albumURL)) {
 			if (!$gallery->session->offline) {
 				echo '<br><span class="error">'.
 				gTranslate('core', "Hey!") .
