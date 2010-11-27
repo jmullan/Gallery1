@@ -143,38 +143,38 @@ else {
  * Detect if we're running under SSL and adjust the URL accordingly.
 */
 if(isset($gallery->app)) {
-	if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
+	if (isset($_SERVER['HTTPS'] ) && stristr($_SERVER['HTTPS'], 'on')) {
 		$gallery->app->photoAlbumURL =
-			eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
+			preg_replace('/^http:/', 'https:', $gallery->app->photoAlbumURL);
 		$gallery->app->albumDirURL =
-			eregi_replace("^http:", "https:", $gallery->app->albumDirURL);
+			preg_replace('/^http:/', 'https:', $gallery->app->albumDirURL);
 	}
 	else {
 		$gallery->app->photoAlbumURL =
-			eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
+			preg_replace('/^https:/', 'http:', $gallery->app->photoAlbumURL);
 		$gallery->app->albumDirURL =
-			eregi_replace("^https:", "http:", $gallery->app->albumDirURL);
+			preg_replace('/^https:/', 'http:', $gallery->app->albumDirURL);
 	}
 
 	/*
 	 * We have a Coral (http://www.scs.cs.nyu.edu/coral/) request coming in, adjust outbound links
 	*/
 	if(isset($_SERVER['HTTP_USER_AGENT']) && strstr($_SERVER['HTTP_USER_AGENT'], 'CoralWebPrx')) {
-		if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->photoAlbumURL)) {
+		if (preg_match('/^(http://[^:]+):(\d+)(.*)$/', $gallery->app->photoAlbumURL)) {
 			$gallery->app->photoAlbumURL =
-				ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->photoAlbumURL);
+				preg_replace('/^(http://[^:]+):(\d+)(.*)$/', "\1.\2\3", $galllery->app->photoAlbumURL);
 		}
 
 		$gallery->app->photoAlbumURL =
-			ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->photoAlbumURL);
+			preg_replace('/^(http://[^/]+)(.*)$/', '\1.nyud.net:8090\2',$gallery->app->photoAlbumURL);
 
-		if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->albumDirURL)) {
+		if (ereg('/^(http://[^:]+):(\d+)(.*)$/', $gallery->app->albumDirURL)) {
 			$gallery->app->albumDirURL =
-				ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->albumDirURL);
+				preg_replace('/^(http://[^:]+):(\d+)(.*)$/', "\1.\2\3", $galllery->app->albumDirURL);
 		}
 
 		$gallery->app->albumDirURL =
-			ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->albumDirURL);
+			preg_replace('/^(http://[^/]+)(.*)$/', '\1.nyud.net:8090\2',$gallery->app->albumDirURL);
 	}
 }
 
@@ -182,7 +182,7 @@ if(isset($gallery->app)) {
  * Turn off magic quotes runtime as they interfere with saving and
  * restoring data from our file-based database files
  */
-set_magic_quotes_runtime(0);
+ini_set('magic_quotes_runtime', 0);
 
 define('LOAD_SESSIONS', true);
 if (!isset($GALLERY_NO_SESSIONS)) {
