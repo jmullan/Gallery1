@@ -3370,10 +3370,13 @@ class Album {
 
 	function getIndexByVotingId($vote_id) {
 		global $gallery;
-		if (ereg("^item\.(.*)$", $vote_id, $matches)) {
+    
+		if (preg_match('/^item\.(.*)$/', $vote_id, $matches)) {
 			$index = $this->getPhotoIndex($matches[1]);
-		} else if (ereg("^album\.(.*)$", $vote_id, $matches)) {
+		}
+    else if (ereg("^album\.(.*)$", $vote_id, $matches)) {
 			$index = $this->getAlbumIndex($matches[1]);
+      
 			if ($index > 0) {
 				$myAlbum = new Album();
 				$myAlbum->load($matches[1]);
@@ -3381,14 +3384,17 @@ class Album {
 					$index=-1;
 				}
 			}
-		} else {
+		}
+    else {
 			$index=-1;
 		}
+    
 		if ($index > 0 && $this->isHidden($index) &&
 		    !$gallery->user->isAdmin() &&
 		    !$gallery->user->isOwnerOfAlbum($this)) {
 			$index = -1;
 		}
+    
 		return $index;
 	}
 
