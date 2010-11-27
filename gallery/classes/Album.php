@@ -92,7 +92,7 @@ class Album {
 		$this->fields["clicks_date"] = time();
 		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
 		$this->fields["serial_number"] = 0;
-		$this->fields["extra_fields"] = split(",", trim($gallery->app->default["extra_fields"]));
+		$this->fields["extra_fields"] = preg_split('/,/', trim($gallery->app->default["extra_fields"]));
 		foreach ($this->fields["extra_fields"] as $key => $value) {
 			$value = trim($value);
 			if (empty($value)) {

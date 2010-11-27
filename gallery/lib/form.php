@@ -245,7 +245,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 		$url = unhtmlentities($target);
 	}
 
-	$result = split("\?", $url);
+	$result = preg_split('/\?/', $url);
 	$target = $result[0];
 	$tmp = (sizeof($result) > 1) ? $result[1] :'';
 
@@ -264,7 +264,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 
 	$form = "\n<form action=\"$target\"$attrs>\n";
 
-	$args = split("&", $tmp);
+	$args = preg_split('/&/', $tmp);
 	foreach ($args as $arg) {
 		if (strlen($arg) == 0) {
 			continue;
