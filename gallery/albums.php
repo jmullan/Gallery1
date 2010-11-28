@@ -78,15 +78,15 @@ if ($gallery->session->albumListPage > $maxPages) {
 $pixelImage = '<img src="' . getImagePath('pixel_trans.gif') . '" width="1" height="1" alt="pixel_trans">';
 $borderColor = $gallery->app->default["bordercolor"];
 
-$navigator["page"]		= $gallery->session->albumListPage;
-$navigator["pageVar"]		= "set_albumListPage";
-$navigator["url"]		= makeGalleryUrl("albums.php");
-$navigator["maxPages"]		= $maxPages;
-$navigator["spread"]		= 6;
-$navigator["fullWidth"]		= 100;
-$navigator["widthUnits"]	= "%";
-$navigator["bordercolor"]	= $borderColor;
-$displayCommentLegend		= false;  // this determines if we display "* Item contains a comment" at end of page
+$navigator["page"]        = $gallery->session->albumListPage;
+$navigator["pageVar"]     = "set_albumListPage";
+$navigator["url"]         = makeGalleryUrl("albums.php");
+$navigator["maxPages"]    = $maxPages;
+$navigator["spread"]      = 6;
+$navigator["fullWidth"]   = 100;
+$navigator["widthUnits"]  = "%";
+$navigator["bordercolor"] = $borderColor;
+$displayCommentLegend     = false;  // this determines if we display "* Item contains a comment" at end of page
 
 $currentUrl = makeGalleryUrl("albums.php", array("page" => $gallery->session->albumListPage));
 
@@ -438,24 +438,23 @@ for ($i = $start; $i <= $end; $i++) {
 	* Url (only for admins and owner)
 	*/
 	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
-		echo gTranslate('core', "URL:") . ' <a href="'. $albumURL . '">';
-		if (!$gallery->session->offline) {
-			echo breakString(urldecode($albumURL), 60, '&', 5);
-		} else {
-			echo $tmpAlbumName;
-		}
-		echo '</a>';
+	  echo '<br><div class="g-url-display">';
+		 
+    printf('<div>%s<a href="%s">%s</a></div>',
+      gTranslate('core', "URL:"),
+      $albumURL,
+      $gallery->session->offline ? $tmpAlbumName:breakString(urldecode($albumURL), 60, '&', 5)
+    );
 
 		if (preg_match('/album[[:digit:]]+$/', $albumURL)) {
 			if (!$gallery->session->offline) {
-				echo '<br><span class="error">'.
-				gTranslate('core', "Hey!") .
-				sprintf(gTranslate('core', "%s so that the URL is not so generic!"),
-				popup_link(gTranslate('core', "Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
+				echo '<span class="g-warning">'.
+				sprintf(gTranslate('core', "Attention, consider to %s the way the URL is not so generic and guessable!"),
+				popup_link(gTranslate('core', "rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500, 'g-emphasis'));
 				echo '</span>';
 			}
 		}
-
+    echo "</div>\n";
 	}
 
 	echo "\n<br><span class=\"fineprint\">";
