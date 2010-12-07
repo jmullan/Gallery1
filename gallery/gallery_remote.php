@@ -20,30 +20,30 @@
  * $Id$
  */
 
-require_once(dirname(__FILE__) . '/init.php');
+require_once (dirname(__FILE__) . '/init.php');
 
 //---------------------------------------------------------
 //-- check that we are not being called from the browser --
-if (empty ($cmd)) {
+if (empty($cmd)) {
 	echo 'This page is not meant to be accessed from your browser.  ';
 	echo 'If you would like to use Gallery Remote, please refer to ';
 	echo 'Gallery\'s website located at ';
-	echo "<a href='$gallery->url'>$gallery->url</a>";
-	exit;
+	printf('<a href="%s">%s</a>', $gallery->url, $gallery->url);
+	exit();
 }
 
 //---------------------------------------------------------
 //-- check version --
 if (strcmp($protocal_version, "1")) {
 	echo "Protocol out of Date. $protocal_version < 1.";
-	exit;
+	exit();
 }
 
 //---------------------------------------------------------
 //-- login --
 
-if (!strcmp($cmd, "login")) {
 
+if (! strcmp($cmd, "login")) {
 	if ($uname && $password) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
@@ -64,13 +64,14 @@ if (!strcmp($cmd, "login")) {
 //---------------------------------------------------------
 //-- fetch-albums --
 
-if (!strcmp($cmd, "fetch-albums")) {
+
+if (! strcmp($cmd, "fetch-albums")) {
 	$albumDB = new AlbumDB(FALSE);
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
 	// display all albums that the user can move album to
-	for ($i=1; $i<=$mynumalbums; $i++) {
-		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
+	for($i = 1; $i <= $mynumalbums; $i++) {
+		$myAlbum = $albumDB->getAlbum($gallery->user, $i);
 		$albumName = urlencode($myAlbum->fields[name]);
 		$albumTitle = urlencode($myAlbum->fields[title]);
 		if ($gallery->user->canWriteToAlbum($myAlbum)) {
@@ -90,13 +91,13 @@ function appendNestedAlbums($level, $albumName, $albumString) {
 
 	$numPhotos = $myAlbum->numPhotos(1);
 
-	for ($i=1; $i <= $numPhotos; $i++) {
+	for($i = 1; $i <= $numPhotos; $i++) {
 		if ($myAlbum->isAlbum($i)) {
 			$myName = $myAlbum->getAlbumName($i);
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
 			if ($gallery->user->canWriteToAlbum($nestedAlbum)) {
-				$nextTitle = str_repeat("-- ", $level+1);
+				$nextTitle = str_repeat("-- ", $level + 1);
 				$nextTitle .= $nestedAlbum->fields[title];
 				$nextTitle = urlencode($nextTitle);
 				$nextName = urlencode($nestedAlbum->fields[name]);
@@ -110,37 +111,37 @@ function appendNestedAlbums($level, $albumName, $albumString) {
 //---------------------------------------------------------
 //-- add-photo --
 
-if (!strcmp($cmd, "add-item")) {
+
+if (! strcmp($cmd, "add-item")) {
 	// Hack check
-	if (!$gallery->user->canAddToAlbum($gallery->album)) {
+	if (! $gallery->user->canAddToAlbum($gallery->album)) {
 		$error = gTranslate('core', "User cannot add to album");
 	}
-	else if (!$userfile_name) {
-		$error = gTranslate('core', "No file specified");
-	}
-	else {
-
-		$name = $userfile_name;
-		$file = $userfile;
-		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
-		$tag = strtolower($tag);
-
-		if ($name) {
-			$error = process($userfile, $tag, $userfile_name, $setCaption);
+	else
+		if (! $userfile_name) {
+			$error = gTranslate('core', "No file specified");
 		}
+		else {
+			$name = $userfile_name;
+			$file = $userfile;
+			$tag = preg_replace('/.*\.([^\.]*)$/', "\\1", $name);
+			$tag = strtolower($tag);
 
-		if(empty($error)) {
-			$gallery->album->save(array(i18n("Image added")));
-		}
+			if ($name) {
+				$error = process($userfile, $tag, $userfile_name, $setCaption);
+			}
 
-		if ($temp_files) {
-			/* Clean up the temporary url file */
-			foreach ($temp_files as $tf => $junk) {
-				fs_unlink($tf);
+			if (empty($error)) {
+				$gallery->album->save(array(i18n("Image added")));
+			}
+
+			if ($temp_files) {
+				/* Clean up the temporary url file */
+				foreach ($temp_files as $tf => $junk) {
+					fs_unlink($tf);
+				}
 			}
 		}
-
-	}
 
 	if ($error) {
 		echo ("ERROR: $error");
@@ -155,7 +156,8 @@ if (!strcmp($cmd, "add-item")) {
 //-- this process function is identical to that in save_photos.
 //-- Ugh.
 
-function process($file, $tag, $name, $setCaption="") {
+
+function process($file, $tag, $name, $setCaption = "") {
 	global $gallery;
 	global $temp_files;
 
@@ -164,13 +166,13 @@ function process($file, $tag, $name, $setCaption="") {
 	if (isAcceptableArchive($tag)) {
 		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
 		$tool = canDecompressArchive($tag);
-		if (!$tool) {
+		if (! $tool) {
 			$error = sprintf(gTranslate('core', "Skipping '%s' (%s support not enabled)"), $name, $tag);
 			return $error;
 		}
 
-		$temp_filename	= tempnam($gallery->app->tmpDir, 'g1_tmp_');
-		$temp_dirname	= $temp_filename . '.dir';
+		$temp_filename = tempnam($gallery->app->tmpDir, 'g1_tmp_');
+		$temp_dirname = $temp_filename . '.dir';
 
 		if (fs_is_dir($temp_dirname)) {
 			$error = gTranslate('core', "Error occured before extracting the archive. Temporary destination exists.");
@@ -182,37 +184,32 @@ function process($file, $tag, $name, $setCaption="") {
 			return $error;
 		}
 
-		if(! extractArchive($file, $tag, $temp_dirname)) {
+		if (! extractArchive($file, $tag, $temp_dirname)) {
 			$error = gTranslate('core', "Extracting archive failed.");
 			return $error;
 		}
 
 		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
 
-		$files_to_process	= array();
-		$dir_handle		= fs_opendir($temp_dirname);
-		$invalid_files 		= 0;
+		$files_to_process = array();
+		$dir_handle = fs_opendir($temp_dirname);
+		$invalid_files = 0;
 
 		while (false !== ($content_filename = readdir($dir_handle))) {
-			if($content_filename == "." || $content_filename == '..') {
+			if ($content_filename == "." || $content_filename == '..') {
 				continue;
 			}
 
-			if(! isXSSclean($content_filename)) {
+			if (! isXSSclean($content_filename)) {
 				$invalid_files++;
 				continue;
 			}
 
-			$content_file_ext	= getExtension($content_filename);
-			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
+			$content_file_ext = getExtension($content_filename);
+			$fullpath_content_file = $temp_dirname . '/' . $content_filename;
 
-			if ((isAcceptableFormat($content_file_ext) || isAcceptableArchive($content_file_ext)) &&
-			    !fs_is_link($fullpath_content_file))
-			{
-				$files_to_process[] = array(
-					'filename'	=> $fullpath_content_file,
-					'ext'		=> $content_file_ext
-				);
+			if ((isAcceptableFormat($content_file_ext) || isAcceptableArchive($content_file_ext)) && ! fs_is_link($fullpath_content_file)) {
+				$files_to_process[] = array('filename' => $fullpath_content_file, 'ext' => $content_file_ext);
 			}
 			else {
 				$invalid_files++;
@@ -223,47 +220,38 @@ function process($file, $tag, $name, $setCaption="") {
 		closedir($dir_handle);
 
 		/* Now process all valid files we found */
-		echo debugMessage(
-			gTranslate(
-				'core',
-				"Processing %d valid file from archive.",
-				"Processing %d valid files from archive.",
-				sizeof($files_to_process),
-				gTranslate('core', "The archive contains no valid files!"),
-				true),
-			__FILE__,
-			__LINE__
-		);
+		echo debugMessage(gTranslate('core',
+			"Processing %d valid file from archive.",
+			"Processing %d valid files from archive.",
+			sizeof($files_to_process),
+			gTranslate('core', "The archive contains no valid files!"), true),
+		__FILE__, __LINE__);
 
 		$loop = 0;
 		foreach ($files_to_process as $current_file) {
 			$current_file_name = basename($current_file['filename']);
-			$current_file_ext  = basename($current_file['ext']);
+			$current_file_ext = basename($current_file['ext']);
 
-			process($current_file['filename'],
-				$current_file_ext,
-				$current_file_name,
-				$caption,
-				$setCaption
-			);
+			process($current_file['filename'], $current_file_ext, $current_file_name, $caption, $setCaption);
 		}
 		/* End of archive processing */
 		rmdirRecursive($temp_dirname);
 		fs_unlink($temp_filename);
 	}
+	// Its not an archive
 	else {
 		// remove %20 and the like from name
 		$name = urldecode($name);
 
 		// parse out original filename without extension
-		$originalFilename = eregi_replace(".$tag$", "", $name);
+		$originalFilename = basename($name, $tag);
 
 		// replace multiple non-word characters with a single "_"
-		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+		$mangledFilename = preg_replace('/[^[:alnum:]]/', "_", $originalFilename);
 
 		/* Get rid of extra underscores */
-		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+		$mangledFilename = preg_replace('/_+/', "_", $mangledFilename);
+		$mangledFilename = preg_replace('/(^_|_$)/', "", $mangledFilename);
 
 		/*
 		need to prevent users from using original filenames that are purely numeric.
@@ -272,7 +260,7 @@ function process($file, $tag, $name, $setCaption="") {
 		RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
 		*/
 
-		if (ereg("^([0-9]+)$", $mangledFilename)) {
+		if (preg_match('/^([0-9]+)$/', $mangledFilename)) {
 			$mangledFilename .= "_G";
 		}
 
@@ -301,12 +289,12 @@ function process($file, $tag, $name, $setCaption="") {
 			}
 
 			$err = $gallery->album->addPhoto(
-							$file,
-							$tag,
-							$mangledFilename,
-							$caption,
-							array(),
-							$gallery->user->getUid()
+										$file,
+										$tag,
+										$mangledFilename,
+										$caption,
+										array(),
+										$gallery->user->getUid()
 			);
 
 			if ($err) {
