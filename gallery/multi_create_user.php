@@ -22,8 +22,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -75,7 +73,7 @@ if ($formaction == 'create') {
 
     if (!$errorCount) {
         // Simple test to see if it's a windows file
-        if (sizeof($users) == 1 and ereg("\r\n", $users[0])) {
+        if (sizeof($users) == 1 and preg_match('/\r\n/', $users[0])) {
             $users = explode("\r\n", $users[0]);
         }
         unlink($_FILES['membersfile']['tmp_name']);
@@ -84,7 +82,7 @@ if ($formaction == 'create') {
         foreach ($users as $user) {
             set_time_limit($gallery->app->timeLimit);
             $uname = $user[0];
-            
+
             if (sizeof($user) == 2) {
                 if(check_email($user[1])) {
                     $email = $user[1];
@@ -104,17 +102,17 @@ if ($formaction == 'create') {
             else {
                 processingMsg("- ". sprintf (_("Adding %s (%s)"),
                     $uname, (!empty($fullname) ? $fullname : '<i>' . _("No fullname given") .'</i>')));
-            } 
+            }
             $password = generate_password(10);
             $tmpUser = $gallery->userDB->CreateUser($uname, $email, $password, $fullname, $canCreate, $defaultLanguage, "bulk_register");
             if ($tmpUser) {
                 $total_added++;
                 if ($send_email && !empty($email)) {
                     processingMsg("- " . sprintf(_("Send email to %s"),$email));
-                    $msg = ereg_replace("!!PASSWORD!!", $password,
-                        ereg_replace("!!USERNAME!!", $uname,
-                        ereg_replace("!!FULLNAME!!", $fullname,
-                        ereg_replace("!!NEWPASSWORDLINK!!",
+                    $msg = preg_replace('/!!PASSWORD!!/', $password,
+                        preg_replace('/!!USERNAME!!/', $uname,
+                        preg_replace('/!!FULLNAME!!/', $fullname,
+                        preg_replace('/!!NEWPASSWORDLINK!!/',
                         $tmpUser->genRecoverPasswordHash(),
                         welcome_email()))));
                     $logmsg = sprintf(_("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
@@ -141,12 +139,12 @@ if ($formaction == 'create') {
         echo sprintf(_("%s added, %s skipped"),
 	    gTranslate('core', "1 user", "%d users", $total_added),
 	    gTranslate('core', "1 user", "%d users", $total_skipped));
-        echo "\n</p>";      
+        echo "\n</p>";
 ?>
 
-<center>
-    <form><input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>"></form>
-</center>
+	<center>
+	    <form><input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>"></form>
+	</center>
 </div>
 </body>
 </html>
@@ -160,64 +158,67 @@ if ($formaction == 'create') {
 }
 ?>
 <html>
-<head>
-  <title><?php echo _("Create Multiple Users") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo _("Create Users") ?></div>
-<div class="popup" align="center">
-<?php echo _("Create multiple new users from a file.") ?>
-<p>
-<?php
-$allowChange["uname"] = false;
-$allowChange["email"] = false;
-$allowChange["password"] = false;
-$allowChange["old_password"] = false;
-$allowChange["fullname"] = false;
-$allowChange["send_email"] = true;
-$allowChange["default_language"] = true;
-$allowChange["member_file"] = true;
-$allowChange["create_albums"] = true;
-$allowChange["canChangeOwnPw"] = true;
-$allowChange["admin"] = true;
+	<head>
+	  <title><?php echo _("Create Multiple Users") ?></title>
+	  <?php common_header(); ?>
+	</head>
 
-echo makeFormIntro("multi_create_user.php", array(
-    "name" => "usercreate_form",
-    "enctype" => "multipart/form-data"));
+	<body dir="<?php echo $gallery->direction ?>">
 
-$canCreateChoices = array(1 => _("Yes"), 0 => _("No"));
-$canCreate = 0;
-?>
-	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+	<div class="popuphead"><?php echo _("Create Users") ?></div>
 
-<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
+	<div class="popup" align="center">
+		<?php echo _("Create multiple new users from a file.") ?>
+		<p>
+		<?php
+		$allowChange["uname"] = false;
+		$allowChange["email"] = false;
+		$allowChange["password"] = false;
+		$allowChange["old_password"] = false;
+		$allowChange["fullname"] = false;
+		$allowChange["send_email"] = true;
+		$allowChange["default_language"] = true;
+		$allowChange["member_file"] = true;
+		$allowChange["create_albums"] = true;
+		$allowChange["canChangeOwnPw"] = true;
+		$allowChange["admin"] = true;
 
-<br>
-	<input type="hidden" name="formaction" value="">
-    <input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">   
-    <input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
-</form>
+		echo makeFormIntro("multi_create_user.php", array(
+		    "name" => "usercreate_form",
+		    "enctype" => "multipart/form-data"));
 
-</div>
-<div class="popup">
-<b><?php echo _("Notes:") ?> </b>
-<ul>
-<li>
-<?php echo _("The members file should be one user per line, and the fields should be space separated."); ?>
-<br><?php echo _("Each line must be in one of this formats:"); ?>
-    <ul>
-    <li><?php echo _("<i>username emailaddress fullname</i>"); ?></li>
-    <li><?php echo _("<i>username fullname</i>"); ?></li>
-    <li><?php echo _("<i>username emailaddress</i>"); ?></li>
-    </ul>
-<?php echo _("Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
-</li>
-<br>
-<li>
-<?php echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
-</li>
-</ul>
-</div>
-</body>
+		$canCreateChoices = array(1 => _("Yes"), 0 => _("No"));
+		$canCreate = 0;
+		?>
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+
+		<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
+
+		<br>
+			<input type="hidden" name="formaction" value="">
+		    <input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">
+		    <input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
+		</form>
+	</div>
+
+	<div class="popup">
+		<b><?php echo _("Notes:") ?> </b>
+		<ul>
+			<li>
+			<?php echo _("The members file should be one user per line, and the fields should be space separated."); ?>
+			<br><?php echo _("Each line must be in one of this formats:"); ?>
+			    <ul>
+			    <li><?php echo _("<i>username emailaddress fullname</i>"); ?></li>
+			    <li><?php echo _("<i>username fullname</i>"); ?></li>
+			    <li><?php echo _("<i>username emailaddress</i>"); ?></li>
+			    </ul>
+			<?php echo _("Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
+			</li>
+			<br>
+			<li>
+			<?php echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
+			</li>
+		</ul>
+	</div>
+	</body>
 </html>

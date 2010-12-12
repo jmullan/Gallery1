@@ -35,11 +35,12 @@ list($fullname, $email, $send_email, $defaultLanguage) =
 
 echo printPopupStart(gTranslate('core', "Register new user"), '', 'left');
 
-if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
-	<p>
-	<?php echo gTranslate('core', "This Gallery does not support self-registration by visitors.") ?>
-	<br><br>
-	<?php echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()'); ?>
+if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') {
+	print "\n<p>";
+	echo gTranslate('core', "This Gallery does not support self-registration by visitors.");
+	print "\n>br><br>";
+	echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()');
+?>
   </div>
 </body>
 </html>
@@ -47,15 +48,15 @@ if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
     exit();
 }
 
-$allowChange['uname']		= true;
-$allowChange['password']	= false;
+$allowChange['uname']			= true;
+$allowChange['password']		= false;
 $allowChange['old_password']	= false;
-$allowChange['fullname']	= true;
-$allowChange['email']		= true;
+$allowChange['fullname']		= true;
+$allowChange['email']			= true;
 $allowChange['default_language']= true;
 $allowChange['create_albums']	= false;
-$allowChange['send_email']	= false;
-$allowChange['member_file']	= false;
+$allowChange['send_email']		= false;
+$allowChange['member_file']		= false;
 
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
@@ -100,10 +101,10 @@ if (!empty($formaction) && $formaction == 'create') {
 	    $tmpUser->origEmail=$email;
 	    $tmpUser->log("self_register");
 	    $tmpUser->setDefaultLanguage($defaultLanguage);
-	    $msg = ereg_replace("!!PASSWORD!!", $password,
-	       ereg_replace("!!USERNAME!!", $uname,
-	       ereg_replace("!!FULLNAME!!", $fullname,
-	       ereg_replace("!!NEWPASSWORDLINK!!",
+	    $msg = preg_replace('/!!PASSWORD!!/', $password,
+	       preg_replace('/!!USERNAME!!/', $uname,
+	       preg_replace('/!!FULLNAME!!/', $fullname,
+	       preg_replace('/!!NEWPASSWORDLINK!!/',
 	       $tmpUser->genRecoverPasswordHash(),
 	        welcome_email()))));
 	    $logmsg = sprintf(gTranslate('core', "%s has registered.  Email has been sent to %s."), $uname, $email);

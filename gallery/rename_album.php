@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2008 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -47,10 +47,10 @@ if (!empty($newName)) {
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "%\\/*?\"<>|& .+#(){}~", "-------------------");
-	$newName = ereg_replace("\-+", "-", $newName);
-	$newName = ereg_replace("\-+$", "", $newName);
-	$newName = ereg_replace("^\-", "", $newName);
-	$newName = ereg_replace("\-$", "", $newName);
+	$newName = preg_replace('/-+/', "-", $newName);
+	$newName = preg_replace('/-+$/', "", $newName);
+	$newName = preg_replace('/^-/', "", $newName);
+	$newName = preg_replace('/-$/', "", $newName);
 
 	if ($newName != $newNameOrig) {
 		echo infoBox(array(array(
@@ -141,7 +141,7 @@ echo infoBox(array(array(
 
 ?>
 <script language="javascript1.2" type="text/JavaScript">
-<!--   
+<!--
 // position cursor in top form field
 document.g1_form.newName.focus();
 //-->
